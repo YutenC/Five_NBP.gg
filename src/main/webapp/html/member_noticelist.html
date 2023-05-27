@@ -54,7 +54,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" data-bss-hover-animate="pulse" href="#" style="margin-top: 10px;">
+                            <a class="nav-link active" data-bss-hover-animate="pulse" href="./member_home.html" style="margin-top: 10px;">
                                 <img class="d-flex mx-auto align-items-xl-center" src="../img/user-solid.svg" style="height: 50px;">會員中心
                             </a>
                         </li>
@@ -79,17 +79,17 @@
         <div class="row" style="height: 800px;">
             <div class="col-lg-4 col-xl-2 offset-xl-1" style="height: 600px;">
                 <div class="list-group">
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-profile" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">基本資料管理
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="./member_info.html" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">基本資料管理
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-friends_list" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">好友名單
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="./member_friendlist.html" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">好友名單
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-black_list" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">黑名單
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="./member_blacklist.html" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">黑名單
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-search-order" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢一般交易
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-search-sh-order" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手交易
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-seach-sh-sell" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手收購進度
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="./SecondHand_buylist_search.html" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手收購進度
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-product-follow" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">一般商品追蹤清單
                         <br>
@@ -98,16 +98,16 @@
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-activity" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢參加活動
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-notification" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看通知
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="./member_noticelist.html" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看通知
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-login-history" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看登入紀錄
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="./member_loginhistory.html" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看登入紀錄
                     </a>
                 </div>
             </div>
             <div class="col">
                 <div class="container profile profile-view" id="profile" style="height: 800px;">
                     <h1>查看通知</h1>
-
+                    
 
 
                 </div>
@@ -154,7 +154,8 @@
             </div>
         </div>
     </footer>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../jquery/jquery-3.4.1.min.js"></script>
+    <!-- <script src="../bootstrap/js/bootstrap.min.js"></script> -->
     <script src="../js/bs-init.js"></script>
     <script src="../js/Profile-Edit-Form.js"></script>
 </body>

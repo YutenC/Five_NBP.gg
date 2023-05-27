@@ -17,6 +17,19 @@
     <link rel="stylesheet" href="../css/Profile-Edit-Form.css">
     <link rel="stylesheet" href="../css/Profile-with-data-and-skills.css">
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        table.friend_list {
+            border: 1px solid gray;
+        }
+
+        thead.friend_list {
+            border: 1px solid gray;
+        }
+
+        tbody.friend_list {
+            border: 1px solid gray;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,44 +41,56 @@
                     <img data-bss-hover-animate="pulse" src="../img/Logo-removebg.png" style="width: 100%;">
                 </a>
                 <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2">
-                <span class="visually-hidden">Toggle navigation</span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                    <span class="visually-hidden">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navcol-2" style="font-weight: bold;height: 100px;">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bss-hover-animate="pulse" href="#" style="border-width: 20px;margin-top: 10px;">
+                            <a class="nav-link active" data-bss-hover-animate="pulse" href="#"
+                                style="border-width: 20px;margin-top: 10px;">
                                 <img src="../img/gamepad-solid.svg">商城中心
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bss-hover-animate="pulse" href="#" style="border-width: 20px;margin-top: 10px;color: var(--bs-dark);">
+                            <a class="nav-link" data-bss-hover-animate="pulse" href="#"
+                                style="border-width: 20px;margin-top: 10px;color: var(--bs-dark);">
                                 <img src="../img/dice-solid.svg">二手商城
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link align-items-xl-center" data-bss-hover-animate="pulse" style="border-width: 20px;margin-top: 11px;color: var(--bs-dark);" href="#">
-                                <img class="d-flex mx-auto" src="../img/newspaper-regular.svg" style="height: 50px;">論壇社群
+                            <a class="nav-link align-items-xl-center" data-bss-hover-animate="pulse"
+                                style="border-width: 20px;margin-top: 11px;color: var(--bs-dark);" href="#">
+                                <img class="d-flex mx-auto" src="../img/newspaper-regular.svg"
+                                    style="height: 50px;">論壇社群
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bss-hover-animate="pulse" href="#" style="border-width: 20px;margin-top: 10px;color: var(--bs-dark);">
+                            <a class="nav-link" data-bss-hover-animate="pulse" href="#"
+                                style="border-width: 20px;margin-top: 10px;color: var(--bs-dark);">
                                 <img src="../img/champagne-glasses-solid.svg">活動專區
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" data-bss-hover-animate="pulse" href="#" style="margin-top: 10px;">
-                                <img class="d-flex mx-auto align-items-xl-center" src="../img/user-solid.svg" style="height: 50px;">會員中心
+                            <a class="nav-link active" data-bss-hover-animate="pulse" href="./member_home.html"
+                                style="margin-top: 10px;">
+                                <img class="d-flex mx-auto align-items-xl-center" src="../img/user-solid.svg"
+                                    style="height: 50px;">會員中心
                             </a>
                         </li>
                         <li class="nav-item" style="height: 80px;">
-                            <a class="nav-link" data-bss-hover-animate="pulse" href="#service_center" style="margin-top: 20px;color: var(--bs-dark);">
-                                <img class="d-xl-flex mx-auto" src="../img/handshake-simple-solid.svg" style="height: 40px;">客服中心
+                            <a class="nav-link" data-bss-hover-animate="pulse" href="#service_center"
+                                style="margin-top: 20px;color: var(--bs-dark);">
+                                <img class="d-xl-flex mx-auto" src="../img/handshake-simple-solid.svg"
+                                    style="height: 40px;">客服中心
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-6 text-center" data-bss-hover-animate="pulse" id="sign_out" href="#service_center" style="margin-top: 0px;color: var(--bs-dark);width: 80px;height: 100px;">
-                                <div id="member_pic-1" class="avatar-bg center" style="width: 60px;height: 60px;margin-left: 0px;"></div>登出
+                            <a class="nav-link fs-6 text-center" data-bss-hover-animate="pulse" id="sign_out"
+                                href="#service_center"
+                                style="margin-top: 0px;color: var(--bs-dark);width: 80px;height: 100px;">
+                                <div id="member_pic-1" class="avatar-bg center"
+                                    style="width: 60px;height: 60px;margin-left: 0px;"></div>登出
                             </a>
                         </li>
                     </ul>
@@ -74,40 +99,135 @@
             </div>
         </nav>
     </header>
-    
+
     <div class="main-content">
         <div class="row" style="height: 800px;">
             <div class="col-lg-4 col-xl-2 offset-xl-1" style="height: 600px;">
                 <div class="list-group">
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-profile" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">基本資料管理
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_info.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">基本資料管理
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-friends_list" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">好友名單
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_friendlist.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">好友名單
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-black_list" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">黑名單
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_blacklist.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">黑名單
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-search-order" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢一般交易
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="#list-search-order" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢一般交易
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-search-sh-order" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手交易
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="#list-search-sh-order" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手交易
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-seach-sh-sell" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手收購進度
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./SecondHand_buylist_search.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手收購進度
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-product-follow" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">一般商品追蹤清單
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="#list-product-follow" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">一般商品追蹤清單
                         <br>
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-sh-product-follow" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">二手商品追蹤清單
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="#list-sh-product-follow" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">二手商品追蹤清單
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-activity" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢參加活動
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="#list-activity" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢參加活動
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-notification" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看通知
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_noticelist.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看通知
                     </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action" href="#list-login-history" data-bs-toggle="list" style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看登入紀錄
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_loginhistory.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看登入紀錄
                     </a>
                 </div>
             </div>
             <div class="col">
                 <div class="container profile profile-view" id="profile" style="height: 800px;">
                     <h1>好友名單</h1>
-
+                    <div>
+                        <span>
+                            <button type="button" class="btn btn-primary">查詢好友</button>
+                        </span>
+                        <span>
+                            <button type="button" class="btn btn-primary">新增好友</button>
+                        </span>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">好友名稱</th>
+                                <th scope="col">遊玩標籤</th>
+                                <th scope="col">管理功能</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="friend_pic">
+                                        <img src="">
+                                    </div>
+                                </td>
+                                <td>Mark</td>
+                                <td>
+                                    <div class="game_label">
+                                        <img src="">
+                                        薩爾達傳說- 王國之淚
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-warning">刪除好友</button>
+                                    <button type="button" class="btn btn-dark">加入黑名單</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="friend_pic">
+                                        <img src="">
+                                    </div>
+                                </td>
+                                <td>Marco</td>
+                                <td>
+                                    <div class="game_label">
+                                        <img src="">
+                                        MonsterHunter - World
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-warning">刪除好友</button>
+                                    <button type="button" class="btn btn-dark">加入黑名單</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="friend_pic">
+                                        <img src="">
+                                    </div>
+                                </td>
+                                <td>Yuten</td>
+                                <td>
+                                    <div class="game_label">
+                                        <img src="">
+                                        薩爾達傳說- 王國之淚
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-warning">刪除好友</button>
+                                    <button type="button" class="btn btn-dark">加入黑名單</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
 
                 </div>
@@ -154,9 +274,18 @@
             </div>
         </div>
     </footer>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../jquery/jquery-3.4.1.min.js"></script>
+    <!-- <script src="../bootstrap/js/bootstrap.min.js"></script> -->
     <script src="../js/bs-init.js"></script>
     <script src="../js/Profile-Edit-Form.js"></script>
+
 </body>
+<script>
+    $("a.list-group").on("click", function (e) {
+        console.log(e.target);
+    });
+
+
+</script>
 
 </html>
