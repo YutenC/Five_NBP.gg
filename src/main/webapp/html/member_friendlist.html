@@ -18,20 +18,67 @@
     <link rel="stylesheet" href="../css/Profile-with-data-and-skills.css">
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-        table.friend_list {
-            border: 1px solid gray;
+        div.friend_function {
+            width: fit-content;
+            margin-left: 660px;
         }
 
-        thead.friend_list {
-            border: 1px solid gray;
-        }
-
-        tbody.friend_list {
-            border: 1px solid gray;
+        span.friend_function {
+            width: fit-content;
+            margin-right: 10px;
         }
 
         div.row {
             width: 100%;
+        }
+            
+
+        th#friend_id {
+            width: 50px;
+        }
+
+        td#friend_id {
+            visibility: hidden;
+            width: 50px;
+        }
+
+        th#friend_name {
+            width: 200px;
+            text-align: center;
+        }
+
+        td#friend_name {
+            width: 200px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th#game_label {
+            text-align: center;
+            width: 400px;
+        }
+
+        td#game_label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 400px;
+            vertical-align: middle;
+        }
+
+        th#manage_function {
+            width: 250px;
+            text-align: center;
+        }
+
+        td#manage_function {
+            text-align: center;
+            width: 250px;
+            vertical-align: middle;
+        }
+
+        button.btn-warning {
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -155,77 +202,74 @@
                     </a>
                 </div>
             </div>
-            <div class="col">
+            <div class="col" style="width: 50%;">
                 <div class="container profile profile-view" id="profile" style="height: 800px;">
                     <h1>好友名單</h1>
-                    <div>
-                        <span>
+                    <div class="friend_function">
+                        <span class="friend_function">
                             <button type="button" class="btn btn-primary">查詢好友</button>
                         </span>
-                        <span>
+                        <span class="friend_function">
                             <button type="button" class="btn btn-primary">新增好友</button>
                         </span>
                     </div>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"></th>
-                                <th scope="col">好友名稱</th>
-                                <th scope="col">遊玩標籤</th>
-                                <th scope="col">管理功能</th>
+                                <th scope="col" id="friend_id"></th>
+                                <th scope="col" id="friend_name">好友名稱</th>
+                                <th scope="col" id="game_label">遊玩標籤</th>
+                                <th scope="col" id="manage_function">管理功能</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-                                    <div class="friend_pic">
-                                        <img src="">
-                                    </div>
+                                <td id="friend_id">1</td>
+                                <td id="friend_name">
+                                    <span class="friend_pic">
+                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
+                                    </span>
+                                    <span>小虎</span>
                                 </td>
-                                <td>Mark</td>
-                                <td>
-                                    <div class="game_label">
-                                        <img src="">
-                                        薩爾達傳說- 王國之淚
-                                    </div>
+                                <td id="game_label">
+                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
+                                    薩爾達傳說- 王國之淚
                                 </td>
-                                <td>
+                                <td id="manage_function">
                                     <button type="button" class="btn btn-warning">刪除好友</button>
                                     <button type="button" class="btn btn-dark">加入黑名單</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <div class="friend_pic">
-                                        <img src="">
-                                    </div>
+                                <td id="friend_id">2</td>
+                                <td id="friend_name">
+                                    <span class="friend_pic">
+                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
+                                    </span>
+                                    <span>小花</span>
                                 </td>
-                                <td>Marco</td>
-                                <td>
-                                    <div class="game_label">
-                                        <img src="">
-                                        MonsterHunter - World
-                                    </div>
+                                <td id="game_label">
+                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
+                                    尼爾- 自動人形
                                 </td>
-                                <td>
+                                <td id="manage_function">
                                     <button type="button" class="btn btn-warning">刪除好友</button>
                                     <button type="button" class="btn btn-dark">加入黑名單</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <div class="friend_pic">
-                                        <img src="">
-                                    </div>
+                                <td id="friend_id">2</td>
+                                <td id="friend_name">
+                                    <span class="friend_pic">
+                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
+                                    </span>
+                                    <span>小黑</span>
                                 </td>
-                                <td>Yuten</td>
-                                <td>
-                                    <div class="game_label">
-                                        <img src="">
-                                        薩爾達傳說- 王國之淚
-                                    </div>
+                                <td id="game_label">
+                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
+                                    地平線 - 等待黎明
                                 </td>
-                                <td>
+                                <td id="manage_function">
                                     <button type="button" class="btn btn-warning">刪除好友</button>
                                     <button type="button" class="btn btn-dark">加入黑名單</button>
                                 </td>
