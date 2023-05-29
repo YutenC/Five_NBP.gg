@@ -1,0 +1,62 @@
+.nav-bar-top {
+
+  width: fit-content;
+
+  /* 如果你也想讓元素與畫面頂部保持20px的距離 */
+}
+
+.custom-index-content {
+  border-radius: 30px;
+  padding: 10px;
+  background-color: #f8f9fc;
+}
+
+.custom-index-text-primary {
+  color: black !important;
+}
+
+.custom-index-content-lastlist {
+  border-bottom: none;
+}
+
+.custom-manager-button,
+.custom-power-button,
+.custom-member-button,
+.custom-ban-button {
+  background-color: gray;
+  border: black;
+}
+
+.custom-col-newmanager,
+.custom-col-newpower,
+.custom-col-newmember {
+  padding: 10px;
+  width: 100%;
+}
+
+.custom-col-newmanager:first-child,
+.custom-col-newpower:first-child,
+.custom-col-newmember:first-child {
+  padding-top: 0px;
+}
+
+.custom-col-newmanager:last-child,
+.custom-col-newpower:last-child,
+.custom-col-newmember:last-child {
+  padding-bottom: 0px;
+}
+
+.custom-col-newmanager-btn,
+.custom-col-newpower-btn,
+.custom-col-newmember-btn {
+  width: 800px;
+  height: 30px;
+  text-align: center;
+  margin-left: calc((50%-800px)/2);
+  margin-right: calc((50%-800px)/2);
+}
+
+.btn-danger {
+  background-color: rgb(231, 74, 59);
+  border-color: rgb(231, 74, 59);
+}
