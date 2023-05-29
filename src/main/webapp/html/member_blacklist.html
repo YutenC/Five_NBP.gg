@@ -18,8 +18,66 @@
     <link rel="stylesheet" href="../css/Profile-with-data-and-skills.css">
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-        div.row{
+        div.blacklist_function {
+            width: fit-content;
+            margin-left: 645px;
+        }
+
+        span.blacklist_function {
+            width: fit-content;
+            margin-right: 10px;
+        }
+
+        div.row {
             width: 100%;
+        }
+
+        th#blacklist_id {
+            width: 50px;
+        }
+
+        td#blacklist_id {
+            visibility: hidden;
+            width: 50px;
+        }
+
+        th#blacklist_name {
+            width: 200px;
+            text-align: center;
+        }
+
+        td#blacklist_name {
+            width: 200px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th#game_label {
+            text-align: center;
+            width: 400px;
+        }
+
+        td#game_label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 400px;
+            vertical-align: middle;
+        }
+
+        th#manage_function {
+            width: 250px;
+            text-align: center;
+        }
+
+        td#manage_function {
+            text-align: center;
+            width: 250px;
+            vertical-align: middle;
+        }
+
+        button.btn-warning {
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -112,79 +170,77 @@
             <div class="col">
                 <div class="container profile profile-view" id="profile" style="height: 800px;">
                     <h1>黑名單</h1>
-                    <div>
-                        <span>
+                    <div class="blacklist_function">
+                        <span class="blacklist_function">
                             <button type="button" class="btn btn-primary">查詢黑名單</button>
                         </span>
-                        <span>
+                        <span class="blacklist_function">
                             <button type="button" class="btn btn-primary">新增黑名單</button>
                         </span>
                     </div>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"></th>
-                                <th scope="col">黑名單對象</th>
-                                <th scope="col">遊玩標籤</th>
-                                <th scope="col">管理功能</th>
+                                <th scope="col" id="blacklist_id"></th>
+                                <th scope="col" id="blacklist_name">黑名單名稱</th>
+                                <th scope="col" id="game_label">遊玩標籤</th>
+                                <th scope="col" id="manage_function">管理功能</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-                                    <div class="friend_pic">
-                                        <img src="">
-                                    </div>
+                                <td id="blacklist_id">1</td>
+                                <td id="blacklist_name">
+                                    <span class="blacklist_pic">
+                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
+                                    </span>
+                                    <span>大雄</span>
                                 </td>
-                                <td>Mark</td>
-                                <td>
-                                    <div class="game_label">
-                                        <img src="">
-                                        薩爾達傳說- 王國之淚
-                                    </div>
+                                <td id="game_label">
+                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
+                                    薩爾達傳說- 王國之淚
                                 </td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">刪除黑名單</button>                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="friend_pic">
-                                        <img src="">
-                                    </div>
-                                </td>
-                                <td>Marco</td>
-                                <td>
-                                    <div class="game_label">
-                                        <img src="">
-                                        MonsterHunter - World
-                                    </div>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">刪除黑名單</button> 
+                                <td id="manage_function">
+                                    <button type="button" class="btn btn-warning">刪除黑名單</button>
+                                    <button type="button" class="btn btn-dark">加入黑名單</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <div class="friend_pic">
-                                        <img src="">
-                                    </div>
+                                <td id="blacklist_id">2</td>
+                                <td id="blacklist_name">
+                                    <span class="blacklist_pic">
+                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
+                                    </span>
+                                    <span>小夫</span>
                                 </td>
-                                <td>Yuten</td>
-                                <td>
-                                    <div class="game_label">
-                                        <img src="">
-                                        薩爾達傳說- 王國之淚
-                                    </div>
+                                <td id="game_label">
+                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
+                                    尼爾- 自動人形
                                 </td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">刪除黑名單</button> 
+                                <td id="manage_function">
+                                    <button type="button" class="btn btn-warning">刪除黑名單</button>
+                                    <button type="button" class="btn btn-dark">加入黑名單</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="blacklist_id">2</td>
+                                <td id="blacklist_name">
+                                    <span class="blacklist_pic">
+                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
+                                    </span>
+                                    <span>胖虎</span>
+                                </td>
+                                <td id="game_label">
+                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
+                                    地平線 - 等待黎明
+                                </td>
+                                <td id="manage_function">
+                                    <button type="button" class="btn btn-warning">刪除黑名單</button>
+                                    <button type="button" class="btn btn-dark">加入黑名單</button>
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-
-
+                    </table>    
                 </div>
             </div>
         </div>
