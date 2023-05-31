@@ -20,18 +20,18 @@
     <style>
         div.friend_function {
             width: fit-content;
-            margin-left: 660px;
+            margin-left: 520px;
         }
 
         span.friend_function {
             width: fit-content;
-            margin-right: 10px;
+            margin-right: 15px;
         }
-
+        
         div.row {
             width: 100%;
         }
-            
+
 
         th#friend_id {
             width: 50px;
@@ -79,6 +79,16 @@
 
         button.btn-warning {
             margin-right: 10px;
+        }
+        div.pagination{
+            width: fit-content;
+            margin: auto;
+        }
+        input#search{
+            width: 200px;
+            margin: auto;
+            display: inline-block;
+            
         }
     </style>
 </head>
@@ -207,7 +217,10 @@
                     <h1>好友名單</h1>
                     <div class="friend_function">
                         <span class="friend_function">
-                            <button type="button" class="btn btn-primary">查詢好友</button>
+                            <input class="form-control" type="text" id="search" name="search">
+                        </span>
+                        <span class="friend_function">
+                            <img src="../img/magnifying-glass-solid.svg" style="width: 20px;">
                         </span>
                         <span class="friend_function">
                             <button type="button" class="btn btn-primary">新增好友</button>
@@ -274,11 +287,64 @@
                                     <button type="button" class="btn btn-dark">加入黑名單</button>
                                 </td>
                             </tr>
+                            <tr>
+                                <td id="friend_id">2</td>
+                                <td id="friend_name">
+                                    <span class="friend_pic">
+                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
+                                    </span>
+                                    <span>小黑</span>
+                                </td>
+                                <td id="game_label">
+                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
+                                    地平線 - 等待黎明
+                                </td>
+                                <td id="manage_function">
+                                    <button type="button" class="btn btn-warning">刪除好友</button>
+                                    <button type="button" class="btn btn-dark">加入黑名單</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="friend_id">2</td>
+                                <td id="friend_name">
+                                    <span class="friend_pic">
+                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
+                                    </span>
+                                    <span>小黑</span>
+                                </td>
+                                <td id="game_label">
+                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
+                                    地平線 - 等待黎明
+                                </td>
+                                <td id="manage_function">
+                                    <button type="button" class="btn btn-warning">刪除好友</button>
+                                    <button type="button" class="btn btn-dark">加入黑名單</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-
-
+                    <div class="pagination">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </div>
