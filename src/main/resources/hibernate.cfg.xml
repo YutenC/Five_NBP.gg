@@ -17,6 +17,6 @@
 
         <property name="hibernate.current_session_context_class">thread</property>
 
-        <mapping class="web.member.entity.Member" />
+        <mapping class="com.member.entity.Member" />
     </session-factory>
 </hibernate-configuration>
