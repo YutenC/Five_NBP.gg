@@ -1,11 +1,9 @@
 package com.core.dao;
 
-import org.hibernate.Hibernate;
+import com.core.util.HibernateUtil;
 import org.hibernate.Session;
 
 import java.util.List;
-
-import core.util.HibernateUtil;
 
 public interface CoreDao<M, I> {
 

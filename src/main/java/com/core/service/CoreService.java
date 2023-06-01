@@ -1,6 +1,6 @@
 package com.core.service;
 
-import core.util.HibernateUtil;
+import com.core.util.HibernateUtil;
 import org.hibernate.Transaction;
 
 public interface CoreService {

@@ -8,7 +8,7 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">jk4908709</property>
         <!-- 上面4行換成下面一行的設定 -->
-        <!--		<property name="hibernate.connection.datasource">java:comp/env/jdbc/javaFramework</property>-->
+<!--        		<property name="hibernate.connection.datasource">java:comp/env/jdbc/javaFramework</property>-->
 
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.show_sql">true</property>
