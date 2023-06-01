@@ -17,53 +17,69 @@
     <link rel="stylesheet" href="../css/Profile-Edit-Form.css">
     <link rel="stylesheet" href="../css/Profile-with-data-and-skills.css">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- <link rel="stylesheet" href="../css/act_iron_inform.css"> -->
     <style>
-        div.friend_function {
-            width: fit-content;
-            margin-left: 520px;
+        table.table {
+            table-layout: fixed;
         }
 
-        span.friend_function {
-            width: fit-content;
-            margin-right: 15px;
-        }
-        
         div.row {
             width: 100%;
         }
 
+        div.message_button {
+            width: fit-content;
+            margin-left: 485px;
+        }
 
-        th#friend_id {
+        span.message_button {
+            width: fit-content;
+            margin-right: 10px;
+        }
+
+        th#messgae_id {
             width: 50px;
         }
 
-        td#friend_id {
+        td#messgae_id {
             visibility: hidden;
             width: 50px;
         }
 
-        th#friend_name {
-            width: 200px;
+        th#time {
+            width: 120px;
             text-align: center;
         }
 
-        td#friend_name {
-            width: 200px;
+        td#time {
+            width: 120px;
             text-align: center;
             vertical-align: middle;
         }
 
-        th#game_label {
+        th#message_content {
             text-align: center;
             width: 400px;
         }
 
-        td#game_label {
+        td#message_content {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             width: 400px;
             vertical-align: middle;
+        }
+
+        th#is_read {
+            width: 10px;
+            font-size: 0px;
+        }
+
+        td#is_read {
+            width: 10px;
+            font-size: 0px;
         }
 
         th#manage_function {
@@ -73,22 +89,8 @@
 
         td#manage_function {
             text-align: center;
-            width: 250px;
-            vertical-align: middle;
-        }
-
-        button.btn-warning {
-            margin-right: 10px;
-        }
-        div.pagination{
-            width: fit-content;
-            margin: auto;
-        }
-        input#search{
             width: 200px;
-            margin: auto;
-            display: inline-block;
-            
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -212,139 +214,114 @@
                     </a>
                 </div>
             </div>
-            <div class="col" style="width: 50%;">
+            <div class="col">
                 <div class="container profile profile-view" id="profile" style="height: 800px;">
-                    <h1>好友名單</h1>
-                    <div class="friend_function">
-                        <span class="friend_function">
-                            <input class="form-control" type="text" id="search" name="search">
+                    <h1>活動通知</h1>
+                    <div class="message_button">
+                        <span class="message_button">
+                            <button type="button" class="btn btn-primary">查詢通知</button>
                         </span>
-                        <span class="friend_function">
-                            <img src="../img/magnifying-glass-solid.svg" style="width: 20px;">
+                        <span class="message_button">
+                            <button type="button" class="have_read btn btn-primary">已讀所有通知</button>
                         </span>
-                        <span class="friend_function">
-                            <button type="button" class="btn btn-primary">新增好友</button>
+                        <span class="message_button">
+                            <button type="button" class="have_read btn btn-primary">刪除所有通知</button>
                         </span>
                     </div>
+
+
                     <table class="table">
-                        <thead>
+                        <tr>
+                            <th scope="col" id="message_id"></th>
+                            <th scope="col" id="time">通知時間</th>
+                            <th scope="col" id="act_picture">圖片</th>
+                            <th scope="col" id="message_content">訊息內容</th>
+
+                            <th scope="col" id="manage_function">管理功能</th>
+                        </tr>
+                        </head>
+
+                        <body>
                             <tr>
-                                <th scope="col" id="friend_id"></th>
-                                <th scope="col" id="friend_name">好友名稱</th>
-                                <th scope="col" id="game_label">遊玩標籤</th>
-                                <th scope="col" id="manage_function">管理功能</th>
+
                             </tr>
+                        </body>
+
                         </thead>
                         <tbody>
                             <tr>
-                                <td id="friend_id">1</td>
-                                <td id="friend_name">
-                                    <span class="friend_pic">
-                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
-                                    </span>
-                                    <span>小虎</span>
+                                <td id="messgae_id">1</td>
+                                <td id="time">2023-05-22</td>
+                                <td id="act_picture"><img src="../img/img_act/4.jpg" style="width: 36px; height: 36px">
                                 </td>
-                                <td id="game_label">
-                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
-                                    薩爾達傳說- 王國之淚
+                                <td id=" message_content">
+                                    AAAAAAAAAAAAAA
                                 </td>
                                 <td id="manage_function">
-                                    <button type="button" class="btn btn-warning">刪除好友</button>
-                                    <button type="button" class="btn btn-dark">加入黑名單</button>
+                                    <button class="btnI1">
+                                        <i class="fas fa-comment-alt-dots fa-spin"></i>
+                                        <input type="button" value="聊天室" class="ctrlbutton">
+                                    </button>
+                                    <button class="btnI2">
+                                        <i class="fas fa-radiation" style="color: #f00000;"></i>
+                                        <input type="button" value="檢舉" class="ctrlbutton">
+                                    </button>
+                                    <button class="btnI3">
+                                        <i class="fas fa-trash-alt"></i>
+                                        <input type="button" value="刪除" class="ctrlbutton">
+                                    </button>
                                 </td>
+
+
                             </tr>
                             <tr>
-                                <td id="friend_id">2</td>
-                                <td id="friend_name">
-                                    <span class="friend_pic">
-                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
-                                    </span>
-                                    <span>小花</span>
-                                </td>
-                                <td id="game_label">
-                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
-                                    尼爾- 自動人形
-                                </td>
+                                <td id="messgae_id">2</td>
+                                <td id="time">2023-05-25</td>
+                                <td id="act_picture"><img src="../img/img_act/kita.jpg"
+                                        style="width: 36px; height: 36px">
+                                <td id="message_content">BBBBBBBB</td>
                                 <td id="manage_function">
-                                    <button type="button" class="btn btn-warning">刪除好友</button>
-                                    <button type="button" class="btn btn-dark">加入黑名單</button>
+                                    <button class="btnI1">
+                                        <i class="fas fa-comment-alt-dots fa-spin"></i>
+                                        <input type="button" value="聊天室" class="ctrlbutton">
+                                    </button>
+                                    <button class="btnI2">
+                                        <i class="fas fa-radiation" style="color: #f00000;"></i>
+                                        <input type="button" value="檢舉" class="ctrlbutton">
+                                    </button>
+                                    <button class="btnI3">
+                                        <i class="fas fa-trash-alt"></i>
+                                        <input type="button" value="刪除" class="ctrlbutton">
+                                    </button>
                                 </td>
+
                             </tr>
                             <tr>
-                                <td id="friend_id">2</td>
-                                <td id="friend_name">
-                                    <span class="friend_pic">
-                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
-                                    </span>
-                                    <span>小黑</span>
-                                </td>
-                                <td id="game_label">
-                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
-                                    地平線 - 等待黎明
-                                </td>
+                                <td id="messgae_id">3</td>
+                                <td id="time">2023-05-27</td>
+                                <td id="act_picture"><img src="../img/img_act/6.jpg" style="width: 36px; height: 36px">
+                                <td id="message_content">CCCCCCC</td>
+
                                 <td id="manage_function">
-                                    <button type="button" class="btn btn-warning">刪除好友</button>
-                                    <button type="button" class="btn btn-dark">加入黑名單</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="friend_id">2</td>
-                                <td id="friend_name">
-                                    <span class="friend_pic">
-                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
-                                    </span>
-                                    <span>小黑</span>
-                                </td>
-                                <td id="game_label">
-                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
-                                    地平線 - 等待黎明
-                                </td>
-                                <td id="manage_function">
-                                    <button type="button" class="btn btn-warning">刪除好友</button>
-                                    <button type="button" class="btn btn-dark">加入黑名單</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="friend_id">2</td>
-                                <td id="friend_name">
-                                    <span class="friend_pic">
-                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
-                                    </span>
-                                    <span>小黑</span>
-                                </td>
-                                <td id="game_label">
-                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
-                                    地平線 - 等待黎明
-                                </td>
-                                <td id="manage_function">
-                                    <button type="button" class="btn btn-warning">刪除好友</button>
-                                    <button type="button" class="btn btn-dark">加入黑名單</button>
-                                </td>
+                                    <button class="btnI1">
+                                        <i class="fas fa-comment-alt-dots fa-spin"></i>
+                                        <input type="button" value="聊天室" class="ctrlbutton">
+                                    </button>
+                                    <button class="btnI2">
+                                        <i class="fas fa-radiation" style="color: #f00000;"></i>
+                                        <input type="button" value="檢舉" class="ctrlbutton">
+                                    </button>
+                                    <button class="btnI3">
+                                        <i class="fas fa-trash-alt"></i>
+                                        <input type="button" value="刪除" class="ctrlbutton">
+                                    </button>
+
+
+
                             </tr>
                         </tbody>
                     </table>
-                    <div class="pagination">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -392,13 +369,15 @@
     <!-- <script src="../bootstrap/js/bootstrap.min.js"></script> -->
     <script src="../js/bs-init.js"></script>
     <script src="../js/Profile-Edit-Form.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 </body>
 <script>
-    $("a.list-group").on("click", function (e) {
-        console.log(e.target);
+    $('table.table').on('click', 'td#message_content', function () {
+        Swal.fire({
+            title: `<strong>訊息內容</strong>`,
+            html: `${$(this).text()}`
+        });
     });
-
 
 </script>
 

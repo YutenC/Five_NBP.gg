@@ -20,12 +20,12 @@
     <style>
         div.blacklist_function {
             width: fit-content;
-            margin-left: 645px;
+            margin-left: 500px;
         }
 
         span.blacklist_function {
             width: fit-content;
-            margin-right: 10px;
+            margin-right: 15px;
         }
 
         div.row {
@@ -78,6 +78,15 @@
 
         button.btn-warning {
             margin-right: 10px;
+        }
+        div.pagination{
+            width: fit-content;
+            margin: auto;
+        }
+        input#search{
+            width: 200px;
+            margin: auto;
+            display: inline-block;            
         }
     </style>
 </head>
@@ -172,7 +181,10 @@
                     <h1>黑名單</h1>
                     <div class="blacklist_function">
                         <span class="blacklist_function">
-                            <button type="button" class="btn btn-primary">查詢黑名單</button>
+                            <input class="form-control" type="text" id="search" name="search">
+                        </span>
+                        <span class="blacklist_function">
+                            <img src="../img/magnifying-glass-solid.svg" style="width: 20px;">
                         </span>
                         <span class="blacklist_function">
                             <button type="button" class="btn btn-primary">新增黑名單</button>
@@ -223,7 +235,41 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td id="blacklist_id">2</td>
+                                <td id="blacklist_id">3</td>
+                                <td id="blacklist_name">
+                                    <span class="blacklist_pic">
+                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
+                                    </span>
+                                    <span>胖虎</span>
+                                </td>
+                                <td id="game_label">
+                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
+                                    地平線 - 等待黎明
+                                </td>
+                                <td id="manage_function">
+                                    <button type="button" class="btn btn-warning">刪除黑名單</button>
+                                    <button type="button" class="btn btn-dark">加入黑名單</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="blacklist_id">3</td>
+                                <td id="blacklist_name">
+                                    <span class="blacklist_pic">
+                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
+                                    </span>
+                                    <span>胖虎</span>
+                                </td>
+                                <td id="game_label">
+                                    <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
+                                    地平線 - 等待黎明
+                                </td>
+                                <td id="manage_function">
+                                    <button type="button" class="btn btn-warning">刪除黑名單</button>
+                                    <button type="button" class="btn btn-dark">加入黑名單</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="blacklist_id">3</td>
                                 <td id="blacklist_name">
                                     <span class="blacklist_pic">
                                         <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
@@ -240,7 +286,26 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>    
+                    </table>  
+                    <div class="pagination">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>  
                 </div>
             </div>
         </div>
