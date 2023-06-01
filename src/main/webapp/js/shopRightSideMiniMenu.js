@@ -3,7 +3,7 @@
 
 // 網頁下滑超過150px顯示控制區
 $(window).on('scroll', () => {
-    if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
+    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
         $('main .miniMenu').css('display', 'block');
     } else {
         $('main .miniMenu').css('display', 'none');

@@ -26,6 +26,7 @@
         body {
             font-size: 0;
             padding: 0;
+            background-image: linear-gradient(#FCFCFC, #fff)
         }
 
         a {
@@ -35,20 +36,82 @@
         /*主呈現區*/
         main {
             margin: 10px 0 0 0;
-            padding: 150px 0 0 0;
+            padding: 130px 0 0 0;
             font-size: 16px;
         }
 
+        /*優惠券廣告*/
+        main div.couponCMContainer {
+            display: flex;
+            width: 98%;
+            height: 150px;
+            margin: 20px auto;
+            align-items: center;
+            background-color: #fff;
+            box-shadow: 1px 1px 3px 5px #FCFCFC;
+            border-radius: 3px 3px 5% 5%;
+            position: relative;
+        }
+
+        main div.couponCMContainer span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            margin: 5px;
+            color: #0066CC;
+            border-radius: 3px;
+            padding: 3px;
+        }
+
+        main div.couponCMContainer span:hover {
+            color: #fff;
+            background-color: #82d6bd;
+        }
+
+
+        main div.couponCMContainer div.couponCM {
+            text-align: center;
+            display: inline-block;
+            width: 80%;
+            margin: auto;
+            height: 90%;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .couponCMContainer div.couponCM img {
+            max-height: 100%;
+            width: 100%;
+            height: auto;
+        }
+
         /*商品展示區*/
+        .mainlist {
+            width: 98%;
+            margin: auto;
+            box-shadow: 1px 1px 3px 2px #FCFCFC;
+            margin-bottom: 10px;
+        }
+
         .mainlist>span {
             margin: 5px;
             width: 10%;
             text-align: left;
+            margin: 5px;
         }
 
         .mainlist span a {
+            display: inline-block;
+            width: 75px;
+            padding: 3px;
+            border-radius: 3px;
             text-decoration: none;
             font-weight: bold;
+        }
+
+        .mainlist>span a:hover {
+            color: #fff;
+            background-color: #82d6bd;
         }
 
         .product {
@@ -57,6 +120,7 @@
         }
 
         .product ul {
+            margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
@@ -69,6 +133,7 @@
         .product ul li {
             width: 25%;
             margin: 0 10px;
+            height: 90%;
         }
 
         .product ul li a {
@@ -204,19 +269,19 @@
 
                 <div class="mySlides fade">
                     <div class="numbertext">第一張</div>
-                    <img src="../img/gameSoftware/Nitendo/NoPlaceLikeHome/8d49654f86cee337e2a7317d031l9ro5.jpg">
+                    <img src="../img/gameSoftware/PS5/RessidentEvilVillage/3.jpg">
                     <div class="text">商品說明文字</div>
                 </div>
 
                 <div class="mySlides fade">
                     <div class="numbertext">第二張</div>
-                    <img src="../img/gameSoftware/PS5/Final_Fantasy_XVI/19e80490e9e052547c129845bc1liee5.jpg">
+                    <img src="../img/gameSoftware/Nitendo/NoPlaceLikeHome/6aaa6ba4e72083b4a131b480aa1l9ru5.jpg">
                     <div class="text">商品說明文字</div>
                 </div>
 
                 <div class="mySlides fade">
                     <div class="numbertext">第三張</div>
-                    <img src="../img/gameSoftware/PS5/RessidentEvilVillage/3.jpg">
+                    <img src="../img/gameSoftware/Xbox/APlagueTaleRequiem/71f1f728084288700f873190711eniv5.jpg">
                     <div class="text">商品說明文字</div>
                 </div>
 
@@ -249,6 +314,14 @@
                         <a href="" class="viewRecord"><img src="../img/icon/clock-regular.svg" alt="瀏覽紀錄"></a>
                         <a href="" class="shoppingCart"><img src="../img/icon/cart-shopping-solid.svg" alt="購物車"></a>
                     </div>
+                </div>
+            </div>
+            <div class="couponCMContainer">
+                <span>領取優惠券</span>
+                <div class="couponCM">
+                    <a href="">
+                        <img src="../img/gameSoftware/Nitendo/Zelda/c59e85747d3493c9e1bae630d61i82i5.jpg" alt="">
+                    </a>
                 </div>
             </div>
             <div class="mainlist">
@@ -338,7 +411,7 @@
                 </div>
             </div>
             <div class="mainlist">
-                <span><a href="">一般商品展示</a></span>
+                <span><a href="">商城商品</a></span>
                 <div class="product">
                     <ul>
                         <li>
@@ -381,7 +454,7 @@
                 </div>
             </div>
             <div class="mainlist">
-                <span><a href="">二手商品展示</a></span>
+                <span><a href="">二手商品</a></span>
                 <div class="product">
                     <ul>
                         <li>

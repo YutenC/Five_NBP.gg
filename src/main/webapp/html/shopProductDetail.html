@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="../css/shopMainNav.css">
     <link rel="stylesheet" href="../css/shopRightSideMiniMenu.css">
     <link rel="stylesheet" href="../css/shopProductDetailTag.css">
-    <link rel="stylesheet" href="../css/shopLeftAsideBar.css">
     <link rel="stylesheet" href="../css/Footer-with-social-media-icons.css">
 
     <style>
@@ -39,7 +38,7 @@
         }
 
         main {
-            width: 80%;
+            width: 100%;
             font-size: 16px;
         }
 
@@ -56,10 +55,18 @@
             height: 500px;
         }
 
+        /*商品圖片*/
         .productImg {
+            text-align: center;
             margin: 8px;
             height: 300px;
             width: 40%;
+        }
+
+        .productImg div.mainPic {
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
 
         .productImg img {
@@ -68,6 +75,55 @@
             width: auto;
             height: auto;
             margin: auto;
+        }
+
+        /*商品小圖*/
+        .productsmallimgs-container {
+            font-size: 0;
+            width: 90%;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        .productsmallimgs-container a.productImg {
+            margin: 0 5px;
+            border: 1px solid #D0D0D0;
+            width: 25%;
+            height: 100%;
+        }
+
+        .productsmallimgs-container a.productImg img {
+            padding: 3px;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*商品圖片控制*/
+        .productsmallimgs-container a {
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            width: 20px;
+            height: 100%;
+            margin: 0;
+            cursor: pointer;
+            padding: 0;
+            vertical-align: middle;
+        }
+
+        .productsmallimgs-container a::before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .detailUpper .purchase {
+            margin-left: 10px;
         }
 
         footer {
@@ -91,40 +147,21 @@
                 <li>
                     <div class="dropdown">
                         <a href="" class="dropbtn">NS</a>
-                        <div class="dropdown-content">
-                            <a href="#">遊戲軟體</a>
-                            <a href="#">遊戲主機</a>
-                            <a href="#">周邊設備</a>
-                        </div>
                     </div>
                 </li>
                 <li>
                     <div class="dropdown">
                         <a href="" class="dropbtn">PS</a>
-                        <div class="dropdown-content">
-                            <a href="#">遊戲軟體</a>
-                            <a href="#">遊戲主機</a>
-                            <a href="#">周邊設備</a>
-                        </div>
                     </div>
                 </li>
                 <li>
                     <div class="dropdown">
                         <a href="" class="dropbtn">XBOX</a>
-                        <div class="dropdown-content">
-                            <a href="#">遊戲軟體</a>
-                            <a href="#">遊戲主機</a>
-                            <a href="#">周邊設備</a>
-                        </div>
                     </div>
                 </li>
                 <li>
                     <div class="dropdown">
                         <a href="" class="dropbtn">二手交易</a>
-                        <div class="dropdown-content">
-                            <a href="#">購買二手商品</a>
-                            <a href="#">我要販售二手商品</a>
-                        </div>
                     </div>
                 </li>
                 <li>
@@ -173,34 +210,6 @@
         </nav>
     </header>
     <div class="shopmain">
-        <aside class="sidebar">
-            <!--依照先前首頁所點到的產品類別，對應的side-dropdown-content必須為class已加上"-on"的狀態-->
-            <!--各類展開的細項依???類別設定-->
-            <div>
-                <a href="" class="side-dropbtn">NS</a>
-                <div class="side-dropdown-content">
-                    <a href="#">遊戲軟體adfdsaffsfsaaaaaaaaaaaaaaaaaaaaa</a>
-                    <a href="#">遊戲主機</a>
-                    <a href="#">周邊設備</a>
-                </div>
-            </div>
-            <div>
-                <a href="" class="side-dropbtn">PS</a>
-                <div class="side-dropdown-content">
-                    <a href="#">遊戲軟體adfdsaffsfsaaaaaaaaaaaaaaaaaaaaa</a>
-                    <a href="#">遊戲主機</a>
-                    <a href="#">周邊設備</a>
-                </div>
-            </div>
-            <div>
-                <a href="" class="side-dropbtn">XBOX</a>
-                <div class="side-dropdown-content">
-                    <a href="#">遊戲軟體adfdsaffsfsaaaaaaaaaaaaaaaaaaaaa</a>
-                    <a href="#">遊戲主機</a>
-                    <a href="#">周邊設備</a>
-                </div>
-            </div>
-        </aside>
         <main>
             <div class="productShowcase"> <!--產品詳情，從後端調資料動態產生-->
                 <div class="miniMenu">
@@ -224,8 +233,20 @@
                 </div>
                 <div class="detailUpper">
                     <div class="productImg">
-                        <img src="../img/gameSoftware/Nitendo/Zelda/760223b6e6ed7be758630c9b5b1ic955.jpg" alt="商品圖片">
-                        <!--看是否需要動圖或是其他特別互動(如局部放大)-->
+                        <div class="mainPic">
+                            <img src="../img/gameSoftware/Nitendo/Zelda/760223b6e6ed7be758630c9b5b1ic955.jpg" alt="商品圖片"
+                                data-pic="0" class="mainPic">
+                        </div>
+                        <div class="productsmallimgs-container">
+                            <a class="prev">&#10094;</a>
+                            <a class="productImg" data-pic="0"><img
+                                    src="../img/gameSoftware/Nitendo/Zelda/760223b6e6ed7be758630c9b5b1ic955.jpg"></a>
+                            <a class="productImg" data-pic="1"><img
+                                    src="../img/gameSoftware/PS5/Final_Fantasy_XVI/19e80490e9e052547c129845bc1liee5.jpg"></a>
+                            <a class="productImg" data-pic="2"><img
+                                    src="../img/gameSoftware/PS5/RessidentEvilVillage/3.jpg"></a>
+                            <a class="next">&#10095;</a>
+                        </div>
                     </div>
                     <div class="purchase">
                         <div>
@@ -269,9 +290,7 @@
                     <div class="contentTabBlock">
                         <ul class="contentTab">
                             <li><a href="#" data-target="tab1" class="tab -on">商品特色</a></li>
-                            <!--可以對標籤設定自訂屬性：data-target-->
                             <li><a href="#" data-target="tab2" class="tab">商品規格</a></li>
-                            <!--自訂屬性可以透過元素的getAttribute()方法來取值-->
                             <li><a href="#" data-target="tab3" class="tab">注意事項</a></li>
                         </ul>
                     </div>
@@ -312,9 +331,6 @@
             </div>
         </main>
     </div>
-    <footer>
-        dfsfadsfasfs
-    </footer>
     <footer id="footerpad">
         <div class="container">
             <div class="row">
@@ -361,12 +377,27 @@
     <script src="../js/shopSwitchTag.js"></script>
     <script src="../js/shopMainNavHelping.js"></script>
     <script>
-        // sidebar(left)下拉選單
-        $('.side-dropbtn').on('click', function (e) {
-            e.preventDefault();
-            $(this).next('div.side-dropdown-content').toggleClass('-on');
+        // 切換詳情圖片: 左右鍵
+        $('div.productsmallimgs-container').on('click', 'a.prev, a.next', function (e) {
+            let nowPicNum = $('.productImg img.mainPic').data('pic');
+            let pics = document.querySelectorAll('div.productsmallimgs-container a.productImg img');
+
+
+            if ($(this).hasClass('prev')) {
+                nowPicNum = (--nowPicNum < 0) ? pics.length - 1 : nowPicNum;
+            } else if ($(this).hasClass('next')) {
+                nowPicNum = (++nowPicNum > pics.length - 1) ? 0 : nowPicNum;
+            }
+
+            $('.productImg img.mainPic').attr('src', pics[nowPicNum].src).data('pic', nowPicNum);
         });
 
+        // 切換詳情圖片: 針對下方小圖
+        $('div.productsmallimgs-container').on('click', 'a.productImg', function (e) {
+            let nowPicNum = $(this).data('pic');
+            let pics = document.querySelectorAll('div.productsmallimgs-container a.productImg img');
+            $('.productImg img.mainPic').attr('src', pics[nowPicNum].src).data('pic', nowPicNum);
+        });
     </script>
 </body>
 
