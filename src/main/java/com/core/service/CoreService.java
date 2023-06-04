@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 public interface CoreService {
 
     default Transaction beginTransaction(){
+
         return HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
     }
 
