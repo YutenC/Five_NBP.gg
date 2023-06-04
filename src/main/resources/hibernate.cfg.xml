@@ -1,22 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/FIVE</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">jk4908709</property>
-        <!-- 上面4行換成下面一行的設定 -->
-<!--        		<property name="hibernate.connection.datasource">java:comp/env/jdbc/javaFramework</property>-->
+            <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+            <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/JAVA_FRAMEWORK</property>
+            <property name="hibernate.connection.username">root</property>
+            <property name="hibernate.connection.password">jk4908709</property>
 
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
-        <property name="hibernate.highlight_sql">true</property>
+        <!--  直接連線(上面4行) 或 JNDI寫法(對應Meta-inf的context) 二擇一  -->
+
+<!--        <property name="hibernate.connection.datasource">java:comp/env/jdbc/javaFramework</property>-->
 
         <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <mapping class="com.member.entity.Member" />
+        <mapping class="com.member.entity.Member"/>
+        <mapping class="com.member.entity.Login_record"/>
+        <mapping class="com.member.entity.Bank"/>
+        <mapping class="com.member.entity.Friend"/>
+        <mapping class="com.member.entity.Member_credit"/>
+        <mapping class="com.member.entity.Notice"/>
+        <mapping class="com.member.entity.Black_list"/>
+        <mapping class="com.member.entity.Other_app_login"/>
+        <mapping class="com.member.entity.Gaming_tag"/>
+        <mapping class="com.member.entity.Tag"/>
     </session-factory>
 </hibernate-configuration>
