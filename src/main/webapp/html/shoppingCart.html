@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>shoppingCart</title>
 
     <style>
@@ -305,6 +306,20 @@
             background: linear-gradient(to right, #fff, #F5F5F5 40%);
         }
 
+        /*------輸入優惠券及使用紅利點數-----*/
+        .cart div {
+            margin: 10px 0px;
+        }
+
+        .cart div.productTotal {
+            text-align: right;
+        }
+
+        .cart h4 {
+            display: inline-block;
+            margin: 0;
+        }
+
         /*----- 付款選擇頁籤 ------*/
         /* 頁籤區塊 */
         div.tagPage div.contentTabBlock {
@@ -390,7 +405,7 @@
     <header class="cartHeader">
         <div class="ctHeaderUp">
             <a href="shopIndex3.html" class="logo">
-                <img src="/Five_NBP.gg/img/Logo-removebg.png" alt="">
+                <img src="../img/Logo-removebg.png" alt="">
             </a>
             <span>
                 購買商品注意宣導
@@ -399,13 +414,13 @@
         <div class="addAdditional">
             <div class="addButtons">
                 <a href="" class="addItem" data-from="byMyPick">
-                    <img src="/Five_NBP.gg/img/icon/square-plus-regular.svg" class="icon plus">
-                    <img src="/Five_NBP.gg/img/icon/square-minus-regular.svg" class="icon minus">
+                    <img src="../img/icon/square-plus-regular.svg" class="icon plus">
+                    <img src="../img/icon/square-minus-regular.svg" class="icon minus">
                     從追蹤清單追加
                 </a>
                 <a href="" class="addItem" data-from="byPurchaseLog">
-                    <img src="/Five_NBP.gg/img/icon/square-plus-regular.svg" class="icon plus">
-                    <img src="/Five_NBP.gg/img/icon/square-minus-regular.svg" class="icon minus">
+                    <img src="../img/icon/square-plus-regular.svg" class="icon plus">
+                    <img src="../img/icon/square-minus-regular.svg" class="icon minus">
                     從購買紀錄追加
                 </a>
             </div>
@@ -481,8 +496,7 @@
                     <tr>
                         <td><input type="checkbox"></td>
                         <td class="productImg">
-                            <img src="/Five_NBP.gg/img/peripherals/Nintendo/Zelda/2a14aa702d831e8f7f2803e1601l4t05.jpg"
-                                alt="">
+                            <img src="../img/peripherals/Nintendo/Zelda/2a14aa702d831e8f7f2803e1601l4t05.jpg" alt="">
                         </td>
                         <td>
                             <a href="">
@@ -504,18 +518,16 @@
                         <td>NTD$<span class="unitPrice">1900</span></td>
                         <td>NTD$</span><span class="itemPrice">1900</span> <!--選擇數量*單價-->
                         <td>足夠</td>
-                        <td><button class="delete"><img src="/Five_NBP.gg/img/icon/trash-can-regular.svg"
-                                    alt=""></button></td>
+                        <td><button class="delete"><img src="../img/icon/trash-can-regular.svg" alt=""></button></td>
                     </tr>
                     <tr>
                         <td><input type="checkbox"></td>
                         <td class="productImg">
-                            <img src="/Five_NBP.gg/img/peripherals/Nintendo/Zelda/2a14aa702d831e8f7f2803e1601l4t05.jpg"
-                                alt="">
+                            <img src="../img/peripherals/Nintendo/Zelda/2a14aa702d831e8f7f2803e1601l4t05.jpg" alt="">
                         </td>
                         <td>
-                            <a href=""">
-                            Zelda
+                            <a href="">
+                                Zelda
                             </a>
                         </td>
                         <td>
@@ -528,16 +540,31 @@
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                                </select>
+                            </select>
                         </td>
                         <td>NTD$<span class="unitPrice">1900</span></td>
                         <td>NTD$</span><span class="itemPrice">1900</span> <!--選擇數量*單價-->
                         <td>足夠</td>
-                        <td><button class="delete"><img src="/Five_NBP.gg/img/icon/trash-can-regular.svg"
-                                    alt=""></button></td>
+                        <td><button class="delete"><img src="../img/icon/trash-can-regular.svg" alt=""></button></td>
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <form action="">
+                    <div>
+                        <label for="couponId">折購代碼：</label>
+                        <input type="text" id="couponId" placeholder="請輸入欲使用的折扣代碼" maxlength="8">
+                    </div>
+                    <div>
+                        <label for="bouns">紅利點數：</label>
+                        <input type="range" id="bonus" v-model="bonus"><span>{{ bonus }}</span>
+                    </div>
+                </form>
+            </div>
+            <div class="productTotal">
+                <h4>商品總額：</h4>
+                <span class="productTotal">1111111</span>
+            </div>
         </div>
         <h3>配送</h3>
         <div class="deliver">
@@ -551,7 +578,7 @@
             </div>
         </div>
         <div class="billTotal">
-            總金額<span>NTD$</span><span>1900</span><a href="shopIndex3.html">回賣場選購</a>
+            結帳總金額<span>NTD$</span><span>1900</span><a href="shopIndex3.html">回賣場選購</a>
         </div>
         <div class="brLine"></div>
         <h3>付款方式</h3>
@@ -593,8 +620,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/Five_NBP.gg/jquery/jquery-1.9.1.min.js"></script>
-    <script src="/Five_NBP.gg/js/switchTag.js"></script>
+    <script src="../jquery/jquery-1.9.1.min.js"></script>
+    <script src="../js/switchTag.js"></script>
     <script>
         // 增添商品到購物車內按鈕變化
 
