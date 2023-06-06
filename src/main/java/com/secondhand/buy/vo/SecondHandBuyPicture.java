@@ -2,7 +2,7 @@ package com.secondhand.buy.vo;
 
 import java.io.Serializable;
 
-public class SecondHandBuyPictureVO implements Serializable{
+public class SecondHandBuyPicture implements Serializable{
 	/**
 	 * 
 	 */
