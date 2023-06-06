@@ -53,8 +53,29 @@ public class MemberServiceimpl implements MemberService, CoreService {
             member.setSuccessful(false);
             return member;
         }
-
-        return null;
+        try{
+//            建立HibernateFilter後交易機制交給他處理，beginTransaction, commit, rollback都可以註解掉
+//            beginTransaction();
+            if (dao.selectByUserName(member.getAccount())!= null) {
+                member.setMessage("帳號重複");
+                member.setSuccessful(false);
+//                rollback();
+                return member;
+            }
+            final int resultCount = dao.insert(member);
+            if (resultCount < 1) {
+                member.setMessage("註冊錯誤，請聯絡管理員!");
+                member.setSuccessful(false);
+//                rollback();
+                return member;
+            }
+//            commit();
+        }catch (Exception e){
+//            rollback();
+            e.printStackTrace();
+        }
+        System.out.println(1);
+        return member;          // 不確定retrun什麼
     }
 
     @Override
@@ -109,6 +130,20 @@ public class MemberServiceimpl implements MemberService, CoreService {
 
     @Override
     public boolean remove(Integer id) {
+        // 原始寫法
+//        return dao.deleteById(id) > 0;
+//        try{
+//        建立HibernateFilter後交易機制交給他處理，beginTransaction, commit, rollback都可以註解掉
+//        回傳dao.deleteById(id) > 0 即可(回傳 >0原因 如下)
+//            beginTransaction();
+//            final int resultCount = dao.deleteById(id);
+//            commit();
+//            return resultCount > 0;
+//        }catch (Exception e){
+//            rollback();
+//            e.printStackTrace();
+//            return false;
+//        }
         return dao.deleteById(id) > 0;
     }
 

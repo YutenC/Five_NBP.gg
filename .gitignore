@@ -15,3 +15,8 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+.idea/
+src/main/java/com/core/app/TestApp.java
+src/main/java/com/member/test/FakeDataMember.java
+src/main/java/com/servlet/WebTestServlet.java
+src/main/webapp/webTest.html
