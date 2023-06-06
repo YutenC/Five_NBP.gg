@@ -23,7 +23,6 @@ public class TestApp {
 				secondHandBuylistDaoimpl.selectByTime(new Date(0),new Date() )
 				
 				);
-//		System.out.println(new Date().getTime()-1000000,new Date().getTime());
 
 	}
 }
