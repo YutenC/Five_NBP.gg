@@ -85,7 +85,7 @@ public class Member extends Core {
     private Double bonus;
     // 累積紅利
 
-    @Column(insertable = false)
+    @Column
     private Integer member_ver_state;
     // 會員驗證狀態
 
@@ -97,7 +97,7 @@ public class Member extends Core {
     private String headshot;
     // 大頭照
 
-    @Column(insertable = false)
+    @Column
     private Date ver_deadline;
     // 驗證信到期時間  可不在這做，可以存到redis就好
     // sql.Date 只存時間到日；util.Date 會存時間精準到毫秒

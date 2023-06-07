@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 
 import com.core.util.HibernateUtil;
@@ -23,8 +24,7 @@ import com.member.entity.Member;
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
-    @PersistenceContext
-    private Session session;
+    private Session session = getSession();
 
     @Override
     public int insert(Member member) {
@@ -38,7 +38,9 @@ public class MemberDaoImpl implements MemberDao {
 //        return member.getMember_id();
 
 //        hiberante-spring寫法
-        getSession().persist(member);
+        session.beginTransaction();
+        session.persist(member);
+        session.getTransaction().commit();
         return 1;
     }
 
@@ -58,34 +60,36 @@ public class MemberDaoImpl implements MemberDao {
 //        return member.getMember_id();
 
 //        hibernate-spring寫法
-        Session session = getSession();
+//        Session session = getSession();
         Member member = session.load(Member.class, id);
         return 1;
     }
+
 
     @Override
     public int update(Member member) {  // 修改會員資料
 //        原本hibernate 的寫法(沒有用組態設定)
 //        return 0;
         final StringBuilder hql = new StringBuilder()
-                .append("UPDATE member SET");
+                .append("UPDATE Member SET ");
 
         final String password = member.getPassword();
         if (password != null && !password.isEmpty()) {
-            hql.append("password =: password");
+            hql.append("password = :password, ");
         }
-        hql.append("password = :password")
-                .append("nick = :nick")
-                .append("email = :email")
-                .append("phone = :phone")
-                .append("birth = :birth")
-                .append("id_number = :id_number")
-                .append("address = :address")
-                .append("member_ver_state = :member_ver_state")
-                .append("susupend_deadline = :susupend_deadline")
-                .append("headshot = :headshot")
-                .append("ver_deadline = :ver_deadline")
-                .append("violation = :violation");
+        hql.append("nick = :nick, ")
+                .append("email = :email, ")
+                .append("phone = :phone, ")
+                .append("birth = :birth, ")
+                .append("id_number = :id_number, ")
+                .append("address = :address, ")
+                .append("bonus = :bonus, ")
+                .append("member_ver_state = :member_ver_state, ")
+                .append("suspend_deadline = :suspend_deadline, ")
+                .append("headshot = :headshot, ")
+                .append("ver_deadline = :ver_deadline, ")
+                .append("violation = :violation ")
+                .append("where account = :account");
 
         Query<?> query = session.createQuery(hql.toString());
         if (password != null && !password.isEmpty()) {
@@ -99,11 +103,13 @@ public class MemberDaoImpl implements MemberDao {
                 .setParameter("birth", member.getBirth())
                 .setParameter("id_number", member.getId_number())
                 .setParameter("address", member.getAddress())
+                .setParameter("bonus", member.getBonus())
                 .setParameter("member_ver_state", member.getMember_ver_state())
                 .setParameter("suspend_deadline", member.getSuspend_deadline())
                 .setParameter("headshot", member.getHeadshot())
                 .setParameter("ver_deadline", member.getVer_deadline())
                 .setParameter("violation", member.getViolation())
+                .setParameter("account", member.getAccount())
                 .executeUpdate();
     }
 
@@ -112,7 +118,8 @@ public class MemberDaoImpl implements MemberDao {
 //        Session session = getSession();
 
 //        hibernate-spring寫法
-        return getSession().get(Member.class, id);
+//        return getSession().get(Member.class, id);
+        return session.get(Member.class, id);
     }
 
     @Override
@@ -125,7 +132,7 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public Member selectByUserName(String account) {
-        Session session = getSession();
+//        Session session = getSession();
         // 使用Criteria
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Member> criteriaQuery = criteriaBuilder.createQuery(Member.class);
@@ -137,9 +144,10 @@ public class MemberDaoImpl implements MemberDao {
     @Override
     public Member selectForLogin(String account, String password) {
         // 使用 Native SQL
-        final String sql = "SELECT * FROM member WHERE account = :account and password =: password";
+        final String sql = "SELECT * FROM member WHERE account = :account and password = :password";
 
-        return getSession()
+//        return getSession()
+        return session
                 .createNativeQuery(sql, Member.class)
                 .setParameter("account", account)
                 .setParameter("password", password)
