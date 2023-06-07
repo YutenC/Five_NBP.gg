@@ -153,7 +153,7 @@ window.addEventListener('scroll', e => {
 
 document.querySelectorAll('.nav div')[0].addEventListener('click', e => {
     e.preventDefault;
-    window.location.href = 'SecondHand_MainView.html';
+    window.location.href = 'sh_MainView.html';
 
 })
 
