@@ -73,8 +73,7 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	@Override
 	public List<Manager> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectAll();
 	}
 	
 	@Override
