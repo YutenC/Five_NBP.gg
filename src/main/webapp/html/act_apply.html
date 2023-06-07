@@ -245,7 +245,7 @@
                             <div class="compact"></div>
                             <div class="inner">
                                 <div class="info">
-                                    <strong>December 23nd, 2020</strong>
+                                    <strong id="current-date"></strong>
                                     <small>活動契約說明</small>
                                 </div>
                                 <div class="text">
@@ -317,6 +317,37 @@
                                 </div>
                             </div>
                         </article>
+                        <script>
+                            // 取得當前日期
+                            var currentDate = new Date();
+
+                            // 取得月份名稱
+                            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                            var monthName = months[currentDate.getMonth()];
+
+                            // 取得日期後綴
+                            var day = currentDate.getDate();
+                            var daySuffix = getDaySuffix(day);
+
+                            // 取得年份
+                            var year = currentDate.getFullYear();
+
+                            // 顯示當前日期
+                            document.getElementById('current-date').innerHTML = monthName + ' ' + day + daySuffix + ', ' + year;
+
+                            // 函式：取得日期後綴
+                            function getDaySuffix(day) {
+                                var suffix = 'th';
+                                if (day === 1 || day === 21 || day === 31) {
+                                    suffix = 'st';
+                                } else if (day === 2 || day === 22) {
+                                    suffix = 'nd';
+                                } else if (day === 3 || day === 23) {
+                                    suffix = 'rd';
+                                }
+                                return suffix;
+                            }
+                        </script>
                         <article>
                             <div class="compact"></div>
                             <div class="inner">
@@ -336,6 +367,33 @@
                                             placeholder="Password">
                                         <label for="floatingPassword">密碼</label>
                                     </div>
+                                    <p></p>
+                                    <button onclick="submitForm()">送出</button>
+                                    <script>
+                                        function submitForm() {
+                                            // 取得帳號和密碼的值
+                                            var account = document.getElementById('floatingInput').value;
+                                            var password = document.getElementById('floatingPassword').value;
+
+                                            // 執行相應的操作，例如送出表單或驗證帳號密碼
+
+                                            // 在這裡可以使用取得到的帳號和密碼進行後續處理
+                                            console.log('帳號:', account);
+                                            console.log('密碼:', password);
+
+                                            // 鎖定資料
+                                            document.getElementById('floatingInput').disabled = true;
+                                            document.getElementById('floatingPassword').disabled = true;
+
+                                            // 顯示警示框
+                                            alert('表單已提交成功！');
+                                        }
+
+
+                                    </script>
+                                    <script>
+
+                                    </script>
                                     <p> 1.</p>
                                     <p>資訊不完整：活動的組織者無法獲得您的必要資訊，如姓名、聯絡方式等，這可能影響他們與您的溝通以及您對活動的參與。</p>
                                     <p>2.</p>
@@ -357,34 +415,35 @@
                                         <label class="list-group-item">
                                             <strong>此活動為付費活動</strong>
                                             <small>付費金額：2000000000元</small>
-                                    </div>
-                                    <div class="text">
-                                        <label class="list-group-item">
-                                            <input class="form-check-input" type="radio" name="list-item"
-                                                value="#list-item-1">
-                                            賣屁股
-                                        </label>
-                                        <label class="list-group-item">
-                                            <input class="form-check-input" type="radio" name="list-item"
-                                                value="#list-item-2">
-                                            ATM轉帳
-                                        </label>
-                                        <label class="list-group-item">
-                                            <input class="form-check-input" type="radio" name="list-item"
-                                                value="#list-item-3">
-                                            信用卡付款
-                                        </label>
-                                        <label class="list-group-item">
-                                            <input class="form-check-input" type="radio" name="list-item"
-                                                value="#list-item-4">
-                                            活動現場付費
+
+
+                                            <label class="list-group-item">
+                                                <input class="form-check-input" type="radio" name="list-item"
+                                                    value="#list-item-1">
+                                                賣屁股
+                                            </label>
+                                            <label class="list-group-item">
+                                                <input class="form-check-input" type="radio" name="list-item"
+                                                    value="#list-item-2">
+                                                ATM轉帳
+                                            </label>
+                                            <label class="list-group-item">
+                                                <input class="form-check-input" type="radio" name="list-item"
+                                                    value="#list-item-3">
+                                                信用卡付款
+                                            </label>
+                                            <label class="list-group-item">
+                                                <input class="form-check-input" type="radio" name="list-item"
+                                                    value="#list-item-4">
+                                                活動現場付費
+                                            </label>
                                         </label>
                                     </div>
                                     <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0"
                                         class="scrollspy-example" tabindex="0">
                                         <div id="list-item-1">
                                             <h4>賣屁股</h4>
-                                            <p>
+                                            <p style="color:gray;">
                                                 當談到屁股這個話題時，我們常常會聯想到一些有趣的事情。屁股是我們身體的一部分，它的形狀和大小各異，有時候會引起一些有趣的場景和笑話。讓我們來探討一下屁股在生活中的各種角色和意義吧！
 
                                                 首先，屁股在我們的日常生活中扮演著一個重要的角色，它是我們坐下時的支撐點。當我們感到疲倦或需要休息時，屁股的舒適支撐讓我們能夠放鬆身體，恢復活力。無論是在辦公室的椅子上、在學校的教室裡，還是在家中的沙發上，屁股都是我們的得力助手。
@@ -398,7 +457,8 @@
                                         </div>
                                         <div id="list-item-2">
                                             <h4>ATM轉帳</h4>
-                                            <p>當談到ATM（自動提款機）這個話題時，我們不禁想到方便快捷的金融服務和現代生活中的重要角色。ATM的出現為我們的日常生活帶來了便利，讓我們可以隨時隨地處理金融交易。讓我們一起探討一下ATM在我們生活中的重要性和各種情境。
+                                            <p style="color:gray;">
+                                                當談到ATM（自動提款機）這個話題時，我們不禁想到方便快捷的金融服務和現代生活中的重要角色。ATM的出現為我們的日常生活帶來了便利，讓我們可以隨時隨地處理金融交易。讓我們一起探討一下ATM在我們生活中的重要性和各種情境。
 
                                                 首先，ATM為我們提供了取款和存款的便利。不再需要排隊等待銀行柜台的服務，只需插入卡片，輸入密碼，我們就能夠快速取出現金或將資金存入帳戶。這不僅節省了時間，還提供了更多的自由和靈活性，讓我們能夠更好地管理個人財務。
 
@@ -414,7 +474,7 @@
                                         <div id="list-item-3">
                                             <h4>信用卡付款</h4>
                                             <p>
-                                            <form action="process_credit_card.php" method="POST">
+                                            <form action="process_credit_card" method="POST">
                                                 <div class="form-group">
                                                     <label for="card_number">信用卡密碼：</label>
                                                     <input type="text" class="form-control" id="card_number"
@@ -441,7 +501,15 @@
                                         </div>
                                         <div id="list-item-4">
                                             <h4>活動現場付費</h4>
-                                            <p>...</p>
+                                            <p style="color:gray;">以下是活動現場付費的一般流程和說明：
+
+                                                活動登記：參加者在活動現場到達後，可能需要進行活動登記。這包括填寫一些基本的個人資料或登記表格，以確定參與者的身份和聯繫方式。
+                                                支付方式：活動主辦方通常提供多種支付方式供參與者選擇，例如現金、信用卡、行動支付等。參與者可以根據自己的方便和喜好選擇合適的支付方式。
+                                                費用詳情：活動主辦方會在現場提供相關的費用詳情，包括參與該活動所需支付的金額、是否有不同的票價選擇或特別優惠等。這些費用詳情通常可以在活動現場的資訊櫃臺、展示牌、宣傳單張或網站上找到。
+                                                票券或憑證：在完成付費後，參與者通常會獲得相應的票券、入場憑證或手環等識別物，以作為參與該活動的證明。這些憑證通常需要在活動期間保持妥善，以便在需要時出示。
+                                                附加消費：有些活動可能還會提供一些附加的消費選項，例如食品、飲料、紀念品或其他相關產品或服務。這些消費通常需要額外支付，並可以在活動現場的特定據點進行交易。
+                                                需要注意的是，不同的活動可能會有不同的付費方式和流程。因此，在參加活動之前，最好查看活動的官方資訊或聯繫主辦方以獲取準確的付費說明和指引。
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -476,6 +544,91 @@
                                     });
                                 </script>
                         </article>
+                        <article>
+                            <div class="compact"></div>
+                            <div class="inner">
+                                <div class="info">
+                                    <strong>活動資訊</strong>
+                                    <small>校園嘉年華</small>
+                                </div>
+                                <div class="text">
+                                    <p>國立東華大學學活</p>
+                                    <p>參加地點照片或相關圖片</p>
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#carouselExampleIndicators"
+                                                data-bs-slide-to="0" class="active" aria-current="true"
+                                                aria-label="Slide 1"></button>
+                                            <button type="button" data-bs-target="#carouselExampleIndicators"
+                                                data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                            <button type="button" data-bs-target="#carouselExampleIndicators"
+                                                data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="../img/img_act/1.jpg" class="d-block w-100" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="../img/img_act/2.jpeg" class="d-block w-100" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="../img/img_act/3.jpeg" class="d-block w-100" alt="...">
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+
+                                    </div>
+
+                                    <p>內容：</p>
+
+                                    <p>這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容這是內容
+                                    </p>
+                                    <p>目的：</p>
+                                    <p> 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情
+                                        為了增加大家的友情 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情 為了增加大家的友情
+                                        為了增加大家的友情</p>
+                                    <div>
+                                        <input type="checkbox" class="form-check-input" id="validationFormCheck1"
+                                            required>
+                                        <label class="form-check-label" for="validationFormCheck1">關看完後請打勾</label>
+                                        <div class="invalid-feedback">請勾選此框</div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary" id="submitBtn"
+                                        style="display: none;">確認參加</button>
+
+                                    <script>
+                                        var checkbox = document.getElementById('validationFormCheck1');
+                                        var submitBtn = document.getElementById('submitBtn');
+                                        var form = document.querySelector('form');
+
+                                        checkbox.addEventListener('change', function () {
+                                            submitBtn.style.display = this.checked ? 'block' : 'none';
+                                        });
+
+                                        form.addEventListener('submit', function (event) {
+                                            if (!checkbox.checked) {
+                                                event.preventDefault(); // 阻止表單的提交
+                                                checkbox.parentElement.classList.add('was-validated');
+                                            }
+                                        });
+                                    </script>
+
+
+                                    <p>時間:2023-07-23 8:00-17:00</p>
+
+                                </div>
+                            </div>
+                        </article>
 
                     </div>
                 </div>
@@ -502,7 +655,7 @@
         </div>
 
         <!-- dribbble - twitter -->
-        <a class="dribbble" href="https://dribbble.com/ai" target="_blank"><img
+        <!-- <a class="dribbble" href="https://dribbble.com/ai" target="_blank"><img
                 src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg"
                 alt=""></a>
         <a class="twitter" target="_top" href="https://twitter.com/aaroniker_me"><svg xmlns="http://www.w3.org/2000/svg"
@@ -510,7 +663,7 @@
                 <path
                     d="M67.812 16.141a26.246 26.246 0 0 1-7.519 2.06 13.134 13.134 0 0 0 5.756-7.244 26.127 26.127 0 0 1-8.313 3.176A13.075 13.075 0 0 0 48.182 10c-7.229 0-13.092 5.861-13.092 13.093 0 1.026.118 2.021.338 2.981-10.885-.548-20.528-5.757-26.987-13.679a13.048 13.048 0 0 0-1.771 6.581c0 4.542 2.312 8.551 5.824 10.898a13.048 13.048 0 0 1-5.93-1.638c-.002.055-.002.11-.002.162 0 6.345 4.513 11.638 10.504 12.84a13.177 13.177 0 0 1-3.449.457c-.846 0-1.667-.078-2.465-.231 1.667 5.2 6.499 8.986 12.23 9.09a26.276 26.276 0 0 1-16.26 5.606A26.21 26.21 0 0 1 4 55.976a37.036 37.036 0 0 0 20.067 5.882c24.083 0 37.251-19.949 37.251-37.249 0-.566-.014-1.134-.039-1.694a26.597 26.597 0 0 0 6.533-6.774z">
                 </path>
-            </svg></a>
+            </svg></a> -->
         <script src="../js/act_apply.js"></script>
 </body>
 
