@@ -5,14 +5,19 @@
 
 <hibernate-configuration>
     <session-factory>
-            <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-            <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/five</property>
-            <property name="hibernate.connection.username">root</property>
-            <property name="hibernate.connection.password">jk4908709</property>
+    
+<!--             <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property> -->
+<!--             <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/five</property> -->
+<!--             <property name="hibernate.connection.username">root</property> -->
+<!--             <property name="hibernate.connection.password">0000</property> -->
 
         <!--  直接連線(上面4行) 或 JNDI寫法(對應Meta-inf的context) 二擇一  -->
 
+<<<<<<< HEAD
+       <property name="hibernate.connection.datasource">java:comp/env/jdbc/five</property>
+=======
 <!--        <property name="hibernate.connection.datasource">java:comp/env/jdbc/five</property>-->
+>>>>>>> 9c1efab5e913e1b3e7d92218fa642c85bb020bb1
 
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

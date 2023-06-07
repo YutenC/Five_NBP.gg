@@ -6,19 +6,57 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manager.dao.ManagerDao;
+import com.manager.dao.impl.ManagerDaoImpl;
 import com.manager.entity.Manager;
 import com.manager.service.ManagerService;
 
 @Service
 public class ManagerServiceImpl implements ManagerService{
 	
-	@Autowired
-	private  ManagerDao dao;
+	private ManagerDao dao;
+
+	public ManagerServiceImpl() {
+		dao = new ManagerDaoImpl();
+	}
 	
 	@Override
 	public Manager register(Manager manager) {
-		// TODO Auto-generated method stub
-		return null;
+		if (manager.getAccount() == null) {
+			manager.setMessage("帳號未輸入");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		if (manager.getPassword() == null) {
+			manager.setMessage("密碼未輸入");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		if (manager.getName() == null) {
+			manager.setMessage("名字未輸入");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		if (dao.selectByUserName(manager.getAccount()) != null) {
+			manager.setMessage("帳號重複");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		manager.setIs_working(1);
+		
+		final int resultCount = dao.insert(manager);
+		if (resultCount < 1) {
+			manager.setMessage("註冊錯誤，請聯絡管理員!");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		manager.setMessage("註冊成功");
+		manager.setSuccessful(true);
+		return manager;
 	}
 	
 	@Override
