@@ -13,7 +13,7 @@ import  com.secondhand.buy.util.Json2vo;
 import com.secondhand.buy.vo.SecondHandBuylist;
 
 
-@WebServlet("/secondhand/addbuylist")
+@WebServlet("/html/addbuylist")
 public class AddBuylist extends HttpServlet  {
 	private static final long serialVersionUID = -4669764916210514485L;
 	
