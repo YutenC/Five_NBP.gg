@@ -30,7 +30,11 @@ public class ManagerAddServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    // 從請求中獲取JSON數據
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		// 從請求中獲取JSON數據
 	    BufferedReader reader = request.getReader();
 	    StringBuilder jsonBody = new StringBuilder();
 	    String line;
