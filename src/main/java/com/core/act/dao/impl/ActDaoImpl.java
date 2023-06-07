@@ -1,5 +1,6 @@
-package com.core.act.dao;
+package com.core.act.dao.impl;
 
+import com.core.act.dao.ActDao;
 import com.core.act.entity.Act;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

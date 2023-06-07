@@ -1,6 +1,7 @@
 package com.core.act.entity;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Act_report_list", schema = "five2")
