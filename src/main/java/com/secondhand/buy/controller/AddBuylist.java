@@ -29,13 +29,19 @@ public class AddBuylist extends HttpServlet  {
 			return;
 		}
 		
-		buylist.setMemberId(1);
-		buylist.setPayState(0);
-		buylist.setApprovalState("000");
-		
 		
 		SecondHandBuylistDaoimpl sc = new SecondHandBuylistDaoimpl();
-		sc.insert(buylist);
+		SecondHandBuylist buylist2 = sc.selectById(13);
+		buylist2.setProductName(buylist.getProductName());
+		buylist2.setType(buylist.getType());
+		buylist2.setContent(buylist.getContent());
+		buylist2.setEstimate(buylist.getEstimate());
+		buylist2.setApplicantBankNumber(buylist.getApplicantBankNumber());
+		
+		
+		
+		System.out.println(buylist2);
+		sc.update(buylist2);
 		
 		
 	}

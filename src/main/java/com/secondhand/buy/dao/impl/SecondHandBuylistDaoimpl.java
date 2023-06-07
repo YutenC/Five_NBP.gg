@@ -31,15 +31,13 @@ public class SecondHandBuylistDaoimpl implements SecondHandBuylistDao< SecondHan
 	
 	
 	
-	
-	
-	
-	
 
 	@Override
 	public int update(SecondHandBuylist buylist) {
-		System.out.println("sss");
-		return 0;
+		session.beginTransaction();
+		session.update("SecondHandBuylist",buylist);
+		session.getTransaction().commit();
+		return 1;
 	}
 
 	@Override
