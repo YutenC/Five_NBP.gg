@@ -66,6 +66,12 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 	
 	@Override
+	public Manager selectManager(Integer manager_id) {
+		Manager manager= dao.selectById(manager_id);
+		return manager;
+	}
+	
+	@Override
 	public Manager edit(Manager manager) {
 		// TODO Auto-generated method stub
 		return null;

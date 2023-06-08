@@ -25,6 +25,8 @@
 .custom-ban-button {
   background-color: gray;
   border: black;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 .custom-col-newmanager,

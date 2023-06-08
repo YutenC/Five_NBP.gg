@@ -193,60 +193,59 @@
                                         <div class="row">
                                             <div class="col-xl-6">
                                                 <div class="form-group mb-3">
-                                                    <label class="form-label">管理員帳號</label>
-                                                    <input class="form-control" type="text" id="member_account"
-                                                        name="member_account">
+                                                    <label class="form-label" for="manager_account">管理員帳號</label>
+                                                    <input class="form-control" type="text" id="manager_account"
+                                                        required name="manager_account">
                                                 </div>
                                             </div>
                                             <div class="col"></div>
                                             <div class="col-sm-12 col-md-6 col-xl-6">
                                                 <div class="form-group mb-3">
-                                                    <label class="form-label">管理員密碼</label>
-                                                    <input class="form-control" type="text" id="nickname"
-                                                        name="nickname">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-6 col-xl-6"></div>
-                                            <div class="col-xl-6">
-                                                <div class="form-group mb-3">
-                                                    <label class="form-label">管理員名稱</label>
-                                                    <input class="form-control" type="password" id="id_number"
-                                                        name="id_number">
+                                                    <label class="form-label" for="manager_password">管理員密碼</label>
+                                                    <input class="form-control" type="password" id="manager_password"
+                                                        required name="manager_password">
                                                 </div>
                                             </div>
                                             <div class="col"></div>
                                             <div class="col-xl-6">
                                                 <div class="form-group mb-3">
-                                                    <label class="form-label">管理員信箱</label>
-                                                    <input class="form-control" type="text" id="address" required=""
-                                                        name="address">
+                                                    <label class="form-label" for="manager_name">管理員名稱</label>
+                                                    <input class="form-control" type="text" id="manager_name" required
+                                                        name="manager_name">
                                                 </div>
                                             </div>
                                             <div class="col"></div>
                                             <div class="col-xl-6">
                                                 <div class="form-group mb-3">
-                                                    <label class="form-label">管理員電話</label>
-                                                    <input class="form-control" type="text" id="address" required=""
-                                                        name="address">
+                                                    <label class="form-label" for="manager_email">管理員信箱</label>
+                                                    <input class="form-control" type="text" id="manager_email" required
+                                                        name="manager_email">
                                                 </div>
                                             </div>
                                             <div class="col"></div>
                                             <div class="col-xl-6">
                                                 <div class="form-group mb-3">
-                                                    <label class="form-label">管理員地址</label>
-                                                    <input class="form-control" type="text" id="address" required=""
-                                                        name="address">
+                                                    <label class="form-label" for="manager_phone">管理員電話</label>
+                                                    <input class="form-control" type="text" id="manager_phone" required
+                                                        name="manager_phone">
+                                                </div>
+                                            </div>
+                                            <div class="col"></div>
+                                            <div class="col-xl-6">
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label" for="manager_address">管理員地址</label>
+                                                    <input class="form-control" type="text" id="manager_address"
+                                                        name="manager_address">
                                                 </div>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-12 content-right">
-                                                <button class="btn btn-primary form-btn" id="register"
-                                                    type="submit">確認</button>
-                                                <button class="btn btn-danger form-btn" id="cancel"
-                                                    type="reset">取消</button>
+                                                <button class="btn btn-primary form-btn" id="manager_edit_btn"
+                                                    type="button">修改資料</button>
                                             </div>
+                                            <div id="msg" class="error"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -274,6 +273,7 @@
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/theme.js"></script>
     <!-- JavaScript JS放置區 -->
+    <script src="../js/manager_edit.js"></script>
 </body>
 
 </html>

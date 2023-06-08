@@ -1,7 +1,5 @@
 package com.manager.controller;
 
-import static com.core.util.CommonUtil.json2Pojo;
-import static com.core.util.CommonUtil.writePojo2Json;
 import static com.manager.util.ManagerConstants.SERVICE;
 
 import java.io.BufferedReader;
