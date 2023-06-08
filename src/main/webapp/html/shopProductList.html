@@ -27,6 +27,15 @@
             color: #0066CC;
         }
 
+        .mainNav ul li:nth-child(4) a {
+            background: #9BDFCA;
+            color: #A23400;
+        }
+
+        .mainNav ul li:nth-child(4) a:hover {
+            color: #fff;
+        }
+
         /*主呈現區*/
         .shopmain {
             width: 100%;
@@ -34,6 +43,121 @@
             padding: 110px 0 0 0;
             display: flex;
             box-shadow: 0 1px #F5F5F5;
+        }
+
+
+        .shopmain .sidebar {
+            padding: 10px;
+            padding-top: 30px;
+            display: inline-block;
+            width: 15%;
+            min-width: 200px;
+            max-height: 100%;
+            /* border: 1px solid black; */
+        }
+
+
+        .shopmain .sidebar div.brandlist {
+            flex-direction: column;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            /* border: 1px solid blue; */
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 2;
+            text-align: center;
+
+        }
+
+        .shopmain .sidebar div.brandlist div.brandItem {
+            overflow: hidden;
+            height: 0px;
+        }
+
+
+
+        .shopmain .sidebar div.brandlist:nth-child(1) {
+            margin-top: 0px;
+        }
+
+        .shopmain .sidebar div.brandlist>span {
+            color: #faf8f8;
+            width: 95%;
+            /* padding-left: 15%; */
+            border: 1px solid goldenrod;
+            border-radius: 50px;
+        }
+
+
+        .shopmain .sidebar div.brandlist>span.N_brand {
+            background-color: #cb4619;
+            border: 4px solid #cb4619;
+
+        }
+
+        .shopmain .sidebar div.brandlist>span.N_brand:hover {
+            cursor: pointer;
+            color: #cb4619;
+            border: 4px solid #cb4619;
+            background-color: #ffffff;
+
+        }
+
+
+        .shopmain .sidebar div.brandlist>span.B_brand {
+            background-color: #11942e;
+            border: 4px solid #11942e;
+
+        }
+
+        .shopmain .sidebar div.brandlist>span.B_brand:hover {
+            cursor: pointer;
+            color: #11942e;
+            border: 4px solid #11942e;
+            background-color: #ffffff;
+
+        }
+
+        .shopmain .sidebar div.brandlist>span.P_brand {
+            background-color: #255194;
+            border: 4px solid #255194;
+
+        }
+
+        .shopmain .sidebar div.brandlist>span.P_brand:hover {
+            cursor: pointer;
+            color: #255194;
+            border: 4px solid #255194;
+            background-color: #ffffff;
+
+        }
+
+        .shopmain .sidebar div.brandlist div.listtype {
+            display: inline-block;
+            font-size: 14px;
+            line-height: 2;
+            text-align: left;
+            padding: 5px;
+        }
+
+
+        .shopmain .sidebar div.brandlist div.listtype span {
+            align-items: center;
+            /* border: 1px solid black; */
+            border-radius: 15px;
+            margin-left: 10%;
+            padding-left: 15px;
+            display: flex;
+            width: 120px;
+            height: 30px;
+        }
+
+        .shopmain .sidebar div.brandlist div.listtype span:hover {
+            cursor: pointer;
+            font-size: 1.3em;
+            color: #2c477b;
+            font-weight: bold;
         }
 
         main {
@@ -110,40 +234,21 @@
                 <li>
                     <div class="dropdown">
                         <a href="" class="dropbtn">NS</a>
-                        <div class="dropdown-content">
-                            <a href="#">遊戲軟體</a>
-                            <a href="#">遊戲主機</a>
-                            <a href="#">周邊設備</a>
-                        </div>
                     </div>
                 </li>
                 <li>
                     <div class="dropdown">
                         <a href="" class="dropbtn">PS</a>
-                        <div class="dropdown-content">
-                            <a href="#">遊戲軟體</a>
-                            <a href="#">遊戲主機</a>
-                            <a href="#">周邊設備</a>
-                        </div>
                     </div>
                 </li>
                 <li>
                     <div class="dropdown">
                         <a href="" class="dropbtn">XBOX</a>
-                        <div class="dropdown-content">
-                            <a href="#">遊戲軟體</a>
-                            <a href="#">遊戲主機</a>
-                            <a href="#">周邊設備</a>
-                        </div>
                     </div>
                 </li>
                 <li>
                     <div class="dropdown">
                         <a href="" class="dropbtn">二手交易</a>
-                        <div class="dropdown-content">
-                            <a href="#">購買二手商品</a>
-                            <a href="#">我要販售二手商品</a>
-                        </div>
                     </div>
                 </li>
                 <li>
@@ -193,37 +298,38 @@
     </header>
     <div class="shopmain">
         <aside class="sidebar">
-            <!--依照先前首頁所點到的產品類別，對應的side-dropdown-content必須為class已加上"-on"的狀態-->
-            <!--各類展開的細項依???類別設定-->
-            <div>
-                <a href="" class="side-dropbtn">NS</a>
-                <div class="side-dropdown-content">
-                    <a href="#">遊戲軟體adfdsaffsfsaaaaaaaaaaaaaaaaaaaaa</a>
-                    <a href="#">遊戲主機</a>
-                    <a href="#">周邊設備</a>
+            <div class="brandlist">
+                <span class="N_brand">
+                    Nitendo
+                </span>
+                <div class="brandItem">
+                    <div class="listtype"><span>主機</span></div>
+                    <div class="listtype"><span>手把</span></div>
+                    <div class="listtype"><span>卡帶</span></div>
+                    <div class="listtype"><span>周邊</span></div>
                 </div>
             </div>
-            <div>
-                <a href="" class="side-dropbtn">PS</a>
-                <div class="side-dropdown-content">
-                    <a href="#">遊戲軟體adfdsaffsfsaaaaaaaaaaaaaaaaaaaaa</a>
-                    <a href="#">遊戲主機</a>
-                    <a href="#">周邊設備</a>
+
+            <div class="brandlist">
+                <span class="B_brand">
+                    XBOX
+                </span>
+                <div class="brandItem">
+                    <div class="listtype"><span>主機</span></div>
+                    <div class="listtype"><span>手把</span></div>
+                    <div class="listtype"><span>遊戲片</span></div>
+                    <div class="listtype"><span>周邊</span></div>
                 </div>
             </div>
-            <div>
-                <a href="" class="side-dropbtn">XBOX</a>
-                <div class="side-dropdown-content">
-                    <a href="#">遊戲軟體adfdsaffsfsaaaaaaaaaaaaaaaaaaaaa</a>
-                    <a href="#">遊戲主機</a>
-                    <a href="#">周邊設備</a>
-                </div>
-            </div>
-            <div>
-                <a href="" class="side-dropbtn">二手交易區</a>
-                <div class="side-dropdown-content">
-                    <a href="#">購買二手商品</a>
-                    <a href="#">我要賣二手商品</a>
+            <div class="brandlist">
+                <span class="P_brand">
+                    PlayStation
+                </span>
+                <div class="brandItem">
+                    <div class="listtype"><span>主機</span></div>
+                    <div class="listtype"><span>手把</span></div>
+                    <div class="listtype"><span>遊戲片</span></div>
+                    <div class="listtype"><span>周邊</span></div>
                 </div>
             </div>
         </aside>
@@ -514,12 +620,16 @@
     <script src="../js/shopNavBarShowup.js"></script>
     <script src="../js/shopMainNavHelping.js"></script>
     <script>
+        // 左側邊欄開關
+        $(".brandlist>span").on('click', function (e) {
+            $(this).toggleClass("-is_click");
 
-        // sidebar(left)下拉選單
-        $('.side-dropbtn').on('click', function (e) {
-            e.preventDefault();
-            $(this).next('div.side-dropdown-content').toggleClass('-on');
-        });
+            if ($(this).hasClass("-is_click")) {
+                $(e.target).next().animate({ height: "180px" }, 200, 'linear')
+            } else {
+                $(e.target).next().animate({ height: "0px" }, 200)
+            }
+        })
     </script>
 </body>
 <!--添加瀏覽紀錄-->
