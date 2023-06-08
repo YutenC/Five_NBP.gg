@@ -30,6 +30,8 @@
         <mapping class="com.member.entity.Other_app_login"/>
         <mapping class="com.member.entity.Gaming_tag"/>
         <mapping class="com.member.entity.Tag"/>
-
+        <mapping class="com.shopproduct.entity.Coupon"/>
+        <mapping class="com.shopproduct.entity.Product"/>
+        <mapping class="com.shopproduct.entity.ProductImage"/>
     </session-factory>
 </hibernate-configuration>
