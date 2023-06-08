@@ -1,8 +1,9 @@
-package com.nbpggshop.model;
+package com.shoporder.model.dao;
 
 import java.util.List;
 
 import com.core.dao.CoreDao;
+import com.shoporder.model.entity.OrderDetail;
 
 public interface OrderDetailDao extends CoreDao<OrderDetail, Integer> {
 

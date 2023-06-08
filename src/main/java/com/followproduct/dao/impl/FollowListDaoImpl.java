@@ -1,8 +1,11 @@
-package com.nbpggshop.model;
+package com.followproduct.dao.impl;
 
 import java.util.List;
 
 import org.hibernate.Session;
+
+import com.followproduct.dao.FollowListDao;
+import com.followproduct.entity.FollowList;
 
 public class FollowListDaoImpl implements FollowListDao {
 

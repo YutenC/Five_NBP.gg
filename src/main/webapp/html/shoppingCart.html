@@ -158,6 +158,7 @@
             border-radius: 0 0 3px 3px;
             border-collapse: separate;
             border-spacing: 0;
+            margin-bottom: 20px;
         }
 
         /*商品選取checkbox*/
@@ -354,20 +355,20 @@
         div.tagPage div.contentTabBlock ul.contentTab>li>a::after {
             content: "";
             position: absolute;
-            width: calc(100% + 2px);
+            width: 100%;
             height: 1px;
             bottom: -1px;
-            left: -1px;
+            left: 1px;
             z-index: 1;
         }
 
         div.tagPage div.contentTabBlock ul.contentTab>li>a.-on {
-            border: 1px solid #D9D9D9;
             color: black;
         }
 
         /* 將底部黑線改成白色 */
         div.tagPage div.contentTabBlock ul.contentTab>li>a.-on::after {
+            border: 1px solid #fff;
             background-color: white;
             width: 100%;
             left: 0;
@@ -478,7 +479,7 @@
     <div class="shoppingContent">
         <div class="cart">
             <h3>購物明細</h3>
-            <table>
+            <table id="purchaseDetail">
                 <thead>
                     <tr>
                         <th><input type="checkbox"></th>
@@ -555,9 +556,10 @@
                         <label for="couponId">折購代碼：</label>
                         <input type="text" id="couponId" placeholder="請輸入欲使用的折扣代碼" maxlength="8">
                     </div>
-                    <div>
-                        <label for="bouns">紅利點數：</label>
-                        <input type="range" id="bonus" v-model="bonus"><span>{{ bonus }}</span>
+                    <div class="bonus">
+                        <label for="bouns">使用紅利點數折抵：</label>
+                        <input type="range" id="bonus" v-model="bonus" max="1000">
+                        <input type="text" v-model="bonus">
                     </div>
                 </form>
             </div>
@@ -621,7 +623,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../jquery/jquery-1.9.1.min.js"></script>
-    <script src="../js/switchTag.js"></script>
+    <script src="../js/shopSwitchTag.js"></script>
+    <script>
+        // Vue Code
+        const Xxx = Vue.createApp({
+            data() {
+                return {
+                    bonus: 0
+                };
+            }
+        });
+        Xxx.mount("div.bonus");
+
+    </script>
     <script>
         // 增添商品到購物車內按鈕變化
 

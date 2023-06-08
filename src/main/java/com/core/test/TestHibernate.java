@@ -1,7 +1,7 @@
 package com.core.test;
 
-import com.nbpggshop.model.Product;
-import com.nbpggshop.model.ProductDaoImpl;
+import com.shoporder.model.Product;
+import com.shoporder.model.ProductDaoImpl;
 
 public class TestHibernate {
 	

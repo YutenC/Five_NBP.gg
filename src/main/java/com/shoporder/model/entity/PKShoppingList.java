@@ -1,4 +1,4 @@
-package com.nbpggshop.model;
+package com.shoporder.model.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,24 +13,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Embeddable
-@Table(name = "FOLLOW_LIST")
+@Table(name = "SHOPPING_LIST")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PKFollowList implements Serializable {
+public class PKShoppingList implements Serializable{
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3L;
 
-	@Column(name = "MEMBER_ID")
-	private Integer memberId;
+	@Column(name = "MEMMBER_ID")
+	private Integer memmberId;
 	
 	@Column(name = "PRODUCT_ID")
 	private Integer productId;
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(memberId, productId);
+		return Objects.hash(memmberId, productId);
 	}
 
 	@Override
@@ -41,9 +41,8 @@ public class PKFollowList implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PKFollowList other = (PKFollowList) obj;
-		return Objects.equals(memberId, other.memberId) && Objects.equals(productId, other.productId);
+		PKShoppingList other = (PKShoppingList) obj;
+		return Objects.equals(memmberId, other.memmberId) && Objects.equals(productId, other.productId);
 	}
-	
 	
 }

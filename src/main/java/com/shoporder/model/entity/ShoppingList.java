@@ -1,4 +1,4 @@
-package com.nbpggshop.model;
+package com.shoporder.model.entity;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
