@@ -1,12 +1,16 @@
 package com.core.test;
 
-import com.shoporder.model.Product;
-import com.shoporder.model.ProductDaoImpl;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.core.util.HibernateUtil;
+import com.member.entity.Member;
 
 public class TestHibernate {
 	
 	public static void main (String[] args) {
-		ProductDaoImpl pdl = new ProductDaoImpl();
+//		ProductDaoImpl pdl = new ProductDaoImpl();
 //		
 //		Product pd = new Product();
 //		
@@ -22,10 +26,9 @@ public class TestHibernate {
 //		pd.setLaunchTime(java.sql.Date.valueOf("2023-06-05"));
 //		
 //		System.out.println(pdl.selectById(1));
-		
-		for (Product pduni : pdl.selectByName("新商品")) {
-			System.out.println(pduni);
-		}
-		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		Transaction tx = session.beginTransaction();
+		System.out.println(session.get(Member.class, 1));
+		HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction().commit();
 	}
 }

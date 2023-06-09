@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PKFollowList implements Serializable {
+public class PKFollowProduct implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -41,7 +41,7 @@ public class PKFollowList implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PKFollowList other = (PKFollowList) obj;
+		PKFollowProduct other = (PKFollowProduct) obj;
 		return Objects.equals(memberId, other.memberId) && Objects.equals(productId, other.productId);
 	}
 	

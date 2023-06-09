@@ -46,7 +46,6 @@
                         <tr>
                             <th>商品ID</th>
                             <th>商品名稱</th>
-                            <th>加入追蹤日期</th>
                             <th>單價</th>
                             <th>加入本次購物</th>
                         </tr>
@@ -56,7 +55,6 @@
                             <tr>
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.name }}</td>
-                                <td>{{ item.followdate }}</td>
                                 <td>${{ item.price }}</td>
                                 <td><button @click="addToCart(item.id)">加入購物車</button></td>
                             </tr>

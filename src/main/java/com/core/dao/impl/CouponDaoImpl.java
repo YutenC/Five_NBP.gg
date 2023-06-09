@@ -70,32 +70,88 @@ public class CouponDaoImpl implements CouponDao{
 
 	@Override
 	public List<Coupon> selectAll() {
-		
-		return null;
+		String hql = "FROM Coupon ORDER BY deadline";
+		Session session = getSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			List<Coupon> couponList = session.createQuery(hql, Coupon.class).getResultList();
+			tx.commit();
+			return couponList;
+		} catch (Exception e) {
+			tx.rollback();
+			return null;
+		}
 	}
 
 	@Override
 	public Coupon selectByDiscountCode(String code) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "FROM Coupon WHERE discountCode = :discountCode";
+		Session session = getSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			Coupon coupon = session.createQuery(hql, Coupon.class)
+					.setParameter("discountCode", code)
+					.uniqueResult();
+			tx.commit();
+			return coupon;
+		} catch (Exception e) {
+			tx.rollback();
+			return null;
+		}
 	}
 
 	@Override
 	public List<Coupon> selectByDiscountRange(Integer lower, Integer upper) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "FROM Coupon WHERE discount BETWEEN :lower AND :upper";
+		Session session = getSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			List<Coupon> couponList = session.createQuery(hql, Coupon.class)
+					.setParameter("lower", lower)
+					.setParameter("upper", upper)
+					.getResultList();
+					tx.commit();
+					return couponList;
+		} catch (Exception e) {
+			tx.rollback();
+			return null;
+		}
 	}
 
 	@Override
 	public List<Coupon> selectByDeadline(Date lower, Date upper) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "FROM Coupon WHERE deadline BETWEEN :lower AND :upper";
+		Session session = getSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			List<Coupon> couponList = session.createQuery(hql, Coupon.class)
+					.setParameter("lower", lower)
+					.setParameter("upper", upper)
+					.getResultList();
+			tx.commit();
+			return couponList;
+		} catch (Exception e) {
+			tx.rollback();
+			return null;
+		}
 	}
 
 	@Override
 	public List<Coupon> selectByConditionRange(Integer lower, Integer upper) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "FROM Coupon WHERE conditionPrice BETWEEN :lower AND :upper";
+		Session session = getSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			List<Coupon> couponList = session.createQuery(hql, Coupon.class)
+					.setParameter("lower", lower)
+					.setParameter("upper", upper)
+					.getResultList();
+			tx.commit();
+			return couponList;
+		} catch (Exception e) {
+			tx.rollback();
+			return null;
+		}
 	}
 
 	

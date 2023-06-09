@@ -1,10 +1,14 @@
 package com.product.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -46,4 +50,9 @@ public class Product {
 	
 	@Column(name = "LAUNCH_TIMES")
 	java.sql.Date launchTime;
+	
+	@OneToMany
+	@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
+	private List<ProductImage> poImages;
+
 }

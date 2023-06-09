@@ -62,8 +62,8 @@ const byMyPick = Vue.createApp({
     data() {
         return {
             mypick: [
-                { id: 1, name: 'Zelda', followdate: '2022/10/10', price: 2000 },
-                { id: 3, name: 'FFXI', followdate: '2022/12/31', price: 2500 },
+                { id: 1, name: 'Zelda', price: 2000 },
+                { id: 3, name: 'FFXI', price: 2500 },
             ]
         }
     },
