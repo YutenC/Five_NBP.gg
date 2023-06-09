@@ -5,6 +5,7 @@ import com.member.dao.MemberDao;
 import com.member.dao.impl.MemberDaoImpl;
 import com.member.entity.Member;
 import com.member.service.MemberService;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -55,20 +56,20 @@ public class MemberServiceimpl implements MemberService, CoreService {
             return member;
         }
         try{
-
-            if (dao.selectByUserName(member.getAccount())!= null) {
+            beginTransaction();
+            if (dao.selectByAccount(member.getAccount())!= null) {
                 member.setMessage("帳號重複");
                 member.setSuccessful(false);
                 rollback();
                 return member;
             }
 
-//            if (dao.selectByUserName(member.getEmail())!= null) {
-//                member.setMessage("帳號重複");
-//                member.setSuccessful(false);
-//                rollback();
-//                return member;
-//            }
+            if (dao.selectByEmail(member.getEmail())!= null) {
+                member.setMessage("信箱重複");
+                member.setSuccessful(false);
+                rollback();
+                return member;
+            }
 
             final int resultCount = dao.insert(member);
             if (resultCount < 1) {
@@ -77,8 +78,8 @@ public class MemberServiceimpl implements MemberService, CoreService {
                 rollback();
                 return member;
             }
+            commit();
             member.setMessage("註冊成功");
-//            commit();
         }catch (Exception e){
             rollback();
             e.printStackTrace();
@@ -103,7 +104,8 @@ public class MemberServiceimpl implements MemberService, CoreService {
             member.setSuccessful(false);
             return member;
         }
-
+//        --因為查詢登入是需要交易，所以開始交易寫在這--
+        beginTransaction();
         member = dao.selectForLogin(account, password);
         if (member == null) {
             member = new Member();
@@ -111,7 +113,8 @@ public class MemberServiceimpl implements MemberService, CoreService {
             member.setSuccessful(false);
             return member;
         }
-
+//        --以上為驗證機制--
+        commit();
         member.setMessage("登入成功");
         member.setSuccessful(true);
         return member;
@@ -122,7 +125,7 @@ public class MemberServiceimpl implements MemberService, CoreService {
     public Member edit(Member member) {     // 會員自己編輯會員資料(暱稱、email、電話、大頭照)
         try{
             beginTransaction();
-            final Member oMember = dao.selectByUserName(member.getAccount());
+            final Member oMember = dao.selectByAccount(member.getAccount());
             // oMember 為資料庫原始資料     member 為會員輸入的資料
             if(member.getNick() == null){
                 member.setNick(oMember.getNick());
@@ -138,6 +141,11 @@ public class MemberServiceimpl implements MemberService, CoreService {
                 member.setPhone(oMember.getPhone());
             } else {
                 oMember.setPhone(oMember.getPhone());
+            }
+            if(member.getAddress() == null){
+                member.setAddress(oMember.getAddress());
+            } else {
+                oMember.setAddress(oMember.getAddress());
             }
             oMember.setAccount(member.getAccount());
             oMember.setPassword(member.getPassword());
@@ -156,7 +164,10 @@ public class MemberServiceimpl implements MemberService, CoreService {
 
     @Override
     public List<Member> findAll() {
-        return dao.selectAll();
+        beginTransaction();
+        List<Member> memberList = dao.selectAll();
+        commit();
+        return memberList;
     }
 
     @Override
@@ -193,8 +204,19 @@ public class MemberServiceimpl implements MemberService, CoreService {
     }
     @Override
     public boolean setMemberStatus(Member member){
-//       Member verMember = dao.selectByUserName(member.getAccount());
-        return false;
+        beginTransaction();
+        try{
+            final Member verMember = dao.selectByEmail(member.getEmail());
+            verMember.setMember_ver_state(member.getMember_ver_state());
+            dao.update(verMember);
+            System.out.println("驗證成功");
+            commit();
+            return true;
+        }catch (Exception e){
+            System.out.println("驗證失敗");
+            e.printStackTrace();
+            return false;
+        }
     }
 
 
