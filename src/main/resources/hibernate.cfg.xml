@@ -13,7 +13,7 @@
 
         <!--  直接連線(上面4行) 或 JNDI寫法(對應Meta-inf的context) 二擇一  -->
 
-        <!--        <property name="hibernate.connection.datasource">java:comp/env/jdbc/five</property>-->
+<!--                <property name="hibernate.connection.datasource">java:comp/env/jdbc/five</property>-->
 
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

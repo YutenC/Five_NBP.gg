@@ -5,9 +5,7 @@ import com.member.dao.MemberDao;
 import com.member.dao.impl.MemberDaoImpl;
 import com.member.entity.Member;
 import com.member.service.MemberService;
-import com.mysql.cj.Query;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 public class MemberServiceimpl implements MemberService, CoreService {
@@ -19,7 +17,8 @@ public class MemberServiceimpl implements MemberService, CoreService {
     }
 
     @Override
-    public Member register(Member member) {     //註冊驗證
+    public Member register(Member member)
+    {     //註冊驗證
         if (member.getAccount() == null) {
             member.setMessage("帳號未輸入");
             member.setSuccessful(false);
@@ -56,29 +55,35 @@ public class MemberServiceimpl implements MemberService, CoreService {
             return member;
         }
         try{
-//            建立HibernateFilter後交易機制交給他處理，beginTransaction, commit, rollback都可以註解掉
-//            beginTransaction();
+
             if (dao.selectByUserName(member.getAccount())!= null) {
                 member.setMessage("帳號重複");
                 member.setSuccessful(false);
-//                rollback();
+                rollback();
                 return member;
             }
 
+//            if (dao.selectByUserName(member.getEmail())!= null) {
+//                member.setMessage("帳號重複");
+//                member.setSuccessful(false);
+//                rollback();
+//                return member;
+//            }
 
             final int resultCount = dao.insert(member);
             if (resultCount < 1) {
                 member.setMessage("註冊錯誤，請聯絡管理員!");
                 member.setSuccessful(false);
-//                rollback();
+                rollback();
                 return member;
             }
+            member.setMessage("註冊成功");
 //            commit();
         }catch (Exception e){
-//            rollback();
+            rollback();
             e.printStackTrace();
+            member.setMessage("註冊失敗");
         }
-//        System.out.println(1);
         return member;          // 不確定retrun什麼
     }
 
@@ -114,28 +119,39 @@ public class MemberServiceimpl implements MemberService, CoreService {
 
 
     @Override
-    public Member edit(Member member) {     // 會員自己編輯會員資料
-        final Member oMember = dao.selectByUserName(member.getAccount());
-        member.setPassword(oMember.getPassword());
-        member.setNick(oMember.getNick());
-        member.setEmail(oMember.getEmail());
-        member.setPhone(oMember.getPhone());
-        member.setBirth(oMember.getBirth());
-        member.setId_number(oMember.getId_number());
-        member.setAddress(oMember.getAddress());
-        member.setBonus(oMember.getBonus());
-        member.setMember_ver_state(oMember.getMember_ver_state());
-        member.setSuspend_deadline(oMember.getSuspend_deadline());
-        member.setHeadshot(oMember.getHeadshot());
-        member.setVer_deadline(oMember.getVer_deadline());
-        member.setViolation(oMember.getViolation());
-        final int resultCount = dao.update(member);
-        member.setSuccessful(resultCount > 0);
-        member.setMessage(resultCount > 0 ? "修改成功" : "修改失敗");
-
-
-
-        return member;
+    public Member edit(Member member) {     // 會員自己編輯會員資料(暱稱、email、電話、大頭照)
+        try{
+            beginTransaction();
+            final Member oMember = dao.selectByUserName(member.getAccount());
+            // oMember 為資料庫原始資料     member 為會員輸入的資料
+            if(member.getNick() == null){
+                member.setNick(oMember.getNick());
+            } else {
+                oMember.setNick(member.getNick());
+            }
+            if(member.getEmail() == null){
+                member.setEmail(oMember.getEmail());
+            } else {
+                oMember.setEmail(member.getEmail());
+            }
+            if(member.getPhone() == null){
+                member.setPhone(oMember.getPhone());
+            } else {
+                oMember.setPhone(oMember.getPhone());
+            }
+            oMember.setAccount(member.getAccount());
+            oMember.setPassword(member.getPassword());
+            final int resultCount = dao.update(member);
+            commit();
+            member.setSuccessful(resultCount > 0);
+            member.setMessage(resultCount > 0 ? "修改成功" : "修改失敗");
+            return member;
+        }catch (Exception e){
+            rollback();
+            e.printStackTrace();
+            member.setMessage("修改失敗");
+            return member;
+        }
     }
 
     @Override
@@ -163,7 +179,24 @@ public class MemberServiceimpl implements MemberService, CoreService {
     }
 
     @Override
-    public boolean save(Member member) {
-        return dao.update(member) > 0;
+    public boolean setPassword(Member member) {
+        return false;
     }
+
+    @Override
+    public String resetPassword(Member member) {
+        return null;
+    }
+    @Override
+    public Member setHeadshot(Member member) {
+        return null;
+    }
+    @Override
+    public boolean setMemberStatus(Member member){
+//       Member verMember = dao.selectByUserName(member.getAccount());
+        return false;
+    }
+
+
+
 }
