@@ -87,16 +87,34 @@ function ShowAllInfoClick(id) {
 
 //WIP
 function ChangeStateClick(id) {
+    event.preventDefault();
 
     // 使用 AJAX 發送請求，將 ID 值傳送到後端
-    fetch('/your/backend/endpoint', {
+    fetch('../manager/manager_state_edit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: id })
+        body: JSON.stringify({
+            manager_id: manager_array[id].manager_id,
+            manager_account: manager_array[id].account,
+            manager_password: manager_array[id].password,
+            manager_name: manager_array[id].name,
+            manager_email: manager_array[id].email,
+            manager_phone: manager_array[id].phone,
+            manager_address: manager_array[id].address,
+            manager_is_working: manager_array[id].is_working
+        })
     })
         .then(response => response.json())
         .then(data => {
             // 在此處處理後端回傳的資料
+
+            const { successful } = data;
+            if (successful) {
+                alert("成功");
+
+            } else {
+
+            }
 
         })
         .catch(error => {
@@ -109,25 +127,6 @@ function EditClick(id) {
 
     // 將 ID 儲存到 sessionStorage 中
     sessionStorage.setItem('id', id);
-
-    // // 使用 AJAX 發送請求，將 ID 值傳送到後端
-    // fetch('../manager/getManagerEditInfo', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ id: id })
-    // })
-    //     .then(response => {
-    //         // 將 ID 值儲存到 sessionStorage 中
-    //         sessionStorage.setItem('id', id);
-    //         return response.json();
-    //     })
-    //     .then(data => {
-    //         // 在此處處理後端回傳的資料
-    //         console.log(data);
-    //     })
-    //     .catch(error => {
-    //         console.error('Error:', error);
-    //     });
 
 }
 

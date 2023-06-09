@@ -21,5 +21,5 @@ public interface ManagerService extends CoreService{
 	boolean save(Manager manager); // 儲存更新(新增或修改)
 	
 	//新增的service
-	Manager changeWorkingState(Manager manager); //改工作狀態
+	Manager editWorkingState(Manager manager); //改工作狀態
 }

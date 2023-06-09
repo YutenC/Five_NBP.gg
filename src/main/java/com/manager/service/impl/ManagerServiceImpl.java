@@ -73,8 +73,13 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	@Override
 	public Manager edit(Manager manager) {
-		// TODO Auto-generated method stub
-		return null;
+		final Manager oManager = dao.selectById(manager.getManager_id());
+		manager.setIs_working(oManager.getIs_working());
+		manager.setManager_id(manager.getManager_id());
+		final int resultCount = dao.update(manager);
+		manager.setSuccessful(resultCount > 0);
+		manager.setMessage(resultCount > 0 ? "修改成功" : "修改失敗");
+		return manager;
 	}
 	
 	@Override
@@ -95,11 +100,22 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 	
 	@Override
-	public Manager changeWorkingState(Manager manager) {
-		// TODO Auto-generated method stub
-		return null;
+	public Manager editWorkingState(Manager manager) {
+		final Manager oManager = dao.selectById(manager.getManager_id());
+		
+		int newWorkingState;
+		if (oManager.getIs_working()==1) {
+			newWorkingState= 0;
+		}else {
+			newWorkingState= 1;
+		}
+		
+		manager.setIs_working(newWorkingState);
+		manager.setManager_id(manager.getManager_id());
+		final int resultCount = dao.update(manager);
+		manager.setSuccessful(resultCount > 0);
+		manager.setMessage(resultCount > 0 ? "修改成功" : "修改失敗");
+		return manager;
 	}
-	
-	
 	
 }

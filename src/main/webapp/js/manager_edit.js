@@ -10,6 +10,9 @@
 
     const inputs = document.querySelectorAll('input');
 
+    let manager_id;
+    let manager_is_working;
+
     fetch('../manager/getManagerEditInfo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -30,6 +33,9 @@
             manager_email.value = data.manager.email;
             manager_phone.value = data.manager.phone;
             manager_address.value = data.manager.address;
+
+            manager_id = data.manager.manager_id;
+            manager_is_working = data.manager.manager_is_working;
 
 
         })
@@ -64,23 +70,28 @@
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                manager_id: manager_id,
                 manager_account: manager_account.value,
                 manager_password: manager_password.value,
                 manager_name: manager_name.value,
                 manager_email: manager_email.value,
                 manager_phone: manager_phone.value,
                 manager_address: manager_address.value,
+                manager_is_working: manager_is_working
             }),
         })
             .then(resp => resp.json())
             .then(body => {
+
+                console.log(body);
+
                 const { successful } = body;
                 if (successful) {
                     alert("成功");
                     for (let input of inputs) {
                         input.disabled = true;
                     }
-                    add_btn.disabled = true;
+                    edit_btn.disabled = true;
                     msg.className = 'info';
                     msg.textContent = '修改成功';
                 } else {
