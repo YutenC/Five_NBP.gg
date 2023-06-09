@@ -15,8 +15,8 @@ public class CouponController {
     }
 
 
-    public String getCoupon_json(HttpSession session) {
-        System.out.println("getCoupon_json");
+    public String getCoupon(HttpSession session) {
+        System.out.println("getCoupon");
 
         Gson gson=new Gson();
 
@@ -26,8 +26,8 @@ public class CouponController {
     }
 
 
-    public String getCouponByActivity_json(HttpSession session,String activityCode) {
-        System.out.println("getCouponByActivity_json");
+    public String getCouponByActivity(HttpSession session,String activityCode) {
+        System.out.println("getCouponByActivity");
 
         Gson gson=new Gson();
         String json_str=gson.toJson(couponService.getCouponById(1));
