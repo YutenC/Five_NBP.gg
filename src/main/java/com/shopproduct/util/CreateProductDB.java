@@ -6,18 +6,24 @@ import com.shopproduct.dao.impl.ProductDaoImpl;
 import com.shopproduct.dao.impl.ProductImageDaoImpl;
 import com.shopproduct.entity.ProductImage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class CreateProductDB<T, P> {
 
-    final String csvPath="C:\\專案另一個存放區\\假資料.csv";
-    final String imgPath="C:\\專案另一個存放區\\img\\shop\\";
+//    final String csvPath = "..\\..\\..\\..\\webapp\\img\\gameSoftware\\test\\origin\\假資料.csv";
+//    final String srcImgPath = "..\\..\\..\\..\\webapp\\img\\gameSoftware\\test\\origin\\";
+//    final String desImgPath = "..\\..\\..\\..\\webapp\\img\\gameSoftware\\test\\";
+//    final String csvPath = "src\\main\\webapp\\img\\gameSoftware\\test\\origin\\假資料.csv";
+//    final String srcImgPath = "src\\main\\webapp\\img\\gameSoftware\\test\\origin\\";
+//    final String desImgPath = "src\\main\\webapp\\img\\gameSoftware\\test\\";
+
+    final String csvPath = "C:\\MyWorkSpace\\five\\update\\Five_NBP.gg\\src\\main\\webapp\\img\\gameSoftware\\test\\origin\\假資料.csv";
+    final String srcImgPath = "C:\\MyWorkSpace\\five\\update\\Five_NBP.gg\\src\\main\\webapp\\img\\gameSoftware\\test\\origin\\";
+    final String desImgPath = "C:\\MyWorkSpace\\five\\update\\Five_NBP.gg\\src\\main\\webapp\\img\\gameSoftware\\test\\";
+
     ProductDao productDao;
     ProductImageDao productImageDao;
     private Class entityClass;
@@ -27,8 +33,8 @@ public class CreateProductDB<T, P> {
         entityClass = c;
         entityClass_P = p;
 
-        productDao=new ProductDaoImpl();
-        productImageDao=new ProductImageDaoImpl();
+        productDao = new ProductDaoImpl();
+        productImageDao = new ProductImageDaoImpl();
     }
 
     public List<T> readCSV() throws NoSuchFieldException, IllegalAccessException {
@@ -88,11 +94,107 @@ public class CreateProductDB<T, P> {
     }
 
     public List<P> createImgEntity() throws NoSuchFieldException, IllegalAccessException {
-        List<String> fileNames=new ArrayList<>();
+        List<String> fileNames = getListFile(srcImgPath);
 
-        File directory = new File(imgPath); // 目錄物件
+
+        String newFileName = null;
+        File file;
+        String pathName;
+        List<T> products = (List<T>) productDao.selectAll();
+
+        for (int i = 0; i < products.size(); i++) {
+            T product = products.get(i);
+
+            Field field = product.getClass().getDeclaredField("productName");
+            field.setAccessible(true);
+            String fileName = (String) field.get(product);
+
+            field = product.getClass().getDeclaredField("id");
+            field.setAccessible(true);
+            Integer p_id = (Integer) field.get(product);
+
+
+            for (int j = 0; j < 3; j++) {
+                if (j != 0) {
+                    pathName = srcImgPath + fileName + "_" + j + ".PNG";
+                    newFileName = p_id + "_" + j + ".PNG";
+                } else {
+                    pathName = srcImgPath + fileName + ".PNG";
+                    newFileName = p_id + "_index" + ".PNG";
+                }
+
+                file = new File(pathName);
+                if (!file.exists()) {
+                    continue;
+                }
+
+                // Check if the file exists
+                if (file.exists()) {
+
+                    File file2 = new File(desImgPath + newFileName);
+                    copyFile(file, file2);
+//                    if(!file2.exists()){
+//                        copyFile(file, file2);
+//                    }
+
+
+                    // Rename the file
+//                    File newFile = new File(file.getParent(), newFileName);
+//                    if (file.renameTo(newFile)) {
+//                        System.out.println("File renamed successfully.");
+//                    } else {
+//                        System.out.println("Failed to rename the file.");
+//                    }
+                } else {
+                    System.out.println("File does not exist.");
+                }
+
+
+                ProductImage productImage = new ProductImage(p_id, "./img/gameSoftware/test/" + newFileName);
+                productImageDao.insert(productImage);
+
+            }
+
+        }
+
+        return null;
+    }
+
+    public void copyFile(File file1, File file2) {
+
+        try {
+
+            FileInputStream fileInputStream = new FileInputStream(file1);
+            FileOutputStream fileOutputStream = new FileOutputStream(file2);
+
+            BufferedInputStream BufferInputStream = new BufferedInputStream(fileInputStream);
+            BufferedOutputStream BufferOutputStream = new BufferedOutputStream(fileOutputStream);
+
+            byte[] buffer2 = new byte[1024];
+
+            while (BufferInputStream.read(buffer2) != -1) {
+                BufferOutputStream.write(buffer2);
+            }
+
+            BufferOutputStream.close();
+            BufferInputStream.close();
+            fileInputStream.close();
+            fileOutputStream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private List<String> getListFile(String dirPath) {
+        List<String> fileNames = new ArrayList<>();
+        File directory = new File(dirPath); // 目錄物件
         System.out.println(("File Name: " + directory.getName()));
-
+        System.out.println(("File Path: " + directory.getPath()));
+        System.out.println(("File getAbsolutePath: " + directory.getAbsolutePath()));
         // Check if the specified path is a directory
         if (directory.isDirectory()) {
             // Get all files in the directory
@@ -106,64 +208,9 @@ public class CreateProductDB<T, P> {
                 }
             }
         }
+        return fileNames;
 
-
-        String newFileName = null;
-        File file ;
-        String pathName;
-        List<T> products= ( List<T>) productDao.selectAll();
-
-        for(int i=0;i<products.size();i++){
-            T  product= products.get(i);
-
-            Field field = product.getClass().getDeclaredField("productName");
-            field.setAccessible(true);
-            String fileName=(String)field.get(product);
-
-            field = product.getClass().getDeclaredField("id");
-            field.setAccessible(true);
-            Integer p_id=(Integer)field.get(product);
-
-
-            for(int j=0;j<3;j++){
-                if(j!=0){
-                    pathName=imgPath+fileName+"_"+j+".PNG";
-                    newFileName = p_id+"_"+j+".PNG";
-                }
-                else{
-                    pathName=imgPath+fileName+".PNG";
-                    newFileName=p_id+"_index"+".PNG";
-                }
-
-                file = new File(pathName);
-                if(!file.exists()){
-                    continue;
-                }
-
-                // Check if the file exists
-                if (file.exists()) {
-                    // Rename the file
-                    File newFile = new File(file.getParent(), newFileName);
-
-                    ProductImage productImage=new ProductImage(p_id,"./img/gameSoftware/test/"+newFileName);
-                    productImageDao.insert(productImage);
-
-                    if (file.renameTo(newFile)) {
-                        System.out.println("File renamed successfully.");
-                    } else {
-                        System.out.println("Failed to rename the file.");
-                    }
-                } else {
-                    System.out.println("File does not exist.");
-                }
-
-            }
-
-        }
-
-        return null;
     }
-
 
     private void setValue(T object, String property, Object propertyValue) {
         Class objectClass = object.getClass();
@@ -177,15 +224,15 @@ public class CreateProductDB<T, P> {
                 propertyValue = Integer.valueOf((String) propertyValue);
             }
 
-            if("type".equals(property)){
-                String type_=(String)propertyValue;
-                type_=type_.trim();
-                switch (type_){
+            if ("type".equals(property)) {
+                String type_ = (String) propertyValue;
+                type_ = type_.trim();
+                switch (type_) {
                     case "PS5"://22
-                        propertyValue="1";//22
+                        propertyValue = "1";//22
                         break;
                     case "Switch"://02
-                        propertyValue="2";//02
+                        propertyValue = "2";//02
                         break;
                 }
             }
