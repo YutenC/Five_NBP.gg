@@ -11,6 +11,6 @@ public interface CouponManagerService {
     List<String> getAllCouponActivity();
     List<CouponActivity> searchCouponActivity();
 
-    boolean deleteCoupon(Integer coupon_id);
+    boolean deleteCoupon(Integer couponId);
 
 }

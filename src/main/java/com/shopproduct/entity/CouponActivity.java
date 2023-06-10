@@ -11,10 +11,9 @@ public class CouponActivity {
     Integer couponId;
     Coupon coupon;
 
-    public CouponActivity(String activityName, String activityCode, Integer couponId) {
+    public CouponActivity(String activityName, String activityCode) {
         this.activityName = activityName;
         this.activityCode = activityCode;
-        this.couponId = couponId;
     }
 
     @Override

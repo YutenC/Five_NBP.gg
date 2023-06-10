@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-//
+
 @Entity
 @Table(name = "product_image")
 @Setter

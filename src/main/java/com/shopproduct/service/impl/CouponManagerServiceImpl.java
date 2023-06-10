@@ -12,6 +12,7 @@ import com.shopproduct.service.CouponManagerService;
 import com.shopproduct.service.CouponService;
 import com.shopproduct.util.*;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.exceptions.JedisException;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -29,12 +30,9 @@ public class CouponManagerServiceImpl implements CouponManagerService {
     @Override
     public void generateCouponActivity() {
         for (int i = 0; i < 10; i++) {
-            Integer id = couponService.addCoupon(genCouponData());
-            Coupon coupon = couponService.getCouponById(id);
-
-            CouponActivity couponActivity = new CouponActivity("Activity " + i, "MF", id);
-            couponActivity.setCoupon(coupon);
-            couponActivityRedisDao.addCouponActivity(couponActivity);
+            CouponActivity couponActivity = new CouponActivity("Activity " + i, "MF");
+            couponActivity.setCoupon(genCouponData());
+            addCouponActivity(couponActivity);
         }
     }
 
@@ -46,7 +44,7 @@ public class CouponManagerServiceImpl implements CouponManagerService {
         RedisContent redisService = new RedisContent() {
             @Override
             public int run() {
-                System.out.println("coupon.getDiscountCode(): "+coupon.getDiscountCode());
+//                System.out.println("coupon.getDiscountCode(): "+coupon.getDiscountCode());
                 Coupon coupon_=couponService.getCouponByDiscountCode(coupon.getDiscountCode());
                 couponActivity.setCoupon(coupon_);
                 couponActivityRedisDao.addCouponActivity(couponActivity);
@@ -57,38 +55,20 @@ public class CouponManagerServiceImpl implements CouponManagerService {
     }
 
     @Override
-    public List<String> getAllCouponActivity() {
-
-        List<String> couponActivityMap_json = new ArrayList<String>();
-        Jedis jedis = ConnRedis.getInstance().getJedis();
-
-        Gson gson = new Gson();
-        Set<String> items = jedis.smembers("CouponActivity:outline");
-        for (String str : items) {
-            Map<String, String> couponActivityMap = jedis.hgetAll("CouponActivity:" + str);
-            couponActivityMap_json.add(gson.toJson(couponActivityMap));
-        }
-
-//        ProductDao productDao=new ProductDaoImpl();
-//        CreateProductDB<Product, ProductImage> c=  new CreateProductDB<Product,ProductImage>(Product.class, ProductImage.class);
-//        List<Product> products= null;
-//        try {
-////            products = c.readCSV();
-////
-////            for (Product value : products) {
-////                productDao.insert(value);
-////            }
-//            c.createImgEntity();
+    public List<String> getAllCouponActivity() throws RuntimeException {
+//        List<String> couponActivityMap_json = new ArrayList<String>();
+//        Jedis jedis = ConnRedis.getInstance().getJedis();
 //
-//        } catch (NoSuchFieldException e) {
-//            throw new RuntimeException(e);
-//        } catch (IllegalAccessException e) {
-//            throw new RuntimeException(e);
+//        Gson gson = new Gson();
+//        Set<String> items = jedis.smembers("CouponActivity:outline");
+//        for (String str : items) {
+//            Map<String, String> couponActivityMap = jedis.hgetAll("CouponActivity:" + str);
+//            couponActivityMap_json.add(gson.toJson(couponActivityMap));
 //        }
 
 
 
-        return couponActivityMap_json;
+        return  couponActivityRedisDao.getAllCouponActivity();
     }
 
     @Override
@@ -97,7 +77,21 @@ public class CouponManagerServiceImpl implements CouponManagerService {
     }
 
     @Override
-    public boolean deleteCoupon(Integer coupon_id) {
+    public boolean deleteCoupon(Integer couponId) {
+        couponService.deleteCoupon(couponId);
+
+        RedisContent redisService = new RedisContent() {
+            @Override
+            public int run() {
+//                System.out.println("coupon.getDiscountCode(): "+coupon.getDiscountCode());
+//                Coupon coupon_=couponService.getCouponByDiscountCode(coupon.getDiscountCode());
+//                couponActivity.setCoupon(coupon_);
+                couponActivityRedisDao.deleteCouponActivity(couponId);
+                return 0;
+            }
+        };
+        RedisFactory.getRedisServiceInstance().registerRedisService(redisService);
+
         return true;
     }
 

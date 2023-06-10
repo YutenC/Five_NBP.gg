@@ -13,7 +13,6 @@ const vm = Vue.createApp({
         };
     },
     methods: {
-
         getAllCouponActivity: function () {
             console.log('getproduct');
             axios({
@@ -26,15 +25,32 @@ const vm = Vue.createApp({
             })
                 .then(function (value) {
 
-                    vm.couponActivity = value.data;
-                    console.log("vm.couponActivity " + vm.couponActivityf);
-                    for (let i = 0; i < vm.couponActivity.length; i++) {
-                        console.log(vm.couponActivity[i].coupon);
-                        let json = JSON.parse(vm.couponActivity[i].coupon);
-                        vm.coupon.push(json);
+                    if (!value.data.includes("error")) {
+                        vm.couponActivity = value.data;
+                        console.log("vm.couponActivity " + vm.couponActivityf);
+                        for (let i = 0; i < vm.couponActivity.length; i++) {
+                            console.log(vm.couponActivity[i].coupon);
+                            let json = JSON.parse(vm.couponActivity[i].coupon);
+                            vm.coupon.push(json);
 
-                        vm.couponActivity[i].coupon = json;
+                            vm.couponActivity[i].coupon = json;
+                        }
                     }
+                    else {
+                        let state = value.data.state;
+                        if (state === "success") {
+
+                        }
+                        else {
+
+                            console.log(value.data.content);
+
+                        }
+                    }
+
+
+
+
 
                     console.log("getAllCouponActivity then");
 
@@ -50,7 +66,7 @@ const vm = Vue.createApp({
                 // url: "http://localhost:8080/MyShop/demo/deleteCoupon",
                 url: host_context + "shopDispatcher/deleteCoupon",
                 params: {
-                    coupon_id: id
+                    couponId: id
                 }
             })
                 .then(function (value) {
@@ -63,10 +79,6 @@ const vm = Vue.createApp({
 
         },
         addCouponActivity: function () {
-            // console.log("message: " + vm.message);
-            // console.log("newProduct: " + vm.newProduct);
-            // console.log("newProduct.product_name: " + vm.newProduct.product_name);
-            // console.log("newProduct.launch_time: " + vm.newProduct.launch_time);
             vm.newcouponActivity.coupon = vm.newCoupon;
             let jsonnewcouponActivity = JSON.stringify(vm.newcouponActivity);
             axios({
@@ -78,12 +90,24 @@ const vm = Vue.createApp({
                 }
             })
                 .then(function (value) {
-                    // vm.products = value.data;
                     console.log("addCouponActivity then");
-
                 })
                 .catch(function (e) {
                     console.log("addCouponActivity error " + e);
+                });
+        },
+        autoGenerateCouponActivity: function () {
+            axios({
+                method: "GET",
+                url: host_context + "shopDispatcher/autoGenerateCouponActivity",
+            })
+                .then(function (value) {
+                    vm.getAllCouponActivity();
+                    console.log("autoGenerateCouponActivity then");
+
+                })
+                .catch(function (e) {
+                    console.log("autoGenerateCouponActivity error " + e);
                 });
 
 
