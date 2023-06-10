@@ -9,7 +9,9 @@ const vm = Vue.createApp({
             newCoupon: {},
             newcouponActivity: {},
             couponActivity: [],
-            coupon: []
+            coupon: [],
+            AllCouponActivityRequest: {},
+            showCouponActivity: true
         };
     },
     methods: {
@@ -24,9 +26,11 @@ const vm = Vue.createApp({
                 // }
             })
                 .then(function (value) {
-
-                    if (!value.data.includes("error")) {
-                        vm.couponActivity = value.data;
+                    vm.AllCouponActivityRequest = value.data;
+                    let state = value.data.state;
+                    if (state === "success") {
+                        vm.showCouponActivity = true;
+                        vm.couponActivity = value.data.content;
                         console.log("vm.couponActivity " + vm.couponActivityf);
                         for (let i = 0; i < vm.couponActivity.length; i++) {
                             console.log(vm.couponActivity[i].coupon);
@@ -37,16 +41,37 @@ const vm = Vue.createApp({
                         }
                     }
                     else {
-                        let state = value.data.state;
-                        if (state === "success") {
+                        vm.showCouponActivity = false;
+                        console.log(value.data.content);
 
-                        }
-                        else {
-
-                            console.log(value.data.content);
-
-                        }
                     }
+
+
+
+
+
+                    // if (!value.data.includes("error")) {
+                    //     vm.couponActivity = value.data;
+                    //     console.log("vm.couponActivity " + vm.couponActivityf);
+                    //     for (let i = 0; i < vm.couponActivity.length; i++) {
+                    //         console.log(vm.couponActivity[i].coupon);
+                    //         let json = JSON.parse(vm.couponActivity[i].coupon);
+                    //         vm.coupon.push(json);
+
+                    //         vm.couponActivity[i].coupon = json;
+                    //     }
+                    // }
+                    // else {
+                    //     let state = value.data.state;
+                    //     if (state === "success") {
+
+                    //     }
+                    //     else {
+
+                    //         console.log(value.data.content);
+
+                    //     }
+                    // }
 
 
 

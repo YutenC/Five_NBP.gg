@@ -20,7 +20,7 @@ public class CouponManagerController {
 
     public String getAllCouponActivity(HttpSession session) {
         System.out.println("getAllCouponActivity");
-        List<String> couponActivities=null;
+        List<CouponActivity> couponActivities=null;
         String out=null;
         Gson gson=new Gson();
         RequestMsg requestMsg=null;
@@ -28,24 +28,27 @@ public class CouponManagerController {
 
         try{
             couponActivities= couponManagerService.getAllCouponActivity();
-            out=couponActivities.toString();
+//            out=gson.toJson(couponActivities);
+//            out=couponActivities.toString();
 
 //            List<CouponActivity> lists=new ArrayList<>();
 //            for(String s: couponActivities){
 //                lists.add(gson.fromJson(s,CouponActivity.class));
 //            }
 
-//            requestMsg=new RequestMsg("success", lists);
+            requestMsg=new RequestMsg("success", couponActivities);
+            out=gson.toJson(requestMsg);
         }
         catch (RuntimeException e){
             if ("Could not get a resource from the pool".equals(e.getMessage())) {
                 System.out.println("Could not get a resource from the pool.........");
 //                requestMsg=new RequestMsg("error", e.getMessage());
-                errorMsg=new ErrorMsg("error", e.getMessage());
+//                errorMsg=new ErrorMsg("error", e.getMessage());
             }
-//            requestMsg=new RequestMsg("error", e.getMessage());
-            errorMsg=new ErrorMsg("error", e.getMessage());
-            out=gson.toJson(errorMsg);
+            requestMsg=new RequestMsg("error", e.getMessage());
+            out=gson.toJson(requestMsg);
+//            errorMsg=new ErrorMsg("error", e.getMessage());
+//            out=gson.toJson(errorMsg);
         }
 
 

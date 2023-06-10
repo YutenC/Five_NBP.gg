@@ -55,7 +55,7 @@ public class CouponManagerServiceImpl implements CouponManagerService {
     }
 
     @Override
-    public List<String> getAllCouponActivity() throws RuntimeException {
+    public List<CouponActivity> getAllCouponActivity() throws RuntimeException {
 //        List<String> couponActivityMap_json = new ArrayList<String>();
 //        Jedis jedis = ConnRedis.getInstance().getJedis();
 //
@@ -78,7 +78,11 @@ public class CouponManagerServiceImpl implements CouponManagerService {
 
     @Override
     public boolean deleteCoupon(Integer couponId) {
-        couponService.deleteCoupon(couponId);
+        if(couponService.getCouponById(couponId)!=null){
+            couponService.deleteCoupon(couponId);
+        }
+
+
 
         RedisContent redisService = new RedisContent() {
             @Override

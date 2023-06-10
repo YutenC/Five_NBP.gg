@@ -11,6 +11,9 @@ public class CouponActivity {
     Integer couponId;
     Coupon coupon;
 
+    public CouponActivity() {
+    }
+
     public CouponActivity(String activityName, String activityCode) {
         this.activityName = activityName;
         this.activityCode = activityCode;

@@ -8,7 +8,7 @@ public interface CouponManagerService {
     void generateCouponActivity();
     void addCouponActivity(CouponActivity couponActivity);
 
-    List<String> getAllCouponActivity();
+    List<CouponActivity> getAllCouponActivity();
     List<CouponActivity> searchCouponActivity();
 
     boolean deleteCoupon(Integer couponId);
