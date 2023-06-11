@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>NPB.GG管理系統-管理員清單</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min_backend.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="../fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="../fonts/material-icons.min.css">
     <link rel="stylesheet" href="../css/x-dropdown.css">
@@ -176,7 +177,10 @@
                     card-header 標題框
                     card-body 視窗主體 -->
 
+                    <div class="card shadow">
+                        <div class="managerListContainer" id="managerListContainer"></div>
 
+                    </div>
 
                     <!-- Tcard -->
 
@@ -187,7 +191,7 @@
                         <div class="card-body">
                             <div class="col-md-6 custom-col-newmanager">
                                 <a class="btn btn-primary btn-sm d-none d-sm-inline-block custom-col-newmanager-btn"
-                                    role="button" href="#">
+                                    role="button" href="manager_add.html">
                                     新增管理員
                                 </a>
                             </div>
@@ -325,7 +329,7 @@
                             </div>
                             <div class="col-md-6 custom-col-newmanager">
                                 <a class="btn btn-primary btn-sm d-none d-sm-inline-block custom-col-newmanager-btn"
-                                    role="button" href="#">
+                                    role="button" href="manager_add.html">
                                     新增管理員
                                 </a>
                             </div>
@@ -351,6 +355,7 @@
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/theme.js"></script>
     <!-- JavaScript JS放置區 -->
+    <script src="../js/manager_list.js"></script>
 </body>
 
 </html>

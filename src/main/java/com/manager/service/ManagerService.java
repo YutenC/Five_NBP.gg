@@ -10,6 +10,8 @@ public interface ManagerService extends CoreService{
 
 	Manager login(Manager manager); //登入
 
+	Manager selectManager(Integer manager_id); // 用ID找Manager
+	
 	Manager edit(Manager manager); //更改帳戶資料
 
 	List<Manager> findAll(); //查總表
