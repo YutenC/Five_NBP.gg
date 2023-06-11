@@ -2,12 +2,13 @@ package com.secondhand.sale.dao;
 
 import com.core.dao.CoreDao;
 import com.secondhand.sale.entity.SecondhandProduct;
+import org.hibernate.Session;
 
+import java.util.Date;
 import java.util.List;
 
 
 public interface SecondhandProductDao extends CoreDao<SecondhandProduct, Integer> {
-
 
 
 
@@ -35,6 +36,8 @@ public interface SecondhandProductDao extends CoreDao<SecondhandProduct, Integer
     default List<SecondhandProduct> selectAll() {
         return null;
     }
+
+    List<SecondhandProduct> selectByTime();
 }
 
 
