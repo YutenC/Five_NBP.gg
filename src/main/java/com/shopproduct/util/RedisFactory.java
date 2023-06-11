@@ -70,6 +70,7 @@ public class RedisFactory  {
     public static void clear(){
         RedisFactory redisServiceImpl = threadLocal.get();
         if (redisServiceImpl != null) {
+            redisServiceImpl.closeJedis();
             redisServiceImpl.clearRedisService();
             threadLocal.set(null);
         }
@@ -85,7 +86,12 @@ public class RedisFactory  {
 
 
 
-//    public void closeJedis
+    public void closeJedis(){
+        if(jedis!=null && jedis.isConnected()){
+            jedis.close();
+        }
+
+    }
 
     public static void shutdownRedis() {
         JedisUtil.shutdownJedisPool();

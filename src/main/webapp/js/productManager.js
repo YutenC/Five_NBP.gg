@@ -42,10 +42,22 @@ const vm = Vue.createApp({
             console.log('createProductFromcsv');
             axios({
                 method: "GET",
-                url: host_context + "shopDispatcher/createProductFromcsv",
+                // url: host_context + "shopDispatcher/createProductFromcsv",
+                url: host_context + "shopDispatcher/longTimeProcess",
             })
                 .then(function (value) {
-                    vm.getallproduct();
+
+                    if ("longTime" === value.data.state) {
+                        console.log(value.data.msg);
+
+                        setTimeout(function () {
+                            vm.getBackgroundMessage();
+                        }, 1000);
+                    }
+
+
+
+                    // vm.getallproduct();
                     console.log("createProductFromcsv then");
                 })
                 .catch(function (e) {
@@ -97,7 +109,33 @@ const vm = Vue.createApp({
                 .catch(function (e) {
                     console.log("takeOffProduct error " + e);
                 });
-        }
+        },
+        getBackgroundMessage: function () {
+            console.log('getBackgroundMessage');
+            axios({
+                method: "GET",
+                // url: host_context + "shopDispatcher/createProductFromcsv",
+                url: host_context + "shopDispatcher/getBackgroundMessage",
+                params: {
+                    taskName: "readCSV"
+                }
+            })
+                .then(function (value) {
+
+                    if ("longTime" === value.data.state) {
+                        console.log(value.data.msg);
+                        setTimeout(function () {
+                            vm.getBackgroundMessage();
+                        }, 1000);
+                    }
+
+                    // vm.getallproduct();
+                    console.log("getBackgroundMessage then");
+                })
+                .catch(function (e) {
+                    console.log("getBackgroundMessage error " + e);
+                });
+        },
 
     },
 }).mount("#page-top");
@@ -115,5 +153,14 @@ vm.nowDate = nowDate;
 vm.minDate = vm.nowDate;
 vm.newProduct.launch_time = vm.nowDate;
 
+// function timer() {
+//     i++;
+//     self.postMessage(i);
+
+//     setTimeout(function () {
+//         timesCount();
+//     }, 1000);
+// }
+// timesCount();
 
 // Vue.component('shared-content', managerSideTemplate);

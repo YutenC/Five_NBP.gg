@@ -38,7 +38,6 @@ public class StringToObjectUtil {
 
         }
 
-
         return null;
     }
 
@@ -46,7 +45,6 @@ public class StringToObjectUtil {
 
         try {
             T object =(T) class_.getDeclaredConstructor().newInstance();
-
             map.forEach((k, v) -> {
                 try {
                     Field field = class_.getDeclaredField(k);

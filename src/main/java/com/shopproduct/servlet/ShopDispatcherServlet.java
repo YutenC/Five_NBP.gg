@@ -1,9 +1,6 @@
 package com.shopproduct.servlet;
 
-import com.shopproduct.controller.CouponManagerController;
-import com.shopproduct.controller.HelloJsonController;
-import com.shopproduct.controller.ProductController;
-import com.shopproduct.controller.ProductManagerController;
+import com.shopproduct.controller.*;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +14,7 @@ import java.io.PrintWriter;
 public class ShopDispatcherServlet extends HttpServlet {
 
     HelloJsonController helloJsonCobtroller;
+    BackgroundMessageController backgroundMessageController;
     ProductController productController;
     CouponManagerController couponManagerController;
     ProductManagerController productManagerController;
@@ -27,6 +25,7 @@ public class ShopDispatcherServlet extends HttpServlet {
         productController=new ProductController();
         couponManagerController=new CouponManagerController();
         productManagerController=new ProductManagerController();
+        backgroundMessageController=new  BackgroundMessageController();
     }
 
     @Override
@@ -51,6 +50,11 @@ public class ShopDispatcherServlet extends HttpServlet {
         HttpSession session =req.getSession();
         String strOut="";
         switch (path){
+            case "/getBackgroundMessage":
+                String taskName=req.getParameter("taskName");
+                strOut= backgroundMessageController.getBackgroundMessage(taskName);
+                break;
+
 
             case "/createProductFromcsv":
                 productManagerController.createProductFromcsv();
@@ -58,9 +62,16 @@ public class ShopDispatcherServlet extends HttpServlet {
             case "/getAllProduct":
                 strOut=productController.getAllProduct();
                 break;
+            case "/longTimeProcess":
+                strOut=productManagerController.longTimeProcess();
+                break;
+
             case "/autoGenerateCouponActivity":
                 couponManagerController.autoGenerateCouponActivity();
                 break;
+
+
+
             case "/getAllCouponActivity":
                 strOut=couponManagerController.getAllCouponActivity(session);
                 break;

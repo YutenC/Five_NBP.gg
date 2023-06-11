@@ -1,5 +1,7 @@
 package com.shopproduct.service.impl;
 
+import com.shopproduct.common.backgroundtask.BackgroundFactory;
+import com.shopproduct.common.backgroundtask.BackgroundHandler;
 import com.shopproduct.core.util.HibernateUtil;
 import com.shopproduct.dao.CouponDao;
 import com.shopproduct.dao.ProductDao;
@@ -12,6 +14,7 @@ import com.shopproduct.util.ObjectInstance;
 import org.hibernate.Session;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class ProductManagerServiceImpl implements ProductManagerService {
 
@@ -44,6 +47,25 @@ public class ProductManagerServiceImpl implements ProductManagerService {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Override
+    public void longTimeProcess(){
+        BackgroundHandler backgroundHandler= BackgroundFactory.getBackgroundHandler("productBackground");
+
+        Callable<String> task=new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+
+                Thread.sleep(5000);
+
+                return "finish longTimeProcess";
+            }
+        };
+
+        backgroundHandler.addTask( "readCSV",task);
+
 
     }
+
 }

@@ -25,13 +25,12 @@ public class CouponActivityRedisDaoImpl implements CouponActivityRedisDao {
             String json=gson.toJson(couponActivityMap);
             couponActivities.add(json);
         }
-
+//        jedis.close();
         return couponActivities;
     }
 
     @Override
     public List<CouponActivity> getAllCouponActivity() throws JedisException {
-//        List<String> couponActivities = new ArrayList<String>();
         List<CouponActivity> couponActivities = new ArrayList<CouponActivity>();
         Jedis jedis = RedisFactory.getRedisServiceInstance().getJedis(ShopProductConst.REDIS_SELECT_INDEX);
 
@@ -48,15 +47,13 @@ public class CouponActivityRedisDaoImpl implements CouponActivityRedisDao {
             CouponActivity couponActivity= StringToObjectUtil.mapStringToEntity(couponActivityMap,CouponActivity.class);
             couponActivities.add(couponActivity);
         }
-
+//        jedis.close();
         return couponActivities;
 //        return couponActivities;
     }
 
     @Override
     public void addCouponActivity(CouponActivity couponActivity) {
-
-//        Jedis jedis = ConnRedis.getInstance().getJedis();
         Jedis jedis = RedisFactory.getRedisServiceInstance().getJedis(ShopProductConst.REDIS_SELECT_INDEX);
 
         String cp_id_str=null;
@@ -82,13 +79,12 @@ public class CouponActivityRedisDaoImpl implements CouponActivityRedisDao {
         } else {
             System.out.println("重複cp_id");
         }
-
+//        jedis.close();
 
     }
 
     @Override
     public void deleteCouponActivity(Integer couponId) {
-//        Jedis jedis = ConnRedis.getInstance().getJedis();
         Jedis jedis = RedisFactory.getRedisServiceInstance().getJedis(ShopProductConst.REDIS_SELECT_INDEX);
 
         Set<String> items = jedis.smembers("CouponActivity:outline");
@@ -105,7 +101,7 @@ public class CouponActivityRedisDaoImpl implements CouponActivityRedisDao {
             }
 
         }
-        jedis.close();
+//        jedis.close();
     }
 
 }
