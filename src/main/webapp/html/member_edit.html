@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>member_blacklist</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <title>member_edit</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap_member_edit.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
     <link rel="stylesheet" href="../fonts/font-awesome.min.css">
     <link rel="stylesheet" href="../css/Carousel-Hero.css">
@@ -17,80 +17,6 @@
     <link rel="stylesheet" href="../css/Profile-Edit-Form.css">
     <link rel="stylesheet" href="../css/Profile-with-data-and-skills.css">
     <link rel="stylesheet" href="../css/styles.css">
-    <style>
-        div.blacklist_function {
-            width: fit-content;
-            margin-left: 500px;
-        }
-
-        span.blacklist_function {
-            width: fit-content;
-            margin-right: 15px;
-        }
-
-        div.row {
-            width: 100%;
-        }
-
-        th#blacklist_id {
-            width: 50px;
-        }
-
-        td#blacklist_id {
-            visibility: hidden;
-            width: 50px;
-        }
-
-        th#blacklist_name {
-            width: 200px;
-            text-align: center;
-        }
-
-        td#blacklist_name {
-            width: 200px;
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        th#game_label {
-            text-align: center;
-            width: 400px;
-        }
-
-        td#game_label {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            width: 400px;
-            vertical-align: middle;
-        }
-
-        th#manage_function {
-            width: 250px;
-            text-align: center;
-        }
-
-        td#manage_function {
-            text-align: center;
-            width: 250px;
-            vertical-align: middle;
-        }
-
-        button.btn-warning {
-            margin-right: 10px;
-        }
-
-        div.pagination {
-            width: fit-content;
-            margin: auto;
-        }
-
-        input#search {
-            width: 200px;
-            margin: auto;
-            display: inline-block;
-        }
-    </style>
 </head>
 
 <body>
@@ -159,7 +85,6 @@
         </div>
     </nav>
 </header>
-
 <div class="main-content">
     <div class="row" style="height: 800px;">
         <div class="col-lg-4 col-xl-2 offset-xl-1" style="height: 600px;">
@@ -216,141 +141,104 @@
             </div>
         </div>
         <div class="col">
-            <div class="container profile profile-view" id="profile" style="height: 800px;">
-                <h1>黑名單</h1>
-                <div class="blacklist_function">
-                        <span class="blacklist_function">
-                            <input class="form-control" type="text" id="search" name="search">
-                        </span>
-                    <span class="blacklist_function">
-                            <img src="../img/magnifying-glass-solid.svg" style="width: 20px;">
-                        </span>
-                    <span class="blacklist_function">
-                            <button type="button" class="btn btn-primary">新增黑名單</button>
-                        </span>
-                </div>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col" id="blacklist_id"></th>
-                        <th scope="col" id="blacklist_name">黑名單名稱</th>
-                        <th scope="col" id="game_label">遊玩標籤</th>
-                        <th scope="col" id="manage_function">管理功能</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td id="blacklist_id">1</td>
-                        <td id="blacklist_name">
-                                    <span class="blacklist_pic">
-                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
-                                    </span>
-                            <span>大雄</span>
-                        </td>
-                        <td id="game_label">
-                            <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
-                            薩爾達傳說- 王國之淚
-                        </td>
-                        <td id="manage_function">
-                            <button type="button" class="btn btn-warning">刪除黑名單</button>
-                            <button type="button" class="btn btn-dark">加入黑名單</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="blacklist_id">2</td>
-                        <td id="blacklist_name">
-                                    <span class="blacklist_pic">
-                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
-                                    </span>
-                            <span>小夫</span>
-                        </td>
-                        <td id="game_label">
-                            <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
-                            尼爾- 自動人形
-                        </td>
-                        <td id="manage_function">
-                            <button type="button" class="btn btn-warning">刪除黑名單</button>
-                            <button type="button" class="btn btn-dark">加入黑名單</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="blacklist_id">3</td>
-                        <td id="blacklist_name">
-                                    <span class="blacklist_pic">
-                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
-                                    </span>
-                            <span>胖虎</span>
-                        </td>
-                        <td id="game_label">
-                            <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
-                            地平線 - 等待黎明
-                        </td>
-                        <td id="manage_function">
-                            <button type="button" class="btn btn-warning">刪除黑名單</button>
-                            <button type="button" class="btn btn-dark">加入黑名單</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="blacklist_id">3</td>
-                        <td id="blacklist_name">
-                                    <span class="blacklist_pic">
-                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
-                                    </span>
-                            <span>胖虎</span>
-                        </td>
-                        <td id="game_label">
-                            <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
-                            地平線 - 等待黎明
-                        </td>
-                        <td id="manage_function">
-                            <button type="button" class="btn btn-warning">刪除黑名單</button>
-                            <button type="button" class="btn btn-dark">加入黑名單</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="blacklist_id">3</td>
-                        <td id="blacklist_name">
-                                    <span class="blacklist_pic">
-                                        <img src="../img/Logo-removebg (2).png" style="width: 100px; height: 100px;">
-                                    </span>
-                            <span>胖虎</span>
-                        </td>
-                        <td id="game_label">
-                            <span class="game_label"><img src="" style="width: 100px; height: 100px;"></span>
-                            地平線 - 等待黎明
-                        </td>
-                        <td id="manage_function">
-                            <button type="button" class="btn btn-warning">刪除黑名單</button>
-                            <button type="button" class="btn btn-dark">加入黑名單</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="pagination">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+            <div class="container profile profile-view" id="profile">
+                <h1>基本資料修改</h1>
+                <form>
+                    <div class="row profile-row">
+                        <div class="col-md-4 col-xxl-3 relative">
+                            <div class="avatar">
+                                <div id="member_info_pic" class="avatar-bg center"></div>
+                            </div>
+                            <label class="form-label">遊戲標籤</label>
+                            <input class="form-control" type="text" id="game_label" name="game_label"
+                                   style="margin-bottom: 20px;">
+                            <img class="game_label_pic"
+                                 style="margin-right: 0px;width: 230px;height: 230px;padding-left: 0px;padding-right: 0px;margin-left: 20px;background: url(&quot;../img/Logo-removebg.png&quot;) center / contain no-repeat, rgba(0,0,0,0);border-radius: 20px;border-color: rgb(136,138,140);">
+                        </div>
+                        <div class="col-md-8 offset-xxl-0">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">會員帳號</label>
+                                        <input class="form-control" type="text" id="member_account"
+                                               name="member_account">
+                                    </div>
+                                </div>
+                                <div class="col"></div>
+                                <div class="col-sm-12 col-md-6 col-xl-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">會員暱稱</label>
+                                        <input class="form-control" type="text" id="nickname" name="nickname"
+                                               readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xl-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">累積紅利</label>
+                                        <input class="form-control" type="text" id="member_bonus" name="member_bonus"
+                                               readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">身分證字號</label>
+                                        <input class="form-control" type="password" id="id_number" name="id_number">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">生日</label>
+                                        <input class="form-control" type="date" id="birth" autocomplete="off"
+                                               required="" name="birth" readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">聯絡地址</label>
+                                        <input class="form-control" type="text" id="address" required="" name="address">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">連絡電話</label>
+                                        <input class="form-control" type="text" id="phone" autocomplete="off"
+                                               required="" name="phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="form-label">Email </label>
+                                <input class="form-control" type="email" id="email" required="" name="email">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">密碼</label>
+                                        <input class="form-control" type="password" id="password-2" name="password"
+                                               autocomplete="off" required="">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">確認密碼</label>
+                                        <input class="form-control" type="password" id="password-3" name="password"
+                                               autocomplete="off" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12 content-right">
+                                    <button class="btn btn-warning form-btn" type="submit">儲存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
-
 <footer id="footerpad">
     <div class="container">
         <div class="row">
@@ -365,11 +253,10 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
+                        <a href="#"><span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
                         </a>
                     </li>
                     <li class="list-inline-item">
@@ -389,10 +276,9 @@
         </div>
     </div>
 </footer>
-<script src="../jquery/jquery-3.4.1.min.js"></script>
-<!-- <script src="../bootstrap/js/bootstrap.min.js"></script> -->
-<script src="../js/bs-init.js"></script>
-<script src="../js/Profile-Edit-Form.js"></script>
+<!-- <script src="../bootstrap/js/bootstrap_member_edit.min.js"></script> -->
+<!-- <script src="../js/bs-init.js"></script> -->
+<!-- <script src="../js/Profile-Edit-Form.js"></script> -->
 </body>
 <script src="../js/member_logout.js"></script>
 

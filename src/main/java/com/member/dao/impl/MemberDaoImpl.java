@@ -24,14 +24,14 @@ import com.member.entity.Member;
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
-    Session session = getSession();
+//    Session session = getSession();
 
     @Override
     public int insert(Member member) {
 
 //        Transaction transaction = session.beginTransaction();   // 從session來，開始交易
 //        // 基本上上面3行是固定
-        session.persist(member);    // persist(填入要insert的物件)
+        getSession().persist(member);    // persist(填入要insert的物件)
 //        transaction.commit();   //
         return member.getMember_id();
     }
@@ -89,7 +89,7 @@ public class MemberDaoImpl implements MemberDao {
     public List<Member> selectAll() {
         // 老師寫法
         final String hql = "FROM Member ORDER BY member_id";
-        return session.createQuery(hql, Member.class).getResultList();
+        return getSession().createQuery(hql, Member.class).getResultList();
     }
 
     @Override
@@ -103,7 +103,7 @@ public class MemberDaoImpl implements MemberDao {
 //        return session.createQuery(criteriaQuery).uniqueResult();
 
         final String sql = "SELECT * FROM member WHERE account = :account";
-        return session
+        return getSession()
                 .createNativeQuery(sql, Member.class)
                 .setParameter("account", account)
                 .uniqueResult();
@@ -113,7 +113,7 @@ public class MemberDaoImpl implements MemberDao {
     public Member selectForLogin(String account, String password) {
         // 使用 Native SQL
         final String sql = "SELECT * FROM member WHERE account = :account and password = :password";
-        return session
+        return getSession()
                 .createNativeQuery(sql, Member.class)
                 .setParameter("account", account)
                 .setParameter("password", password)
@@ -123,7 +123,7 @@ public class MemberDaoImpl implements MemberDao {
     @Override
     public Member selectByEmail(String email) {
         final String sql = "SELECT * FROM member WHERE email = :email";
-        return session
+        return getSession()
                 .createNativeQuery(sql, Member.class)
                 .setParameter("email", email)
                 .uniqueResult();
