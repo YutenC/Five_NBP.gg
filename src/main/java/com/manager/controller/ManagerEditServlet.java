@@ -62,9 +62,18 @@ public class ManagerEditServlet extends HttpServlet {
 	    
 	    // 創建回應JSON數據
 	    JsonObject responseJson = new JsonObject();
+	    
+	    
+	    
 	    responseJson.addProperty("successful", true); // 設置成功標誌，根據實際情況設置
+	    responseJson.addProperty("redirectUrl", request.getContextPath() + "/html/manager_list.html"); // 設置重導的網址
 	    
 	    // 設置回應的Content-Type為application/json
+	    
+	    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setHeader("Expires", "0");
+	    
 	    response.setContentType("application/json");
 	    
 	    // 發送回應

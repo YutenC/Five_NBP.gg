@@ -61,8 +61,32 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	@Override
 	public Manager login(Manager manager) {
-		// TODO Auto-generated method stub
-		return null;
+		final String account = manager.getAccount();
+		final String password = manager.getPassword();
+
+		if (account == null) {
+			manager.setMessage("帳號未輸入");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		if (password == null) {
+			manager.setMessage("密碼未輸入");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		manager = dao.selectForLogin(account, password);
+		if (manager == null) {
+			manager = new Manager();
+			manager.setMessage("帳號或密碼錯誤");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		manager.setMessage("登入成功");
+		manager.setSuccessful(true);
+		return manager;
 	}
 	
 	@Override
@@ -89,8 +113,7 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	@Override
 	public boolean remove(Integer manager_id) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.deleteById(manager_id) > 0;
 	}
 	
 	@Override
