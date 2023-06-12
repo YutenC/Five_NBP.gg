@@ -52,23 +52,23 @@
             width: 100%;
         }
 
-        th#bank_name {
+        th.bank_name {
             width: 200px;
             text-align: center;
         }
 
-        td#bank_name {
+        td.bank_name {
             width: 200px;
             text-align: center;
             vertical-align: middle;
         }
 
-        th#card_number {
+        th.card_number {
             text-align: center;
             width: 400px;
         }
 
-        td#card_number {
+        td.card_number {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -77,12 +77,12 @@
             /* padding-left: 60px; */
             text-align: center;
         }
-        th#bank_number {
+        th.bank_number {
             text-align: center;
             width: 400px;
         }
 
-        td#bank_number {
+        td.bank_number {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -92,12 +92,12 @@
             text-align: center;
         }
 
-        th#manage_function {
+        th.manage_function {
             width: 250px;
             text-align: center;
         }
 
-        td#manage_function {
+        td.manage_function {
             text-align: center;
             width: 250px;
             vertical-align: middle;
@@ -260,31 +260,31 @@
                     <table class="table card">
                         <thead>
                             <tr>                                
-                                <th scope="col" id="bank_name">銀行名稱</th>
-                                <th scope="col" id="card_number">信用卡卡號</th>
-                                <th scope="col" id="manage_function">管理功能</th>
+                                <th scope="col" class="bank_name">銀行名稱</th>
+                                <th scope="col" class="card_number">信用卡卡號</th>
+                                <th scope="col" class="manage_function">管理功能</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>                                
-                                <td id="bank_name">
-                                    <span id="bank_name">台新國際商業銀行</span>
+                                <td class="bank_name">
+                                    <span class="bank_name">台新國際商業銀行</span>
                                 </td>
-                                <td id="card_number">
+                                <td class="card_number">
                                     321654161685
                                 </td>
-                                <td id="manage_function">
+                                <td class="manage_function">
                                     <button type="button" class="btn btn-warning">刪除卡片</button>
                                 </td>
                             </tr>
                             <tr>                                
-                                <td id="bank_name">
-                                    <span id="bank_name">中國信託商業銀行</span>
+                                <td class="bank_name">
+                                    <span class="bank_name">中國信託商業銀行</span>
                                 </td>
-                                <td id="card_number">
+                                <td class="card_number">
                                     316516351689
                                 </td>
-                                <td id="manage_function">
+                                <td class="manage_function">
                                     <button type="button" class="btn btn-warning">刪除卡片</button>
                                 </td>
                             </tr>
@@ -302,59 +302,37 @@
                     <table class="table card">
                         <thead>
                             <tr>                                
-                                <th scope="col" id="bank_name">銀行名稱</th>
-                                <th scope="col" id="bank_number">銀行戶頭</th>
-                                <th scope="col" id="manage_function">管理功能</th>
+                                <th scope="col" class="bank_name">銀行名稱</th>
+                                <th scope="col" class="bank_number">銀行戶頭</th>
+                                <th scope="col" class="manage_function">管理功能</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>                                
-                                <td id="bank_name">
-                                    <span id="bank_name">台新國際商業銀行</span>
+                                <td class="bank_name">
+                                    <span class="bank_name">台新國際商業銀行</span>
                                 </td>
-                                <td id="bank_number">
+                                <td class="bank_number">
                                     321654161685
                                 </td>
-                                <td id="manage_function">
+                                <td class="manage_function">
                                     <button type="button" class="btn btn-warning">刪除戶頭</button>
                                 </td>
                             </tr>
                             <tr>                                
-                                <td id="bank_name">
-                                    <span id="bank_name">中國信託商業銀行</span>
+                                <td class="bank_name">
+                                    <span class="bank_name">中國信託商業銀行</span>
                                 </td>
-                                <td id="bank_number">
+                                <td class="bank_number">
                                     316516351689
                                 </td>
-                                <td id="manage_function">
+                                <td class="manage_function">
                                     <button type="button" class="btn btn-warning">刪除戶頭</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-
-                    <!-- <div class="pagination">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div> -->
                 </div>
-
-
             </div>
         </div>
     </div>
