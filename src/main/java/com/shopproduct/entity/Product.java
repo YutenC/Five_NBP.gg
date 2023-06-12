@@ -1,64 +1,70 @@
 package com.shopproduct.entity;
 
+import com.google.gson.annotations.Expose;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.List;
 
-@Entity
-@Setter
 @Getter
+@Setter
+@Entity
+@Table(name = "product", schema = "five")
 public class Product {
-
+    @Expose
     @Id
-    @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Product_id", nullable = false)
     private Integer id;
 
-    @Column(name = "product_name")
+    @Expose
+    @Column(name = "Product_name", nullable = false, length = 80)
     private String productName;
+
+    @Expose
+    @Column(name = "Type", nullable = false, length = 8)
     private String type;
+
+    @Expose
+    @Column(name = "Price", nullable = false)
     private Integer price;
+
+    @Expose
+    @Column(name = "Amount", nullable = false)
     private Integer amount;
 
-    @Column(name = "buy_times")
+    @Expose
+    @Column(name = "Buy_Times", nullable = false)
     private Integer buyTimes;
 
-//    @Column(insertable=false)
+    @Expose
+    @Column(name = "Brand", length = 45)
     private String brand;
+
+    @Expose
+    @Column(name = "Rate", nullable = false)
     private Integer rate;
 
-    @Column(name = "reviewe_count")
+    @Expose
+    @Column(name = "Reviewe_count", nullable = false)
     private Integer revieweCount;
 
-//    @Column(insertable=false)
+    @Expose
+    @Lob
+    @Column(name = "Content")
     private String content;
 
-//    @Column(name = "launch_time",insertable=false)
-    @Column(name = "launch_time")
+    @Expose
+    @Column(name = "Launch_Time")
     private java.util.Date launchTime;
 
+    @Expose
     @Transient
     ProductImage productIndexImage;
 
-    @Transient
-    List<ProductImage> productImages;
+//    @Transient
+//    List<ProductImage> productImages;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", type='" + type + '\'' +
-                ", price=" + price +
-                ", amount=" + amount +
-                ", buyTimes=" + buyTimes +
-                ", brand='" + brand + '\'' +
-                ", rate=" + rate +
-                ", revieweCount=" + revieweCount +
-                ", content='" + content + '\'' +
-                ", launchTime=" + launchTime +
-                '}';
-    }
 }

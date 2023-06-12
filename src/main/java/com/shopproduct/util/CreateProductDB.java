@@ -4,6 +4,7 @@ import com.shopproduct.dao.ProductDao;
 import com.shopproduct.dao.ProductImageDao;
 import com.shopproduct.dao.impl.ProductDaoImpl;
 import com.shopproduct.dao.impl.ProductImageDaoImpl;
+import com.shopproduct.entity.Product;
 import com.shopproduct.entity.ProductImage;
 
 import java.io.*;
@@ -150,7 +151,10 @@ public class CreateProductDB<T, P> {
                 }
 
 
-                ProductImage productImage = new ProductImage(p_id, "./img/gameSoftware/test/" + newFileName);
+//                ProductImage productImage = new ProductImage(p_id, "./img/gameSoftware/test/" + newFileName);
+
+
+                ProductImage productImage = new ProductImage((Product)product, "./img/gameSoftware/test/" + newFileName);
                 productImageDao.insert(productImage);
 
             }

@@ -42,22 +42,22 @@ const vm = Vue.createApp({
             console.log('createProductFromcsv');
             axios({
                 method: "GET",
-                // url: host_context + "shopDispatcher/createProductFromcsv",
-                url: host_context + "shopDispatcher/longTimeProcess",
+                url: host_context + "shopDispatcher/createProductFromcsv",
+                // url: host_context + "shopDispatcher/longTimeProcess",
             })
                 .then(function (value) {
 
-                    if ("longTime" === value.data.state) {
-                        console.log(value.data.msg);
+                    // if ("longTime" === value.data.state) {
+                    //     console.log(value.data.msg);
 
-                        setTimeout(function () {
-                            vm.getBackgroundMessage();
-                        }, 1000);
-                    }
+                    //     setTimeout(function () {
+                    //         vm.getBackgroundMessage();
+                    //     }, 1000);
+                    // }
 
 
 
-                    // vm.getallproduct();
+                    vm.getallproduct();
                     console.log("createProductFromcsv then");
                 })
                 .catch(function (e) {
