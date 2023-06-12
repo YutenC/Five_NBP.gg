@@ -93,6 +93,19 @@
             vertical-align: middle;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- 引入 axios 库 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            axios.get("/api/data")
+                .then((response) => {
+                    let data = response.data;
+                    console.log(data.name);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
+    </script>
 </head>
 
 <body>
