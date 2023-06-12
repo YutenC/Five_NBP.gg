@@ -5,7 +5,9 @@ import com.member.dao.MemberDao;
 import com.member.dao.impl.MemberDaoImpl;
 import com.member.entity.Member;
 import com.member.service.MemberService;
+import com.mysql.cj.Query;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public class MemberServiceimpl implements MemberService, CoreService {
@@ -53,8 +55,31 @@ public class MemberServiceimpl implements MemberService, CoreService {
             member.setSuccessful(false);
             return member;
         }
+        try{
+//            建立HibernateFilter後交易機制交給他處理，beginTransaction, commit, rollback都可以註解掉
+//            beginTransaction();
+            if (dao.selectByUserName(member.getAccount())!= null) {
+                member.setMessage("帳號重複");
+                member.setSuccessful(false);
+//                rollback();
+                return member;
+            }
 
-        return null;
+
+            final int resultCount = dao.insert(member);
+            if (resultCount < 1) {
+                member.setMessage("註冊錯誤，請聯絡管理員!");
+                member.setSuccessful(false);
+//                rollback();
+                return member;
+            }
+//            commit();
+        }catch (Exception e){
+//            rollback();
+            e.printStackTrace();
+        }
+//        System.out.println(1);
+        return member;          // 不確定retrun什麼
     }
 
     @Override
@@ -87,18 +112,29 @@ public class MemberServiceimpl implements MemberService, CoreService {
         return member;
     }
 
+
     @Override
     public Member edit(Member member) {     // 會員自己編輯會員資料
         final Member oMember = dao.selectByUserName(member.getAccount());
+        member.setPassword(oMember.getPassword());
+        member.setNick(oMember.getNick());
         member.setEmail(oMember.getEmail());
         member.setPhone(oMember.getPhone());
+        member.setBirth(oMember.getBirth());
         member.setId_number(oMember.getId_number());
         member.setAddress(oMember.getAddress());
-        member.setHeadshot(oMember.getHeadshot());
+        member.setBonus(oMember.getBonus());
         member.setMember_ver_state(oMember.getMember_ver_state());
+        member.setSuspend_deadline(oMember.getSuspend_deadline());
+        member.setHeadshot(oMember.getHeadshot());
+        member.setVer_deadline(oMember.getVer_deadline());
+        member.setViolation(oMember.getViolation());
         final int resultCount = dao.update(member);
         member.setSuccessful(resultCount > 0);
         member.setMessage(resultCount > 0 ? "修改成功" : "修改失敗");
+
+
+
         return member;
     }
 
@@ -109,6 +145,20 @@ public class MemberServiceimpl implements MemberService, CoreService {
 
     @Override
     public boolean remove(Integer id) {
+        // 原始寫法
+//        return dao.deleteById(id) > 0;
+//        try{
+//        建立HibernateFilter後交易機制交給他處理，beginTransaction, commit, rollback都可以註解掉
+//        回傳dao.deleteById(id) > 0 即可(回傳 >0原因 如下)
+//            beginTransaction();
+//            final int resultCount = dao.deleteById(id);
+//            commit();
+//            return resultCount > 0;
+//        }catch (Exception e){
+//            rollback();
+//            e.printStackTrace();
+//            return false;
+//        }
         return dao.deleteById(id) > 0;
     }
 

@@ -1,10 +1,11 @@
 package com.member.service;
 
+import com.core.service.CoreService;
 import com.member.entity.Member;
 
 import java.util.List;
 
-public interface MemberService {
+public interface MemberService extends CoreService {
 
     Member register(Member member);
 
