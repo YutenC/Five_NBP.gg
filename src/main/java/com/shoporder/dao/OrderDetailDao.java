@@ -1,9 +1,9 @@
-package com.shoporder.model.dao;
+package com.shoporder.dao;
 
 import java.util.List;
 
 import com.core.dao.CoreDao;
-import com.shoporder.model.entity.OrderDetail;
+import com.shoporder.entity.OrderDetail;
 
 public interface OrderDetailDao extends CoreDao<OrderDetail, Integer> {
 

@@ -1,4 +1,4 @@
-package com.shoporder.model.dao.impl;
+package com.shoporder.dao.impl;
 
 import java.sql.Date;
 import java.util.List;
@@ -10,8 +10,8 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 
 import com.member.entity.Member;
-import com.shoporder.model.dao.OrderMasterDao;
-import com.shoporder.model.entity.OrderMaster;
+import com.shoporder.dao.OrderMasterDao;
+import com.shoporder.entity.OrderMaster;
 
 public class OrderMasterDaoImpl implements OrderMasterDao {
 

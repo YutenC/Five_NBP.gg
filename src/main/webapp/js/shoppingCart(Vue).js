@@ -55,16 +55,11 @@ $(window).resize(function () {
 */
 
 //
-axios.get('')
-
 // 從追蹤商品
 const byMyPick = Vue.createApp({
     data() {
         return {
-            mypick: [
-                { id: 1, name: 'Zelda', price: 2000 },
-                { id: 3, name: 'FFXI', price: 2500 },
-            ]
+            mypick: '',
         }
     },
     methods: {
@@ -74,6 +69,11 @@ const byMyPick = Vue.createApp({
             // 加到購物車Vue商品列表
             purchaseDetail.$data.purchaseDetail.push();
         }
+    },
+    created() {
+        axios.get('/getFollowPd')
+            .then(res => this.mypick = res.data)
+            .catch(error => console.log(error))
     }
 }).mount("table.byMyPick");
 

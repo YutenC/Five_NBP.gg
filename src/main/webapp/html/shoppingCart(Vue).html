@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 
 <head>
     <meta charset="UTF-8">
@@ -51,7 +51,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <template v-for="item in mypick">
+                        <template v-if="mypick !== ''" v-for="item in mypick">
                             <tr>
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.name }}</td>
@@ -59,6 +59,10 @@
                                 <td><button @click="addToCart(item.id)">加入購物車</button></td>
                             </tr>
                         </template>
+                        <tr v-if="mypick === ''">
+                            <td></td>
+                            <td colspan="3" style="text-align:center"><span>無追蹤商品</span></td>
+                        </tr>
                     </tbody>
                 </table>
                 <table class="byPurchaseLog">

@@ -1,4 +1,4 @@
-package com.shoporder.model.dao.impl;
+package com.shoporder.dao.impl;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 
-import com.shoporder.model.dao.OrderDetailDao;
-import com.shoporder.model.entity.OrderDetail;
+import com.shoporder.dao.OrderDetailDao;
+import com.shoporder.entity.OrderDetail;
 
 public class OrderDetailDaoImple implements OrderDetailDao {
 

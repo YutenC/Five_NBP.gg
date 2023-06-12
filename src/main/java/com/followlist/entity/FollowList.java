@@ -1,14 +1,11 @@
-package com.followproduct.entity;
+package com.followlist.entity;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.product.entity.Product;
-
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,12 +16,10 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FollowProduct {
+@Data
+public class FollowList {
 	
 	@EmbeddedId
-	private PKFollowProduct pkFollowList;
+	private PKFollowList pkFollowList;
 	
-	@ManyToOne
-	@JoinColumn(name = "PRODUCT_ID", insertable = false, updatable = false)
-	private Product product;
 }

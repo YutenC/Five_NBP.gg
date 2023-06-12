@@ -1,4 +1,4 @@
-package com.shoporder.model.entity;
+package com.shoporder.entity;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;

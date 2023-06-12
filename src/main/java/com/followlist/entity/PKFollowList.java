@@ -1,4 +1,4 @@
-package com.shoporder.model.entity;
+package com.followlist.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -8,29 +8,31 @@ import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Embeddable
-@Table(name = "ORDER_DETAIL")
+@Table(name = "FOLLOW_LIST")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PKOrderDeatail implements Serializable{
+@Data
+public class PKFollowList implements Serializable {
 	
-	private static final long serialVersionUID = 2L;
+	private static final long serialVersionUID = 1L;
 
-	@Column(name = "PRODUCT_ID", updatable = false)
-	private Integer productID;
+	@Column(name = "MEMBER_ID")
+	private Integer memberId;
 	
-	@Column(name = "ORDER_ID", updatable = false)
-	private Integer orderId;
+	@Column(name = "PRODUCT_ID")
+	private Integer productId;
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(orderId, productID);
+		return Objects.hash(memberId, productId);
 	}
 
 	@Override
@@ -41,8 +43,9 @@ public class PKOrderDeatail implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PKOrderDeatail other = (PKOrderDeatail) obj;
-		return Objects.equals(orderId, other.orderId) && Objects.equals(productID, other.productID);
+		PKFollowList other = (PKFollowList) obj;
+		return Objects.equals(memberId, other.memberId) && Objects.equals(productId, other.productId);
 	}
+	
 	
 }
