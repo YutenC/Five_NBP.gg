@@ -6,5 +6,17 @@
     <welcome-file-list>
         <welcome-file>/html/index.html</welcome-file>
     </welcome-file-list>
-
+    <filter>
+        <filter-name>managerLoginFilter</filter-name>
+        <filter-class>com.manager.filter.ManagerLoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>managerLoginFilter</filter-name>
+        <url-pattern>/html/backend_homepage.html</url-pattern>
+        <url-pattern>/html/manager_list.html</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>ASYNC</dispatcher>
+    </filter-mapping>
 </web-app>
