@@ -61,8 +61,32 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	@Override
 	public Manager login(Manager manager) {
-		// TODO Auto-generated method stub
-		return null;
+		final String account = manager.getAccount();
+		final String password = manager.getPassword();
+
+		if (account == null) {
+			manager.setMessage("帳號未輸入");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		if (password == null) {
+			manager.setMessage("密碼未輸入");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		manager = dao.selectForLogin(account, password);
+		if (manager == null) {
+			manager = new Manager();
+			manager.setMessage("帳號或密碼錯誤");
+			manager.setSuccessful(false);
+			return manager;
+		}
+
+		manager.setMessage("登入成功");
+		manager.setSuccessful(true);
+		return manager;
 	}
 	
 	@Override
@@ -73,8 +97,13 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	@Override
 	public Manager edit(Manager manager) {
-		// TODO Auto-generated method stub
-		return null;
+		final Manager oManager = dao.selectById(manager.getManager_id());
+		manager.setIs_working(oManager.getIs_working());
+		manager.setManager_id(manager.getManager_id());
+		final int resultCount = dao.update(manager);
+		manager.setSuccessful(resultCount > 0);
+		manager.setMessage(resultCount > 0 ? "修改成功" : "修改失敗");
+		return manager;
 	}
 	
 	@Override
@@ -84,8 +113,7 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	@Override
 	public boolean remove(Integer manager_id) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.deleteById(manager_id) > 0;
 	}
 	
 	@Override
@@ -95,11 +123,22 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 	
 	@Override
-	public Manager changeWorkingState(Manager manager) {
-		// TODO Auto-generated method stub
-		return null;
+	public Manager editWorkingState(Manager manager) {
+		final Manager oManager = dao.selectById(manager.getManager_id());
+		
+		int newWorkingState;
+		if (oManager.getIs_working()==1) {
+			newWorkingState= 0;
+		}else {
+			newWorkingState= 1;
+		}
+		
+		manager.setIs_working(newWorkingState);
+		manager.setManager_id(manager.getManager_id());
+		final int resultCount = dao.update(manager);
+		manager.setSuccessful(resultCount > 0);
+		manager.setMessage(resultCount > 0 ? "修改成功" : "修改失敗");
+		return manager;
 	}
-	
-	
 	
 }

@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +17,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.manager.entity.Manager;
 
-@WebServlet("/manager/manager_add")
-public class ManagerAddServlet extends HttpServlet {
+@WebServlet("/manager/manager_state_edit")
+public class ManagerStateEditServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -46,6 +47,7 @@ public class ManagerAddServlet extends HttpServlet {
 	    
 	    Manager manager= new Manager();
 	    
+	    manager.setManager_id(jsonObject.get("manager_id").getAsInt());
 	    manager.setAccount(jsonObject.get("manager_account").getAsString());
 	    manager.setPassword(jsonObject.get("manager_password").getAsString());
 	    manager.setName(jsonObject.get("manager_name").getAsString());
@@ -54,37 +56,31 @@ public class ManagerAddServlet extends HttpServlet {
 	    manager.setAddress(jsonObject.get("manager_address").getAsString());
 	    
 	    
+	    
 	    // 在這裡執行相應的業務邏輯，例如將數據保存到數據庫中
-	    manager = SERVICE.register(manager);
+	    manager = SERVICE.editWorkingState(manager);
+	    
+	    // 重新導向到同一個頁面
+	    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setHeader("Expires", "0");
+	    response.sendRedirect(request.getContextPath() + "/html/manager_list.html");
+	    
+//	    // 創建回應JSON數據
+//	    JsonObject responseJson = new JsonObject();
+//	    responseJson.addProperty("successful", true); // 設置成功標誌，根據實際情況設置
+//	    
+//	     設置回應的Content-Type為application/json    
+//	    response.setContentType("application/json");
+//	    
+//	    // 發送回應
+//	    PrintWriter writer = response.getWriter();
+//	    writer.println(responseJson.toString());
+//	    writer.close();
 	    
 	    
-	    // 創建回應JSON數據
-	    JsonObject responseJson = new JsonObject();
-	    responseJson.addProperty("successful", true); // 設置成功標誌，根據實際情況設置
-	    responseJson.addProperty("redirectUrl", request.getContextPath() + "/html/manager_list.html"); // 設置重導的網址
 	    
-	    // 設置回應的Content-Type為application/json
-	    response.setContentType("application/json");
-	    
-	    // 發送回應
-	    PrintWriter writer = response.getWriter();
-	    writer.println(responseJson.toString());
-	    writer.close();
 	}
 	
-//	@Override
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-//		Manager manager = json2Pojo(request, Manager.class);
-//		if (manager == null) {
-//			manager = new Manager();
-//			manager.setMessage("無管理員資訊");
-//			manager.setSuccessful(false);
-//			writePojo2Json(response, manager);
-//			return;
-//		}
-//		
-//		manager = SERVICE.register(manager);
-//		writePojo2Json(response, manager);
-//	}
 
 }

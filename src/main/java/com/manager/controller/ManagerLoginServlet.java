@@ -11,13 +11,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.manager.entity.Manager;
 
-@WebServlet("/manager/manager_add")
-public class ManagerAddServlet extends HttpServlet {
+@WebServlet("/manager/manager_logining")
+public class ManagerLoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -44,24 +45,33 @@ public class ManagerAddServlet extends HttpServlet {
 	    // 解析JSON數據
 	    JsonObject jsonObject = JsonParser.parseString(jsonBody.toString()).getAsJsonObject();
 	    
+	    String manager_account= jsonObject.get("manager_account").getAsString();
+	    String manager_password= jsonObject.get("manager_password").getAsString();
+	    
 	    Manager manager= new Manager();
-	    
-	    manager.setAccount(jsonObject.get("manager_account").getAsString());
-	    manager.setPassword(jsonObject.get("manager_password").getAsString());
-	    manager.setName(jsonObject.get("manager_name").getAsString());
-	    manager.setEmail(jsonObject.get("manager_email").getAsString());
-	    manager.setPhone(jsonObject.get("manager_phone").getAsString());
-	    manager.setAddress(jsonObject.get("manager_address").getAsString());
-	    
+	    manager.setAccount(manager_account);
+	    manager.setPassword(manager_password);
 	    
 	    // 在這裡執行相應的業務邏輯，例如將數據保存到數據庫中
-	    manager = SERVICE.register(manager);
+	    manager= SERVICE.login(manager);
 	    
+	    if (manager.isSuccessful()) {
+			if (request.getSession(false) != null) {
+				request.changeSessionId();
+			}
+			final HttpSession session = request.getSession();
+			session.setAttribute("loggedin", true);
+			session.setAttribute("manager", manager);
+		}
 	    
 	    // 創建回應JSON數據
 	    JsonObject responseJson = new JsonObject();
-	    responseJson.addProperty("successful", true); // 設置成功標誌，根據實際情況設置
-	    responseJson.addProperty("redirectUrl", request.getContextPath() + "/html/manager_list.html"); // 設置重導的網址
+	    responseJson.addProperty("successful", manager.isSuccessful()); // 設置成功標誌，根據實際情況設置
+	    responseJson.addProperty("redirectUrl", request.getContextPath() + "/html/backend_homepage.html"); // 設置重導的網址
+	    
+	    responseJson.addProperty("manager_id", manager.getManager_id());
+	    responseJson.addProperty("account", manager.getAccount());
+	    
 	    
 	    // 設置回應的Content-Type為application/json
 	    response.setContentType("application/json");
