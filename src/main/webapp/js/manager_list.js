@@ -10,19 +10,9 @@ fetch('../manager/manager_list', {
 })
     .then(response => response.json())
     .then(data => {
-        // 獲取到 managerList 的資料後，動態生成 HTML 內容
 
-
-        // console.log(managerListContainer);
-
-
-
-
-        // console.log(data.managerList);
-
-        // 根據 managerList 的資料生成 HTML
+        // 獲取到 managerList 的資料後，動態生成 array 內容
         data.managerList.forEach(manager => {
-
             let manager_array_item = {
                 manager_id: manager.manager_id,
                 account: manager.account,
@@ -35,13 +25,11 @@ fetch('../manager/manager_list', {
             }
             manager_array[manager.manager_id] = (manager_array_item);
 
-            console.log(manager_array_item);
+            // console.log(manager_array_item);
             // console.log(manager_array);
 
             showList();
         })
-
-
     })
     .catch(error => {
         console.error('Error:', error);
@@ -54,8 +42,7 @@ $("a.manager_search_button").on("click", () => {
     let searchType = $("select.manager_search_type").val();
     let searchContent = $("input.manager_search_content").val();
 
-    alert(typeof searchType + searchType + "\n" + typeof searchContent + searchContent);
-
+    // alert(typeof searchType + searchType + "\n" + typeof searchContent + searchContent);
 
     filtered_array = manager_array.filter((manager) => {
         if (typeof manager[searchType] === "number") {
@@ -63,24 +50,22 @@ $("a.manager_search_button").on("click", () => {
             if (searchContent_num === NaN) {
                 alert("該欄只能搜尋數字");
             } else {
+                // console.log(typeof manager[searchType]);
+                // console.log(typeof searchContent);
 
-                console.log(typeof manager[searchType]);
-                console.log(typeof searchContent);
                 return manager[searchType].toString().includes(searchContent);
             }
         }
-
         return manager[searchType].includes(searchContent);
-
-
     });
 
-    console.log(filtered_array);
+    // console.log(filtered_array);
     showList();
 
 })
 
 $("a.manager_default_list_button").on("click", () => {
+    event.preventDefault();
     filtered = false;
     showList();
 })
@@ -88,13 +73,14 @@ $("a.manager_default_list_button").on("click", () => {
 
 
 
-function ShowAllInfoClick(id) {
+function showAllInfoClick(id) {
+    event.preventDefault();
     console.log(id);
     alert(manager_array[id].address);
 }
 
 
-function ChangeStateClick(id) {
+function changeStateClick(id) {
     event.preventDefault();
 
     // 使用 AJAX 發送請求，將 ID 值傳送到後端
@@ -125,13 +111,13 @@ function ChangeStateClick(id) {
 
 }
 
-function EditClick(id) {
+function editClick(id) {
     // 將 ID 儲存到 sessionStorage 中
     sessionStorage.setItem('id', id);
 
 }
 
-function RemoveClick(id) {
+function removeClick(id) {
     event.preventDefault();
 
     let confirmRemove = confirm("確定刪除" + manager_array[id].account + "嗎?");
@@ -155,10 +141,11 @@ function RemoveClick(id) {
             .then(resp => resp.json())
             .then(body => {
 
-                console.log(body);
+                // console.log(body);
                 const { successful, redirectUrl } = body;
 
                 if (successful) {
+
                     alert("成功");
 
                     if (redirectUrl) {
@@ -174,7 +161,7 @@ function RemoveClick(id) {
             });
 
     } else {
-        console.log("R U joking?");
+        // console.log("R U joking?");
     }
 
 
@@ -202,31 +189,29 @@ function showList() {
       <td>
           <a class="btn btn-primary btn-sm d-none d-sm-inline-block custom-manager-button"
               role="button" href="#"
-              onclick="ShowAllInfoClick(${manager.manager_id})">
+              onclick="showAllInfoClick(${manager.manager_id})">
               詳細資料
           </a>
           <a class="btn btn-primary btn-sm d-none d-sm-inline-block custom-manager-button"
               role="button" href="#"
-              onclick="ChangeStateClick(${manager.manager_id})">
+              onclick="changeStateClick(${manager.manager_id})">
               調整在職狀態
           </a>
           <br style="padding-top: 3px; padding-buttom: 3px;">
           <a class="btn btn-primary btn-sm d-none d-sm-inline-block custom-manager-button"
               role="button" href="manager_edit.html"
-              onclick="EditClick(${manager.manager_id})">
+              onclick="editClick(${manager.manager_id})">
               修改資料
           </a>
           <a class="btn btn-primary btn-sm d-none d-sm-inline-block custom-manager-button btn-danger"
               role="button" href="#"
-              onclick="RemoveClick(${manager.manager_id})">
+              onclick="removeClick(${manager.manager_id})">
               刪除管理員
           </a>
       </td>
     </tr>
   `;
     });
-
-
 
     // 插入生成的 HTML 內容到 managerListContainer 元素中
     managerListContainer.innerHTML = html;

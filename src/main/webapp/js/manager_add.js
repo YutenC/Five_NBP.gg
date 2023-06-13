@@ -56,24 +56,17 @@
             .then(body => {
 
                 console.log(body);
-                const { successful, redirectUrl } = body;
+                const { successful, redirectUrl, message } = body;
 
                 if (successful) {
-                    alert("成功");
-                    // for (let input of inputs) {
-                    //     input.disabled = true;
-                    // }
-                    // add_btn.disabled = true;
-                    // msg.className = 'info';
-                    // msg.textContent = '註冊成功';
+                    alert(message);
 
                     if (redirectUrl) {
                         window.location.href = redirectUrl; // 進行重導
                     }
 
                 } else {
-                    msg.className = 'error';
-                    msg.textContent = '註冊失敗';
+                    alert(message);
                 }
             });
     });
