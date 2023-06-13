@@ -37,6 +37,6 @@ public interface SecondhandProductImageDao extends CoreDao<SecondhandProductImag
     }
 
 
-    // 選取該筆商品全部圖片
-//    List<SecondhandProductImage> selectByProId(Integer productId);
+//     選取該筆商品全部圖片
+    List<SecondhandProductImage> selectByProId(Integer productId);
 }

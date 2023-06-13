@@ -65,13 +65,13 @@ public class SecondhandProductImageDaoImpl implements SecondhandProductImageDao 
 
     // 選取該筆商品全部圖片
 
-//    @Override
-//    public List<SecondhandProductImage> selectByProId(Integer productId) {
-//
-//        final String hql = "SELECT imageId FROM SecondhandProductImage where productId = :productId";
-//        return session.createQuery(hql, SecondhandProductImage.class).getResultList();
-//
-//    }
+    @Override
+    public List<SecondhandProductImage> selectByProId(Integer productId) {
+
+        final String hql = "SELECT imageId FROM SecondhandProductImage where productId = :productId";
+        return session.createQuery(hql, SecondhandProductImage.class).getResultList();
+
+    }
 
 
 //    @Override
