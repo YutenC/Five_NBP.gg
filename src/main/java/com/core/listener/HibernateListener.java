@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class HibernateListener implements ServletContextListener {
+
+//  利用ServletContextLinster來監聽控制SessionFactory
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         HibernateUtil.getSessionFactory();

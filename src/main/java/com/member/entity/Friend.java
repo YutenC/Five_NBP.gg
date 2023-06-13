@@ -20,7 +20,6 @@ public class Friend extends Core {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer member_id;
     @Id

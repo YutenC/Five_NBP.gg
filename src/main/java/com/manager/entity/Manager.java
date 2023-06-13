@@ -39,7 +39,7 @@ public class Manager extends Core {
 	private String phone; 			// char(10) 	NN
 	@Column
 	private String address; 		// varchar(100)
-	@Column
+	@Column 
 	private Integer is_working; 	// tinyInt		NN
 	
 	

@@ -1,21 +1,22 @@
 package com.secondhand.buy.vo;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
 
 @Entity
 @Getter
@@ -23,8 +24,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SecondHand_Buylist" ,catalog = "five")
-public class SecondHandBuylist implements Serializable{
+public class SecondHandBuylist extends com.core.entity.Core {
 	private static final long serialVersionUID = -1589649673055389103L;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,14 +66,11 @@ public class SecondHandBuylist implements Serializable{
 	@Column(name = "applicant_bank_number")
 	private String applicantBankNumber;
 
-	@Override
-	public String toString() {
-		return "SecondHandBuylist [buylistId=" + buylistId + ", memberId=" + memberId + ", managerId=" + managerId
-				+ ", productName=" + productName + ", type=" + type + ", content=" + content + ", estimate=" + estimate
-				+ ", price=" + price + ", confirmTime=" + confirmTime + ", payState=" + payState + ", approvalState="
-				+ approvalState + ", applyTime=" + applyTime + ", applicantBankNumber=" + applicantBankNumber + "]";
-	}
+	@Transient
+	@OneToMany
+	@JoinColumn(name = "buylist_id",referencedColumnName = "buylist_id")
+	private List<SecondHandBuyPicture> image ;
 		
 	
-	
+		
 }

@@ -20,11 +20,12 @@ public class Bank extends Core {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer member_id;
     @Id
     @Column
     private String bank_number;
+    @Column
+    private String bank_name;
 
 }

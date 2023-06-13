@@ -8,6 +8,7 @@ public interface CoreService {
     default Transaction beginTransaction(){
 
         return HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+
     }
 
     default  void commit(){

@@ -8,9 +8,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 
+import com.core.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
@@ -20,121 +24,106 @@ import com.member.entity.Member;
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
-    @PersistenceContext
-    private Session session;
+//    Session session = getSession();
 
     @Override
     public int insert(Member member) {
-//        原本hibernate 的寫法(沒有用組態設定)
-//        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-//        Session session = sessionFactory.openSession();
+
 //        Transaction transaction = session.beginTransaction();   // 從session來，開始交易
 //        // 基本上上面3行是固定
-//        session.persist(member);    // persist(填入要insert的物件)
+        getSession().persist(member);    // persist(填入要insert的物件)
 //        transaction.commit();   //
-//        return member.getMember_id();
-
-        session.persist(member);
-        return 1;
+        return member.getMember_id();
     }
 
     @Override
     public int deleteById(Integer id) {
-//        原本hibernate 的寫法(沒有用組態設定)
-//        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-//        Session session = sessionFactory.openSession();
-//        Transaction transaction = session.beginTransaction();
-//
-//        // 不能直接用session.remove(id)，因為括弧內要放的想要刪除的物件
-//        // 所以要把刪除整筆資料時需要把整個想要刪除的Member物件放進來
-//        // 要"先查詢要刪除的會員id"，"再用該id指定給session，刪除該會員"
-//        Member member = session.get(Member.class, id);
-//        session.remove(member);
-//        transaction.commit();
-//        return member.getMember_id();
-        Member member = session.get(Member.class, id);
-        return 1;
+        getSession().beginTransaction();
+        // 不能直接用session.remove(id)，因為括弧內要放的想要刪除的物件
+        // 所以要把刪除整筆資料時需要把整個想要刪除的Member物件放進來
+        // 要"先查詢要刪除的會員id"，"再用該id指定給session，刪除該會員"
+        Member member = getSession().get(Member.class, id);
+        getSession().remove(member);
+        getSession().getTransaction().commit();
+        member.setMessage("刪除成功");
+        return member.getMember_id();
     }
+
 
     @Override
     public int update(Member member) {  // 修改會員資料
-//        原本hibernate 的寫法(沒有用組態設定)
-//        return 0;
+
         final StringBuilder hql = new StringBuilder()
-                .append("update member set");
+                .append("UPDATE Member SET ");
 
         final String password = member.getPassword();
         if (password != null && !password.isEmpty()) {
-            hql.append("password =: password");
+            hql.append("password = :password, ");
         }
-        hql.append("password = :password")
-                .append("nick = :nick")
-                .append("email = :email")
-                .append("phone = :phone")
-                .append("address = :address")
-                .append("member_ver_state = :member_ver_state")
-                .append("headshot = :headshot")
-                .append("violation = :violation");
+        hql.append("email = :email, ")
+                .append("phone = :phone, ")
+                .append("address = :address ")
+                .append("where account = :account");
 
-        Query<?> query = session.createQuery(hql.toString());
+        Query<?> query = getSession().createQuery(hql.toString());
         if (password != null && !password.isEmpty()) {
             query.setParameter("password", password);
         }
 
         return query
-                .setParameter("nick", member.getNick())
                 .setParameter("email", member.getEmail())
                 .setParameter("phone", member.getPhone())
                 .setParameter("address", member.getAddress())
-                .setParameter("member_ver_state", member.getMember_ver_state())
-                .setParameter("headshot", member.getHeadshot())
-                .setParameter("violation", member.getViolation())
+                .setParameter("account", member.getAccount())
                 .executeUpdate();
     }
 
     @Override
     public Member selectById(Integer id) {
-//        Session session = getSession();
         return getSession().get(Member.class, id);
     }
 
     @Override
     public List<Member> selectAll() {
+        // 老師寫法
         final String hql = "FROM Member ORDER BY member_id";
-
-        return session.createQuery(hql, Member.class).getResultList();
-//        return null;
+        return getSession().createQuery(hql, Member.class).getResultList();
     }
 
     @Override
-    public Member selectByUserName(String account) {
-        Session session = getSession();
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+    public Member selectByAccount(String account) {
+//          老師的寫法
+//        Session session = getSession();
 //        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Member> criteriaQuery = criteriaBuilder.createQuery(Member.class);
-        Root<Member> root = criteriaQuery.from(Member.class);
+//        CriteriaQuery<Member> criteriaQuery = criteriaBuilder.createQuery(Member.class);
+//        Root<Member> root = criteriaQuery.from(Member.class);
+//        criteriaQuery.where(criteriaBuilder.equal(root.get("account"),account));
+//        return session.createQuery(criteriaQuery).uniqueResult();
 
-        criteriaQuery.where(criteriaBuilder.equal(root.get("account"),account));
-
-        return session.createQuery(criteriaQuery).uniqueResult();
+        final String sql = "SELECT * FROM member WHERE account = :account";
+        return getSession()
+                .createNativeQuery(sql, Member.class)
+                .setParameter("account", account)
+                .uniqueResult();
     }
 
     @Override
     public Member selectForLogin(String account, String password) {
-        final String sql = "SELECT * FROM five.member WHERE account = :account and password =: password";
-
-        return session
+        // 使用 Native SQL
+        final String sql = "SELECT * FROM member WHERE account = :account and password = :password";
+        return getSession()
                 .createNativeQuery(sql, Member.class)
                 .setParameter("account", account)
                 .setParameter("password", password)
                 .uniqueResult();
     }
 
-    public static void main(String[] args) {
-        MemberDaoImpl dao = new MemberDaoImpl();
-
-        Member member = dao.selectById(101);
-
-        System.out.println(member);
+    @Override
+    public Member selectByEmail(String email) {
+        final String sql = "SELECT * FROM member WHERE email = :email";
+        return getSession()
+                .createNativeQuery(sql, Member.class)
+                .setParameter("email", email)
+                .uniqueResult();
     }
 }
