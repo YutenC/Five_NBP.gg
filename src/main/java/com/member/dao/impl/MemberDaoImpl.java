@@ -60,8 +60,7 @@ public class MemberDaoImpl implements MemberDao {
         if (password != null && !password.isEmpty()) {
             hql.append("password = :password, ");
         }
-        hql.append("nick = :nick, ")
-                .append("email = :email, ")
+        hql.append("email = :email, ")
                 .append("phone = :phone, ")
                 .append("address = :address ")
                 .append("where account = :account");
@@ -72,7 +71,6 @@ public class MemberDaoImpl implements MemberDao {
         }
 
         return query
-                .setParameter("nick", member.getNick())
                 .setParameter("email", member.getEmail())
                 .setParameter("phone", member.getPhone())
                 .setParameter("address", member.getAddress())

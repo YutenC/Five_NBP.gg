@@ -250,8 +250,9 @@
                 let member = response;
                 console.log(member);
                 let isPass = member.successful;
-                if(isPass){
-                    sessionStorage.setItem("member", JSON.stringify(member));
+                if(isPass){     
+                    sessionStorage.setItem("id", member.member_id);               
+                    sessionStorage.setItem("id", member.account);               
                     window.location.href = "/Five_NBP_gg/html/member_home.html";
                 } else {
                     Swal.fire({

@@ -126,11 +126,6 @@ public class MemberServiceimpl implements MemberService, CoreService {
             beginTransaction();
             final Member oMember = dao.selectByAccount(member.getAccount());
             // oMember 為資料庫原始資料     member 為會員輸入的資料
-            if (member.getNick() == null) {
-                member.setNick(oMember.getNick());
-            } else {
-                oMember.setNick(member.getNick());
-            }
             if (member.getEmail() == null) {
                 member.setEmail(oMember.getEmail());
             } else {

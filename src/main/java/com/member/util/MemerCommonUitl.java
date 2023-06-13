@@ -1,7 +1,9 @@
 package com.member.util;
 
 import com.google.gson.Gson;
+import com.member.entity.Member;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class MemerCommonUitl {
@@ -22,5 +24,8 @@ public class MemerCommonUitl {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static Member getMemberSession(HttpServletRequest request, String key){
+       return  (Member)request.getSession().getAttribute(key);
     }
 }
