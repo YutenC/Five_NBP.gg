@@ -17,7 +17,7 @@
 
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        \
+        
 
 
         <mapping class="com.shopproduct.entity.Coupon"/>
