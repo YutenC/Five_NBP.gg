@@ -18,9 +18,9 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <mapping class="com.shopproduct.entity.Coupon"/>
-        <mapping class="com.shopproduct.entity.Product"/>
-        <mapping class="com.shopproduct.entity.ProductImage"/>
+<!--        <mapping class="com.shopproduct.entity.Coupon"/>-->
+<!--        <mapping class="com.shopproduct.entity.Product"/>-->
+<!--        <mapping class="com.shopproduct.entity.ProductImage"/>-->
 
 
         <mapping class="com.manager.entity.Manager"/>
