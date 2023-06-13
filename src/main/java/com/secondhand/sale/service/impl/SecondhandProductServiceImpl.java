@@ -14,7 +14,7 @@ public class SecondhandProductServiceImpl implements SecondhandProductService {
 
     @Override
     public SecondhandProduct launch(SecondhandProduct secondhandproduct) {
-        if ((secondhandproduct.getName().isEmpty())) {
+        if ((secondhandproduct.getName() == null)) {
             secondhandproduct.setMessage("請輸入二手商品名稱");
             secondhandproduct.setSuccessful(false);
             return secondhandproduct;
@@ -36,7 +36,7 @@ public class SecondhandProductServiceImpl implements SecondhandProductService {
             return secondhandproduct;
         }
 
-        if ((secondhandproduct.getContent().isEmpty())) {
+        if ((secondhandproduct.getContent() == null)) {
             secondhandproduct.setMessage("請輸入二手商品內容");
             secondhandproduct.setSuccessful(false);
             return secondhandproduct;

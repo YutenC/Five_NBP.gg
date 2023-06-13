@@ -1,8 +1,13 @@
+
+
 (() => {
 
     const SHproName = document.getElementById('SHproName');
     // 也可以寫成這樣: const SHproName = document.querySelector('#SHproName');
-    const SHproType = document.getElementById('SHproType');
+
+    const SHproType = document.getElementById('SelectSHproType');
+    // const value = SHproType.value;
+
     const SHproPrice = document.getElementById('SHproPrice');
     const SHproContent = document.getElementById('SHproContent');
     const SHproPho = document.getElementById('SHproPho');
@@ -15,10 +20,32 @@
     const saveBtn = document.getElementById('saveBtn');
     const launchBtn = document.getElementById('launchBtn');
 
-    SHproName.addEventListener("input", function (){console.log("SHproName")})
+    // 測試是否抓到ID
+    // launchBtn.addEventListener("click", function (){
+    //     const shname = SHproName.value;
+    //     console.log(shname);})
 
-    // console.log(SHproName);
-// console.log(SHproType);
+
+
+    launchBtn.addEventListener("click", function(){
+        fetch('sh_productmanageedit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: SHproName.value,
+                type: SHproType.value,
+                price: SHproPrice.value,
+                content: SHproContent.value,
+                // SHproPho1: SHproPho1.value,
+            }),
+        }).then(resp =>  resp.json())
+            .then(
+
+            )
+    })
+
 
     //
     //
@@ -73,6 +100,7 @@
     //
     //     }
     //
+
     //     msg.textContent = '';
     //     fetch('register', {
     //         method: 'POST',

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../fonts/material-icons.min.css">
     <link rel="stylesheet" href="../css/x-dropdown.css">
     <link rel="stylesheet" href="../css/custom.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -205,24 +206,24 @@
                             <td><span class="SHproType">商品類別</span></td>
                             <td>
                                 <div>
-                                    <select id="SHproType" style="width: 140px;">
+                                    <select id="SelectSHproType" style="width: 140px;">
                                         <option selected disabled></option>
 
-                                        <optgroup label="NS">
+                                        <optgroup label="NS" id="typeNS">
                                             <option value="00">00: NS主機</option>
                                             <option value="01">01: NS手把</option>
                                             <option value="02">02: NS卡帶</option>
                                             <option value="03">03: NS周邊</option>
                                         </optgroup>
 
-                                        <optgroup label="XBOX">
+                                        <optgroup label="XBOX" id="typeX">
                                             <option value="10">10: XBOX主機</option>
                                             <option value="11">11: XBOX手把</option>
                                             <option value="12">12: XBOX遊戲片</option>
                                             <option value="13">13: XBOX周邊</option>
                                         </optgroup>
 
-                                        <optgroup label="PlayStation">
+                                        <optgroup label="PlayStation" id="typePS">
                                             <option value="20">20: PS主機</option>
                                             <option value="21">21: PS手把</option>
                                             <option value="22">22: PS遊戲片</option>
@@ -315,6 +316,7 @@
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/theme.js"></script>
     <script src="../js/sh_productmanageedit.js"></script>
+<!--    <script src="../jquery/jquery-3.7.0.js"></script>-->
     <!-- JavaScript JS放置區 -->
 </body>
 

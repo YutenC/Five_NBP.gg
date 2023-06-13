@@ -21,6 +21,9 @@ public class LaunchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
         SecondhandProduct secondhandproduct = json2Pojo(req, SecondhandProduct.class);
 
         if (secondhandproduct == null){
