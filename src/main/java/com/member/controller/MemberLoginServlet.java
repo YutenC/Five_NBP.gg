@@ -24,7 +24,6 @@ public class MemberLoginServlet extends HttpServlet {
         Member member = new Member();
         member.setAccount(request.getParameter("account").trim());
         member.setPassword(request.getParameter("password").trim());
-        System.out.println("會員帳號：" + member.getAccount() + ", 會員密碼：" + member.getPassword());
         if ((member.getAccount().equals("")) || (member.getPassword().equals(""))) {
             member = new Member();
             member.setMessage("請填寫帳號密碼");
@@ -34,7 +33,8 @@ public class MemberLoginServlet extends HttpServlet {
         }
 
         member = SERVICE.login(member);
-        System.out.println(member.getMessage());
+        System.out.println("訊息：會員 " + member.getNick() + " " + member.getMessage());
+        //  是否登入成功的訊息
         if (member.isSuccessful()) {
             if (request.getSession(false) != null) {
                 request.changeSessionId();

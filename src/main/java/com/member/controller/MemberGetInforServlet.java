@@ -12,14 +12,21 @@ import java.io.IOException;
 import static com.member.util.MemerCommonUitl.getMemberSession;
 import static com.member.util.MemerCommonUitl.gsonToJson;
 
-@WebServlet("/memberLogoutServlet")
-public class MemberLogoutServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+@WebServlet("/memberGetInforServlet")
+public class MemberGetInforServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Member member = getMemberSession(request,"member");
-        System.out.println("會員：" + member.getNick() + " 成功登出");
-        request.getSession().invalidate();
-        gsonToJson(response,member);
+        if(member == null){
+            Member visitor = new Member();
+            visitor.setMessage("無會員資訊");
+            visitor.setSuccessful(false);
+            gsonToJson(response, visitor);
+            return;
+        }
+        System.out.println("訊息：會員 " + member.getNick() + "取得資訊");
+        gsonToJson(response, member);
     }
 }

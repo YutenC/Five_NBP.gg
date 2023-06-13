@@ -17,278 +17,336 @@
     <link rel="stylesheet" href="../css/Profile-Edit-Form.css">
     <link rel="stylesheet" href="../css/Profile-with-data-and-skills.css">
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        div.row {
+            width: 100%;
+        }
+
+        div.button {
+            margin-top: 90px;
+        }
+    </style>
 </head>
 
 <body>
-<header>
-    <nav class="navbar navbar-light navbar-expand-md py-3" style="background: #82d6bd;height: 120px;">
+    <header>
+        <nav class="navbar navbar-light navbar-expand-md py-3" style="background: #82d6bd;height: 120px;">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center"></a>
+                <a href="index.html" style="width: 180px;height: 103.19px;">
+                    <img data-bss-hover-animate="pulse" src="../img/Logo-removebg.png" style="width: 100%;">
+                </a>
+                <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2">
+                    <span class="visually-hidden">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navcol-2" style="font-weight: bold;height: 100px;">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bss-hover-animate="pulse" href="#"
+                                style="border-width: 20px;margin-top: 10px;">
+                                <img src="../img/gamepad-solid.svg">商城中心
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bss-hover-animate="pulse" href="#"
+                                style="border-width: 20px;margin-top: 10px;color: var(--bs-dark);">
+                                <img src="../img/dice-solid.svg">二手商城
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link align-items-xl-center" data-bss-hover-animate="pulse"
+                                style="border-width: 20px;margin-top: 11px;color: var(--bs-dark);" href="#">
+                                <img class="d-flex mx-auto" src="../img/newspaper-regular.svg"
+                                    style="height: 50px;">論壇社群
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bss-hover-animate="pulse" href="#"
+                                style="border-width: 20px;margin-top: 10px;color: var(--bs-dark);">
+                                <img src="../img/champagne-glasses-solid.svg">活動專區
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bss-hover-animate="pulse" href="./member_home.html"
+                                style="margin-top: 10px;">
+                                <img class="d-flex mx-auto align-items-xl-center" src="../img/user-solid.svg"
+                                    style="height: 50px;">會員中心
+                            </a>
+                        </li>
+                        <li class="nav-item" style="height: 80px;">
+                            <a class="nav-link" data-bss-hover-animate="pulse" href="#service_center"
+                                style="margin-top: 20px;color: var(--bs-dark);">
+                                <img class="d-xl-flex mx-auto" src="../img/handshake-simple-solid.svg"
+                                    style="height: 40px;">客服中心
+                            </a>
+                        </li>
+                        <li class="nav-item logout">
+                            <a class="nav-link fs-6 text-center" data-bss-hover-animate="pulse" id="sign_out"
+                                style="margin-top: 0px;color: var(--bs-dark);width: 80px;height: 100px;">
+                                <div id="member_pic-1" class="avatar-bg center"
+                                    style="width: 60px;height: 60px;margin-left: 0px;"></div>
+                                登出
+                            </a>
+                        </li>
+                    </ul>
+                    <footer id="footerpad-1"></footer>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main-content">
+        <div class="row" style="height: 800px;">
+            <div class="col-lg-4 col-xl-2 offset-xl-1" style="height: 600px;">
+                <div class="list-group">
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_info.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">基本資料管理
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_common_account.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">常用帳戶設定
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_friendlist.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">好友名單
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_blacklist.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">黑名單
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="#list-search-order" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢一般交易
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="#list-search-sh-order" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手交易
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./SecondHand_buylist_search.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手收購進度
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="#list-product-follow" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">一般商品追蹤清單
+                        <br>
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="#list-sh-product-follow" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">二手商品追蹤清單
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="#list-activity" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢參加活動
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_noticelist.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看通知
+                    </a>
+                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
+                        href="./member_loginhistory.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看登入紀錄
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="container profile profile-view" id="profile">
+                    <h1>基本資料</h1>
+                    <form>
+                        <div class="row profile-row">
+                            <div class="col-md-4 col-xxl-3 relative">
+                                <div class="avatar">
+                                    <div id="member_info_pic" class="avatar-bg center"></div>
+                                </div>
+                                <input class="form-control form-control" type="file" name="avatar-file"
+                                    style="margin-bottom: 20px;">
+                                <label class="form-label">遊玩遊戲標籤</label>
+                                <select class="form-select" style="margin-bottom: 20px;">
+                                    <optgroup label="===請選擇遊戲標籤===">
+                                        <option value="12" selected="">標籤1</option>
+                                        <option value="13">標籤2</option>
+                                        <option value="14">標籤3</option>
+                                    </optgroup>
+                                </select>
+                                <img class="game_label_pic"
+                                    style="margin-right: 0px;width: 230px;height: 230px;padding-left: 0px;padding-right: 0px;margin-left: 20px;background: url(&quot;../img/Logo-removebg.png&quot;) center / contain no-repeat, rgba(0,0,0,0);border-radius: 20px;border-color: rgb(136,138,140);">
+                            </div>
+                            <div class="col-md-8 offset-xxl-0">
+                                <div class="row infor">
+                                    <div class="col-xl-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">會員帳號</label>
+                                            <input class="form-control" type="text" id="member_account"
+                                                name="member_account" readonly style="background-color: #FFffff ;">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">密碼</label>
+                                            <input class="form-control" type="password" id="password" name="password"
+                                                readonly style="background-color: #FFffff ;">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-xl-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">會員暱稱</label>
+                                            <input class="form-control" type="text" id="nickname" name="nickname"
+                                                readonly style="background-color: #FFffff ;">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-xl-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">累積紅利</label>
+                                            <input class="form-control" type="text" id="member_bonus"
+                                                name="member_bonus" readonly style="background-color: #FFffff ;">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">身分證字號</label>
+                                            <input class="form-control" type="password" id="id_number" name="id_number"
+                                                readonly style="background-color: #FFffff ;">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">生日</label>
+                                            <input class="form-control" type="text" id="birth" name="birth" readonly
+                                                style="background-color: #FFffff ;">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">聯絡地址</label>
+                                            <input class="form-control" type="text" id="address" name="address" readonly
+                                                style="background-color: #FFffff ;">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">連絡電話</label>
+                                            <input class="form-control" type="text" id="phone" name="phone" readonly
+                                                style="background-color: #FFffff ;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Email </label>
+                                        <input class="form-control" type="email" id="email" name="email" readonly
+                                            style="background-color: #FFffff ;">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row button">
+                                    <div class="col-md-12 content-right">
+                                        <button id="vertify" class="btn btn-warning form-btn"
+                                            type="button">尚未驗證</button>
+                                        <button id="change_password" class="btn btn-warning form-btn"
+                                            type="button">修改密碼</button>
+                                        <button id="edit_infor" class="btn btn-primary form-btn"
+                                            type="button">修改資料</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footerpad">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center"></a>
-            <a href="index.html" style="width: 180px;height: 103.19px;">
-                <img data-bss-hover-animate="pulse" src="../img/Logo-removebg.png" style="width: 100%;">
-            </a>
-            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2">
-                <span class="visually-hidden">Toggle navigation</span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navcol-2" style="font-weight: bold;height: 100px;">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-bss-hover-animate="pulse" href="#"
-                           style="border-width: 20px;margin-top: 10px;">
-                            <img src="../img/gamepad-solid.svg">商城中心
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bss-hover-animate="pulse" href="#"
-                           style="border-width: 20px;margin-top: 10px;color: var(--bs-dark);">
-                            <img src="../img/dice-solid.svg">二手商城
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link align-items-xl-center" data-bss-hover-animate="pulse"
-                           style="border-width: 20px;margin-top: 11px;color: var(--bs-dark);" href="#">
-                            <img class="d-flex mx-auto" src="../img/newspaper-regular.svg" style="height: 50px;">論壇社群
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bss-hover-animate="pulse" href="#"
-                           style="border-width: 20px;margin-top: 10px;color: var(--bs-dark);">
-                            <img src="../img/champagne-glasses-solid.svg">活動專區
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" data-bss-hover-animate="pulse" href="./member_home.html"
-                           style="margin-top: 10px;">
-                            <img class="d-flex mx-auto align-items-xl-center" src="../img/user-solid.svg"
-                                 style="height: 50px;">會員中心
-                        </a>
-                    </li>
-                    <li class="nav-item" style="height: 80px;">
-                        <a class="nav-link" data-bss-hover-animate="pulse" href="#service_center"
-                           style="margin-top: 20px;color: var(--bs-dark);">
-                            <img class="d-xl-flex mx-auto" src="../img/handshake-simple-solid.svg"
-                                 style="height: 40px;">客服中心
-                        </a>
-                    </li>
-                    <li class="nav-item logout">
-                        <a class="nav-link fs-6 text-center" data-bss-hover-animate="pulse" id="sign_out"
-                           style="margin-top: 0px;color: var(--bs-dark);width: 80px;height: 100px;">
-                            <div id="member_pic-1" class="avatar-bg center"
-                                 style="width: 60px;height: 60px;margin-left: 0px;"></div>
-                            登出
-                        </a>
-                    </li>
-                </ul>
-                <footer id="footerpad-1"></footer>
+            <div class="row">
+                <div class="col-md-6 col-lg-8 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i
+                                        class="fa fa-circle fa-stack-2x"></i><i
+                                        class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i
+                                        class="fa fa-circle fa-stack-2x"></i><i
+                                        class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i
+                                        class="fa fa-circle fa-stack-2x"></i><i
+                                        class="fa fa-instagram fa-stack-1x fa-inverse"></i></span></a>
+                        </li>
+                        <li class="list-inline-item"><a href="#"></a></li>
+                    </ul>
+                    <p class="copyright text-muted text-center">Copyright © NBP.gg 2023 | Web Design by Designer</p>
+                </div>
             </div>
         </div>
-    </nav>
-</header>
-<div class="main-content">
-    <div class="row" style="height: 800px;">
-        <div class="col-lg-4 col-xl-2 offset-xl-1" style="height: 600px;">
-            <div class="list-group">
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="./member_info.html" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">基本資料管理
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="./member_common_account.html" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">常用帳戶設定
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="./member_friendlist.html" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">好友名單
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="./member_blacklist.html" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">黑名單
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="#list-search-order" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢一般交易
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="#list-search-sh-order" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手交易
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="./SecondHand_buylist_search.html" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手收購進度
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="#list-product-follow" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">一般商品追蹤清單
-                    <br>
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="#list-sh-product-follow" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">二手商品追蹤清單
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="#list-activity" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢參加活動
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="./member_noticelist.html" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看通知
-                </a>
-                <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                    href="./member_loginhistory.html" data-bs-toggle="list"
-                    style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看登入紀錄
-                </a>
-            </div>
-        </div>
-        <div class="col">
-            <div class="container profile profile-view" id="profile">
-                <h1>基本資料</h1>
-                <form>
-                    <div class="row profile-row">
-                        <div class="col-md-4 col-xxl-3 relative">
-                            <div class="avatar">
-                                <div id="member_info_pic" class="avatar-bg center"></div>
-                            </div>
-                            <input class="form-control form-control" type="file" name="avatar-file"
-                                   style="margin-bottom: 20px;">
-                            <label class="form-label">遊玩遊戲標籤</label>
-                            <select class="form-select" style="margin-bottom: 20px;">
-                                <optgroup label="===請選擇遊戲標籤===">
-                                    <option value="12" selected="">標籤1</option>
-                                    <option value="13">標籤2</option>
-                                    <option value="14">標籤3</option>
-                                </optgroup>
-                            </select>
-                            <img class="game_label_pic"
-                                 style="margin-right: 0px;width: 230px;height: 230px;padding-left: 0px;padding-right: 0px;margin-left: 20px;background: url(&quot;../img/Logo-removebg.png&quot;) center / contain no-repeat, rgba(0,0,0,0);border-radius: 20px;border-color: rgb(136,138,140);">
-                        </div>
-                        <div class="col-md-8 offset-xxl-0">
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">會員帳號</label>
-                                        <input class="form-control" type="text" id="member_account"
-                                               name="member_account" readonly style="background-color: #FFffff">
-                                    </div>
-                                </div>
-                                <div class="col"></div>
-                                <div class="col-sm-12 col-md-6 col-xl-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">會員暱稱</label>
-                                        <input class="form-control" type="text" id="nickname" name="nickname" readonly
-                                               style="background-color: #FFffff">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-xl-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">累積紅利</label>
-                                        <input class="form-control" type="text" id="member_bonus" name="member_bonus"
-                                               readonly style="background-color: #FFffff">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">身分證字號</label>
-                                        <input class="form-control" type="password" id="id_number" name="id_number"
-                                               readonly style="background-color: #FFffff">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">生日</label>
-                                        <input class="form-control" type="text" id="birth" name="birth" readonly
-                                               style="background-color: #FFffff">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">聯絡地址</label>
-                                        <input class="form-control" type="text" id="address" name="address" readonly
-                                               style="background-color: #FFffff">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">連絡電話</label>
-                                        <input class="form-control" type="text" id="phone" name="phone" readonly
-                                               style="background-color: #FFffff">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label class="form-label">Email </label>
-                                <input class="form-control" type="email" id="email" name="email" readonly
-                                       style="background-color: #FFffff">
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">密碼</label>
-                                        <input class="form-control" type="password" id="password" name="password"
-                                               readonly style="background-color: #FFffff">
-                                    </div>
-                                </div>
-                                <div class="col"></div>
-                                <div class="col-sm-12 col-md-6"></div>
-                                <div class="col-sm-12 col-md-6"></div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12 content-right">
-                                    <a href="/html/member_edit.html">
-                                        <button class="btn btn-primary form-btn" type="submit">修改資料</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<footer id="footerpad">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-lg-8 mx-auto">
-                <ul class="list-inline text-center">
-                    <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i
-                            class="fa fa-circle fa-stack-2x"></i><i
-                            class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></a></li>
-                    <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i
-                            class="fa fa-circle fa-stack-2x"></i><i
-                            class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
-                    <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i
-                            class="fa fa-circle fa-stack-2x"></i><i class="fa fa-instagram fa-stack-1x fa-inverse"></i></span></a>
-                    </li>
-                    <li class="list-inline-item"><a href="#"></a></li>
-                </ul>
-                <p class="copyright text-muted text-center">Copyright © NBP.gg 2023 | Web Design by Designer</p>
-            </div>
-        </div>
-    </div>
-</footer>
-<script src="../jquery/jquery-3.4.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- <script src="../bootstrap/js/bootstrapmember_infor.min.js"></script> -->
-<script src="../js/bs-init.js"></script>
-<script src="../js/Profile-Edit-Form.js"></script>
+    </footer>
+
+
+    <script src="../jquery/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 <script src="../js/member_logout.js"></script>
 <script>
     $(window).on("load", function () {
-        let jsonData = sessionStorage.getItem("member");
-        let member = JSON.parse(jsonData);
-        $("input#member_account").val(member.account);
-        $("input#nickname").val(member.nick);
-        $("input#member_bonus").val(member.bonus);
-        $("input#id_number").val(member.id_number);
-        $("input#birth").val(member.birth);
-        $("input#address").val(member.address);
-        $("input#phone").val(member.phone);
-        $("input#email").val(member.email);
-        $("input#password").val(member.password);
-    });
+        $.ajax({
+            url: "/Five_NBP_gg/memberGetInforServlet",
+            method: "POST",
+            dataType: "json",
+            success: function (response) {
+                let member = response; 
+                console.log(member);               
+                sessionStorage.setItem("id", member.member_id);    
+                let isPass = member.successful;
+                if (isPass) {
+                    $("input#member_account").val(member.account);
+                    $("input#nickname").val(member.nick);
+                    $("input#member_bonus").val(member.bonus);
+                    $("input#id_number").val(member.id_number);
+                    $("input#birth").val(member.birth);
+                    $("input#address").val(member.address);
+                    $("input#phone").val(member.phone);
+                    $("input#email").val(member.email);
+                    $("input#password").val(member.password);
+                    if (member.member_ver_state !== 1) {
+                        $("button#edit_infor").css("display", "none")
+                        $("button#change_password").css("display", "none")
+                    } else {
+                        $("button#vertify").css("display", "none")
+                    }
+                } else {
+                    window.location.href = "/Five_NBP_gg/html/index.html";
+                }
+            },
+            error(status){
+                if(status === 404){
+                    window.location.href = "/Five_NBP_gg/html/index.html";
+                }
+            }
+        })
+    })
+
+    $("button#edit_infor").on("click", function () {
+        $.ajax({
+            url: "/Five_NBP_gg/html/member_edit.html",
+            success: function () {
+                window.location.href = "/Five_NBP_gg/html/member_edit.html";
+            }
+        })
+    })
+    $("button#vertify").on("click", function () {
+        $.ajax({
+            url: "/Five_NBP_gg/html/member_vertify.html",
+            success: function () {
+                window.location.href = "/Five_NBP_gg/html/member_vertify.html";
+            }
+        })
+    })
+    $("button#change_password").on("click", function () {
+        $.ajax({
+            url: "/Five_NBP_gg/html/member_vertify.html",
+            success: function () {
+                window.location.href = "/Five_NBP_gg/html/member_vertify.html";
+            }
+        })
+    })
+
 
 
 </script>
