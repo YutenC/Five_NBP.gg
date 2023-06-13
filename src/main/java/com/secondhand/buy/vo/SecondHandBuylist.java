@@ -60,7 +60,7 @@ public class SecondHandBuylist extends com.core.entity.Core {
 	@Column(name = "approval_state")
 	private String approvalState;
 	
-	@Column(name = "apply_time" , insertable = false)
+	@Column(name = "apply_time" , insertable = false , updatable = false)
 	private Date applyTime;
 	
 	@Column(name = "applicant_bank_number")

@@ -37,6 +37,7 @@ public class AddBuylist extends HttpServlet {
 			Json2vo.writevo2Json(resp, buylist);
 			return;
 		}
+<<<<<<< HEAD
 
 
 		buylist.setMemberId(1);
@@ -76,6 +77,24 @@ public class AddBuylist extends HttpServlet {
 		buylist.setSuccessful(true);
 		CommonUtil.writePojo2Json(resp, service.checkList(buylist.getBuylistId()));
 
+=======
+		
+		
+		SecondHandBuylistDaoimpl sc = new SecondHandBuylistDaoimpl();
+		SecondHandBuylist buylist2 = sc.selectById(13);
+		buylist2.setProductName(buylist.getProductName());
+		buylist2.setType(buylist.getType());
+		buylist2.setContent(buylist.getContent());
+		buylist2.setEstimate(buylist.getEstimate());
+		buylist2.setApplicantBankNumber(buylist.getApplicantBankNumber());
+		
+		
+		
+		System.out.println(buylist2);
+		sc.update(buylist2);
+		
+		
+>>>>>>> origin/wangJZ
 	}
 
 }

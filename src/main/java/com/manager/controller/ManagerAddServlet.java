@@ -1,7 +1,5 @@
 package com.manager.controller;
 
-import static com.core.util.CommonUtil.json2Pojo;
-import static com.core.util.CommonUtil.writePojo2Json;
 import static com.manager.util.ManagerConstants.SERVICE;
 
 import java.io.BufferedReader;
@@ -62,7 +60,9 @@ public class ManagerAddServlet extends HttpServlet {
 	    
 	    // 創建回應JSON數據
 	    JsonObject responseJson = new JsonObject();
-	    responseJson.addProperty("successful", true); // 設置成功標誌，根據實際情況設置
+	    responseJson.addProperty("successful", manager.isSuccessful()); // 設置成功標誌，根據實際情況設置
+	    responseJson.addProperty("redirectUrl", request.getContextPath() + "/html/manager_list.html"); // 設置重導的網址
+	    responseJson.addProperty("message", manager.getMessage()); //回傳訊息
 	    
 	    // 設置回應的Content-Type為application/json
 	    response.setContentType("application/json");
@@ -72,20 +72,5 @@ public class ManagerAddServlet extends HttpServlet {
 	    writer.println(responseJson.toString());
 	    writer.close();
 	}
-	
-//	@Override
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-//		Manager manager = json2Pojo(request, Manager.class);
-//		if (manager == null) {
-//			manager = new Manager();
-//			manager.setMessage("無管理員資訊");
-//			manager.setSuccessful(false);
-//			writePojo2Json(response, manager);
-//			return;
-//		}
-//		
-//		manager = SERVICE.register(manager);
-//		writePojo2Json(response, manager);
-//	}
 
 }

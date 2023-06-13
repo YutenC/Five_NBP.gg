@@ -278,52 +278,77 @@
                                                     <!--這些的name裡面要填資料庫東西ec：act_id-->
                                                     <h2 class="fs-title">主辦者會員</h2>
                                                     <h3 class="fs-subtitle">step 1</h3>
+                                                    <label for="formFile" class="form-label">會員資料</label>
+                                                    <p></p>
                                                     <input type="text" name="email" placeholder="Email" />
                                                     <input type="password" name="pass" placeholder="Password" />
-                                                    <input type="password" name="cpass"
-                                                        placeholder="Confirm Password" />
-
-                                                    <h2 class="fs-title">主辦者姓名</h2>
+                                                    <input type="password" name="cpass" placeholder="Confirm Password" />
                                                     <h3 class="fs-subtitle">step2</h3>
-                                                    <input type="text" name="姓氏" placeholder="姓氏" />
-                                                    <input type="text" name="名字" placeholder="名字" />
-                                                    <input type="text" name="電話" placeholder="電話" />
-
-                                                    <h2 class="fs-title">活動名稱</h2>
-                                                    <h3 class="fs-subtitle">step3</h3>
+                                                    <label for="formFile" class="form-label">活動名稱</label>
+                                                    <p></p>
                                                     <input type="text" name="Act_name" placeholder="例如：閃電五連鞭" />
                                                     <input type="text" name="lname" placeholder="線上or線下" />
+                                                    <h3 class="fs-subtitle">step3</h3>
+                                                    <label for="formFile" class="form-label">活動日期時間</label>
+                                                    <p></p>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                              rows="1"placeholder="2000-1-1 9:00"></textarea>
+                                                    <h3 class="fs-subtitle">step4</h3>
+                                                    <label for="formFile" class="form-label">活動地點</label>
+                                                    <p></p>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                              rows="2"placeholder="ex:高雄市"></textarea>
                                                     <div class="mb-3">
-                                                        <label for="formFile" class="form-label">Default file input
-                                                            example</label>
+                                                        <h3 class="fs-subtitle">step5</h3>
+                                                        <label for="formFile" class="form-label">傳送活動圖片</label>
                                                         <input class="form-control" type="file" id="formFile">
                                                         <div id="previewContainer"></div>
                                                     </div>
-
+                                                    <h3 class="fs-subtitle">step6</h3>
                                                     <p> <label for="exampleFormControlTextarea1" class="form-label">
-                                                            活動簡介</label>
+                                                            活動內容</label>
                                                         <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                            rows="3"></textarea>
+                                                            rows="4"></textarea>
+                                                    <h3 class="fs-subtitle">step7</h3>
+                                                    <label for="formFile" class="form-label">活動費用</label>
+                                                    <p></p>
+                                                    <input type="text" name="Act_name" placeholder="填阿拉伯數字" />
                                                     </p>
+                                                    <h3 class="fs-subtitle">step8</h3>
                                                     <label for="customRange2"
                                                         class="form-label">活動人數Act-people-range</label>
-                                                    <input type="range" class="form-range" min="0" max="50"
+                                                    <input type="range" class="form-range" min="0" max="300"
                                                         id="customRange2">
                                                     <span id="rangeValue"></span>
+                                                    <h3 class="fs-subtitle">step9</h3>
+                                                    <label for="formFile" class="form-label">活動限制</label>
+                                                    <p></p>
+                                                    <input type="text" name="Act_name" placeholder="0 : 不限制 ; 1 : 限定參加者好友 請填0跟1" />
+                                                    <h3 class="fs-subtitle">step11</h3>
+                                                    <label for="formFile" class="form-label">你的銀行賬戶</label>
+                                                    <input type="text" name="Act_name" placeholder="填帳戶" />
+                                                    <h3 class="fs-subtitle">step12</h3>
+                                                    <label for="formFile" class="form-label">活動報名開始時間</label>
+                                                    <p></p>
+                                                    <input type="text" name="Act_name" placeholder="2000-1-1 9:00" />
+                                                    <h3 class="fs-subtitle">step13</h3>
+                                                    <label for="formFile" class="form-label">活動報名結束時間</label>
+                                                    <p></p>
+                                                    <input type="text" name="Act_name" placeholder="2000-1-1 9:00" />
+                                                    <p>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝</p>
 
                                                     <p>確認完內容後</p>
                                                     <input type="button" name="next" class="next action-button"
-                                                        value="Next" />
+                                                        value="Summit" />
 
-                                                    <div>&nbsp;&nbsp;&nbsp;</div>
                                                 </fieldset>
                                 </article>
                                 <article>
-                                    <div class="inner">
-                                        <div class="info">
-                                            <div class="compact"></div>
-                                            <!-- 這邊是黑現貨虛線地方text -->
-                                            <div class="text">
+<!--                                    <div class="inner">-->
+<!--                                        <div class="info">-->
+<!--                                            <div class="compact"></div>-->
+<!--                                            &lt;!&ndash; 這邊是黑現貨虛線地方text &ndash;&gt;-->
+<!--                                            <div class="text">-->
                                                 <!-- <div class="inner">
                                     <div class="info">
                                         <strong>December 23nd, 2020</strong>
@@ -333,43 +358,6 @@
                                                 <!-- <div class="text">
                                         <img src="/img/img_act/6.jpg" alt="" style="width: 200px; height: 150px;"> -->
 
-                                                <fieldset>
-                                                    <!--這些的name裡面要填資料庫東西ec：act_id-->
-                                                    <h2 class="fs-title">主辦者會員</h2>
-                                                    <h3 class="fs-subtitle">step 1</h3>
-                                                    <input type="text" name="email" placeholder="Email" />
-                                                    <input type="password" name="pass" placeholder="Password" />
-                                                    <input type="password" name="cpass"
-                                                        placeholder="Confirm Password" />
-
-                                                    <h2 class="fs-title">主辦者姓名</h2>
-                                                    <h3 class="fs-subtitle">step2</h3>
-                                                    <input type="text" name="姓氏" placeholder="姓氏" />
-                                                    <input type="text" name="名字" placeholder="名字" />
-                                                    <input type="text" name="電話" placeholder="電話" />
-
-                                                    <h2 class="fs-title">活動名稱</h2>
-                                                    <h3 class="fs-subtitle">step3</h3>
-                                                    <input type="text" name="Act_name" placeholder="例如：閃電五連鞭" />
-                                                    <input type="text" name="lname" placeholder="線上or線下" />
-
-                                                    <p> <label for="exampleFormControlTextarea1" class="form-label">
-                                                            活動簡介</label>
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                            rows="3"></textarea>
-                                                    </p>
-                                                    <label for="customRange2"
-                                                        class="form-label">活動人數Act-people-range</label>
-                                                    <input type="range" class="form-range" min="0" max="50"
-                                                        id="customRange2">
-                                                    <span id="rangeValue"></span>
-
-                                                    <p>確認完內容後</p>
-                                                    <input type="button" name="next" class="next action-button"
-                                                        value="Next" />
-
-                                                    <div>&nbsp;&nbsp;&nbsp;</div>
-                                                </fieldset>
                                 </article>
                                 <article>
                                     <div class="compact"></div>

@@ -25,6 +25,8 @@
 .custom-ban-button {
   background-color: gray;
   border: black;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 .custom-col-newmanager,
@@ -101,4 +103,8 @@ td:last-child {
 
 div.profile-row {
   margin: auto;
+}
+
+.dataTables_filter {
+  margin-right: 10px;
 }

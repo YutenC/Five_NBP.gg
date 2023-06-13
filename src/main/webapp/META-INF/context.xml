@@ -4,7 +4,7 @@
               driverClassName="com.mysql.cj.jdbc.Driver"
               jdbcUrl="jdbc:mysql://localhost:3306/FIVE"
               username="root"
-              password="jk4908709"
+              password="1234"
               factory="com.zaxxer.hikari.HikariJNDIFactory"
               minimumIdle="5"
               maximumPoolSize="10"

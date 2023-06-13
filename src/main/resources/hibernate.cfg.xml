@@ -13,7 +13,11 @@
 
         <!--  直接連線(上面4行) 或 JNDI寫法(對應Meta-inf的context) 二擇一  -->
 
+<<<<<<< HEAD
 <!--                <property name="hibernate.connection.datasource">java:comp/env/jdbc/five</property>-->
+=======
+       <property name="hibernate.connection.datasource">java:comp/env/jdbc/five</property>
+>>>>>>> origin/wangJZ
 
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -34,6 +38,8 @@
         <mapping class="com.member.entity.Other_app_login"/>
         <mapping class="com.member.entity.Gaming_tag"/>
         <mapping class="com.member.entity.Tag"/>
-
+        <mapping class="com.shopproduct.entity.Coupon"/>
+        <mapping class="com.shopproduct.entity.Product"/>
+        <mapping class="com.shopproduct.entity.ProductImage"/>
     </session-factory>
 </hibernate-configuration>

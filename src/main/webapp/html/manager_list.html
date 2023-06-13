@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>NPB.GG管理系統-管理員清單</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min_backend.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="../fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="../fonts/material-icons.min.css">
     <link rel="stylesheet" href="../css/x-dropdown.css">
@@ -176,7 +177,10 @@
                     card-header 標題框
                     card-body 視窗主體 -->
 
+                    <div class="card shadow">
+                        <div class="managerListContainer" id="managerListContainer"></div>
 
+                    </div>
 
                     <!-- Tcard -->
 
@@ -187,7 +191,7 @@
                         <div class="card-body">
                             <div class="col-md-6 custom-col-newmanager">
                                 <a class="btn btn-primary btn-sm d-none d-sm-inline-block custom-col-newmanager-btn"
-                                    role="button" href="#">
+                                    role="button" href="manager_add.html">
                                     新增管理員
                                 </a>
                             </div>
@@ -206,10 +210,29 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-md-end dataTables_filter" id="dataTable_filter">
+                                        <select name="manager_search_type" class="manager_search_type" required>
+                                            <option value="manager_id">ID</option>
+                                            <option value="account">帳號</option>
+                                            <option value="password">密碼</option>
+                                            <option value="name">姓名</option>
+                                            <option value="email">信箱</option>
+                                            <option value="phone">電話</option>
+                                            <option value="address">地址</option>
+                                            <option value="is_working">在職狀況</option>
+                                        </select>
                                         <label class="form-label">
-                                            <input type="search" class="form-control form-control-sm"
-                                                aria-controls="dataTable" placeholder="Search">
+                                            <input type="search"
+                                                class="form-control form-control-sm manager_search_content"
+                                                aria-controls="dataTable" placeholder="搜尋...">
                                         </label>
+                                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block manager_search_button"
+                                            role="button" href="#">
+                                            搜尋
+                                        </a>
+                                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block manager_default_list_button btn-danger"
+                                            role="button" href="#">
+                                            清除搜尋條件
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -325,7 +348,7 @@
                             </div>
                             <div class="col-md-6 custom-col-newmanager">
                                 <a class="btn btn-primary btn-sm d-none d-sm-inline-block custom-col-newmanager-btn"
-                                    role="button" href="#">
+                                    role="button" href="manager_add.html">
                                     新增管理員
                                 </a>
                             </div>
@@ -347,10 +370,14 @@
             <i class="fas fa-angle-up"></i>
         </a>
     </div>
+
+    <script src="../jquery/jquery-3.4.1.min.js"></script> <!-- jQuery -->
     <!-- JavaScript JS放置區 -->
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/theme.js"></script>
     <!-- JavaScript JS放置區 -->
+    <script src="../js/manager_list.js"></script>
+
 </body>
 
 </html>

@@ -40,12 +40,13 @@ public class ManagerDaoImpl implements ManagerDao{
 		if (password != null && !password.isEmpty()) {
 			hql.append("password = :password,");
 		}
-		hql.append("name = :name,")
+		hql.append("account = :account,")
+			.append("name = :name,")
 			.append("email = :email,")
 			.append("phone = :phone,")
 			.append("address = :address,")
-			.append("is_working = is_working ")
-			.append("WHERE account = :account");
+			.append("is_working = :is_working ")
+			.append("WHERE manager_id = :manager_id");
 			
 		Query query = getSession().createQuery(hql.toString());
 		if (password != null && !password.isEmpty()) {
@@ -57,6 +58,7 @@ public class ManagerDaoImpl implements ManagerDao{
 				.setParameter("address", manager.getAddress())
 				.setParameter("is_working", manager.getIs_working())
 				.setParameter("account", manager.getAccount())
+				.setParameter("manager_id", manager.getManager_id())
 				.executeUpdate();
 	}
 	
