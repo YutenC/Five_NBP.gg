@@ -104,3 +104,7 @@ td:last-child {
 div.profile-row {
   margin: auto;
 }
+
+.dataTables_filter {
+  margin-right: 10px;
+}
