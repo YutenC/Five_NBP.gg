@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -41,5 +42,7 @@ public class SecondhandProduct extends Core {
     @Column(name = "launch_time")
     private Date launchTime;
 
+    @OneToMany(mappedBy = "secondhandproduct")
+    private List<SecondhandProductImage> secondhandproductimages;
 
 }

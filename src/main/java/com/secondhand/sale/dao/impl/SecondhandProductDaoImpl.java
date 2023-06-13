@@ -65,5 +65,4 @@ public class SecondhandProductDaoImpl implements SecondhandProductDao {
     }
 
 
-
 }

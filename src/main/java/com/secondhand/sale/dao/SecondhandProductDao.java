@@ -38,6 +38,9 @@ public interface SecondhandProductDao extends CoreDao<SecondhandProduct, Integer
     }
 
     List<SecondhandProduct> selectByTime();
+
 }
+
+
 
 

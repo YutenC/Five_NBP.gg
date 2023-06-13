@@ -1,35 +1,28 @@
 package com.secondhand.sale.entity;
 
-import com.core.entity.Core;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
 @Table(name = "secondhand_product_image", schema = "five")
-public class SecondhandProductImage extends Core {
-    private static final long serialVersionUID = 1L;
-
+public class SecondhandProductImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "image_id")
+    @Column(name = "image_id", nullable = false)
     private Integer imageId;
 
-    @Column(name = "product_id")
-    private Integer productId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
+    private SecondhandProduct secondhandproduct;
 
     @Column
     private String image;
 
-    @Column(name = "is_use")
-    private Integer isUse;
-
+    @Column(name = "is_use", nullable = false)
+    private Byte isUse;
 
 }

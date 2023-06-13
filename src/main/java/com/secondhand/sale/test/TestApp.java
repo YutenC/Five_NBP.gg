@@ -1,5 +1,6 @@
 package com.secondhand.sale.test;
 
+import com.core.filter.HibernateFilter;
 import com.core.util.HibernateUtil;
 import com.secondhand.sale.dao.SecondhandProductDao;
 import com.secondhand.sale.dao.impl.SecondhandProductDaoImpl;
@@ -18,20 +19,20 @@ public class TestApp {
 //        Session session = sessionFactory.openSession();
 
 // ===========新增
-//        SecondhandProduct sp = new SecondhandProduct();
-//        sp.setName("XBOX主機");
-//        sp.setType("04");
-//        sp.setPrice(200);
-//        sp.setContent("aaaaaa");
-//        sp.setLaunchTime(new Date());
-//
-//        SecondhandProductDao spdao = new SecondhandProductDaoImpl();
-//        spdao.insert(sp);
+        SecondhandProduct sp = new SecondhandProduct();
+        sp.setName("PlayStationg.手把");
+        sp.setType("02");
+        sp.setPrice(500);
+        sp.setContent("ccccccc");
+        sp.setLaunchTime(new Date());
+
+        SecondhandProductDao spdao = new SecondhandProductDaoImpl();
+        spdao.insert(sp);
 
 
 // ===========刪除
 //        SecondhandProductDao spdao = new SecondhandProductDaoImpl();
-//        spdao.deleteById(4);
+//        spdao.deleteById(1);
 
 
 // ===========修改
