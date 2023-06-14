@@ -1,0 +1,25 @@
+package com.followlist.util;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ResFollowList {
+	
+	private Integer productId;
+	
+	private String productName;
+	
+	private Integer productPrice;
+	
+	private Integer productAmount;
+	
+	private String productImgUrl;
+}

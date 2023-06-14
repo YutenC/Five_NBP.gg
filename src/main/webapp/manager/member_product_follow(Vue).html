@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="../css/Profile-Edit-Form.css">
     <link rel="stylesheet" href="../css/Profile-with-data-and-skills.css">
     <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
         div.row {
             width: 100%;
@@ -102,6 +105,22 @@
             width: 15px;
             height: 100%;
         }
+
+        /* Vue動畫 */
+        .v-enter-active,
+        .v-leave-active {
+            transition: opacity 1s;
+        }
+
+        .v-enter-from,
+        .v-leave-to {
+            opacity: 0;
+        }
+
+        .v-enter-to,
+        .v-leave-from {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -110,7 +129,7 @@
         <nav class="navbar navbar-light navbar-expand-md py-3" style="background: #82d6bd;height: 120px;">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center"></a>
-                <a href="../index.html" style="width: 180px;height: 103.19px;">
+                <a href="#" style="width: 180px;height: 103.19px;">
                     <img data-bss-hover-animate="pulse" src="../img/Logo-removebg.png" style="width: 100%;">
                 </a>
                 <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2">
@@ -177,20 +196,16 @@
             <div class="col-lg-4 col-xl-2 offset-xl-1" style="height: 600px;">
                 <div class="list-group">
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                       href="member_info.html" data-bs-toggle="list"
-                       style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">基本資料管理
+                        href="./member_info.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">基本資料管理
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                       href="member_common_account.html" data-bs-toggle="list"
-                       style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">常用帳戶設定
+                        href="./member_friendlist.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">好友名單
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                       href="member_friendlist.html" data-bs-toggle="list"
-                       style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">好友名單
-                    </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                       href="member_blacklist.html" data-bs-toggle="list"
-                       style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">黑名單
+                        href="./member_blacklist.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">黑名單
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
                         href="#list-search-order" data-bs-toggle="list"
@@ -201,8 +216,8 @@
                         style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手交易
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                       href="SecondHand_buylist_search.html" data-bs-toggle="list"
-                       style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手收購進度
+                        href="./SecondHand_buylist_search.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢二手收購進度
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
                         href="#list-product-follow" data-bs-toggle="list"
@@ -218,12 +233,12 @@
                         style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查詢參加活動
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                       href="member_noticelist.html" data-bs-toggle="list"
-                       style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看通知
+                        href="./member_noticelist.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看通知
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                       href="member_loginhistory.html" data-bs-toggle="list"
-                       style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看登入紀錄
+                        href="./member_loginhistory.html" data-bs-toggle="list"
+                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">查看登入紀錄
                     </a>
                 </div>
             </div>
@@ -239,27 +254,32 @@
                                         <td>商品縮圖</td>
                                         <td>商品名稱</td>
                                         <td>商品單價</td>
-                                        <td>加入追蹤日期</td>
                                         <td>加入購物車</td>
                                         <td>直接購買</td>
                                         <td>可否購買</td>
                                         <td>取消追蹤</td>
                                     </tr>
-                                    <tr>
-                                        <td class="productPic"><a href=""><img
-                                                    src="../img/gameSoftware/PS5/Final_Fantasy_XVI/28a16edf3634d5829461fd50e21l5su5.jpg"
-                                                    alt=""></a>
-                                        </td>
-                                        <td><a href="">商品名稱</a></td>
-                                        <td>2023/5/26</td>
-                                        <td>$1,800</td>
-                                        <td><button>加入購物車</button></td>
-                                        <td><button>直接購買</button></td>
-                                        <td>尚有庫存</td>
-                                        <td class="followControl"><button class="cancel"><img
-                                                src="../img/icon/heart-solid.svg" alt=""></button><button
-                                                class="add"><img src="../img/icon/heart-regular.svg" alt=""></button>
-                                        </td>
+                                    <template v-if="mypick !== []" v-for="(item, index) in mypick">
+                                        <tr>
+                                            <td class="productPic"><a :href="'/Five_NBP.gg/' + item.productId"><img
+                                                        :src="item.productImgUrl" :alt="item.productName"></a>
+                                            </td>
+                                            <td><a :href="'/Five_NBP.gg/' + item.productId">{{ item.productName
+                                                    }}</a>
+                                            </td>
+                                            <td>{{ item.productPrice }}</td>
+                                            <td><button @click="">加入購物車</button></td>
+                                            <td><button @click="">直接購買</button></td>
+                                            <td>{{ item.productAmount > 10? '足夠' : '數量有限'}}</td>
+                                            <td class="followControl">
+                                                <button class="cancel" @click="remove(index, item.productId)">
+                                                    <img src="../img/icon/heart-solid.svg" alt="">
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                    <tr v-if="mypick === []">
+                                        <td colspan="7"><span>目前無追蹤商品</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -311,6 +331,7 @@
     <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
     <script src="../js/bs-init.js"></script>
     <script src="../js/Profile-Edit-Form.js"></script>
+    <script src="../js/memberPdFollow(Vue).js"></script>
 </body>
 
 </html>
