@@ -61,7 +61,7 @@ public class ManagerAddServlet extends HttpServlet {
 	    // 創建回應JSON數據
 	    JsonObject responseJson = new JsonObject();
 	    responseJson.addProperty("successful", manager.isSuccessful()); // 設置成功標誌，根據實際情況設置
-	    responseJson.addProperty("redirectUrl", request.getContextPath() + "/html/manager_list.html"); // 設置重導的網址
+	    responseJson.addProperty("redirectUrl", request.getContextPath() + "/manager/manager_list.html"); // 設置重導的網址
 	    responseJson.addProperty("message", manager.getMessage()); //回傳訊息
 	    
 	    // 設置回應的Content-Type為application/json

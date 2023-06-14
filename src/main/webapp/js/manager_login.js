@@ -1,6 +1,7 @@
 $("input.login_btn1").on("click", () => {
+    event.preventDefault
 
-    fetch('../manager/manager_logining', {
+    fetch('manager_logining', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

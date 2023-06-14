@@ -17,7 +17,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.manager.entity.Manager;
 
-@WebServlet("/manager/manager_logining")
+@WebServlet("/manager_logining")
 public class ManagerLoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

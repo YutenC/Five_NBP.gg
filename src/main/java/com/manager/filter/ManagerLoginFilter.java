@@ -44,7 +44,7 @@ public class ManagerLoginFilter implements Filter{
 		
 		if (account== null) {
 			session.setAttribute("location", req.getRequestURI());
-			resp.sendRedirect(req.getContextPath()+ "/html/manager_login.html");
+			resp.sendRedirect(req.getContextPath()+ "/manager_login.html");
 			return;
 		}else {
 			
