@@ -44,7 +44,7 @@
 
         /*商品詳情內頁*/
         .productShowcase {
-            width: 100%;
+            width: 90%;
             margin: auto;
             padding: 10px;
         }
@@ -125,6 +125,18 @@
         .detailUpper .purchase {
             margin-left: 10px;
         }
+
+        .detailUpper .purchase div {
+            margin: 5px;
+        }
+
+
+        .detailUpper .purchase button {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin: 3px;
+        }
+
 
         footer {
             padding: 5px;
@@ -210,27 +222,26 @@
         </nav>
     </header>
     <div class="shopmain">
+        <div class="miniMenu">
+            <div class="miniMenuContent">
+                <div class="viewRecord">
+                    <a href=""><img
+                            src="../img/gameSoftware/Nitendo/NoPlaceLikeHome/8d49654f86cee337e2a7317d031l9ro5.jpg"
+                            alt=""></a>
+                    <a href=""><img src="../img/peripherals/Nintendo/Zelda/335ced22c1dbccd628a4001e9a1l4xo5.jpg"
+                            alt=""></a>
+                    <a href=""><img src="../img/peripherals/Nintendo/Zelda/4262aa92a53a61f67e57e46e0b1l4tv5.jpg"
+                            alt=""></a>
+                </div>
+                <div class="miniMenuBut">
+                    <a href="" class="goTop"><img src="../img/icon/square-caret-up-regular.svg" alt="回到頂端"></a>
+                    <a href="" class="viewRecord"><img src="../img/icon/clock-regular.svg" alt="瀏覽紀錄"></a>
+                    <a href="" class="shoppingCart"><img src="../img/icon/cart-shopping-solid.svg" alt="購物車"></a>
+                </div>
+            </div>
+        </div>
         <main>
             <div class="productShowcase"> <!--產品詳情，從後端調資料動態產生-->
-                <div class="miniMenu">
-                    <div class="miniMenuContent">
-                        <div class="viewRecord">
-                            <a href=""><img
-                                    src="../img/gameSoftware/Nitendo/NoPlaceLikeHome/8d49654f86cee337e2a7317d031l9ro5.jpg"
-                                    alt=""></a>
-                            <a href=""><img src="../img/peripherals/Nintendo/Zelda/335ced22c1dbccd628a4001e9a1l4xo5.jpg"
-                                    alt=""></a>
-                            <a href=""><img src="../img/peripherals/Nintendo/Zelda/4262aa92a53a61f67e57e46e0b1l4tv5.jpg"
-                                    alt=""></a>
-                        </div>
-                        <div class="miniMenuBut">
-                            <a href="" class="goTop"><img src="../img/icon/square-caret-up-regular.svg" alt="回到頂端"></a>
-                            <a href="" class="viewRecord"><img src="../img/icon/clock-regular.svg" alt="瀏覽紀錄"></a>
-                            <a href="" class="shoppingCart"><img src="../img/icon/cart-shopping-solid.svg"
-                                    alt="購物車"></a>
-                        </div>
-                    </div>
-                </div>
                 <div class="detailUpper">
                     <div class="productImg">
                         <div class="mainPic">
@@ -281,7 +292,7 @@
                                 </div>
                                 <button>直接購買</button>
                                 <button>加入購物車</button>
-                                <button>加入追蹤清單</button>
+                                <button>加入追蹤</button>
                             </form>
                         </div>
                     </div>

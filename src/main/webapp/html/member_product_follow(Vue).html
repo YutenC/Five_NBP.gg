@@ -4,19 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>memberOrderList</title>
-    <link rel="stylesheet" href="/Five_NBP.gg/bootstrap/css/bootstrap.min.css">
+    <title>memberProductFollow</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
-    <link rel="stylesheet" href="/Five_NBP.gg/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Carousel-Hero.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Footer-with-social-media-icons.css">
+    <link rel="stylesheet" href="../fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/Carousel-Hero.css">
+    <link rel="stylesheet" href="../css/Footer-with-social-media-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Main-Content.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Navbar-Centered-Brand.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Profile-Edit-Form-1.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Profile-Edit-Form.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Profile-with-data-and-skills.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/styles.css">
+    <link rel="stylesheet" href="../css/Main-Content.css">
+    <link rel="stylesheet" href="../css/Navbar-Centered-Brand.css">
+    <link rel="stylesheet" href="../css/Profile-Edit-Form-1.css">
+    <link rel="stylesheet" href="../css/Profile-Edit-Form.css">
+    <link rel="stylesheet" href="../css/Profile-with-data-and-skills.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
         div.row {
             width: 100%;
@@ -33,10 +36,6 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0px 1px 10px 3px #FCFCFC;
-        }
-
-        .functionSelect {
-            margin-top: 10px;
         }
 
         .detailArea {
@@ -68,8 +67,11 @@
         }
 
         .detailArea table td:first-child {
-            width: 150px;
-            text-align: left;
+            width: 100px;
+        }
+
+        .detailArea table td:nth-child(2) {
+            width: 130px;
         }
 
         .detailArea table tr:first-child td:first-child {
@@ -88,33 +90,36 @@
             border-radius: 0 0 3px 0;
         }
 
+        td.productPic img {
+            width: 100px;
+            height: 100px;
+            object-fit: scale-down;
+        }
+
         button {
             border-radius: 3px;
-            border: 0;
-            margin: 3px;
-            width: 20px;
-            text-align: center;
-            padding: 0;
+            border: 1px solid #ccc;
         }
 
-        button.openBtn.switch {
-            display: none;
+        td.followControl button img {
+            width: 15px;
+            height: 100%;
         }
 
-        button.closeBtn {
-            display: none;
+        /* Vue動畫 */
+        .v-enter-active,
+        .v-leave-active {
+            transition: opacity 1s;
         }
 
-        button.closeBtn.switch {
-            display: inline;
+        .v-enter-from,
+        .v-leave-to {
+            opacity: 0;
         }
 
-        div.detailContent {
-            display: none;
-        }
-
-        div.detailContent.on {
-            display: block;
+        .v-enter-to,
+        .v-leave-from {
+            opacity: 1;
         }
     </style>
 </head>
@@ -125,7 +130,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center"></a>
                 <a href="#" style="width: 180px;height: 103.19px;">
-                    <img data-bss-hover-animate="pulse" src="/Five_NBP.gg/img/Logo-removebg.png" style="width: 100%;">
+                    <img data-bss-hover-animate="pulse" src="../img/Logo-removebg.png" style="width: 100%;">
                 </a>
                 <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2">
                     <span class="visually-hidden">Toggle navigation</span>
@@ -136,39 +141,39 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-bss-hover-animate="pulse" href="#"
                                 style="border-width: 20px;margin-top: 10px;">
-                                <img src="/Five_NBP.gg/img/gamepad-solid.svg">商城中心
+                                <img src="../img/gamepad-solid.svg">商城中心
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bss-hover-animate="pulse" href="#"
                                 style="border-width: 20px;margin-top: 10px;color: var(--bs-dark);">
-                                <img src="/Five_NBP.gg/img/dice-solid.svg">二手商城
+                                <img src="../img/dice-solid.svg">二手商城
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link align-items-xl-center" data-bss-hover-animate="pulse"
                                 style="border-width: 20px;margin-top: 11px;color: var(--bs-dark);" href="#">
-                                <img class="d-flex mx-auto" src="/Five_NBP.gg/img/newspaper-regular.svg"
+                                <img class="d-flex mx-auto" src="../img/newspaper-regular.svg"
                                     style="height: 50px;">論壇社群
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bss-hover-animate="pulse" href="#"
                                 style="border-width: 20px;margin-top: 10px;color: var(--bs-dark);">
-                                <img src="/Five_NBP.gg/img/champagne-glasses-solid.svg">活動專區
+                                <img src="../img/champagne-glasses-solid.svg">活動專區
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" data-bss-hover-animate="pulse" href="member_home.html"
                                 style="margin-top: 10px;">
-                                <img class="d-flex mx-auto align-items-xl-center" src="/Five_NBP.gg/img/user-solid.svg"
+                                <img class="d-flex mx-auto align-items-xl-center" src="../img/user-solid.svg"
                                     style="height: 50px;">會員中心
                             </a>
                         </li>
                         <li class="nav-item" style="height: 80px;">
                             <a class="nav-link" data-bss-hover-animate="pulse" href="#service_center"
                                 style="margin-top: 20px;color: var(--bs-dark);">
-                                <img class="d-xl-flex mx-auto" src="/Five_NBP.gg/img/handshake-simple-solid.svg"
+                                <img class="d-xl-flex mx-auto" src="../img/handshake-simple-solid.svg"
                                     style="height: 40px;">客服中心
                             </a>
                         </li>
@@ -193,10 +198,6 @@
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
                         href="./member_info.html" data-bs-toggle="list"
                         style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">基本資料管理
-                    </a>
-                    <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
-                        href="./member_common_account.html" data-bs-toggle="list"
-                        style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">常用帳戶設定
                     </a>
                     <a data-bss-hover-animate="pulse" class="list-group-item list-group-item-action"
                         href="./member_friendlist.html" data-bs-toggle="list"
@@ -244,60 +245,44 @@
 
             <div class="col colRight">
                 <div class="container profile profile-view" id="profile">
-                    <h1>一般交易紀錄查詢</h1>
-                    <div class="functionSelect">
-                        <form action="" class="functionSelect">
-                            <select name="functionSelect" id="functionSelect">
-                                <option value="all">全部</option>
-                                <option value="unpaid">未付款</option>
-                                <option value="paid">已付款</option>
-                                <option value="shipped">已出貨</option>
-                                <option value="unship">未出貨</option>
-                            </select>
-                        </form>
-                    </div>
+                    <h1>一般商品追蹤清單</h1>
                     <div class="detailArea">
                         <div class="detailUnit">
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>訂單編號</td>
-                                        <td>日期</td>
-                                        <td>訂單狀態</td>
-                                        <td>總價</td>
-                                        <td>付款狀態</td>
-                                        <td>出貨狀態</td>
-                                        <td>說明</td>
-                                        <td>退貨</td>
+                                        <td>商品縮圖</td>
+                                        <td>商品名稱</td>
+                                        <td>商品單價</td>
+                                        <td>加入購物車</td>
+                                        <td>直接購買</td>
+                                        <td>可否購買</td>
+                                        <td>取消追蹤</td>
                                     </tr>
-                                    <tr>
-                                        <td>11111111</td>
-                                        <td>2023/5/25</td>
-                                        <td>訂單成立</td>
-                                        <td>$2,000</td>
-                                        <td>已付款
-                                            <span>(信用卡一次付清)</span>
-                                        </td>
-                                        <td>已出貨</td>
-                                        <td>---</td>
-                                        <td></td>
+                                    <template v-if="mypick !== []" v-for="(item, index) in mypick">
+                                        <tr>
+                                            <td class="productPic"><a :href="'/Five_NBP.gg/' + item.productId"><img
+                                                        :src="item.productImgUrl" :alt="item.productName"></a>
+                                            </td>
+                                            <td><a :href="'/Five_NBP.gg/' + item.productId">{{ item.productName
+                                                    }}</a>
+                                            </td>
+                                            <td>{{ item.productPrice }}</td>
+                                            <td><button @click="">加入購物車</button></td>
+                                            <td><button @click="">直接購買</button></td>
+                                            <td>{{ item.productAmount > 10? '足夠' : '數量有限'}}</td>
+                                            <td class="followControl">
+                                                <button class="cancel" @click="remove(index, item.productId)">
+                                                    <img src="../img/icon/heart-solid.svg" alt="">
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                    <tr v-if="mypick === []">
+                                        <td colspan="7"><span>目前無追蹤商品</span></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="purchaseDetail">
-                                <button class="openBtn">+</button>
-                                <button class="closeBtn">-</button>
-                                <a href="" class="purchaseBtn">查看詳情</a>
-                                <div class="detailContent">
-                                    <table>
-                                        <tr>
-                                            <td><a href="">商品名稱~fadsfsfs</a></td>
-                                            <td>1件</td>
-                                            <td>$2,000</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -342,17 +327,11 @@
             </div>
         </div>
     </footer>
-    <script src="/Five_NBP.gg/jquery/jquery-3.4.1.min.js"></script>
+    <script src="../jquery/jquery-3.4.1.min.js"></script>
     <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
-    <script src="/Five_NBP.gg/js/bs-init.js"></script>
-    <script src="/Five_NBP.gg/js/Profile-Edit-Form.js"></script>
-    <script>
-        $('div.detailArea').on('click', 'button.purchaseBtn, a.purchaseBtn', function (e) {
-            e.preventDefault();
-            $(this).closest('div.purchaseDetail').find('div.detailContent').toggleClass('on');
-            $(this).closest('div.purchaseDetail').find('button').toggleClass('switch');
-        });
-    </script>
+    <script src="../js/bs-init.js"></script>
+    <script src="../js/Profile-Edit-Form.js"></script>
+    <script src="../js/memberPdFollow(Vue).js"></script>
 </body>
 
 </html>

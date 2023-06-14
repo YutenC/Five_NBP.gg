@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>shoppingCart</title>
 
     <style>
@@ -157,6 +158,7 @@
             border-radius: 0 0 3px 3px;
             border-collapse: separate;
             border-spacing: 0;
+            margin-bottom: 20px;
         }
 
         /*商品選取checkbox*/
@@ -305,6 +307,20 @@
             background: linear-gradient(to right, #fff, #F5F5F5 40%);
         }
 
+        /*------輸入優惠券及使用紅利點數-----*/
+        .cart div {
+            margin: 10px 0px;
+        }
+
+        .cart div.productTotal {
+            text-align: right;
+        }
+
+        .cart h4 {
+            display: inline-block;
+            margin: 0;
+        }
+
         /*----- 付款選擇頁籤 ------*/
         /* 頁籤區塊 */
         div.tagPage div.contentTabBlock {
@@ -339,20 +355,20 @@
         div.tagPage div.contentTabBlock ul.contentTab>li>a::after {
             content: "";
             position: absolute;
-            width: calc(100% + 2px);
+            width: 100%;
             height: 1px;
             bottom: -1px;
-            left: -1px;
+            left: 1px;
             z-index: 1;
         }
 
         div.tagPage div.contentTabBlock ul.contentTab>li>a.-on {
-            border: 1px solid #D9D9D9;
             color: black;
         }
 
         /* 將底部黑線改成白色 */
         div.tagPage div.contentTabBlock ul.contentTab>li>a.-on::after {
+            border: 1px solid #fff;
             background-color: white;
             width: 100%;
             left: 0;
@@ -463,7 +479,7 @@
     <div class="shoppingContent">
         <div class="cart">
             <h3>購物明細</h3>
-            <table>
+            <table id="purchaseDetail">
                 <thead>
                     <tr>
                         <th><input type="checkbox"></th>
@@ -511,8 +527,8 @@
                             <img src="../img/peripherals/Nintendo/Zelda/2a14aa702d831e8f7f2803e1601l4t05.jpg" alt="">
                         </td>
                         <td>
-                            <a href=""">
-                            Zelda
+                            <a href="">
+                                Zelda
                             </a>
                         </td>
                         <td>
@@ -525,7 +541,7 @@
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                                </select>
+                            </select>
                         </td>
                         <td>NTD$<span class="unitPrice">1900</span></td>
                         <td>NTD$</span><span class="itemPrice">1900</span> <!--選擇數量*單價-->
@@ -534,6 +550,23 @@
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <form action="">
+                    <div>
+                        <label for="couponId">折購代碼：</label>
+                        <input type="text" id="couponId" placeholder="請輸入欲使用的折扣代碼" maxlength="8">
+                    </div>
+                    <div class="bonus">
+                        <label for="bouns">使用紅利點數折抵：</label>
+                        <input type="range" id="bonus" v-model="bonus" max="1000">
+                        <input type="text" v-model="bonus">
+                    </div>
+                </form>
+            </div>
+            <div class="productTotal">
+                <h4>商品總額：</h4>
+                <span class="productTotal">1111111</span>
+            </div>
         </div>
         <h3>配送</h3>
         <div class="deliver">
@@ -547,7 +580,7 @@
             </div>
         </div>
         <div class="billTotal">
-            總金額<span>NTD$</span><span>1900</span><a href="shopIndex3.html">回賣場選購</a>
+            結帳總金額<span>NTD$</span><span>1900</span><a href="shopIndex3.html">回賣場選購</a>
         </div>
         <div class="brLine"></div>
         <h3>付款方式</h3>
@@ -590,7 +623,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../jquery/jquery-1.9.1.min.js"></script>
-    <script src="../js/switchTag.js"></script>
+    <script src="../js/shopSwitchTag.js"></script>
+    <script>
+        // Vue Code
+        const Xxx = Vue.createApp({
+            data() {
+                return {
+                    bonus: 0
+                };
+            }
+        });
+        Xxx.mount("div.bonus");
+
+    </script>
     <script>
         // 增添商品到購物車內按鈕變化
 

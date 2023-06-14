@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../css/shoppingCart(Vue).css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <title>shoppingCart</title>
+
+</head>
+
+<body>
+    <header class="cartHeader">
+        <div class="ctHeaderUp">
+            <a href="shopIndex3.html" class="logo">
+                <img src="../img/Logo-removebg.png" alt="">
+            </a>
+            <span>
+                購買商品注意宣導
+            </span>
+        </div>
+        <div class="addAdditional">
+            <div class="addButtons">
+                <a href="" class="addItem" data-from="byMyPick">
+                    <img src="../img/icon/square-plus-regular.svg" class="icon plus">
+                    <img src="../img/icon/square-minus-regular.svg" class="icon minus">
+                    從追蹤清單追加
+                </a>
+                <a href="" class="addItem" data-from="byPurchaseLog">
+                    <img src="../img/icon/square-plus-regular.svg" class="icon plus">
+                    <img src="../img/icon/square-minus-regular.svg" class="icon minus">
+                    從購買紀錄追加
+                </a>
+            </div>
+            <div class="addDetail">
+                <table class="byMyPick">
+                    <thead>
+                        <tr>
+                            <th>商品ID</th>
+                            <th>商品名稱</th>
+                            <th>單價</th>
+                            <th>加入本次購物</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template v-if="mypick !== ''" v-for="item in mypick">
+                            <tr>
+                                <td>{{ item.productId }}</td>
+                                <td>{{ item.productName }}</td>
+                                <td>${{ item.productPrice }}</td>
+                                <td><button @click="addToCart(item.productId)">加入購物車</button></td>
+                            </tr>
+                        </template>
+                        <tr v-if="mypick === ''">
+                            <td></td>
+                            <td colspan="3" style="text-align:center"><span>無追蹤商品</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="byPurchaseLog">
+                    <thead>
+                        <tr>
+                            <th>商品ID</th>
+                            <th>商品名稱</th>
+                            <th>近期購買日期</th>
+                            <th>單價</th>
+                            <th>加入本次購物</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template v-for="item in byPurchaseLog">
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.boughtDate}}</td>
+                                <td>${{ item.price }}</td>
+                                <td><button @click="addToCart(item.id)">加入購物車</button></td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </header>
+    <div class="shoppingContent">
+        <div class="cart">
+            <h3>購物明細</h3>
+            <table id="purchaseDetail">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="checkAll"></th>
+                        <th> </th>
+                        <th class="productname">商品名稱</th>
+                        <th>主機</th>
+                        <th>購買數量</th>
+                        <th>單價</th>
+                        <th>小計</th>
+                        <th>可買量</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template v-for="(item, index) in shoppingList">
+                        <tr>
+                            <td><input type="checkbox" :checked="item.checked"></td>
+                            <td class="productImg">
+                                <img :src="item.productImgUrl" :alt="item.productName">
+                            </td>
+                            <td>
+                                <a :href="'/Five_NBP.gg/' + item.productId"> <!--獲取-->
+                                    {{ item.productName }}
+                                </a>
+                            </td>
+                            <td>
+                                {{ item.brand }}
+                            </td>
+                            <td>
+                                <select name="amount1" v-model="item.buyAmount"
+                                    @changed="subtotal(item.buyAmount, item.price)">
+                                    <!--依實際庫存增減可選數量-->
+                                    <option v-for="pic in item.stockAmount" :value="pic">{{ pic }}</option>
+                                </select>
+                            </td>
+                            <td>NTD$<span class="unitPrice">{{ item.price }}</span></td>
+                            <td>NTD$<span class="itemPrice">{{ subtotal(item.buyAmount, item.price) }}</span>
+                                <!--選擇數量*單價-->
+                            <td>{{ item.stockAmount > 10? '足夠' : item.stockAmount }}</td>
+                            <td><button class="delete" @click="removeItem(index)"><img
+                                        src="../img/icon/trash-can-regular.svg" alt=""></button>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <div>
+                <form action="" id="discount">
+                    <ul><span>使用優惠代碼或是紅利點數折抵消費：</span>
+                        <li>
+                            <label for="couponId">折購代碼：</label>
+                            <input type="text" id="couponId" placeholder="請輸入欲使用的折扣代碼" maxlength="8"
+                                v-model.trim="couponId" @change="useCoupon()">
+                        </li>
+                        <li>
+                            <label for="bonus">使用紅利點數折抵：</label>
+                            <input type="text" id="bonus" v-model.number="bonus" @input="useBonus()">
+                        </li>
+                </form>
+            </div>
+            <div class=" productTotal">
+                <h4>商品總額：</h4>
+                <span class="productSubTotal">{{ productSubtotal }}</span>
+            </div>
+        </div>
+        <h3>配送</h3>
+        <div class="deliver">
+            <form>
+                <span>配送方式：</span>
+                <input type="radio" id="takuhai" value="takuhai" name="deliver" v-model="deliver" @change="">
+                <label for="takuhai">宅配</label>
+                <input type="radio" id="toCvs" value="toCvs" name="deliver" v-model="deliver">
+                <label for="toCvs">超商店取</label>
+            </form>
+            <div class="deliFee">
+                <span>運費：$</span><span class="deliFee">{{ deliverCal }}</span>
+            </div>
+        </div>
+        <div class="billTotal">
+            結帳總金額<span>NTD$</span><span>{{ productSubtotal + deliverCal}}</span><a href="shopIndex3.html">回賣場選購</a>
+        </div>
+        <div class="brLine"></div>
+        <h3>付款方式</h3>
+        <div class="tagPage">
+            <div class="contentTabBlock">
+                <ul class="contentTab">
+                    <li><a href="#" data-target="tab1" class="tab -on">信用卡</a></li>
+                    <li><a href="#" data-target="tab2" class="tab">轉帳</a></li>
+                    <li><a href="#" data-target="tab3" class="tab">貨到付款</a></li>
+                </ul>
+            </div>
+            <div class="contentPage">
+                <div class="tab tab1 -on">
+                    <form action="" class="creditCard">
+                        <div>
+                            <label for="cardNum">信用卡號</label>
+                            <input type="text" id="cardNum">
+                        </div>
+                        <div class="cardValidDate">
+                            <span>卡片效期</span>
+                            <input type="text" id="validMonth" placeholder="有效月份" maxlength="2">
+                            <input type="text" id="validYear" placeholder="有效年分" maxlength="4">
+                        </div>
+                        <div>
+                            <label for="validNum">驗證碼</label>
+                            <input type="text" id="validNum">
+                        </div>
+                    </form>
+                </div>
+                <div class="tab tab2">
+                    <span>商城轉帳資訊</span>
+                    <dl>
+                        <dt>商城帳戶名：</dt>
+                        <dd>NBP.gg</dd>
+                        <dt>商城帳戶分行名：</dt>
+                        <dd>NBP.gg Branch</dd>
+                        <dt>商城帳戶：</dt>
+                        <dd>123 4567 8910 1112</dd>
+                    </dl>
+                </div>
+                <div class="tab tab3">貨到付款資訊</div>
+            </div>
+        </div>
+        <div id="submit">
+            <button id="submit">確定付款</button>
+        </div>
+    </div>
+    <div id="promoProduct">
+        <span>推薦商品：</span>
+        <ul>
+            <template v-for="item in promoProduct">
+                <li>
+                    <a :href="item.link" @click="getLink(item.id)">
+                        <img :src="item.productImg" alt="">
+                    </a>
+                    <a :href="item.link" @click="getLink(item.id)">
+                        <span>{{ item.productName }}</span>
+                    </a>
+                    <span>${{ item.price }}</span>
+                </li>
+            </template>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../jquery/jquery-1.9.1.min.js"></script>
+    <script src="../js/shoppingCart(Vue).js"></script>
+    <script src="../js/shopSwitchTag.js"></script> <!--此設定需比Vue引入晚加入，否則會干擾對event物件的操作-->
+
+</body>
+
+</html>
