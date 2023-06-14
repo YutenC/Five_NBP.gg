@@ -1,5 +1,3 @@
-
-
 (() => {
 
     const SHproName = document.getElementById('SHproName');
@@ -18,7 +16,13 @@
     const photoUploadBtn = document.getElementById('photoUploadBtn');
     const photoDeleteBtn = document.getElementById('photoDeleteBtn');
     const saveBtn = document.getElementById('saveBtn');
-    const launchBtn = document.getElementById('launchBtn');
+    const addBtn = document.getElementById('addBtn');
+
+    const errorName = document.getElementById('errorName');
+    const errorType = document.getElementById('errorType');
+    const errorPrice = document.getElementById('errorPrice');
+    const errorContent = document.getElementById('errorContent');
+    const errorPhoto = document.getElementById('errorPhoto');
 
     // 測試是否抓到ID
     // launchBtn.addEventListener("click", function (){
@@ -26,8 +30,49 @@
     //     console.log(shname);})
 
 
+    // 錯誤訊息設定
+    SHproName.addEventListener("blur", function () {
+        const SHproValue = SHproName.value;
+        if (SHproValue.trim() === "") {
+            errorName.textContent = "請輸入商品名稱";
+        } else {
+            errorName.textContent = "";
+        }
+    })
 
-    launchBtn.addEventListener("click", function(){
+
+    SHproType.addEventListener("blur", function () {
+        const SHtypeValue = SHproType.value;
+        if (SHtypeValue === "") {
+            errorType.textContent = "請選擇商品類別";
+        } else {
+            errorType.textContent = "";
+        }
+    })
+
+
+    SHproPrice.addEventListener("blur", function () {
+        const SHpriceValue = SHproPrice.value;
+        if (SHpriceValue === "") {
+            errorPrice.textContent = "請輸入價格";
+        } else if (SHpriceValue <= 0) {
+            errorPrice.textContent = "價格不得為0或小於0元";
+        } else {
+            errorPrice.textContent = "";
+        }
+    })
+
+    SHproContent.addEventListener("blur", function () {
+        const SHcontentValue = SHproContent.value;
+        if (SHcontentValue === "") {
+            errorContent.textContent = "請輸入商品內容";
+        } else {
+            errorContent.textContent = "";
+        }
+    })
+
+    // 加入商品
+    addBtn.addEventListener("click", function () {
         fetch('sh_productmanageedit', {
             method: 'POST',
             headers: {
@@ -40,12 +85,18 @@
                 content: SHproContent.value,
                 // SHproPho1: SHproPho1.value,
             }),
-        }).then(resp =>  resp.json())
+        }).then(resp => resp.json())
             .then(
 
-            )
+                btnSubmit()
+    )
     })
+    // settimeout
+    // 要寫一個接收後端傳送的錯誤訊息
 
+    function btnSubmit() {
+        window.location.href = "../manager/sh_productmanage.html";
+    }
 
     //
     //

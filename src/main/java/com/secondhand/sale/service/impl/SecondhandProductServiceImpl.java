@@ -13,7 +13,7 @@ public class SecondhandProductServiceImpl implements SecondhandProductService {
 
 
     @Override
-    public SecondhandProduct launch(SecondhandProduct secondhandproduct) {
+    public SecondhandProduct addshp(SecondhandProduct secondhandproduct) {
         if ((secondhandproduct.getName() == null)) {
             secondhandproduct.setMessage("請輸入二手商品名稱");
             secondhandproduct.setSuccessful(false);

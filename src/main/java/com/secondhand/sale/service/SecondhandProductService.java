@@ -11,7 +11,7 @@ public interface SecondhandProductService {
 
 
 
-SecondhandProduct launch(SecondhandProduct secondhandproduct);
+SecondhandProduct addshp(SecondhandProduct secondhandproduct);
 
 
 
