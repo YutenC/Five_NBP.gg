@@ -67,7 +67,7 @@ public class ManagerLoginServlet extends HttpServlet {
 	    // 創建回應JSON數據
 	    JsonObject responseJson = new JsonObject();
 	    responseJson.addProperty("successful", manager.isSuccessful()); // 設置成功標誌，根據實際情況設置
-	    responseJson.addProperty("redirectUrl", request.getContextPath() + "/html/backend_homepage.html"); // 設置重導的網址
+	    responseJson.addProperty("redirectUrl", (String) request.getSession().getAttribute("location")); // 設置重導的網址
 	    
 	    responseJson.addProperty("manager_id", manager.getManager_id());
 	    responseJson.addProperty("account", manager.getAccount());
