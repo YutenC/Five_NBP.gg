@@ -1,6 +1,6 @@
 package com.member.service.impl;
 
-import com.core.service.CoreService;
+//import com.core.service.CoreService;
 import com.member.dao.MemberDao;
 import com.member.dao.impl.MemberDaoImpl;
 import com.member.entity.Member;
@@ -9,7 +9,7 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class MemberServiceimpl implements MemberService, CoreService {
+public class MemberServiceimpl implements MemberService {
 
     private MemberDao dao;
 
@@ -55,7 +55,7 @@ public class MemberServiceimpl implements MemberService, CoreService {
             return member;
         }
         try {
-            beginTransaction();
+//            beginTransaction();
             if (dao.selectByAccount(member.getAccount()) != null) {
                 member.setMessage("帳號重複");
                 member.setSuccessful(false);
@@ -66,7 +66,7 @@ public class MemberServiceimpl implements MemberService, CoreService {
             if (dao.selectByEmail(member.getEmail()) != null) {
                 member.setMessage("信箱重複");
                 member.setSuccessful(false);
-                rollback();
+//                rollback();
                 return member;
             }
 
@@ -74,13 +74,13 @@ public class MemberServiceimpl implements MemberService, CoreService {
             if (resultCount < 1) {
                 member.setMessage("註冊錯誤，請聯絡管理員!");
                 member.setSuccessful(false);
-                rollback();
+//                rollback();
                 return member;
             }
-            commit();
+//            commit();
             member.setMessage("註冊成功");
         } catch (Exception e) {
-            rollback();
+//            rollback();
             e.printStackTrace();
             member.setMessage("註冊失敗");
         }
@@ -123,7 +123,7 @@ public class MemberServiceimpl implements MemberService, CoreService {
     @Override
     public Member edit(Member member) {     // 會員自己編輯會員資料(暱稱、email、電話、大頭照)
         try {
-            beginTransaction();
+//            beginTransaction();
             final Member oMember = dao.selectByAccount(member.getAccount());
             // oMember 為資料庫原始資料     member 為會員輸入的資料
             if (member.getEmail() == null) {
@@ -144,12 +144,12 @@ public class MemberServiceimpl implements MemberService, CoreService {
             oMember.setAccount(member.getAccount());
             oMember.setPassword(member.getPassword());
             final int resultCount = dao.update(member);
-            commit();
+//            commit();
             member.setSuccessful(resultCount > 0);
             member.setMessage(resultCount > 0 ? "修改成功" : "修改失敗");
             return member;
         } catch (Exception e) {
-            rollback();
+//            rollback();
             e.printStackTrace();
             member.setMessage("修改失敗");
             return member;
@@ -158,9 +158,9 @@ public class MemberServiceimpl implements MemberService, CoreService {
 
     @Override
     public List<Member> findAll() {
-        beginTransaction();
+//        beginTransaction();
         List<Member> memberList = dao.selectAll();
-        commit();
+//        commit();
         return memberList;
     }
 
@@ -184,29 +184,19 @@ public class MemberServiceimpl implements MemberService, CoreService {
     }
 
     @Override
-    public boolean setPassword(Member member) {
-        return false;
-    }
-
-    @Override
-    public String resetPassword(Member member) {
-        return null;
-    }
-
-    @Override
     public Member setHeadshot(Member member) {
         return null;
     }
 
     @Override
     public boolean setMemberStatus(Member member) {
-        beginTransaction();
+//        beginTransaction();
         try {
             final Member verMember = dao.selectByEmail(member.getEmail());
             verMember.setMember_ver_state(member.getMember_ver_state());
             dao.update(verMember);
             System.out.println("驗證成功");
-            commit();
+//            commit();
             return true;
         } catch (Exception e) {
             System.out.println("驗證失敗");

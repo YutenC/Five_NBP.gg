@@ -14,6 +14,7 @@ import java.io.IOException;
 import static com.core.util.CommonUtil.*;
 import static com.member.util.MemberConstants.SERVICE;
 import static com.member.util.MemerCommonUitl.gsonToJson;
+import static com.member.util.MemerCommonUitl.visitorData;
 
 @WebServlet("/memberLoginServlet")
 public class MemberLoginServlet extends HttpServlet {
@@ -35,14 +36,17 @@ public class MemberLoginServlet extends HttpServlet {
         member = SERVICE.login(member);
         System.out.println("訊息：會員 " + member.getNick() + " " + member.getMessage());
         //  是否登入成功的訊息
+
         if (member.isSuccessful()) {
             if (request.getSession(false) != null) {
                 request.changeSessionId();
             }
             final HttpSession session = request.getSession();
-            session.setAttribute("loggedin", true);
+            session.setAttribute("isLogin", true);
             session.setAttribute("member", member);
         }
-        gsonToJson(response,member);
+
+        Member visitor = visitorData(member);
+        gsonToJson(response, visitor);
     }
 }

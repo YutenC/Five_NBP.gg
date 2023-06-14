@@ -28,4 +28,24 @@ public class MemerCommonUitl {
     public static Member getMemberSession(HttpServletRequest request, String key){
        return  (Member)request.getSession().getAttribute(key);
     }
+
+    public static Member visitorData(Member member){
+
+        Member visitor = new Member();
+        visitor.setMember_id(member.getMember_id());
+        visitor.setAccount(member.getAccount());
+        visitor.setNick(member.getNick());
+        visitor.setPhone(member.getPhone());
+        visitor.setBonus(member.getBonus());
+        visitor.setBirth(member.getBirth());
+        visitor.setId_number(member.getId_number());
+        visitor.setPhone(member.getPhone());
+        visitor.setAddress(member.getAddress());
+        visitor.setEmail(member.getEmail());
+        visitor.setMember_ver_state(member.getMember_ver_state());
+        visitor.setMessage(member.getMessage());
+        visitor.setSuccessful(member.isSuccessful());
+
+        return visitor;
+    }
 }

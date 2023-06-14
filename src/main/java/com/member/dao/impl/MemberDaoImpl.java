@@ -38,13 +38,13 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public int deleteById(Integer id) {
-        getSession().beginTransaction();
+//        getSession().beginTransaction();
         // 不能直接用session.remove(id)，因為括弧內要放的想要刪除的物件
         // 所以要把刪除整筆資料時需要把整個想要刪除的Member物件放進來
         // 要"先查詢要刪除的會員id"，"再用該id指定給session，刪除該會員"
         Member member = getSession().get(Member.class, id);
         getSession().remove(member);
-        getSession().getTransaction().commit();
+//        getSession().getTransaction().commit();
         member.setMessage("刪除成功");
         return member.getMember_id();
     }

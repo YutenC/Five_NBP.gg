@@ -5,7 +5,7 @@ $("li.logout").on("click", function (){
         dataType: "json",
         success:function(){
             sessionStorage.clear();
-            window.location.href="/Five_NBP_gg/html/index.html";
+            window.location.href="../index.html";
         }
     })
 })
