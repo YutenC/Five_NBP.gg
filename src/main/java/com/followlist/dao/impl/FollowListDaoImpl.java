@@ -16,6 +16,7 @@ import org.hibernate.query.NativeQuery;
 
 import com.followlist.dao.FollowListDao;
 import com.followlist.entity.FollowList;
+import com.followlist.entity.PKFollowList;
 
 public class FollowListDaoImpl implements FollowListDao {
 
@@ -30,11 +31,11 @@ public class FollowListDaoImpl implements FollowListDao {
 //		getSession().remove(getSession().get(FollowList.class, id));
 		return 0;
 	}
-	
+
 	@Override
-	public int deleteByCompositePK(Integer memberId, Integer productId) {
-		getSession().remove(selectByCompositePK(memberId, productId));
-		return 1;
+	public boolean deleteByCompositePK(FollowList flist) {
+		getSession().remove(flist);
+		return true;
 	}
 
 	@Override
@@ -52,15 +53,6 @@ public class FollowListDaoImpl implements FollowListDao {
 	public List<FollowList> selectAll() {
 		String hql = "FROM FollowList ORDER BY productId";
 		return getSession().createQuery(hql, FollowList.class).getResultList();
-	}
-
-	@Override
-	public FollowList selectByCompositePK(Integer memeberId, Integer productId) {
-		String hql = "FROM FollowList WHERE memberId = :memberId AND prodcutId = : productId";
-		return getSession().createQuery(hql, FollowList.class)
-					.setParameter("memberId", memeberId)
-					.setParameter("productId", productId)
-					.uniqueResult();
 	}
 
 	@Override

@@ -63,15 +63,16 @@ const byMyPick = Vue.createApp({
         }
     },
     methods: {
-        addToCart: function (id) {
+        addToCart: function (productId) {
+
             // 向後端發id調產品資訊
             // 添加部分項目
             // 加到購物車Vue商品列表
-            purchaseDetail.$data.purchaseDetail.push();
+            shoppingContent.$data.shoppingList.push();
         }
     },
     created() {
-        axios.get('/getFollowPd')
+        axios.get('/Five_NBP.gg/getFollowPd')
             .then(res => this.mypick = res.data)
             .catch(error => console.log(error))
     }
@@ -95,7 +96,7 @@ const byPurchaseLog = Vue.createApp({
             // 向後端發id調產品資訊
             // 添加部分項目
             // 加到購物車Vue商品列表
-            purchaseDetail.$data.purchaseDetail.push();
+            shoppingContent.$data.shoppingList.push();
         }
     }
 }).mount('table.byPurchaseLog');
@@ -124,16 +125,7 @@ const shoppingContent = Vue.createApp({
     data() {
         return {
             // 購物商品明細
-            purchaseDetail: [
-                {
-                    productId: 1111, productName: 'Diablo', productImg: '../img/peripherals/Nintendo/Zelda/2a14aa702d831e8f7f2803e1601l4t05.jpg',
-                    productLink: '?productId=1111', checked: true, productVer: '日版中文', buyAmount: 6, stock: 20, price: 3000,
-                },
-                {
-                    productId: 1111, productName: 'Diablo', productImg: '../img/peripherals/Nintendo/Zelda/2a14aa702d831e8f7f2803e1601l4t05.jpg',
-                    productLink: '?productId=1111', checked: true, productVer: '日版中文', buyAmount: 6, stock: 20, price: 3000,
-                }
-            ],
+            shoppingList: [],
             // 消費折抵
             couponId: '',
             couponDiscount: 0,
@@ -149,7 +141,7 @@ const shoppingContent = Vue.createApp({
             return buyAmount * price;
         },
         removeItem: function (index) {
-            let purchaseList = this.purchaseDetail;
+            let shoppingList = this.shoppingList;
             Swal.fire({
                 title: '確定刪除?',
                 icon: 'warning',
@@ -160,7 +152,7 @@ const shoppingContent = Vue.createApp({
                 cancelButtonText: '否'
             }).then(function (result) {
                 if (result.isConfirmed) {
-                    purchaseList.splice(index, 1);
+                    shoppingList.splice(index, 1);
                 }
             });
         },
@@ -180,7 +172,7 @@ const shoppingContent = Vue.createApp({
     computed: {
         productSubtotal: function () {
             let productSub = 0;
-            for (pic of this.purchaseDetail) {
+            for (pic of this.shoppingList) {
                 productSub += pic.buyAmount * pic.price;
             }
             return productSub - this.couponDiscount - this.bonus;
@@ -188,6 +180,15 @@ const shoppingContent = Vue.createApp({
         deliverCal() {
             return this.deliver === 'toCvs' ? 200 : 100;
         }
+    },
+    created() {
+        axios.get('/Five_NBP.gg/getShoppingList')
+            .then(res => {
+                this.shoppingList = res.data;
+                for (let e of this.shoppingList) {
+                    e.checked = true;
+                }
+            }).catch(err => console.log(err))
     }
 }).mount('.shoppingContent');
 

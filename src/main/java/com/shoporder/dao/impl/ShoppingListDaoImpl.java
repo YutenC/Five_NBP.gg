@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import com.shoporder.dao.ShoppingListDao;
+import com.shoporder.entity.PKShoppingList;
 import com.shoporder.entity.ShoppingList;
 
 public class ShoppingListDaoImpl implements ShoppingListDao {
@@ -42,15 +43,17 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
 	}
 
 	@Override
-	public ShoppingList selectByCompositePk(Integer memberId, Integer productId) {
-		CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
-		CriteriaQuery<ShoppingList> criteriaQuery = criteriaBuilder.createQuery(ShoppingList.class);
-		Root<ShoppingList> root = criteriaQuery.from(ShoppingList.class);
-		criteriaQuery.where(criteriaBuilder.equal(root.get("memberId"), memberId));
-		criteriaQuery.where(criteriaBuilder.equal(root.get("productId"), productId));
-		return getSession()
-				.createQuery(criteriaQuery)
-				.uniqueResult();
+	public ShoppingList selectByCompositePk(PKShoppingList pksplist) {
+		return getSession().get(ShoppingList.class, pksplist);
+	}
+
+	@Override
+	public List<ShoppingList> selectByMemberId(Integer memberId) {
+		String hql = "From ShoppingList WHERE pkShoppingList.memberId =: memberId";
+		return getSession().
+				createQuery(hql, ShoppingList.class)
+				.setParameter("memberId", memberId)
+				.getResultList();
 	}
 
 }

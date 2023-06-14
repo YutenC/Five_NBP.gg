@@ -31,22 +31,22 @@ public class OrderMaster {
 	private Integer memberId;
 	
 	@Column(name = "COMMIT_DATE", updatable = false)
-	private java.sql.Date commitDate;
+	private java.sql.Date commitDate;	// 結帳日期
 	
 	@Column(name = "TOTAL_PRICE", updatable = false)
 	private Integer totalPrice;
 	
 	@Column(name = "BONUS_USE", updatable = false)
-	private Integer bonusUse;
+	private Integer bonusUse;		// 使用紅利
 	
 	@Column(name = "DELIVER_NUMBER")
-	private String deliverNumber;
+	private String deliverNumber;		// 物流編號
 	
-	@Column(name = "COMMIT_TYPE")
+	@Column(name = "COMMIT_TYPE")		// 付款方式
 	private Integer commitType;
 	
 	@Column(name = "DELIVER_STATE")
-	private Integer deliverState;
+	private Integer deliverState;		// 出貨狀態
 	
 	@Column(name = "DELIVER_FEE")
 	private Integer deliverFee;
@@ -55,18 +55,18 @@ public class OrderMaster {
 	private String deliverLocation;
 	
 	@Column(name = "PICK_TYPE")
-	private Integer pickType;
+	private Integer pickType;		// 取貨方式
 	
 	@Column(name = "FINISH_TIME")
-	private java.sql.Date finishTime;
+	private java.sql.Date finishTime;	// 訂單結案時間
 
 	@Column(name = "COUPON_ID", updatable = false)
 	private Integer couponId;
 	
 	@Column(name = "ORDER_STATUS")
-	private Integer orderStatus;
+	private Integer orderStatus;	// 訂單狀態：1成立 2取消
 	
 	@Column(name = "PAY_STATUS")
-	private Integer payStatus;
+	private Integer payStatus;		// 付款狀態：1待付款 2已付款 3貨到付款
 
 }

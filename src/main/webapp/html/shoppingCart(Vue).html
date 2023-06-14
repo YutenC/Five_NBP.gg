@@ -53,10 +53,10 @@
                     <tbody>
                         <template v-if="mypick !== ''" v-for="item in mypick">
                             <tr>
-                                <td>{{ item.id }}</td>
-                                <td>{{ item.name }}</td>
-                                <td>${{ item.price }}</td>
-                                <td><button @click="addToCart(item.id)">加入購物車</button></td>
+                                <td>{{ item.productId }}</td>
+                                <td>{{ item.productName }}</td>
+                                <td>${{ item.productPrice }}</td>
+                                <td><button @click="addToCart(item.productId)">加入購物車</button></td>
                             </tr>
                         </template>
                         <tr v-if="mypick === ''">
@@ -99,8 +99,8 @@
                         <th><input type="checkbox" id="checkAll"></th>
                         <th> </th>
                         <th class="productname">商品名稱</th>
-                        <th>規格</th>
-                        <th>數量</th>
+                        <th>主機</th>
+                        <th>購買數量</th>
                         <th>單價</th>
                         <th>小計</th>
                         <th>可買量</th>
@@ -108,31 +108,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <template v-for="(item, index) in purchaseDetail">
+                    <template v-for="(item, index) in shoppingList">
                         <tr>
                             <td><input type="checkbox" :checked="item.checked"></td>
                             <td class="productImg">
-                                <img :src="item.productImg" alt="">
+                                <img :src="item.productImgUrl" :alt="item.productName">
                             </td>
                             <td>
-                                <a :href="item.productLink">
+                                <a :href="'/Five_NBP.gg/' + item.productId"> <!--獲取-->
                                     {{ item.productName }}
                                 </a>
                             </td>
                             <td>
-                                {{ item.productVer }}
+                                {{ item.brand }}
                             </td>
                             <td>
                                 <select name="amount1" v-model="item.buyAmount"
-                                    @changed="subtotal(purchaseDetail[index].buyAmount, purchaseDetail[index].price)">
+                                    @changed="subtotal(item.buyAmount, item.price)">
                                     <!--依實際庫存增減可選數量-->
-                                    <option v-for="pic in item.stock" :value="pic">{{ pic }}</option>
+                                    <option v-for="pic in item.stockAmount" :value="pic">{{ pic }}</option>
                                 </select>
                             </td>
                             <td>NTD$<span class="unitPrice">{{ item.price }}</span></td>
                             <td>NTD$<span class="itemPrice">{{ subtotal(item.buyAmount, item.price) }}</span>
                                 <!--選擇數量*單價-->
-                            <td>{{ item.stock > 10? '足夠' : '數量有限'}}</td>
+                            <td>{{ item.stockAmount > 10? '足夠' : item.stockAmount }}</td>
                             <td><button class="delete" @click="removeItem(index)"><img
                                         src="../img/icon/trash-can-regular.svg" alt=""></button>
                             </td>

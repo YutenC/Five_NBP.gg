@@ -48,7 +48,7 @@ public class Product {
 	
 	String content;
 	
-	@Column(name = "LAUNCH_TIMES")
+	@Column(name = "LAUNCH_TIME")
 	java.sql.Date launchTime;
 	
 	@OneToMany
