@@ -27,9 +27,9 @@
             console.log(data);
             console.log(data.manager);
 
-            manager_account.value = data.manager.account;
+            manager_account.innerHTML = data.manager.account;
             manager_password.value = data.manager.password;
-            manager_name.value = data.manager.name;
+            manager_name.innerHTML = data.manager.name;
             manager_email.value = data.manager.email;
             manager_phone.value = data.manager.phone;
             manager_address.value = data.manager.address;
@@ -45,11 +45,6 @@
 
 
     edit_btn.addEventListener('click', () => {
-        const accLength = manager_account.value.length;
-        if (accLength < 5 || accLength > 50) {
-            msg.textContent = '帳號長度須介於5~50字元';
-            return;
-        }
 
         const pwdLength = manager_password.value.length;
         if (pwdLength < 6 || pwdLength > 12) {
@@ -57,11 +52,6 @@
             return;
         }
 
-        const nameLength = manager_name.value.length;
-        if (nameLength < 1 || nameLength > 20) {
-            msg.textContent = '暱稱長度須介於1~20字元';
-            return;
-        }
 
         msg.textContent = '';
         fetch('../manager/manager_edit', {
@@ -71,9 +61,9 @@
             },
             body: JSON.stringify({
                 manager_id: manager_id,
-                manager_account: manager_account.value,
+                manager_account: manager_account.innerHTML,
                 manager_password: manager_password.value,
-                manager_name: manager_name.value,
+                manager_name: manager_name.innerHTML,
                 manager_email: manager_email.value,
                 manager_phone: manager_phone.value,
                 manager_address: manager_address.value,
