@@ -10,12 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.core.util.CommonUtil.json2Pojo;
-import static com.core.util.CommonUtil.writePojo2Json;
 import static com.secondhand.sale.util.SecondhandProductConstants.SERVICE;
 
-@WebServlet("/manager/sh_productmanageedit")
-public class AddshpServlet extends HttpServlet {
-
+@WebServlet("/manager/shp_delete")
+public class DeleteshpServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,15 +23,7 @@ public class AddshpServlet extends HttpServlet {
 
         SecondhandProduct secondhandproduct = json2Pojo(req, SecondhandProduct.class);
 
-        if (secondhandproduct == null){
-            secondhandproduct = new SecondhandProduct();
-            secondhandproduct.setMessage("無二手商品資訊");
-            secondhandproduct.setSuccessful(false);
-            writePojo2Json(resp, secondhandproduct);
-            return;
-        }
+        SERVICE.delete(secondhandproduct.getProductId());
 
-        secondhandproduct = SERVICE.addshp(secondhandproduct);
-        writePojo2Json(resp, secondhandproduct);
     }
 }

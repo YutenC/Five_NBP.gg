@@ -14,7 +14,7 @@ public class SecondhandProductServiceImpl implements SecondhandProductService {
 
     @Override
     public SecondhandProduct addshp(SecondhandProduct secondhandproduct) {
-        if ((secondhandproduct.getName() == null)) {
+        if ((secondhandproduct.getName().trim().isEmpty())) {
             secondhandproduct.setMessage("請輸入二手商品名稱");
             secondhandproduct.setSuccessful(false);
             return secondhandproduct;
@@ -36,7 +36,7 @@ public class SecondhandProductServiceImpl implements SecondhandProductService {
             return secondhandproduct;
         }
 
-        if ((secondhandproduct.getContent() == null)) {
+        if ((secondhandproduct.getContent().trim().isEmpty())) {
             secondhandproduct.setMessage("請輸入二手商品內容");
             secondhandproduct.setSuccessful(false);
             return secondhandproduct;
@@ -78,6 +78,7 @@ public class SecondhandProductServiceImpl implements SecondhandProductService {
 
     @Override
     public List<SecondhandProduct> searchAll() {
+
         return spdao.selectAll();
     }
 
