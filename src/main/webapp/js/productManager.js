@@ -72,7 +72,7 @@ const vm = Vue.createApp({
             let jsonProduct = JSON.stringify(vm.newProduct);
             axios({
                 method: "POST",
-                url: "http://localhost:8080/MyShop/demo/takeOnProduct",
+                url: host_context + "shopDispatcher/takeOnProduct",
                 params: {
                     newProduct: jsonProduct
                 }
@@ -94,7 +94,7 @@ const vm = Vue.createApp({
             console.log('takeOffProduct');
             axios({
                 method: "GET",
-                url: "http://localhost:8080/MyShop/demo/takeOffProduct",
+                url: host_context + "shopDispatcher/takeOffProduct",
                 params: {
                     product_id: id
                 }

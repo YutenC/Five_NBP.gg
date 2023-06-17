@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ProductImageDao extends CoreDao<ProductImage,Integer> {
     List<ProductImage> selectByProductId(Integer id);
+    ProductImage getIndexImgByProductId(Integer id);
 }

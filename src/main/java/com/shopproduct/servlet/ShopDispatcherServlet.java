@@ -1,5 +1,6 @@
 package com.shopproduct.servlet;
 
+import com.google.gson.Gson;
 import com.shopproduct.controller.*;
 
 import javax.servlet.annotation.WebServlet;
@@ -50,11 +51,6 @@ public class ShopDispatcherServlet extends HttpServlet {
         HttpSession session =req.getSession();
         String strOut="";
         switch (path){
-            case "/getBackgroundMessage":
-                String taskName=req.getParameter("taskName");
-                strOut= backgroundMessageController.getBackgroundMessage(taskName);
-                break;
-
 
             case "/createProductFromcsv":
                 productManagerController.createProductFromcsv();
@@ -62,15 +58,20 @@ public class ShopDispatcherServlet extends HttpServlet {
             case "/getAllProduct":
                 strOut=productController.getAllProduct();
                 break;
-            case "/longTimeProcess":
-                strOut=productManagerController.longTimeProcess();
+            case "/getProductDetail":
+                String productId_json=req.getParameter("id");
+                Gson gson=new Gson();
+                Integer productId= gson.fromJson(productId_json,Integer.class);
+                strOut=productController.getProductDetail(productId);
+                break;
+
+            case "/getProductHistory":
+                strOut=productController.getProductHistory();
                 break;
 
             case "/autoGenerateCouponActivity":
                 couponManagerController.autoGenerateCouponActivity();
                 break;
-
-
 
             case "/getAllCouponActivity":
                 strOut=couponManagerController.getAllCouponActivity(session);
@@ -95,6 +96,17 @@ public class ShopDispatcherServlet extends HttpServlet {
             case "/deleteCoupon":
                 Integer couponId=Integer.parseInt(req.getParameter("couponId")) ;
                 couponManagerController.deleteCoupon(couponId);
+                break;
+
+
+
+
+            case "/longTimeProcess":
+                strOut=productManagerController.longTimeProcess();
+                break;
+            case "/getBackgroundMessage":
+                String taskName=req.getParameter("taskName");
+                strOut= backgroundMessageController.getBackgroundMessage(taskName);
                 break;
         }
 
