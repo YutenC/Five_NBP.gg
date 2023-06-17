@@ -1,6 +1,7 @@
 package com.shopproduct.service.impl;
 
 import com.google.gson.Gson;
+import com.shopproduct.dao.CouponDao;
 import com.shopproduct.dao.ProductDao;
 import com.shopproduct.dao.impl.ProductDaoImpl;
 import com.shopproduct.entity.Coupon;
@@ -21,10 +22,12 @@ public class CouponManagerServiceImpl implements CouponManagerService {
 
     CouponService couponService;
     CouponActivityRedisDao couponActivityRedisDao;
+    CouponDao couponDao;
 
     public CouponManagerServiceImpl() {
         couponService = (CouponService) ObjectInstance.getInstance().getObject("CouponService");
         couponActivityRedisDao = (CouponActivityRedisDao) ObjectInstance.getInstance().getObject("CouponActivityRedisDao");
+        couponDao= (CouponDao) ObjectInstance.getInstance().getObject("CouponDao");
     }
 
     @Override
@@ -74,6 +77,24 @@ public class CouponManagerServiceImpl implements CouponManagerService {
     @Override
     public List<CouponActivity> searchCouponActivity() {
         return null;
+    }
+
+    @Override
+    public void updateCouponActivity(CouponActivity couponActivity) {
+        Coupon coupon = couponActivity.getCoupon();
+        couponDao.update(coupon);
+
+        RedisContent redisService = new RedisContent() {
+            @Override
+            public int run() {
+//                System.out.println("coupon.getDiscountCode(): "+coupon.getDiscountCode());
+                Coupon coupon_=couponService.getCouponByDiscountCode(coupon.getDiscountCode());
+                couponActivity.setCoupon(coupon_);
+                couponActivityRedisDao.updateCouponActivity(couponActivity);
+                return 0;
+            }
+        };
+        RedisFactory.getRedisServiceInstance().registerRedisService(redisService);
     }
 
     @Override

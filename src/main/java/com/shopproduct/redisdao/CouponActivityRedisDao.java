@@ -10,6 +10,7 @@ public interface CouponActivityRedisDao {
     List<CouponActivity> getAllCouponActivity();
     List<String> getAllCouponActivity_string();
     void addCouponActivity(CouponActivity couponActivity);
+    void  updateCouponActivity(CouponActivity couponActivity);
     void deleteCouponActivity(Integer couponId);
 
 

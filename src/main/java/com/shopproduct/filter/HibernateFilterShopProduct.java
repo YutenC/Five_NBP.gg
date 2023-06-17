@@ -28,16 +28,16 @@ public class HibernateFilterShopProduct extends HttpFilter {
 //        }
 
         try {
-            Transaction transaction = session.beginTransaction();
+            HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
             chain.doFilter(req, res);
 //            transaction.commit();
             HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 
             session = HibernateUtil.getSessionFactory().getCurrentSession();
-            transaction = session.beginTransaction();
+            session.beginTransaction();
             RedisFactory.getRedisServiceInstance().process();
             RedisFactory.clear();
-            transaction.rollback();
+            session.getTransaction().rollback();
         } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();

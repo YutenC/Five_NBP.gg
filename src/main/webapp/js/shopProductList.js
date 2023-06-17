@@ -8,6 +8,25 @@ const vm = Vue.createApp({
             products: []
         };
     },
+    created() {
+        // vm.getAllProduct();
+    },
+    mounted() {
+        // vm.getAllProduct();
+        axios({
+            method: "GET",
+            // url: "http://localhost:8080/MyShop/demo/getAllCouponActivity_json",
+            url: host_context + "shopDispatcher/getAllProduct",
+        })
+            .then(function (value) {
+                vm.products = value.data;
+                console.log("getAllProduct then");
+
+            })
+            .catch(function (e) {
+                console.log("getAllProduct error " + e);
+            });
+    },
     methods: {
         getAllProduct: function () {
             console.log('getAllProduct');
@@ -41,6 +60,11 @@ const vm = Vue.createApp({
                 .catch(function (e) {
                     console.log("addCart error " + e);
                 });
+
+
+        },
+        clickShopDetail: function (id) {
+
 
 
         },

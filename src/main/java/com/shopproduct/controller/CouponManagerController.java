@@ -66,6 +66,15 @@ public class CouponManagerController {
         return "";
     }
 
+    public String updateCouponActivity(String newCouponActivity){
+        Gson gson=new Gson();
+        CouponActivity couponActivity=gson.fromJson(newCouponActivity, CouponActivity.class);
+        couponManagerService.updateCouponActivity(couponActivity);
+
+return "";
+    }
+
+
     public void autoGenerateCouponActivity() {
         couponManagerService.generateCouponActivity();
     }

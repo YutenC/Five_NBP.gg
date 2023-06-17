@@ -8,10 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter("/*")
-public class APageFilter extends HttpFilter {
+//@WebFilter("/*")
+public class BPageFilter extends HttpFilter {
 //    String path = "/WEB-INF/pages";
     String path = "/html";
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+    }
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) {

@@ -81,6 +81,13 @@ public class ShopDispatcherServlet extends HttpServlet {
                 couponManagerController.addCouponActivity(session,newCouponActivity);
                 break;
 
+            case "/updateCouponActivity":
+                String json_newCouponActivity=req.getParameter("newCouponActivity");
+
+                strOut=couponManagerController.updateCouponActivity(json_newCouponActivity);
+                break;
+
+
             case "/addCoupon":
                 String json_newCoupon=req.getParameter("json_newCoupon");
                 couponManagerController.addCouponActivity(session,json_newCoupon);

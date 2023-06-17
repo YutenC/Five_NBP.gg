@@ -7,6 +7,7 @@ import com.shopproduct.entity.Coupon;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import javax.persistence.Column;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -17,7 +18,38 @@ public class CouponDaoImpl extends CoreDaoImpl<Coupon, Integer> implements Coupo
 
     @Override
     public int update(Coupon coupon) {
-        return 1;
+        final StringBuilder hql = new StringBuilder()
+                .append("UPDATE Coupon SET ");
+
+//        final String productName = product.getProductName();
+
+//        Integer id;
+//
+//        Integer discount;
+//
+//        @Column(name = "condition_price")
+//        Integer conditionPrice;
+//        java.util.Date deadline;
+//
+//        @Column(name = "discount_code")
+//        String discountCode;
+
+        hql.append("discount = :discount,")
+                .append("conditionPrice = :conditionPrice,")
+                .append("deadline = :deadline,")
+                .append("discountCode = :discountCode ")
+                .append("WHERE id = :id");
+
+        Query<?> query=getSession().createQuery(hql.toString());
+
+        return query
+                .setParameter("discount",coupon.getDiscount())
+                .setParameter("conditionPrice",coupon.getConditionPrice())
+                .setParameter("deadline",coupon.getDeadline())
+                .setParameter("discountCode",coupon.getDiscountCode())
+                .setParameter("id",coupon.getId())
+                .executeUpdate();
+
     }
 
 

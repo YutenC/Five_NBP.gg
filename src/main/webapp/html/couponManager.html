@@ -292,11 +292,15 @@
                                             <tr v-for="item in couponActivity">
                                                 <td>{{item.activityName}}</td>
                                                 <td>{{item.activityCode}}</td>
-                                                <td>{{item.coupon.discountCode}}</td>
+                                                <td><input  v-model="item.coupon.discountCode" type="text"></td>
+<!--                                                <td>{{item.coupon.discountCode}}</td>-->
                                                 <td>{{item.coupon.discount}}</td>
                                                 <td>{{item.coupon.conditionPrice}}</td>
                                                 <td>{{item.coupon.deadline}}</td>
 
+                                                </td>
+                                                <td><button style="width: 50px; height: 20px;"
+                                                            @click="updateCouponActivity(item.coupon.id)">更新</button>
                                                 </td>
                                                 <td><button style="width: 50px; height: 20px;"
                                                         @click="deleteCouponActivity(item.coupon.id)">刪除</button>
