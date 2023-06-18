@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//@WebFilter("/*")
+@WebFilter("/*")
 public class HibernateFilter extends HttpFilter {
     private static final long serialVersionUID = 1L;
 
@@ -29,6 +29,4 @@ public class HibernateFilter extends HttpFilter {
             session.getTransaction().rollback();
         }
     }
-
-
 }
