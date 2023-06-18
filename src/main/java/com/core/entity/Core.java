@@ -23,17 +23,14 @@ public class Core implements Serializable {
     }
 
     public void setSuccessful(boolean successful) {
-        System.out.println("設定成功");
         this.successful = successful;
     }
 
     public String getMessage() {
-        System.out.println("取得訊息");
         return message;
     }
 
     public void setMessage(String message) {
-        System.out.println("設定訊息");
         this.message = message;
     }
 }

@@ -1,8 +1,6 @@
 package com.secondhand.buy.test;
 
 
-import java.util.Date;
-
 import com.secondhand.buy.dao.impl.SecondHandBuylistDaoimpl;
 import com.secondhand.buy.vo.SecondHandBuylist;
 
@@ -20,7 +18,7 @@ public class TestApp {
 		SecondHandBuylistDaoimpl secondHandBuylistDaoimpl = new SecondHandBuylistDaoimpl();
 		System.out.println
 		(
-				secondHandBuylistDaoimpl.selectByTime(new Date(0),new Date() )
+//				secondHandBuylistDaoimpl.selectByTime(new Date(0),new Date() )
 				
 				);
 

@@ -82,27 +82,33 @@ public class Member extends Core {
     // 會員地址
 
     @Column
+//            (nullable = true, columnDefinition = "double default 0.00")
     private Double bonus;
     // 累積紅利
 
     @Column
+//            (columnDefinition = "int default 0")
     private Integer member_ver_state;
     // 會員驗證狀態
 
     @Column
+//            (nullable = true)
     private Date suspend_deadline;
     // 會員停權期限
 
     @Column
+//            (nullable = true)
     private String headshot;
     // 大頭照
 
     @Column
+//            (nullable = true)
     private Date ver_deadline;
     // 驗證信到期時間  可不在這做，可以存到redis就好
     // sql.Date 只存時間到日；util.Date 會存時間精準到毫秒
 
     @Column
+//            (columnDefinition = "int default 0")
     private Integer violation;
     // 被檢舉次數
 }

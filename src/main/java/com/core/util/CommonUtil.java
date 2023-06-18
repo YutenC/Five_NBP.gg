@@ -24,7 +24,8 @@ public class CommonUtil {
 //		return DATASOURCE.getConnection();
 //	}
 
-	public static <P> P json2Pojo(HttpServletRequest request, Class<P> classOfPojo) {
+	// 將進來的JSON物件轉為Member物件輸入
+	public static <E> E json2Pojo(HttpServletRequest request, Class<E> classOfPojo) {
 		try (BufferedReader br = request.getReader()) {
 			return GSON.fromJson(br, classOfPojo);
 		} catch (Exception e) {
@@ -33,6 +34,7 @@ public class CommonUtil {
 		return null;
 	}
 
+	// 將進來的Member物件轉換成JSON物件輸出
 	public static <P> void writePojo2Json(HttpServletResponse response, P pojo) {
 		response.setContentType(JSON_MIME_TYPE);
 		try (PrintWriter pw = response.getWriter()) {
