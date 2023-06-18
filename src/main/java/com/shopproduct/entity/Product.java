@@ -64,7 +64,6 @@ public class Product {
     @Transient
     ProductImage productIndexImage;
 
-//    @Transient
-//    List<ProductImage> productImages;
+
 
 }

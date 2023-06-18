@@ -4,7 +4,9 @@ import com.shopproduct.dao.ProductImageDao;
 import com.shopproduct.dao.impl.CouponDaoImpl;
 import com.shopproduct.dao.impl.ProductDaoImpl;
 import com.shopproduct.dao.impl.ProductImageDaoImpl;
+import com.shopproduct.redisdao.ProductRedisDao;
 import com.shopproduct.redisdao.impl.CouponActivityRedisDaoImpl;
+import com.shopproduct.redisdao.impl.ProductRedisDaoImpl;
 import com.shopproduct.service.ProductManagerService;
 import com.shopproduct.service.impl.CouponManagerServiceImpl;
 import com.shopproduct.service.impl.CouponServiceImpl;
@@ -45,6 +47,9 @@ public class ObjectInstance {
         map.put("CouponDao",new CouponDaoImpl());
         map.put("CouponActivityRedisDao",new CouponActivityRedisDaoImpl());
         map.put("ProductImageDao",new ProductImageDaoImpl());
+        map.put("ProductRedisDao",new ProductRedisDaoImpl());
+
+
         map.put("CouponService",new CouponServiceImpl());
         map.put("CouponManagerService",new CouponManagerServiceImpl());
         map.put("ProductService",new ProductServiceImpl());

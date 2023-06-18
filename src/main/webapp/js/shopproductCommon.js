@@ -26,26 +26,29 @@ function gethost_context() {
     host_context = "http://localhost:8080/shop/";
 }
 
-function getDataFromSessionStorage() {
-    e.preventDefault();
-    let todo_list;
+export function saveDataToSessionStorage(key, content) {
+    const jsonData = JSON.stringify(content)
+    sessionStorage.setItem(key, encodeURIComponent(jsonData));
+}
+
+export function getDataFromSessionStorage(key) {
+    // e.preventDefault();
+    let content;
     // 取得資料
     for (let index = 0; index < sessionStorage.length; index++) {
-        const key = sessionStorage.key(index);
-        const value = sessionStorage.getItem(key);
-        if (key === "todo_list") {
-            todo_list = sessionStorage.getItem(key);
+        const key_ = sessionStorage.key(index);
+        // const value = sessionStorage.getItem(key);
+        if (key === key_) {
+            content = sessionStorage.getItem(key);
+            break;
         }
     }
 
-    const obj = JSON.parse(decodeURIComponent(todo_list));
+    const obj = JSON.parse(decodeURIComponent(content));
     return obj;
 }
 
-function saveDataToSessionStorage(list) {
-    const jsonData = JSON.stringify(list)
-    sessionStorage.setItem('todo_list', encodeURIComponent(jsonData));
-}
+
 
 
 export { host_context, nowDate };

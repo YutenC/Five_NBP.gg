@@ -154,7 +154,7 @@ public class CreateProductDB<T, P> {
 //                ProductImage productImage = new ProductImage(p_id, "./img/gameSoftware/test/" + newFileName);
 
 
-                ProductImage productImage = new ProductImage((Product)product, "./img/gameSoftware/test/" + newFileName);
+                ProductImage productImage = new ProductImage((Product)product, "../img/gameSoftware/test/" + newFileName);
                 productImageDao.insert(productImage);
 
             }

@@ -50,7 +50,8 @@
     background-color: #fff;
     width: 60px;
     top: 200px;
-    display: none;
+    padding: 0;
+    /* display: block; */
 }
 
 .shopmain .miniMenu div.viewRecord img {
@@ -58,4 +59,9 @@
     height: 60px;
     object-fit: fill;
     margin: 1px;
+}
+
+
+.viewRecordNoneDisplay {
+    display: none;
 }

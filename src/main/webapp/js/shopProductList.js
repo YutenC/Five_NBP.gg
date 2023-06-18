@@ -1,4 +1,5 @@
 import { host_context, nowDate } from './shopproductCommon.js';
+import { saveDataToSessionStorage } from './shopproductCommon.js';
 
 const vm = Vue.createApp({
     data() {
@@ -64,9 +65,7 @@ const vm = Vue.createApp({
 
         },
         clickShopDetail: function (id) {
-
-
-
+            saveDataToSessionStorage("currentShopProductDetail_id", id);
         },
     },
 }).mount(".shopmain");
