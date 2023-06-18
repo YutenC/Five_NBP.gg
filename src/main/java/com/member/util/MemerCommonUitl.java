@@ -42,10 +42,20 @@ public class MemerCommonUitl {
         visitor.setPhone(member.getPhone());
         visitor.setAddress(member.getAddress());
         visitor.setEmail(member.getEmail());
+        visitor.setHeadshot(member.getHeadshot());
         visitor.setMember_ver_state(member.getMember_ver_state());
         visitor.setMessage(member.getMessage());
         visitor.setSuccessful(member.isSuccessful());
 
         return visitor;
+    }
+
+    public static String verificationCode(){
+        String code = "zxcvbnmasdfghjklqwertyuiopZXCVBNMASDFGHJKLQWERTYUIOP1234567890";
+        String verificationCode = "";
+        for (int i = 0; i <= 8; i++) {
+            verificationCode += code.charAt((int)(Math.random() * 62));
+        }
+        return verificationCode;
     }
 }

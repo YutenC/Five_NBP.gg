@@ -2,7 +2,6 @@ package com.member.dao;
 
 import com.core.dao.CoreDao;
 import com.member.entity.Bank;
-import com.member.entity.Member;
 
 public interface BankDao extends CoreDao<Bank, Integer> {
 
@@ -13,5 +12,7 @@ public interface BankDao extends CoreDao<Bank, Integer> {
     int update(Bank bank);
 
     Bank selectById(Integer id);
+
+    Bank selectByBankNumber(String bank_number);
 
 }

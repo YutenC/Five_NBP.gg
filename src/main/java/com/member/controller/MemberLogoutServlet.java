@@ -19,7 +19,8 @@ public class MemberLogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Member member = getMemberSession(request,"member");
         System.out.println("會員：" + member.getNick() + " 成功登出");
-        request.getSession().invalidate();
+        request.getSession().setAttribute("isLogin", false);
+        request.getSession().removeAttribute("member");
         gsonToJson(response,member);
     }
 }
