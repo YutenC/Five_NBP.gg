@@ -256,6 +256,15 @@
                                 </tfoot>
                             </table>
                         </div>
+
+                        <!-- <form action="" method="POST" enctype="multipart/form-data">
+                            <input type="file" name="file" />
+                            <input type="submit" value="Upload" />
+                        </form> -->
+                        <div>
+                            <input type="file" name="file" @change="onFileChange" />
+                            <button id="imgSubmit" @click="imgSubmit">Upload</button>
+                        </div>
                     </div>
 
 

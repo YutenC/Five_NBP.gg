@@ -9,6 +9,7 @@ const vm = Vue.createApp({
             minDate: '',
             newProduct: {},
             products: [],
+            file: null
         };
     },
     components: {
@@ -136,7 +137,43 @@ const vm = Vue.createApp({
                     console.log("getBackgroundMessage error " + e);
                 });
         },
+        imgSubmit: function () {
+            console.log('imgSubmit');
+            const formData = new FormData();
+            formData.append('file', this.file);
 
+            // axios.post(host_context + "shopDispatcher/uploadProduct", formData, {
+            //     headers: {
+            //         'Content-Type': 'multipart/form-data'
+            //     }
+            // })
+            //     .then(response => {
+            //         console.log('File uploaded successfully!');
+            //     })
+            //     .catch(error => {
+            //         console.error('Error uploading file:', error);
+            //     });
+
+            axios({
+                method: "POST",
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                url: host_context + "shopDispatcher/uploadProduct",
+                data: formData
+
+            })
+                .then(function (value) {
+                    // vm.getallproduct();
+                    console.log("imgSubmit then");
+                })
+                .catch(function (e) {
+                    console.log("imgSubmit error " + e);
+                });
+        },
+        onFileChange(event) {
+            this.file = event.target.files[0];
+        }
     },
 }).mount("#page-top");
 
