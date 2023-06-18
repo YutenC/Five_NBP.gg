@@ -19,7 +19,7 @@ public interface CoreDao<M, I> {
 
     default Session getSession() {
 
-        return HibernateUtil.getSessionFactory().openSession();             // 單機測試
-//        return  HibernateUtil.getSessionFactory().getCurrentSession();    // 上線環境測試
+//        return HibernateUtil.getSessionFactory().openSession();             // 單機測試
+        return  HibernateUtil.getSessionFactory().getCurrentSession();    // 上線環境測試
     }
 }

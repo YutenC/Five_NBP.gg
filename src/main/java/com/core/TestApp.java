@@ -21,10 +21,12 @@ public static void main(String[] args) {
 	
 //	ManagerDao managerdao = new ManagerDaoImpl();
 	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-    Session session = sessionFactory.openSession();
-
-    Manager manager = session.get(Manager.class, 1);
-    System.out.println(manager.getAccount());
+    Session session = sessionFactory.getCurrentSession();
+    System.out.println(session);
+    System.out.println(session);
+//    Manager manager = session.get(Manager.class, 1);
+//    System.out.println(manager.getAccount());
 	
-}
+	}
+
 }

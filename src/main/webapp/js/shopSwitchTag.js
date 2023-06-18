@@ -1,5 +1,5 @@
 // 商品詳情分頁切換
-$('.tagPage').on('click', 'a.tab', function (e) {
+$('div.tagPage').on('click', 'ul.contentTab a.tab', function (e) {
     e.preventDefault();
     $('a.tab').removeClass('-on');
     $('div.tab').removeClass('-on');

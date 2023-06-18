@@ -25,4 +25,6 @@ public class Member_credit extends Core {
     private Integer member_id;
     @Column
     private String cred_number;
+    @Column
+    private String bank_name;
 }
