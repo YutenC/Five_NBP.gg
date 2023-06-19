@@ -38,13 +38,13 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public int deleteById(Integer id) {
-        getSession().beginTransaction();
+//        getSession().beginTransaction();
         // 不能直接用session.remove(id)，因為括弧內要放的想要刪除的物件
         // 所以要把刪除整筆資料時需要把整個想要刪除的Member物件放進來
         // 要"先查詢要刪除的會員id"，"再用該id指定給session，刪除該會員"
         Member member = getSession().get(Member.class, id);
         getSession().remove(member);
-        getSession().getTransaction().commit();
+//        getSession().getTransaction().commit();
         member.setMessage("刪除成功");
         return member.getMember_id();
     }
@@ -62,7 +62,11 @@ public class MemberDaoImpl implements MemberDao {
         }
         hql.append("email = :email, ")
                 .append("phone = :phone, ")
-                .append("address = :address ")
+                .append("address = :address, ")
+                .append("bonus = :bonus, ")
+                .append("member_ver_state = :member_ver_state, ")
+                .append("headshot = :headshot, ")
+                .append("violation = :violation ")
                 .append("where account = :account");
 
         Query<?> query = getSession().createQuery(hql.toString());
@@ -74,6 +78,10 @@ public class MemberDaoImpl implements MemberDao {
                 .setParameter("email", member.getEmail())
                 .setParameter("phone", member.getPhone())
                 .setParameter("address", member.getAddress())
+                .setParameter("bonus", member.getBonus())
+                .setParameter("member_ver_state", member.getMember_ver_state())
+                .setParameter("headshot", member.getHeadshot())
+                .setParameter("violation", member.getViolation())
                 .setParameter("account", member.getAccount())
                 .executeUpdate();
     }
@@ -123,6 +131,16 @@ public class MemberDaoImpl implements MemberDao {
         final String sql = "SELECT * FROM member WHERE email = :email";
         return getSession()
                 .createNativeQuery(sql, Member.class)
+                .setParameter("email", email)
+                .uniqueResult();
+    }
+
+    @Override
+    public Member selectByAccountNEmail(String account, String email){
+        final String sql = "SELECT * FROM member WHERE account = :account and email = :email";
+        return getSession()
+                .createNativeQuery(sql, Member.class)
+                .setParameter("account", account)
                 .setParameter("email", email)
                 .uniqueResult();
     }

@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.member.util.MemerCommonUitl.getMemberSession;
-import static com.member.util.MemerCommonUitl.gsonToJson;
+import static com.member.util.MemerCommonUitl.*;
 
 @WebServlet("/memberGetInforServlet")
 public class MemberGetInforServlet extends HttpServlet {
@@ -26,7 +25,10 @@ public class MemberGetInforServlet extends HttpServlet {
             gsonToJson(response, visitor);
             return;
         }
-        System.out.println("訊息：會員 " + member.getNick() + "取得資訊");
-        gsonToJson(response, member);
+        Member visitor = visitorData(member);
+        // 後端先過濾輸出到前端的資料
+
+        System.out.println("訊息：會員 " + visitor.getNick() + " 取得資訊");
+        gsonToJson(response, visitor);
     }
 }

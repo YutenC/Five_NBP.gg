@@ -22,24 +22,6 @@ import java.sql.Date;
 @NoArgsConstructor
 @Table(name = "member", schema = "five")
 public class Member extends Core {
-//    public Member(){}
-//    public Member (Integer member_id,String account,String password,String nick,String email,String phone,java.sql.Date birth,String id_number,String address,Double bonus,Integer member_ver_state,Date suspend_deadline,String headshot,Date ver_deadline,Integer violation){
-//        this.member_id = member_id;
-//        this.account = account;
-//        this.password = password;
-//        this.nick = nick;
-//        this.email = email;
-//        this.phone = phone;
-//        this.birth = birth;
-//        this.id_number = id_number;
-//        this.address = address;
-//        this.bonus = bonus;
-//        this.member_ver_state = member_ver_state;
-//        this.suspend_deadline = suspend_deadline;
-//        this.headshot = headshot;
-//        this.ver_deadline = ver_deadline;
-//        this.violation = violation;
-//    }
 
     private static final long serialVersionUID = 1L;
 
