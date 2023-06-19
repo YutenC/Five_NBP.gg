@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.core.entity.Core;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SecondHand_Buylist" ,catalog = "five")
-public class SecondHandBuylist extends com.core.entity.Core {
+public class SecondHandBuylist extends Core {
 	private static final long serialVersionUID = -1589649673055389103L;
 	
 	
@@ -60,7 +62,7 @@ public class SecondHandBuylist extends com.core.entity.Core {
 	@Column(name = "approval_state")
 	private String approvalState;
 	
-	@Column(name = "apply_time" , insertable = false , updatable = false)
+	@Column(name = "apply_time" , insertable = false)
 	private Date applyTime;
 	
 	@Column(name = "applicant_bank_number")
@@ -70,6 +72,15 @@ public class SecondHandBuylist extends com.core.entity.Core {
 	@OneToMany
 	@JoinColumn(name = "buylist_id",referencedColumnName = "buylist_id")
 	private List<SecondHandBuyPicture> image ;
+
+	@Override
+	public String toString() {
+		return "SecondHandBuylist [buylistId=" + buylistId + ", memberId=" + memberId + ", managerId=" + managerId
+				+ ", productName=" + productName + ", type=" + type + ", content=" + content + ", estimate=" + estimate
+				+ ", price=" + price + ", confirmTime=" + confirmTime + ", payState=" + payState + ", approvalState="
+				+ approvalState + ", applyTime=" + applyTime + ", applicantBankNumber=" + applicantBankNumber
+				+ ", image=" + image + "]";
+	}
 		
 	
 		

@@ -17,12 +17,12 @@ import com.secondhand.buy.service.impl.SecondHandBuyServiceImpl;
 import com.secondhand.buy.vo.SecondHandBuyPicture;
 import com.secondhand.buy.vo.SecondHandBuylist;
 
-@WebServlet("/secondhand/selectall")
+
+@WebServlet("/sh_shop/selectall")
 public class SelectAll extends HttpServlet {
 	private static final long serialVersionUID = 5250110307973476208L;
 	
-	private SecondHandBuyServiceImpl service = new SecondHandBuyServiceImpl() ;
-	
+	static private SecondHandBuyService service = new SecondHandBuyServiceImpl() ;
 	
 	
 	@Override
@@ -34,34 +34,12 @@ public class SelectAll extends HttpServlet {
 			List<SecondHandBuyPicture> imgList = service.selectimg(sl);
 				
 				for (SecondHandBuyPicture img : imgList) {
-//					
-//					
-//					// 本機路徑 轉 Base64 再丟回去
 					File src = new File(img.getImage());
 					String[] s = src.getName().split("/");
 					img.setImage(s[s.length-1]);
-//					String type = src.getName().substring(src.getName().indexOf(".")+1);
-//					
-//					try( BufferedInputStream bis = new BufferedInputStream (new FileInputStream(src))) {
-//						byte[] imgb = bis.readAllBytes();
-//						img.setImage("data:image/"+type+";base64,"+Base64.getEncoder().encodeToString(imgb));
-//						
-//					} catch (Exception e) {
-//						img.setImage("");
-//						e.printStackTrace();
-//						
-//					}
-//					
 				}
-//				System.out.println(imgList);
 				sl.setImage(imgList);
-			
-			
 		}
-		
-		
-		
-		
 		CommonUtil.writePojo2Json(resp, list);
 	}
 
