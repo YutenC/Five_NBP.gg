@@ -34,9 +34,7 @@ public class SecondHandBuyServiceImpl implements SecondHandBuyService{
 
 	@Override
 	public boolean insertimg(SecondHandBuyPicture img ,Integer id) {
-		
 		String url = "C:\\Users\\Tibame_T14\\Desktop\\AppImage\\buyImage"+img.getImage();
-		
 		SecondHandBuyPicture pic = new SecondHandBuyPicture();
 		pic.setBuylistId(id);
 		pic.setImage(url);

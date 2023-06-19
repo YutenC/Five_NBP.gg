@@ -1,6 +1,7 @@
 package com.secondhand.buy.controller;
 
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +27,12 @@ public class TestPic extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Collection<Part> parts = req.getParts();
 		try {
+			File file = new File("C:\\Users\\Tibame_T14\\Desktop\\AppImage");
+			if (!file.exists()) {
+				file.mkdirs();
+			}
 			for (Part part : parts) {
+				
 				String url = "C:\\Users\\Tibame_T14\\Desktop\\AppImage\\buyImage" + part.getName();
 				try (InputStream reader = part.getInputStream();
 					 BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(url))) 

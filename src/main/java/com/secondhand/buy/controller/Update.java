@@ -45,9 +45,8 @@ public class Update extends HttpServlet {
 		
 		service.upDate(sla);
 		
-		OneString secc = new OneString();
-		secc.setStr("修改成功");
-		writePojo2Json(resp, secc);
+		
+		writePojo2Json(resp, new OneString("修改成功"));
 		
 		
 	}
