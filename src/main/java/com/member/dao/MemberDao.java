@@ -12,4 +12,6 @@ public interface MemberDao extends CoreDao<Member, Integer> {
     Member selectForLogin(String account, String password);          // 找登入的會員
 
     Member selectByEmail(String email);     // 利用會員信箱驗證
+
+    public Member selectByAccountNEmail(String account, String email);
 }

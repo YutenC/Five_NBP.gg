@@ -20,6 +20,8 @@ public class MemberLogoutServlet extends HttpServlet {
         Member member = getMemberSession(request,"member");
         System.out.println("會員：" + member.getNick() + " 成功登出");
         request.getSession().setAttribute("isLogin", false);
+
+        request.getSession().removeAttribute("isLogin");
         request.getSession().removeAttribute("member");
         gsonToJson(response,member);
     }

@@ -31,7 +31,7 @@ public class MemberSendVertifyServlet extends HttpServlet {
 
         saveCodes(member, verificationCode);        // 將驗證碼存入Redis中，驗證碼存活30s，需要用信箱比對
 
-        member.setMessage("填入驗證碼");
+        member.setMessage("驗證碼已寄出");
         gsonToJson(response,member);
     }
 }

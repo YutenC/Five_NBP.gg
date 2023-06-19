@@ -280,8 +280,7 @@
             method: "POST",
             dataType: "json",
             success: function (response) {
-                let member = response;
-                let isPass = member.successful;
+                let member = response;                
                 $("input#member_account").val(member.account);
                 $("input#password").val(member.password);
                 $("input#nickname").val(member.nick);

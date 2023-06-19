@@ -14,5 +14,5 @@ public interface FriendDao extends CoreDao<Friend, Integer> {
 
     Friend selectById(Integer id);
 
-//    Friend selectByNick(Member member);
+    Friend selectByNick(Member member);
 }

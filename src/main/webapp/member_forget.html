@@ -40,7 +40,7 @@
             padding: 40px;
             margin: 50px auto 50px;
             background-color: #fafafa;
-            border-radius: 50px;            
+            border-radius: 50px;
         }
 
         div.forget_block1 {
@@ -116,15 +116,15 @@
             padding: 10px;
             border: #00A8FF;
             border-radius: 10px;
-        } 
+        }
 
         .btn {
             margin: 0 0 10px 0;
         }
-        input#submit{
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
-        }    
 
+        input#submit {
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
+        }
     </style>
 
 </head>
@@ -134,7 +134,9 @@
         <form class="forget" method="post" action="#">
             <div class="forget_block0">
                 <div class="forget_img">
-                    <img src="./img/Logo-removebg.png">
+                    <a href="./index.html">
+                        <img src="./img/Logo-removebg.png">
+                    </a>
                 </div>
                 <div class="forget_block1">
                     <h1>忘記密碼</h1><br>
@@ -147,47 +149,64 @@
                         <input id="email" name="email" type="email" placeholder="請輸入信箱" required>
                     </div>
                     <div class="resend">
-                        <input class="resend" id="submit" type="button" value="重新寄發密碼">                       
-                    </div>                    
-                </div>                 
+                        <input class="resend" id="submit" type="button" value="重新寄發密碼">
+                    </div>
+                </div>
             </div>
-        </form>        
+        </form>
     </div>
-    
 
 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./jquery/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 </body>
 <script>
     const resend = document.querySelector("input.resend");
     const account = document.querySelector("input#account");
-    const email = document.querySelector("input#email");  
-    
-    $("input.resend").on("click",function(){
-        if(isAccountEmpty(account) || isEmailEmpty(email)){
+    const email = document.querySelector("input#email");
+
+    $("input.resend").on("click", function () {
+        if (isEmpty($("input#account").val()) || isEmpty($("input#email").val())) {
             Swal.fire({
                 icon: 'error',
                 title: '帳號及信箱不得空白',
                 text: '請輸入帳號及信箱！',
             })
             return;
-        }       
-
+        }
+        $.ajax({
+            url: "/Five_NBP_gg/memberForgetServlet",
+            method: "POST",
+            dataType: "json",
+            data: {
+                account: $("input#account").val(),
+                email: $("input#email").val()
+            },
+            success: function (response) {
+                let member = response;
+                let isPass = member.successful;
+                if (isPass) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: member.message
+                    });
+                    window.location.href = "./member_login.html";
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: member.message
+                    });
+                }
+            }
+        })
     });
 
-
-
-    function isAccountEmpty(account){
-        if(account == null){
-            return false;
-        } else return true;
-    }
-
-    function isEmailEmpty(email){
-        if(email == null){
-            return false;
-        } else return true;
+    function isEmpty(e) {
+        if (e.trim() === "") {
+            return true;
+        } else return false;
     }
 
 </script>

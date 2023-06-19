@@ -134,4 +134,14 @@ public class MemberDaoImpl implements MemberDao {
                 .setParameter("email", email)
                 .uniqueResult();
     }
+
+    @Override
+    public Member selectByAccountNEmail(String account, String email){
+        final String sql = "SELECT * FROM member WHERE account = :account and email = :email";
+        return getSession()
+                .createNativeQuery(sql, Member.class)
+                .setParameter("account", account)
+                .setParameter("email", email)
+                .uniqueResult();
+    }
 }

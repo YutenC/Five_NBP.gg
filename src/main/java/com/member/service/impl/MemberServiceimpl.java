@@ -1,6 +1,7 @@
 package com.member.service.impl;
 
 //import com.core.service.CoreService;
+
 import com.member.dao.MemberDao;
 import com.member.dao.impl.MemberDaoImpl;
 import com.member.entity.Member;
@@ -173,7 +174,7 @@ public class MemberServiceimpl implements MemberService {
             if (member.getViolation() == null) {
                 member.setViolation(oMember.getViolation());
             } else {
-                oMember.setViolation(oMember.getViolation());
+                 oMember.setViolation(oMember.getViolation());
             }
             oMember.setAccount(member.getAccount());
             oMember.setPassword(member.getPassword());
@@ -215,5 +216,21 @@ public class MemberServiceimpl implements MemberService {
 //            return false;
 //        }
         return dao.deleteById(id) > 0;
+    }
+
+    @Override
+    public Member forgetPassword(Member member) {
+        String account = member.getAccount();
+        String email = member.getEmail();
+        Member fMember = dao.selectByAccountNEmail(account, email);
+        if (fMember == null) {
+            member = new Member();
+            member.setMessage("查無會員或信箱");
+            member.setSuccessful(false);
+            return member;
+        }
+        member.setMessage("密碼已重置");
+        member.setSuccessful(true);
+        return member;
     }
 }

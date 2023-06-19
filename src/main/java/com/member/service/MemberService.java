@@ -12,4 +12,5 @@ public interface MemberService extends CoreService {
     Member edit(Member member);         //會員編輯會員資料(只能編輯暱稱、email、電話、大頭照、地址)
     List<Member> findAll();             //尋找所有會員
     boolean remove(Integer id);         //移除會員
+    public Member forgetPassword(Member member);
 }

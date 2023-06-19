@@ -37,8 +37,10 @@ public class FriendDaoImpl implements FriendDao {
         return getSession().get(Friend.class, id);
     }
 
-//    @Override
-//    public Friend selectByNick(Member member){
-//        final String sql = "";
-//    }
+    @Override
+    public Friend selectByNick(Member member){
+        final String sql = "SELECT";
+        Friend friend = new Friend();
+        return friend;
+    }
 }

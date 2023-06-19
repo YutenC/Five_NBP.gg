@@ -13,14 +13,19 @@ import java.io.IOException;
 
 import static com.member.util.MemerCommonUitl.getMemberSession;
 
-//@WebFilter("/member/*")
+@WebFilter("/member/*")
 public class MemberFilter extends HttpFilter implements Filter {
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         Member member = new Member();
-        member.setSuccessful((Boolean) request.getSession().getAttribute("isLogin"));
+        Object isLogin =  request.getSession().getAttribute("isLogin");
+        System.out.println(isLogin);
+        String uri = request.getRequestURI();   // 取得目前的位置
 
-
-
+        if(isLogin != null ){
+            chain.doFilter(request,response);
+        } else {
+            response.sendRedirect("/Five_NBP_gg/member_login.html");
+        }
     }
 }
