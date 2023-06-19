@@ -17,8 +17,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ShoppingList {
+public class ShoppingList implements java.io.Serializable{
 	
+	private static final long serialVersionUID = -5891042733433329198L;
+
 	@EmbeddedId
 	private PKShoppingList pkShoppingList;
 	

@@ -17,10 +17,13 @@
 
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
 
+
+        <mapping class="com.shopproduct.entity.Coupon"/>
+        <mapping class="com.shopproduct.entity.Product"/>
+        <mapping class="com.shopproduct.entity.ProductImage"/>
         <mapping class="com.manager.entity.Manager"/>
-        <mapping class="com.secondhand.buy.vo.SecondHandBuylist"/>
-        <mapping class="com.secondhand.buy.vo.SecondHandBuyPicture"/>
         <mapping class="com.member.entity.Member"/>
         <mapping class="com.member.entity.Login_record"/>
         <mapping class="com.member.entity.Bank"/>

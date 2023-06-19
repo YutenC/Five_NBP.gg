@@ -54,7 +54,6 @@ $(window).resize(function () {
 2. 添加到購物車的table內
 */
 
-//
 // 從追蹤商品
 const byMyPick = Vue.createApp({
     data() {
@@ -64,15 +63,40 @@ const byMyPick = Vue.createApp({
     },
     methods: {
         addToCart: function (productId) {
+            // 提取商品資訊
+            axios.get('/Five_NBP.gg/Product?getOneProduct=' + productId)
+                .then(res => {
+                    let newProduct = res.data;
+                    axios({
+                        method: 'post',
+                        url: '/Five_NBP.gg/ShoppingList',
+                        params: {
+                            demand: 'addOneShoppingList',
+                            transObj: JSON.stringify(newProduct)
+                        }
+                    })
+                        .then(res => console.log(res))
+                        .catch(err => console.log(err))
 
-            // 向後端發id調產品資訊
-            // 添加部分項目
-            // 加到購物車Vue商品列表
-            shoppingContent.$data.shoppingList.push();
+                    // 前端調整畫面
+                    for (let pd of shoppingContent.$data.shoppingList) {
+                        if (pd.productId === newProduct.productId) {
+                            pd.buyAmount += newProduct.buyAmount;
+                            return;
+                        }
+                    }
+                    newProduct.checked = true;
+                    shoppingContent.$data.shoppingList.push(newProduct);
+
+                    // 讓shoppingContent自行更新
+                    // shoppingContent.renewList();
+                }).catch(err => console.log(err));
+
+            // 回存到購物清單
         }
     },
     created() {
-        axios.get('/Five_NBP.gg/getFollowPd')
+        axios.get('/Five_NBP.gg/FollowList?getAll=true')
             .then(res => this.mypick = res.data)
             .catch(error => console.log(error))
     }
@@ -86,18 +110,46 @@ $('div.addDetail').on('click', 'button', function (e) {
 const byPurchaseLog = Vue.createApp({
     data() {
         return {
-            byPurchaseLog: [
-                { id: 2222, name: 'HappyFarm', boughtDate: '2023/1/1', price: 1500 }
-            ]
+            byPurchaseLog: []
         }
     },
     methods: {
-        addToCart: function (id) {
-            // 向後端發id調產品資訊
-            // 添加部分項目
-            // 加到購物車Vue商品列表
-            shoppingContent.$data.shoppingList.push();
+        addToCart: function (productId) {
+            // 提取商品資訊
+            axios.get('/Five_NBP.gg/Product?getOneProduct=' + productId)
+                .then(res => {
+                    let newProduct = res.data;
+                    axios({
+                        method: 'post',
+                        url: '/Five_NBP.gg/ShoppingList',
+                        params: {
+                            demand: 'addOneShoppingList',
+                            transObj: JSON.stringify(newProduct)
+                        }
+                    }).then(res => console.log(res))
+                        .catch(err => console.log(err))
+
+                    // 前端調整畫面
+                    for (let pd of shoppingContent.$data.shoppingList) {
+                        if (pd.productId === newProduct.productId) {
+                            pd.buyAmount += newProduct.buyAmount;
+                            return;
+                        }
+                    }
+                    newProduct.checked = true;
+                    shoppingContent.$data.shoppingList.push(newProduct);
+
+                    // 讓shoppingContent自行更新
+                    // shoppingContent.renewList();
+                }).catch(err => console.log(err));
         }
+    },
+    created() {
+        axios.get('/Five_NBP.gg/OrderDetail?getMemberAll=true')
+            .then(res => {
+                this.byPurchaseLog = res.data;
+            })
+            .catch(error => console.log(error))
     }
 }).mount('table.byPurchaseLog');
 
@@ -120,26 +172,40 @@ $(document).ready(function () {
     });
 });
 
+const href = window.location.href;
+const host = href.substring(0, href.indexOf('/', 8));
 // 購物車商品
 const shoppingContent = Vue.createApp({
     data() {
         return {
             // 購物商品明細
             shoppingList: [],
+            shopTotal: 0,
             // 消費折抵
-            couponId: '',
-            couponDiscount: 0,
-            bounusStock: 10000,
-            bonus: 0,
+            discountRadio: 'coupon',
+            couponCode: '',
+            resCoupon: '',
+            bonusStock: 10000,
+            bonus: '',
             // 配送方式
             deliver: 'takuhai',
+            address: { county: '桃園市', address: '' },
+            countySelet: ['基隆市', '臺北市', '新北市', '桃園市', '新竹縣', '新竹市', '苗栗縣', '臺中市', '彰化縣',
+                '南投縣', '雲林縣', '嘉義縣', '嘉義市', '臺南市', '高雄市', '屏東縣', '宜蘭縣', '花蓮縣', '臺東縣',
+                '澎湖縣', '金門縣', '連江縣'],
+            // 付款方式
+            payment: 'credit',
+            // 信用卡資訊
+            card: {
+                cardNum: '',
+                cardValidMon: '',
+                cardValidYr: '',
+                cardValidNum: '',
+            }
         }
     },
     methods: {
-        // 購物商品明細
-        subtotal: function (buyAmount, price) {
-            return buyAmount * price;
-        },
+        // 移除商品
         removeItem: function (index) {
             let shoppingList = this.shoppingList;
             Swal.fire({
@@ -152,58 +218,158 @@ const shoppingContent = Vue.createApp({
                 cancelButtonText: '否'
             }).then(function (result) {
                 if (result.isConfirmed) {
+                    // 向後端發送刪除
+                    console.log(shoppingList[index]);
+                    axios.get('/Five_NBP.gg/ShoppingList?removeItem=' + shoppingList[index].productId)
+                        .then(res => console.log(res))
+                        .catch(err => console.log(err));
                     shoppingList.splice(index, 1);
                 }
             });
+            if (this.shoppingList.length === 0) {
+                Swal.fire('購物車內已無商品，快去逛逛吧!');
+                let newHref = host + '/Five_NBP.gg/shopIndex3.html';
+                window.location.replace(newHref);
+            }
         },
         // 消費折抵選擇
-        useCoupon: function () {
+        checkCoupon: function () {
             // 向後端確認是否為有效折購代碼
-            this.bonus = this.couponId === '' ? this.bonus : 0;
-            // 查詢到資料後更新this.couponDiscount
+            // 查詢到資料後更新this.resCoupon
+            axios.get('/Five_NBP.gg/Coupon?couponCode=' + this.couponCode)
+                .then(res => {
+                    if (res.data != '') {
+                        this.resCoupon = res.data;
+                        this.couponCondition();
+                    } else {
+                        this.resCoupon = '';
+                        Swal.fire('折價券號碼錯誤')
+                    }
+                })
+                .catch(err => console.log(err))
         },
-        useBonus: function () {
-            if (this.bonus > this.bounusStock) {
-                this.bonus = this.bounusStock;
+        // (從後端)更新購物明細
+        renewList: function () {
+            axios.get('/Five_NBP.gg/ShoppingList?getAll=true')
+                .then(res => this.shoppingList = res.data)
+                .catch(err => console.log(err))
+        },
+        // 判斷優惠碼是否達消費門檻
+        couponCondition: function () {
+            if (this.resCoupon === '') {
+                return;
             }
-            this.couponId = this.bonus === 0 ? this.couponId : '';
+            if (this.shopTotal < this.resCoupon.conditionPrice) {
+                this.resCoupon = '';
+                Swal.fire('購買金額未達門檻，不可使用');
+            }
+        },
+        fixToNum: function (event) {
+            let str = event.target.value;
+            // 用正則表達式，將找到的全部(g)非數字值，取代為空字串
+            str = str.replace(/\D/g, "");
+            event.target.value = str;
+        },
+        bonusValid: function (event) {
+            let str = event.target.value;
+            // 用正則表達式，將找到的全部(g)非數字值，取代為空字串
+            str = str.replace(/\D/g, "");
+            if (Number.parseInt(str) > this.bonusStock) {
+                str = this.bonusStock;
+            }
+            event.target.value = str;
+        },
+        // 結帳：將前端的結帳相關資料送到後端
+        checkOut: function (ecpay) {
+            if (this.address.address === '' ||
+                ((this.payment === 'credit' && ecpay === false) &&
+                    (this.card.cardNum.length < 16 || this.card.cardValidMon.length < 2 ||
+                        this.card.cardValidYr.length < 4 || this.card.cardValidNum.length < 3))) {
+                let alertMsg = '以下資料不完整：';
+                this.address.address === '' ? alertMsg += '\n配送地址' : '';
+                this.card.cardNum.length < 16 ? alertMsg += '\n信用卡號' : '';
+                this.card.cardValidMon.length < 2 ? alertMsg += '\n信用卡有效月份' : '';
+                this.card.cardValidYr.length < 4 ? alertMsg += '\n信用卡有效年份' : '';
+                this.card.cardValidNum.length < 3 ? alertMsg += '\n信用卡驗證碼' : '';
+                Swal.fire(alertMsg);
+                return;
+            }
+            axios({
+                method: 'post',
+                url: '/Five_NBP.gg/OrderMaster',
+                params: {
+                    demand: 'checkOut',
+                    toEcpay: ecpay,
+                    discountRadio: this.discountRadio,
+                    coupon: JSON.stringify(this.resCoupon),
+                    bonus: this.bonus,
+                    deliver: this.deliver,
+                    payment: this.payment,
+                },
+                data: {
+                    transObj: [...this.shoppingList].filter(item => item.checked === true),
+                    card: this.card,
+                    address: this.address
+                }
+            }).then(res => {
+                let resJson = res.data;
+                let odProducts = resJson.odProducts;
+                let checkCoupon = resJson.checkCoupon;
+                let usedBonus = resJson.usedBonus;
+                let nowBonus = resJson.nowBonus;
+                sessionStorage.setItem("odProducts", JSON.stringify(odProducts));
+                if (checkCoupon !== undefined) {
+                    sessionStorage.setItem("checkCoupon", JSON.stringify(checkCoupon));
+                }
+                sessionStorage.setItem("usedBonus", usedBonus);
+                sessionStorage.setItem("nowBonus", nowBonus);
+                sessionStorage.setItem("payment", this.payment);
+                sessionStorage.setItem("deliver", this.deliver);
+                sessionStorage.setItem("address", JSON.stringify(this.address));
+                window.location.replace(host + '/Five_NBP.gg/')
+            }).catch(err => console.log(err))
         },
     },
     computed: {
         productSubtotal: function () {
             let productSub = 0;
+            let couponDiscount = 0;
+            let bonus = 0;
             for (pic of this.shoppingList) {
-                productSub += pic.buyAmount * pic.price;
+                if (pic.checked == true) {
+                    productSub += pic.buyAmount * pic.price;
+                }
             }
-            return productSub - this.couponDiscount - this.bonus;
+            this.shopTotal = productSub;
+
+            this.couponCondition();
+
+            if (this.discountRadio === 'coupon') {
+                couponDiscount = this.resCoupon === '' ? 0 : Number.parseInt(this.resCoupon.discount);
+            } else {
+                bonus = Number.parseInt(this.bonus);
+            }
+
+            let finalPrice = isNaN(productSub - couponDiscount - bonus) ?
+                productSub - couponDiscount : productSub - couponDiscount - bonus;
+
+            if (finalPrice < 0) {
+                if (this.discountRadio === 'bonus' && productSub < bonus) {
+                    this.bonus = productSub;
+                }
+                finalPrice = 0;
+            }
+
+            return finalPrice;
         },
         deliverCal() {
             return this.deliver === 'toCvs' ? 200 : 100;
-        }
+        },
     },
     created() {
-        axios.get('/Five_NBP.gg/getShoppingList')
-            .then(res => {
-                this.shoppingList = res.data;
-                for (let e of this.shoppingList) {
-                    e.checked = true;
-                }
-            }).catch(err => console.log(err))
+        this.renewList();
     }
 }).mount('.shoppingContent');
-
-// 監控紅利input的非數字
-$('form#discount').on('keyup', 'input', function (e) {
-    let key = e.keyCode;
-    let inputValue = $('input#bonus')[0].value;
-    if (((key >= 48 && key <= 57)
-        || (key >= 96 && key <= 105) //數字鍵盤
-        || 8 == key || 46 == key || 37 == key || 39 == key //8:backspace 46:delete 37:左 39:右 (倒退鍵、刪除鍵、左、右鍵也允許作用)
-    )) {
-    } else {
-        $('input#bonus')[0].value = inputValue.replace(/[^\d]/, '');
-    }
-});
 
 // 推薦商品呈現
 const promoProduct = Vue.createApp({

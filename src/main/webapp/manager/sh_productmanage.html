@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../fonts/material-icons.min.css">
     <link rel="stylesheet" href="../css/x-dropdown.css">
     <link rel="stylesheet" href="../css/custom.css">
+    <script src = "../jquery/jquery-3.7.0.js"></script>
 </head>
 
 <body id="page-top">
@@ -175,8 +176,8 @@
             <div class="container-fluid">
                 <div class="d-sm-flex justify-content-between align-items-center mb-4">
                     <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button"
-                       href="sh_productmanageedit.html">
-                        二手商品上架
+                       href="sh_productmanageAdd.html">
+                        新增二手商品
                     </a>
                 </div>
 
@@ -233,12 +234,12 @@ card-body 視窗主體 -->
                                 <table class="table my-0" id="sh_dataTable">
                                     <thead>
                                     <tr>
-                                        <!--                                        <th>上下架狀態</th>-->
+                                                                                <th>上下架狀態</th>
                                         <th>二手商品編號</th>
                                         <th>二手商品名稱</th>
                                         <th>二手商品類別</th>
                                         <th>價格</th>
-                                        <th>上架時間</th>
+<!--                                        <th>上架時間</th>-->
                                         <th>修改/刪除</th>
                                         <!-- <th>二手商品內容</th>
                                         <th>二手商品照片</th> -->
@@ -246,20 +247,18 @@ card-body 視窗主體 -->
                                     </tr>
                                     </thead>
 
-
-                                    <tbody>
-
                                     <!-- ======================一筆商品資料===================== -->
+                                    <tbody>
                                     <tr id="SHproInfo">
-                                        <!--                                        <td>-->
-                                        <!--                                            <div>-->
-                                        <!--                                                <select class="saleornot" style="width: 90px;">-->
-                                        <!--                                                    &lt;!&ndash; <option value="" selected disabled></option> &ndash;&gt;-->
-                                        <!--                                                    <option value="0">已下架</option>-->
-                                        <!--                                                    <option value="1" selected>已上架</option>-->
-                                        <!--                                                </select>-->
-                                        <!--                                            </div>-->
-                                        <!--                                        </td>-->
+                                                                                <td>
+                                                                                    <div>
+                                                                                        <select class="saleornot" style="width: 90px;">
+                                                                                             <option value="" disabled></option>
+                                                                                            <option value="0" selected>下架</option>
+                                                                                            <option value="1">上架</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </td>
 
                                         <td><span>
                                                         <!--之後連上架的商品頁面-->
@@ -271,7 +270,7 @@ card-body 視窗主體 -->
                                         <td><span class="SHproName">二手PS主機</span></td>
                                         <td><span class="SHproType">PS主機</span></td>
                                         <td>$<span class="SHproPrice">5000</span>元</td>
-                                        <td><span class="SHproLaunchTime">2023/1/1 12:00:00</span></td>
+<!--                                        <td><span class="SHproLaunchTime">2023/1/1 12:00:00</span></td>-->
 
                                         <td>
                                             <div class="game_label">
@@ -282,53 +281,17 @@ card-body 視窗主體 -->
 
                                         <td><span class="managerID">Manager1990</span></td>
                                     </tr>
-                                    <!-- ======================一筆商品資料END====================== -->
-
-                                    <!-- ======================一筆商品資料===================== -->
-                                    <tr id="SHproInfo">
-                                        <!--                                        <td>-->
-                                        <!--                                            <div>-->
-                                        <!--                                                <select class="saleornot" style="width: 90px;">-->
-                                        <!--                                                    &lt;!&ndash; <option value="" selected disabled></option> &ndash;&gt;-->
-                                        <!--                                                    <option value="0">已下架</option>-->
-                                        <!--                                                    <option value="1" selected>已上架</option>-->
-                                        <!--                                                </select>-->
-                                        <!--                                            </div>-->
-                                        <!--                                        </td>-->
-
-                                        <td><span>
-                                                        <!--之後連上架的商品頁面-->
-                                                        <a class="SHproNum" href="#"
-                                                           style="text-decoration:none; color: rgb(93, 87, 87);">SH0000003</a>
-                                                    </span></td>
-
-
-                                        <td><span class="SHproName">二手PS主機</span></td>
-                                        <td><span class="SHproType">PS主機</span></td>
-                                        <td>$<span class="SHproPrice">5000</span>元</td>
-                                        <td><span class="SHproLaunchTime">2023/1/1 12:00:00</span></td>
-
-                                        <td>
-                                            <div class="editdeleteBtn">
-                                                <button type="button" class="btn btn-success">修改</button>
-                                                <button type="button" class="btn btn-warning">刪除</button>
-                                            </div>
-                                        </td>
-
-                                        <td><span class="managerID">Manager1990</span></td>
-                                    </tr>
-                                    <!-- ======================一筆商品資料END====================== -->
-
-
                                     </tbody>
+                                    <!-- ======================一筆商品資料END====================== -->
+
                                     <tfoot>
                                     <tr>
-<!--                                        <th>上下架狀態</th>-->
+                                        <th>上下架狀態</th>
                                         <th>二手商品編號</th>
                                         <th>二手商品名稱</th>
                                         <th>二手商品類別</th>
                                         <th>價格</th>
-                                        <th>上架時間</th>
+<!--                                        <th>上架時間</th>-->
                                         <th>修改/刪除</th>
                                         <!-- <th>二手商品內容</th>
                     <th>二手商品照片</th> -->
@@ -359,6 +322,7 @@ card-body 視窗主體 -->
             <!-- JavaScript JS放置區 -->
             <script src="../bootstrap/js/bootstrap.min.js"></script>
             <script src="../js/theme.js"></script>
+            <script src="../js/sh_productmanage.js"></script>
             <!-- JavaScript JS放置區 -->
 
 

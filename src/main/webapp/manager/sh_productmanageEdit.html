@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/x-dropdown.css">
     <link rel="stylesheet" href="../css/custom.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body id="page-top">
@@ -197,7 +198,7 @@
                         <!----- 商品名稱 ---------------------------------------------------------->
                         <tr>
                             <td><span class="SHproName">商品名稱</span></td>
-                            <td><input type="text" id="SHproName" name="SHproName" maxlength="30"/>
+                            <td><input type="text" id="SHproName" name="SHproName" maxlength="30"/><span id="errorName"></span>
                             </td>
                         </tr>
 
@@ -231,6 +232,7 @@
                                         </optgroup>
 
                                     </select>
+                                    <span id="errorType"></span>
                                 </div>
                             </td>
                         </tr>
@@ -240,7 +242,7 @@
                             <td>商品價格</td>
 
 
-                            <td>$ <input type="number" id="SHproPrice" min="0" name="SHproPrice" style="width: 85px;"> 元</td>
+                            <td>$ <input type="number" id="SHproPrice" min="0" name="SHproPrice" style="width: 85px;"> 元 <span id="errorPrice"></span></td>
 
                         </tr>
 
@@ -251,6 +253,7 @@
                                 <div>
                                     <textarea id="SHproContent" name="SHproContent" rows="30" cols="80" required></textarea>
                                 </div>
+                                <span id="errorContent"></span>
                             </td>
                         </tr>
 
@@ -273,9 +276,10 @@
 
 
                                 <div class="SHproPhoEdit" style="margin-top: 10px;">
-                                    <button type="button" id="photoUploadBtn" class="btn btn-light btn-sm">上傳</button>
+                                    <button type="button" id="photoUploadBtn" class="btn btn-light btn-sm">選取照片</button>
                                     <button type="button" id="photoDeleteBtn" class="btn btn-dark btn-sm">全部刪除</button>
                                 </div>
+                                <span id="errorPhoto"></span>
                             </td>
                         </tr>
 
@@ -285,7 +289,7 @@
                             <td colspan="2" align="center">
 
                                 <button type="button" class="btn btn-danger" id="saveBtn">存檔</button>
-                                <button type="button" class="btn btn-success" id="launchBtn">商品上架</button>
+<!--                                <button type="button" class="btn btn-success" id="addBtn">新增商品</button>-->
                                 <!-- <input type="submit" value="Submit"> -->
                                 <!-- <input type="reset" value="Reset"> -->
                             </td>
@@ -315,7 +319,7 @@
     <!-- JavaScript JS放置區 -->
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/theme.js"></script>
-    <script src="../js/sh_productmanageedit.js"></script>
+    <script src="../js/sh_productmanageEdit.js"></script>
 <!--    <script src="../jquery/jquery-3.7.0.js"></script>-->
     <!-- JavaScript JS放置區 -->
 </body>

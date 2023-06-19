@@ -11,39 +11,56 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.followlist.entity.FollowList;
 import com.followlist.util.FollowListConstants;
 import com.followlist.util.ResFollowList;
 import com.google.gson.Gson;
 import com.member.entity.Member;
 
-@WebServlet("/getFollowPd")
-public class getFollowList extends HttpServlet {
+@WebServlet("/FollowList")
+public class FollowListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public getFollowList() {
+    public FollowListController() {
         super();
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-    	HttpSession httpSession = req.getSession();
-    	Member member = new Member();
-    	member.setMember_id(1);
-    	httpSession.setAttribute("member", member);
-    	Member getMember = (Member)httpSession.getAttribute("member");
-    	Integer memberId = null;
-    	if (getMember != null) {
-    		memberId = getMember.getMember_id();
-    	} else {
-    		res.sendRedirect("/Five_NBP.gg");
-    		return;
-    	}
+    	req.setCharacterEncoding("UTF-8");
+    	
     	Gson gson = new Gson();
     	res.setCharacterEncoding("UTF-8");
     	res.setContentType("application/json");
     	PrintWriter pw = res.getWriter();
-   		List<ResFollowList> rsFList = FollowListConstants.FPSERVICE.getAllFollowProduct(memberId);
-   		pw.println(gson.toJson(rsFList));
+    	
+    	HttpSession httpSession = req.getSession();
+    	Member member = new Member();
+    	member.setMember_id(1);
+    	httpSession.setAttribute("member", member);
+    	
+    	Member getMember = (Member)httpSession.getAttribute("member");
+    	Integer memberId;
+    	
+    	if (getMember == null) {
+    		res.sendRedirect("/Five_NBP.gg");
+    		return;
+    	} else {
+    		memberId = getMember.getMember_id();
+    	}
+    	
+    	if (req.getParameter("getAll") != null) {
+    		List<ResFollowList> rsFList = FollowListConstants.FPSERVICE.getAllFollowProduct(memberId);
+    		pw.println(gson.toJson(rsFList));
+    		return;
+    	}
+    	
+    	if (req.getParameter("delPdId") != null) {
+    		Integer delPdId = Integer.valueOf(req.getParameter("delPdId"));
+        	boolean result = FollowListConstants.FPSERVICE.deleteFollowList(memberId, delPdId);
+        	pw.print(gson.toJson(result));
+        	return;
+    	}
+    	
+    	
 	}
 
 }

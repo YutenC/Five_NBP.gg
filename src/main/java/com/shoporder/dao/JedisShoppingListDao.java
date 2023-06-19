@@ -2,9 +2,12 @@ package com.shoporder.dao;
 
 import java.util.List;
 
+import com.core.util.JedisUtil;
 import com.shoporder.entity.ShoppingList;
 
-public interface JedicShoppingListDao {
+import redis.clients.jedis.Jedis;
+
+public interface JedisShoppingListDao {
 	
 	boolean insert(ShoppingList shoppingList);
 	
@@ -13,4 +16,8 @@ public interface JedicShoppingListDao {
 	boolean update(ShoppingList shoppingList);
 	
 	List<ShoppingList> selectByMemberId(Integer memberId);
+	
+	default Jedis getJedis() {
+		return JedisUtil.getJedisPool().getResource();
+	}
 }
