@@ -1,10 +1,14 @@
 package com.shoporder.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -20,8 +24,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Data
 @Table(name = "ORDER_MASTER")
-public class OrderMaster {
+public class OrderMaster implements java.io.Serializable{
 	
+	private static final long serialVersionUID = 3814433510362508631L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ORDER_ID", insertable = false, updatable = false)
@@ -68,5 +74,8 @@ public class OrderMaster {
 	
 	@Column(name = "PAY_STATUS")
 	private Integer payStatus;		// 付款狀態：1待付款 2已付款 3貨到付款
-
+	
+	@OneToMany
+	@JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
+	private List<OrderDetail> odList;
 }

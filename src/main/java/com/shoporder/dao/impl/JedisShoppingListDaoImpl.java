@@ -6,23 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 import com.core.util.JedisUtil;
-import com.shoporder.dao.JedicShoppingListDao;
+import com.shoporder.dao.JedisShoppingListDao;
 import com.shoporder.entity.PKShoppingList;
 import com.shoporder.entity.ShoppingList;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Transaction;
 
-public class JedisShoppingListDaoImpl implements JedicShoppingListDao{
-
-	private Jedis jedis;
+public class JedisShoppingListDaoImpl implements JedisShoppingListDao{
 	
-	public JedisShoppingListDaoImpl () {
-		jedis = JedisUtil.getJedisPool().getResource();
-	}
-
 	@Override
 	public boolean insert(ShoppingList shoppingList) {
+		Jedis jedis = getJedis();
+		try {
 		Transaction jediTx = jedis.multi();
 		String key = "member:" + shoppingList.getPkShoppingList().getMemmberId() + ":shoppingList";
 		Map<String, String> detail = new HashMap<>();
@@ -31,35 +27,54 @@ public class JedisShoppingListDaoImpl implements JedicShoppingListDao{
 		detail.put(productId, buyAmount);
 		jediTx.hmset(key, detail);
 		jediTx.exec();
-		jedis.close();
 		return true;
+		} catch (Exception e) {
+			return false;
+		} finally {
+			jedis.close();
+		}
 	}
 
 	@Override
 	public boolean delete(ShoppingList shoppingList) {
-		Transaction jediTx = jedis.multi();
-		String key = "member:" + shoppingList.getPkShoppingList().getMemmberId() + ":"
-					+ "product" + shoppingList.getPkShoppingList().getProductId();
-		jediTx.del(key);
-		jediTx.exec();
-		jedis.close();
-		return true;
+		Jedis jedis = getJedis();
+		try {
+			Transaction jediTx = jedis.multi();
+			String key = "member:" + shoppingList.getPkShoppingList().getMemmberId();
+			String field = "product:" + shoppingList.getPkShoppingList().getProductId();
+			jediTx.hdel(key, field);
+			jediTx.exec();
+			return true;
+		} catch (Exception e) {
+			return false;
+		} finally {
+			jedis.close();
+		}
+		
 	}
 
 	@Override
 	public boolean update(ShoppingList shoppingList) {
+		Jedis jedis = getJedis();
+		try {
 		Transaction jediTx = jedis.multi();
 		String key = "member:" + shoppingList.getPkShoppingList().getMemmberId();
 		String productId = "product:" + shoppingList.getPkShoppingList().getProductId();
 		Integer buyAmount = shoppingList.getQuantity();
 		jediTx.hincrBy(key, productId, buyAmount);
 		jediTx.exec();
-		jedis.close();
 		return true;
+		} catch (Exception e) {
+			return false;
+		} finally {
+			jedis.close();
+		}
 	}
 
 	@Override
 	public List<ShoppingList> selectByMemberId(Integer memberId) {
+		Jedis jedis = getJedis();
+		try {
 		List<ShoppingList> result = new ArrayList<>();
 		String key = "member:" + memberId;
 		Map<String, String> detail = jedis.hgetAll(key);
@@ -73,6 +88,11 @@ public class JedisShoppingListDaoImpl implements JedicShoppingListDao{
 			result.add(spList);
 		}
 		return result;
+		} catch (Exception e) {
+			return null;
+		} finally {
+			jedis.close();
+		}
 	}
 
 	

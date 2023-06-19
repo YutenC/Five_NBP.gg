@@ -20,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PKOrderDeatail implements Serializable{
 	
-	private static final long serialVersionUID = 2L;
+	private static final long serialVersionUID = 7275579179233163110L;
 
 	@Column(name = "PRODUCT_ID", updatable = false)
 	private Integer productID;

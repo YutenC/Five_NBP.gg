@@ -266,20 +266,21 @@ div.cartHeader .addItem a.minus {
 #discount ul {
     padding: 0;
     padding-left: 15px;
+    list-style: none;
 }
 
 #discount ul li {
     margin: 5px;
 }
 
-#discount ul li input {
+#discount ul li input[type="text"] {
     text-align: right;
     font-size: 14px;
     font-weight: 500;
     width: 170px;
 }
 
-#discount ul li:last-child input {
+#discount ul li:last-child input[type="text"] {
     width: 60px;
 }
 
@@ -287,45 +288,6 @@ div.cartHeader .addItem a.minus {
     text-align: right;
     width: 50px;
     margin-left: 5px;
-}
-
-/*配送欄*/
-.shoppingContent .deliver {
-    position: relative;
-    height: 50px;
-    line-height: 50px;
-    padding-left: 10px;
-}
-
-.shoppingContent .deliver form {
-    display: inline-block;
-}
-
-.shoppingContent .deliver form span {
-    margin-right: 20px;
-}
-
-.shoppingContent .deliver div.deliFee {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-/*總金額*/
-.shoppingContent .billTotal {
-    margin-top: 10px;
-    text-align: right;
-    height: 80px;
-    padding-top: 50px;
-}
-
-.shoppingContent .billTotal a {
-    margin-left: 20px;
-}
-
-.shoppingContent .brLine {
-    height: 1px;
-    background: linear-gradient(to right, #fff, #F5F5F5 40%);
 }
 
 /*------輸入優惠券及使用紅利點數-----*/
@@ -342,83 +304,109 @@ div.cartHeader .addItem a.minus {
     margin: 0;
 }
 
+/*配送欄*/
+.shoppingContent .deliver {
+    position: relative;
+    line-height: 25px;
+    padding-left: 10px;
+}
+
+.shoppingContent .deliver form {
+    display: inline-block;
+}
+
+.shoppingContent .deliver form span {
+    margin-right: 20px;
+}
+
+.shoppingContent .deliver div select {
+    width: 70px;
+    margin-right: 10px;
+}
+
+.shoppingContent .deliver div input[type="text"] {
+    display: block;
+    width: 80%;
+    margin-top: 5px;
+}
+
+.shoppingContent .deliver div.deliFee {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/*總金額*/
+.shoppingContent .billTotal {
+    text-align: right;
+    padding: 5px;
+    height: 50px;
+    line-height: 40px;
+    background: linear-gradient(to right, #fff, #eaecbf5a, #f5f8a5);
+    border-radius: 5px;
+}
+
+.shoppingContent .billTotal a {
+    margin-left: 20px;
+}
+
+.shoppingContent .brLine {
+    margin: 5px;
+    height: 1px;
+    background: linear-gradient(to right, #fff, #F5F5F5 40%);
+}
+
 /*----- 付款選擇頁籤 ------*/
 /* 頁籤區塊 */
-div.tagPage div.contentTabBlock {
-    padding-left: 20px;
+.payment {
+    display: flex;
 }
 
-/* 頁籤列表 */
-div.tagPage div.contentTabBlock ul.contentTab {
-    list-style: none;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
+.payment>div:last-child {
+    margin: 5px;
+    margin-left: 20px;
 }
 
-div.tagPage div.contentTabBlock ul.contentTab>li {
-    display: inline-block;
-}
-
-div.tagPage div.contentTabBlock ul.contentTab>li>a {
-    text-decoration: none;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-bottom: 1px solid #D9D9D9;
-    padding: 2px 20px;
-    border-radius: 5px 5px 0 0;
-    cursor: pointer;
-    color: #ccc;
-    position: relative;
-    top: 1px;
-}
-
-div.tagPage div.contentTabBlock ul.contentTab>li>a::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    bottom: -1px;
-    left: 1px;
-    z-index: 1;
-}
-
-div.tagPage div.contentTabBlock ul.contentTab>li>a.-on {
-    color: black;
-}
-
-/* 將底部黑線改成白色 */
-div.tagPage div.contentTabBlock ul.contentTab>li>a.-on::after {
-    border: 1px solid #fff;
-    background-color: white;
-    width: 100%;
-    left: 0;
-}
-
-
-/* 頁籤內容區塊 */
-div.tagPage div.contentPage {
-    border: 1px solid #D9D9D9;
-    border-radius: 3px 3px 0 0;
-}
-
-div.tagPage div.contentPage div.tab {
-    padding: 10px;
-    display: none;
-}
-
-div.tagPage div.contentPage div.tab.-on {
-    display: block;
-}
-
-/*信用卡輸入區*/
-.creditCard div {
+.payment .paymentRadio form div {
     margin: 5px;
 }
 
-.creditCard div label,
-.creditCard div span {
-    width: 30px;
+.paymentContent {
+    flex-grow: 2;
+}
+
+.paymentContent .credit>div {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #C2C2FF;
+    border-radius: 10%;
+    text-align: center;
+}
+
+.paymentContent .credit>div button {
+    font-size: 20px;
+}
+
+.paymentContent .credit div {
+    margin-bottom: 5px;
+}
+
+.paymentContent .credit span {
+    display: block;
+}
+
+.paymentContent .credit div label {
+    display: inline-block;
+    width: 80px;
+}
+
+.paymentContent .credit div input {
+    margin: 0 5px;
+    width: 50px;
+}
+
+.paymentContent .credit div input#cardNum {
+    width: 180px;
 }
 
 /*送出付款*/

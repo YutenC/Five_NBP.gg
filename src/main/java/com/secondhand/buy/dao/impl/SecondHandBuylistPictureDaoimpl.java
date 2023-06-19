@@ -2,8 +2,6 @@ package com.secondhand.buy.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.PersistenceContext;
-
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -11,11 +9,12 @@ import com.secondhand.buy.dao.SecondHandBuylistPictureDao;
 import com.secondhand.buy.vo.SecondHandBuyPicture;
 
 
+
 @Repository
 public class SecondHandBuylistPictureDaoimpl implements SecondHandBuylistPictureDao{
 	
-	@PersistenceContext
-	private Session session;
+
+	private Session session = getSession();
 
 	@Override
 	public int insert(SecondHandBuyPicture pojo) {

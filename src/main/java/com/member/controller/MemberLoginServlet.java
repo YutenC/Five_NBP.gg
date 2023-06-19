@@ -32,7 +32,6 @@ public class MemberLoginServlet extends HttpServlet {
             gsonToJson(response,member);
             return;
         }
-
         member = SERVICE.login(member);
         System.out.println("訊息：會員 " + member.getNick() + " " + member.getMessage());
         //  是否登入成功的訊息

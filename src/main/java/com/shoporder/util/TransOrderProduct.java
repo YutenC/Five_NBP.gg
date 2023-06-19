@@ -7,8 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class TransOrderProduct {
+public class TransOrderProduct implements java.io.Serializable{
 	
+	private static final long serialVersionUID = 5534147712252264664L;
+
 	private Integer productId;
 	
 	private String productImgUrl;
@@ -22,4 +24,6 @@ public class TransOrderProduct {
 	private Integer price;
 	
 	private Integer stockAmount;
+	
+	private boolean checked;
 }
