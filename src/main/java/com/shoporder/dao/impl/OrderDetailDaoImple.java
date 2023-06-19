@@ -56,7 +56,7 @@ public class OrderDetailDaoImple implements OrderDetailDao {
 	}
 
 	@Override
-	public OrderDetail selectByManagersId(Integer managerId) {
+	public OrderDetail selectByManagerId(Integer managerId) {
 		CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
 		CriteriaQuery<OrderDetail> criteriaQuery = criteriaBuilder.createQuery(OrderDetail.class);
 		Root<OrderDetail> root = criteriaQuery.from(OrderDetail.class);
@@ -68,12 +68,10 @@ public class OrderDetailDaoImple implements OrderDetailDao {
 
 	@Override
 	public List<OrderDetail> selectByOrderId(Integer orderId) {
-		CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
-		CriteriaQuery<OrderDetail> criteriaQuery = criteriaBuilder.createQuery(OrderDetail.class);
-		Root<OrderDetail> root = criteriaQuery.from(OrderDetail.class);
-		criteriaQuery.where(criteriaBuilder.equal(root.get("orderId"), orderId));
+		String hql = "FROM OrderDetail WHERE pkOrderDeatail.orderId = :orderId";
 		return getSession()
-				.createQuery(criteriaQuery)
+				.createQuery(hql, OrderDetail.class)
+				.setParameter("orderId", orderId)
 				.getResultList();
 	}
 

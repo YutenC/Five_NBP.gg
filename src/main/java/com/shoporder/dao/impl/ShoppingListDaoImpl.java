@@ -2,10 +2,6 @@ package com.shoporder.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
 import com.shoporder.dao.ShoppingListDao;
 import com.shoporder.entity.PKShoppingList;
 import com.shoporder.entity.ShoppingList;

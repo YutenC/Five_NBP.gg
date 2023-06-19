@@ -11,5 +11,5 @@ public interface OrderDetailDao extends CoreDao<OrderDetail, Integer> {
 	
 	List<OrderDetail> selectByOrderId(Integer orderId);
 	
-	OrderDetail selectByManagersId(Integer managerId); // 找負責退貨審核的管理員
+	OrderDetail selectByManagerId(Integer managerId); // 找負責退貨審核的管理員
 }
