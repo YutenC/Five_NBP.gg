@@ -19,8 +19,6 @@ public class MemberFilter extends HttpFilter implements Filter {
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         Member member = new Member();
         Object isLogin =  request.getSession().getAttribute("isLogin");
-        System.out.println(isLogin);
-        String uri = request.getRequestURI();   // 取得目前的位置
 
         if(isLogin != null ){
             chain.doFilter(request,response);

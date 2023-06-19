@@ -19,7 +19,6 @@ public class BankDaoImpl implements BankDao {
         return bank.getBank_id();
     }
 
-    @Override
     public List<Bank> selectAll() {
         final String hql = "FROM Bank ORDER BY member_id";
         return getSession().createQuery(hql, Bank.class).getResultList();
