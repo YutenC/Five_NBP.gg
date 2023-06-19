@@ -37,10 +37,11 @@ public class ManageshpServlet extends HttpServlet {
             SecondhandProduct sp = iterator.next();
             SecondhandProduct newsp = new SecondhandProduct();
             newsp.setProductId(sp.getProductId());
+            newsp.setIsLaunch(sp.getIsLaunch());
             newsp.setName(sp.getName());
             newsp.setType(sp.getType());
             newsp.setPrice(sp.getPrice());
-            newsp.setLaunchTime(sp.getLaunchTime());
+//            newsp.setLaunchTime(sp.getLaunchTime());
             secondhandproductNewList.add(newsp);
             }
 

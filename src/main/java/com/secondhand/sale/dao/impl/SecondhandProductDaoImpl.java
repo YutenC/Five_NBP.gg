@@ -44,7 +44,7 @@ public class SecondhandProductDaoImpl implements SecondhandProductDao {
     public int update(SecondhandProduct secondhandproduct) {
         Session session = getSession();
         session.beginTransaction();
-        session.update("SecondProduct",secondhandproduct);
+        session.update(secondhandproduct);
         session.getTransaction().commit();
         return 1;
     }

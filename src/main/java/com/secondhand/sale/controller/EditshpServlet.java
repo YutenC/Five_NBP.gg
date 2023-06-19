@@ -1,7 +1,9 @@
 package com.secondhand.sale.controller;
 
 import com.secondhand.sale.entity.SecondhandProduct;
+import com.secondhand.sale.service.SecondhandProductService;
 
+import javax.print.DocFlavor;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +15,8 @@ import static com.core.util.CommonUtil.json2Pojo;
 import static com.core.util.CommonUtil.writePojo2Json;
 import static com.secondhand.sale.util.SecondhandProductConstants.SERVICE;
 
-@WebServlet("/manager/sh_productmanageAdd")
-public class AddshpServlet extends HttpServlet {
-
+@WebServlet("/manager/shp_Edit")
+public class EditshpServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,7 +24,11 @@ public class AddshpServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
+
         SecondhandProduct secondhandproduct = json2Pojo(req, SecondhandProduct.class);
+//        secondhandproduct = secondhandproduct.getProductId();
+
+        SERVICE.editshp(secondhandproduct);
 
         if (secondhandproduct == null){
             secondhandproduct = new SecondhandProduct();
@@ -33,7 +38,7 @@ public class AddshpServlet extends HttpServlet {
             return;
         }
 
-        secondhandproduct = SERVICE.addshp(secondhandproduct);
         writePojo2Json(resp, secondhandproduct);
+
     }
 }

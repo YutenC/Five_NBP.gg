@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 
 import javax.persistence.*;
@@ -40,9 +41,13 @@ public class SecondhandProduct extends Core {
     private String content;
 
     @Column(name = "launch_time")
+    @CreationTimestamp
     private Date launchTime;
 
-    @OneToMany(mappedBy = "secondhandproduct")
-    private List<SecondhandProductImage> secondhandproductimages;
+    @Column(name = "Is_launch")
+    private Integer isLaunch = 0;
+
+//    @OneToMany(mappedBy = "secondhandproduct")
+//    private List<SecondhandProductImage> secondhandproductimages;
 
 }

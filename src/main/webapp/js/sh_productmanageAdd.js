@@ -73,7 +73,7 @@
 
     // 加入商品
     addBtn.addEventListener("click", function () {
-        fetch('sh_productmanageedit', {
+        fetch('sh_productmanageAdd', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

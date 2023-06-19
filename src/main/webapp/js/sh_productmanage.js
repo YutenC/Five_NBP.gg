@@ -28,7 +28,8 @@ console.log(shpListContainer);
                             name: secondhandproduct.name,
                             type: secondhandproduct.type,
                             price: secondhandproduct.price,
-                            launchTime: secondhandproduct.launchTime
+                            isLaunch: secondhandproduct.isLaunch,
+                            // launchTime: secondhandproduct.launchTime
                         };
                         shp_array[secondhandproduct.productId] = (shp_array_item);
                         showList();
@@ -58,6 +59,7 @@ function sphDelete(productId){
         //     }
         // })
 
+    // 確認按鈕有空再更改
     let confirmDelete = confirm("確定刪除" + shp_array[productId].productId + "嗎?");
 
 
@@ -70,7 +72,8 @@ function sphDelete(productId){
                 name: shp_array[productId].name,
                 type: shp_array[productId].type,
                 price: shp_array[productId].price,
-                launchTime: shp_array[productId].launchTime
+                isLaunch: shp_array[productId].isLaunch,
+                // launchTime: shp_array[productId].launchTime
             })
         }).then(
             btnSubmit()
@@ -94,15 +97,15 @@ function showList() {
             html += `
        
             <tr>
-                                        <!--                                        <td>-->
-                                        <!--                                            <div>-->
-                                        <!--                                                <select class="saleornot" style="width: 90px;">-->
-                                        <!--                                                    &lt;!&ndash; <option value="" selected disabled></option> &ndash;&gt;-->
-                                        <!--                                                    <option value="0">已下架</option>-->
-                                        <!--                                                    <option value="1" selected>已上架</option>-->
-                                        <!--                                                </select>-->
-                                        <!--                                            </div>-->
-                                        <!--                                        </td>-->
+                                                                               <td>
+                                                                                 <div>
+                                                                                       <select class="saleornot" style="width: 90px;">
+                                                                                          <option value="" disabled></option> 
+                                                                                          <option value="0" selected>下架</option>
+                                                                                            <option value="${secondhandproduct.isLaunch}">上架</option>
+                                                                                     </select>
+                                                                                 </div>
+                                                                                </td>
 
             <td><span>
             <!--之後連上架的商品頁面-->
@@ -113,11 +116,12 @@ function showList() {
             <td><span class="SHproName">${secondhandproduct.name}</span></td>
             <td><span class="SHproType">${secondhandproduct.type}</span></td>
             <td>$<span class="SHproPrice">${secondhandproduct.price}</span>元</td>
-            <td><span class="SHproLaunchTime">${secondhandproduct.launchTime}</span></td>
+<!--            解開註解記得將\刪除-->
+<!--            <td><span class="SHproLaunchTime">\${secondhandproduct.launchTime}"</span></td>-->
 
             <td>
                  <div class="game_label">
-                      <button type="button" class="btn btn-success">修改</button>
+                      <button type="button" onclick="sphEdit(${secondhandproduct.productId})" class="btn btn-success">修改</button>
                       <button type="button" onclick="sphDelete(${secondhandproduct.productId})" class="btn btn-warning">刪除</button>
                  </div>
             </td>
@@ -132,4 +136,10 @@ function showList() {
 
     shpListContainer.innerHTML = html;
 
+}
+
+// 將 ID 儲存到 sessionStorage 中
+function sphEdit(productId) {
+    sessionStorage.setItem('productId', productId);
+    window.location.href = "../manager/sh_productmanageEdit.html";
 }
