@@ -31,7 +31,7 @@ public class Power_of_ManagerDAOImpl implements Power_of_ManagerDAO{
     @Override
     public int update(Power_of_Manager powerOfManager) {
         Session currentSession = getSession();
-        currentSession.update(powerOfManager);
+        currentSession.saveOrUpdate(powerOfManager);
         return 1; // 更新成功
     }
 

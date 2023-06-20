@@ -21,8 +21,8 @@ public class PowerServiceImpl implements PowerService {
 	
 	
 	@Override
-	public Power selectPower(Integer power_id) {
-		Power power= dao.selectById(power_id);
+	public Power selectPowerByPowerName(String power_name) {
+		Power power= dao.selectByPowerName(power_name);
 		return power;
 	}
 	

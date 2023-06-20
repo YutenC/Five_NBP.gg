@@ -8,10 +8,18 @@
     const manager_phone = document.querySelector('#manager_phone');
     const manager_address = document.querySelector('#manager_address');
 
-    const inputs = document.querySelectorAll('input');
+    let pomSettingDiv = document.querySelector('div.pomSetting');
+
+
 
     let manager_id;
     let manager_is_working;
+
+    let power_array = [];
+    let pomAll_array = [];
+    let pom_array = [];
+
+    let chekedIdList = [];
 
     fetch('../manager/getManagerEditInfo', {
         method: 'POST',
@@ -37,11 +45,82 @@
             manager_id = data.manager.manager_id;
             manager_is_working = data.manager.manager_is_working;
 
+            fetch('../manager/power_list', {
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    // 獲取到 managerList 的資料後，動態生成 array 內容
+                    data.powerList.forEach(power => {
+                        let power_array_item = {
+                            power_id: power.power_id,
+                            name: power.power_name,
+                            content: power.power_content,
+                        }
+                        power_array.push(power_array_item);
+                    })
+
+                    fetch('../manager/pom_list', {
+                        method: 'GET',
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+
+                            // 獲取到 managerList 的資料後，動態生成 array 內容
+                            data.pomList.forEach(pom => {
+                                let pomAll_array_item = {
+                                    manager_id: pom.manager_id,
+                                    power_id: pom.power_id,
+                                }
+                                pomAll_array.push(pomAll_array_item);
+                            })
+
+                            pom_array = pomAll_array.filter(item => item.manager_id === manager_id);
+                            console.log(pom_array);
+
+
+
+
+                            pomSettingDiv.innerHTML = `<p>管理員權限</p>`;
+                            power_array.forEach(power => {
+                                console.log(power);
+
+                                if (pom_array !== undefined && pom_array.some(item => item.power_id === power.power_id)) {
+                                    pomSettingDiv.innerHTML +=
+                                        `
+                                <input class="pomCheckbox ${power.power_id}" type="checkbox" id="${power.power_id}"
+                                    name="${power.power_id}" value="${power.power_id}" checked>
+                                <label for="${power.power_id}">${power.name}</label>
+                                `;
+                                } else {
+                                    pomSettingDiv.innerHTML +=
+                                        `
+                                <input class="pomCheckbox ${power.power_id}" type="checkbox" id="${power.power_id}"
+                                    name="${power.power_id}" value="${power.power_id}">
+                                <label for="${power.power_id}">${power.name}</label>
+                                `;
+                                }
+                            });
+
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+
 
         })
         .catch(error => {
             console.error('Error:', error);
         });
+
 
 
     edit_btn.addEventListener('click', () => {
@@ -77,21 +156,61 @@
                 const { successful, redirectUrl } = body;
 
                 if (successful) {
-                    alert("成功");
+                    // alert("成功");
 
-                    if (redirectUrl) {
-                        window.location.href = redirectUrl; // 進行重導
-                    }
+                    // if (redirectUrl) {
+                    //     window.location.href = redirectUrl; // 進行重導
+                    // }
 
                 } else {
                     msg.className = 'error';
                     msg.textContent = '修改失敗';
                 }
 
+                let pomCheckbox = document.querySelectorAll('input.pomCheckbox');
+                pomCheckbox.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        chekedIdList.push(checkbox.value);
+                    }
+                });
+                console.log(chekedIdList);
+
+                fetch('../manager/pom_edit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        manager_id: manager_id,
+                        chekedIdList: chekedIdList,
+
+                    }),
+                })
+                    .then(resp => resp.json())
+                    .then(body => {
+
+                        console.log(body);
+                        const { successful, redirectUrl } = body;
+
+                        if (successful) {
+                            alert("成功");
+
+                            if (redirectUrl) {
+                                window.location.href = redirectUrl; // 進行重導
+                            }
+
+                        } else {
+                            msg.className = 'error';
+                            msg.textContent = '修改失敗';
+                        }
+
+
+                    });
+
 
             });
+
+
+
     });
-
-
-
 })();

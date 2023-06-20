@@ -3,6 +3,10 @@ let filtered_array = [];
 let filtered = false;
 let managerListContainer = document.querySelector('table#manager_list tbody');
 
+let pomAll_array = [];
+let pom_array = [];
+let power_array = [];
+
 // 使用 AJAX 發送請求獲取 managerList 的資料
 
 fetch('../manager/manager_list', {
@@ -35,12 +39,64 @@ fetch('../manager/manager_list', {
             // console.log(manager_array_item);
             // console.log(manager_array);
 
-            showList();
+
         })
+
+        fetch('../manager/pom_list', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                // 獲取到 managerList 的資料後，動態生成 array 內容
+                data.pomList.forEach(pom => {
+                    let pomAll_array_item = {
+                        manager_id: pom.manager_id,
+                        power_id: pom.power_id,
+                    }
+                    pomAll_array.push(pomAll_array_item);
+                })
+
+                console.log(pomAll_array);
+
+                fetch('../manager/power_list', {
+                    method: 'GET',
+                })
+                    .then(response => response.json())
+                    .then(data => {
+
+                        // 獲取到 managerList 的資料後，動態生成 array 內容
+                        data.powerList.forEach(power => {
+                            let power_array_item = {
+                                power_id: power.power_id,
+                                name: power.power_name,
+                                content: power.power_content,
+                            }
+                            power_array.push(power_array_item);
+                        })
+
+                        power_array.sort((a, b) => a.power_id - b.power_id);
+                        console.log(power_array);
+
+                        showList();
+
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
     })
     .catch(error => {
         console.error('Error:', error);
     });
+
 
 $("a.manager_search_button").on("click", () => {
     event.preventDefault();
@@ -192,13 +248,33 @@ function showList() {
 
     showArray.forEach(manager => {
 
-        const powerNameArray = ['員工管理', '會員管理', '商城管理', '二手商城管理', '檢舉單管理']
+        // const powerNameArray = ['員工管理', '會員管理', '商城管理', '二手商城管理', '檢舉單管理']
+        // let powerStateHtml = '';
+        // powerNameArray.forEach(powerName => {
+        //     powerStateHtml +=
+        //         `<img src="../svg/check-svgrepo-com.svg">` +
+        //         `<span>${powerName}</span>`;
+        // })
         let powerStateHtml = '';
-        powerNameArray.forEach(powerName => {
-            powerStateHtml +=
-                `<img src="../svg/check-svgrepo-com.svg">` +
-                powerName
-        })
+
+
+        // pomAll_array.forEach((pom) => {
+        power_array.forEach((power) => {
+            if (pomAll_array.some(pom => pom.manager_id === manager.manager_id && pom.power_id === power.power_id)) {
+                powerStateHtml +=
+                    `<img src="../svg/check-svgrepo-com.svg">` +
+                    `<span>${power.name}</span>`;
+            } else {
+                powerStateHtml +=
+                    `<img src="../svg/clear-svgrepo-com.svg">` +
+                    `<span>${power.name}</span>`;
+
+            }
+        });
+
+
+
+        // });
 
 
 

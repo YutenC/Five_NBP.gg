@@ -8,7 +8,7 @@ import com.power.entity.Power;
 
 public interface PowerService extends CoreService{
 
-	Power selectPower(Integer power_id); // 用ID找power
+	Power selectPowerByPowerName(String power_name); // 用ID找power
 	
 	List<Power> findAll(); //查總表
 }

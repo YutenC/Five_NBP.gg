@@ -81,20 +81,5 @@ public class ManagerEditServlet extends HttpServlet {
 	    writer.println(responseJson.toString());
 	    writer.close();
 	}
-	
-//	@Override
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-//		Manager manager = json2Pojo(request, Manager.class);
-//		if (manager == null) {
-//			manager = new Manager();
-//			manager.setMessage("無管理員資訊");
-//			manager.setSuccessful(false);
-//			writePojo2Json(response, manager);
-//			return;
-//		}
-//		
-//		manager = SERVICE.register(manager);
-//		writePojo2Json(response, manager);
-//	}
 
 }
