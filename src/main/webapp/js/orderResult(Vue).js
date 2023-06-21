@@ -18,6 +18,7 @@ $(window).resize(function () {
 
 const href = window.location.href;
 const host = href.substring(0, href.indexOf('/', 8));
+const projectHref = href.substring(0, href.lastIndexOf('Five_NBP.gg') + 11);
 // 購物明細
 const shoppingContent = Vue.createApp({
     data() {
@@ -36,12 +37,19 @@ const shoppingContent = Vue.createApp({
             // 信用卡資訊
         }
     },
+    methods: {
+        leave: function (location, otherDetail) {
+            sessionStorage.clear();
+            sessionStorage.setItem('productId', otherDetail);
+            window.location.replace(projectHref + '/' + location);
+        }
+    },
     computed: {
         productSubtotal: function () {
             let productSub = 0;
             let couponDiscount = 0;
             let bonus = 0;
-            for (pic of this.shoppingList) {
+            for (pic of this.odProducts) {
                 productSub += pic.buyAmount * pic.price;
             }
 
@@ -85,3 +93,20 @@ const promoProduct = Vue.createApp({
         }
     }
 }).mount('#promoProduct');
+
+// 按下上一頁後無法返回 -- > Chrome瀏覽器限制無法順利觸發事件，待解決
+window.addEventListener('popstate', () => {
+    Swal.fire({
+        title: '確定離開?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '是',
+        cancelButtonText: '否'
+    }).then(function (result) {
+        if (result.isConfirmed) {
+
+        }
+    });
+});

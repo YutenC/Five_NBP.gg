@@ -2,12 +2,18 @@ import { host_context, nowDate } from './shopproductCommon.js';
 // import managerSideTemplate from "./managerSideTemplate.vue";
 // import managerSideTemplate from "static/npb/js/managerSideTemplate.vue";
 // {/* <script th:src="@{/static/npb/js/productManager.js}"></script> */ }
+
 const vm = Vue.createApp({
     data() {
         return {
+            mainguideContent: [{ id: 1, text: "商品管理", action: "manageProduct" },
+            { id: 2, text: "商品新增", action: "addProduct" },
+            { id: 3, text: "其他", action: "otherSetting" }],
+            currentMainguideContent: 1,
             nowDate: '',
             minDate: '',
             newProduct: {},
+            newProductImg: [],
             products: [],
             file: null
         };
@@ -65,28 +71,29 @@ const vm = Vue.createApp({
                     console.log("createProductFromcsv error " + e);
                 });
         },
-        takeOnProduct: function () {
+        addProduct: function () {
             console.log("message: " + vm.message);
             console.log("newProduct: " + vm.newProduct);
             console.log("newProduct.product_name: " + vm.newProduct.product_name);
             console.log("newProduct.launch_time: " + vm.newProduct.launch_time);
+            vm.newProduct.productImages = vm.newProductImg;
             let jsonProduct = JSON.stringify(vm.newProduct);
             axios({
                 method: "POST",
-                url: host_context + "shopDispatcher/takeOnProduct",
-                params: {
-                    newProduct: jsonProduct
+                url: host_context + "shopDispatcher/addProduct",
+                data: {
+                    newProduct: vm.newProduct
                 }
             })
                 .then(function (value) {
                     // vm.products = value.data;
 
 
-                    console.log("takeOnProduct then");
+                    console.log("addProduct then");
 
                 })
                 .catch(function (e) {
-                    console.log("takeOnProduct error " + e);
+                    console.log("addProduct error " + e);
                 });
 
 
@@ -111,6 +118,27 @@ const vm = Vue.createApp({
                     console.log("takeOffProduct error " + e);
                 });
         },
+        takeOnProduct: function (id) {
+            console.log('takeOnProduct');
+            axios({
+                method: "GET",
+                url: host_context + "shopDispatcher/takeOnProduct",
+                params: {
+                    product_id: id
+                }
+            })
+                .then(function (value) {
+                    // vm.products = value.data;
+                    console.log("takeOnProduct then");
+
+                })
+                .catch(function (e) {
+                    console.log("takeOnProduct error " + e);
+                });
+        },
+
+
+
         getBackgroundMessage: function () {
             console.log('getBackgroundMessage');
             axios({
@@ -173,9 +201,37 @@ const vm = Vue.createApp({
         },
         onFileChange(event) {
             this.file = event.target.files[0];
+        },
+        changeMainContent(action) {
+            vm.currentMainguideContent = action;
+            console.log("action " + action);
+        },
+        onFileChange(e) {
+            let file = e.files[0];
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.addEventListener("load", function () {
+                let index = vm.newProductImg.length;
+                vm.newProductImg.push({ id: index, image: reader.result, name: file.name });
+            });
+        },
+        pageBtn(pageIndex) {
+            axios({
+                method: "GET",
+                url: host_context + "shopDispatcher/getSomeProduct",
+                params: {
+                    "pageIndex": pageIndex
+                }
+            })
+                .then(function (value) {
+                    console.log("getSomeProduct then");
+                })
+                .catch(function (e) {
+                    console.log("getSomeProduct error " + e);
+                });
         }
     },
-}).mount("#page-top");
+}).mount("#wrapper");
 
 vm.getallproduct();
 

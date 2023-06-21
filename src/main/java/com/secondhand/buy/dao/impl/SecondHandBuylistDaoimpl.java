@@ -3,6 +3,8 @@ package com.secondhand.buy.dao.impl;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.PersistenceContext;
+
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -10,11 +12,11 @@ import com.secondhand.buy.dao.SecondHandBuylistDao;
 import com.secondhand.buy.vo.SecondHandBuylist;
 
 
-
 @Repository
 public class SecondHandBuylistDaoimpl implements SecondHandBuylistDao {
 	
-	private Session session = getSession();
+	@PersistenceContext
+	private Session session;
 
 	@Override
 	public int insert(SecondHandBuylist buylist) {
@@ -29,12 +31,12 @@ public class SecondHandBuylistDaoimpl implements SecondHandBuylistDao {
 		return 1;
 	}
 
+
 	@Override
 	public int update(SecondHandBuylist buylist) {
-		session.update(buylist);
+		session.update("SecondHandBuylist", buylist);
 		return 1;
 	}
-
 	@Override
 	public SecondHandBuylist selectById(Integer id) {
 		final String sql = "SELECT * FROM secondhand_buylist where buylist_id = :id  ";
@@ -54,6 +56,5 @@ public class SecondHandBuylistDaoimpl implements SecondHandBuylistDao {
 		return session.createNativeQuery(sql, SecondHandBuylist.class).setParameter("starttime", starttime)
 				.setParameter("endtime", endtime).getResultList();
 	}
-
 
 }

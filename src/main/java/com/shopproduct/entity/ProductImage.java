@@ -26,6 +26,9 @@ public class ProductImage {
     @Column(name = "Image", length = 2048)
     private String image;
 
+    @Transient
+    private String name;
+
     public ProductImage() {
 
     }
