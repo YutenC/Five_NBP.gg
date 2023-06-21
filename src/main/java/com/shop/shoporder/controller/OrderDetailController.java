@@ -1,4 +1,4 @@
-package com.shoporder.controller;
+package com.shop.shoporder.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.followlist.util.FollowListConstants;
-import com.followlist.util.ResFollowList;
 import com.google.gson.Gson;
 import com.member.entity.Member;
-import com.shoporder.entity.OrderDetail;
-import com.shoporder.entity.PKOrderDeatail;
-import com.shoporder.util.MemberServiceConstant;
-import com.shoporder.util.OrderDetailServiceConstant;
-import com.shoporder.util.ResOrderDetail;
-import com.shoporder.util.TransOrderProduct;
+import com.shop.followlist.util.FollowListConstants;
+import com.shop.followlist.util.ResFollowList;
+import com.shop.shoporder.entity.OrderDetail;
+import com.shop.shoporder.entity.PKOrderDeatail;
+import com.shop.shoporder.util.MemberServiceConstant;
+import com.shop.shoporder.util.OrderDetailServiceConstant;
+import com.shop.shoporder.util.ResOrderDetail;
+import com.shop.shoporder.util.TransOrderProduct;
 
 @WebServlet("/OrderDetail")
 public class OrderDetailController extends HttpServlet {
@@ -62,5 +62,14 @@ public class OrderDetailController extends HttpServlet {
     		pw.println(gson.toJson(rsODList));
     		return;
     	}
+    	
+    	String orderStr = req.getParameter("getByOrderId");
+    	if (orderStr != null) {
+    		Integer orderId = Integer.valueOf(orderStr);
+    		List<TransOrderProduct> trOPList = OrderDetailServiceConstant.ODSERVICE.getOrderDetailByOrderId(orderId);
+    		pw.println(gson.toJson(trOPList));
+    		return;
+    	}
+    	
 	}
 }

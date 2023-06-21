@@ -1,4 +1,4 @@
-package com.shoporder.util;
+package com.shop.shoporder.util;
 
 import com.member.service.MemberService;
 import com.member.service.impl.MemberServiceimpl;

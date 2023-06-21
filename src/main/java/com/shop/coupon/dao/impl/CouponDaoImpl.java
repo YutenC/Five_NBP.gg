@@ -1,12 +1,12 @@
-package com.coupon.dao.impl;
+package com.shop.coupon.dao.impl;
 
 import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 
-import com.coupon.dao.CouponDao;
-import com.coupon.entity.Coupon;
+import com.shop.coupon.dao.CouponDao;
+import com.shop.coupon.entity.Coupon;
 
 public class CouponDaoImpl implements CouponDao{
 	

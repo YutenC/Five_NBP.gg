@@ -1,4 +1,4 @@
-package com.shoporder.util;
+package com.shop.shoporder.util;
 
 import lombok.Data;
 import lombok.Getter;

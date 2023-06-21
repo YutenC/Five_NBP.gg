@@ -1,7 +1,7 @@
-package com.product.util;
+package com.shop.product.util;
 
-import com.product.service.ProductService;
-import com.product.service.impl.ProductServiceImpl;
+import com.shop.product.service.ProductService;
+import com.shop.product.service.impl.ProductServiceImpl;
 
 public class ProductServiceConstant {
 

@@ -1,7 +1,7 @@
-package com.followlist.util;
+package com.shop.followlist.util;
 
-import com.followlist.service.FollowListService;
-import com.followlist.service.impl.FollowListServiceImpl;
+import com.shop.followlist.service.FollowListService;
+import com.shop.followlist.service.impl.FollowListServiceImpl;
 
 public class FollowListConstants {
 	public static final FollowListService FPSERVICE = new FollowListServiceImpl();

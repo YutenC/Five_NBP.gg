@@ -1,9 +1,9 @@
-package com.coupon.dao;
+package com.shop.coupon.dao;
 
 import java.util.List;
 
 import com.core.dao.CoreDao;
-import com.coupon.entity.Coupon;
+import com.shop.coupon.entity.Coupon;
 
 public interface CouponDao extends CoreDao<Coupon, Integer>{
 

@@ -1,4 +1,4 @@
-package com.shoporder.controller;
+package com.shop.shoporder.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,28 +20,67 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.member.entity.Member;
-import com.product.util.CouponServiceConstant;
-import com.product.util.ProductServiceConstant;
-import com.shoporder.entity.OrderMaster;
-import com.shoporder.util.MemberServiceConstant;
-import com.shoporder.util.OrderDetailServiceConstant;
-import com.shoporder.util.OrderMasterServiceConstant;
-import com.shoporder.util.ResOrderMaster;
-import com.shoporder.util.TransOrderProduct;
-import com.shopproduct.entity.Coupon;
+import com.shop.product.util.CouponServiceConstant;
+import com.shop.product.util.ProductServiceConstant;
+import com.shop.shoporder.entity.OrderMaster;
+import com.shop.shoporder.util.MemberServiceConstant;
+import com.shop.shoporder.util.OrderDetailServiceConstant;
+import com.shop.shoporder.util.OrderMasterServiceConstant;
+import com.shop.shoporder.util.ResOrderMaster;
+import com.shop.shoporder.util.TransOrderProduct;
+import com.shop.shoporder.util.ViewOrderMaster;
+import com.shop.shopproduct.entity.Coupon;
 
 @WebServlet("/OrderMaster")
 public class OrderMasterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public OrderMasterController() {
+    
+	private Gson gson;
+ 
+    
+	public OrderMasterController() {
         super();
+        this.gson = new Gson();
     }
 
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    	req.setCharacterEncoding("UTF-8");
+		
+    	Gson gson = new Gson();
+    	res.setCharacterEncoding("UTF-8");
+    	res.setContentType("application/json");
+    	PrintWriter pw = res.getWriter();
+    	
+    	if (req.getParameter("manageAll") != null) {
+    		int limit = 10;
+    		Integer offset = Integer.valueOf(req.getParameter("manageAll")) * limit ;
+    		List<ViewOrderMaster> mgOrderList = OrderMasterServiceConstant.OMSERVICE.showMgOrderList(limit, offset);
+    		pw.println(gson.toJson(mgOrderList));
+    		return;
+    	}
+    	
+    	String character = req.getParameter("countListLength");
+    	if (character != null) {
+    		String match = req.getParameter("matchId");
+    		Integer matchId = 0;
+    		if (match != null && match.trim().length() != 0) {
+    			matchId = Integer.valueOf(req.getParameter("matchId"));
+    		}
+    		pw.println(gson.toJson(OrderMasterServiceConstant.OMSERVICE.countDataNum(character, matchId)));
+    	}
+    	
+    	String getOne = req.getParameter("getOne");
+    	if (getOne != null) {
+    		Integer orderId = Integer.valueOf(getOne);
+    		OrderMaster om = OrderMasterServiceConstant.OMSERVICE.getOne(orderId);
+    		pw.println(gson.toJson(om));
+    		return;
+    	}
+    }
+    
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		
-		Gson gson = new Gson();
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("application/json");
 		PrintWriter pw = res.getWriter();
@@ -79,8 +118,15 @@ public class OrderMasterController extends HttpServlet {
 			String trObjStr = reqStr.substring(0, cardIndex - 2);
 			trObjStr = trObjStr.substring(trObjStr.indexOf(":") + 1, trObjStr.length());
 			List<TransOrderProduct> trObjList = gson.fromJson(trObjStr, new TypeToken<List<TransOrderProduct>>(){});	// 使用Gson轉為java List<T>
-			req.setAttribute("trObjList", trObjList);
-//			System.out.println(trObjList);
+			
+			List<TransOrderProduct> purchaseProducts = new ArrayList<>();
+			for (TransOrderProduct trOdPd : trObjList) {
+				if (trOdPd.isChecked() == true) {
+					purchaseProducts.add(trOdPd);
+				}
+			}
+			req.setAttribute("purchaseProducts", purchaseProducts);
+			System.out.println(trObjList);
 						
 			// 取得結帳信用卡資訊Json物件
 			String cardStr = reqStr.substring(cardIndex  , addressIndex - 2);
@@ -107,7 +153,7 @@ public class OrderMasterController extends HttpServlet {
 			switch (payment) {
 			case "credit":
 				commitType = 1;
-				om.setPayStatus(1);
+				om.setPayStatus(2);
 				break;
 			case "transfer":
 				commitType = 2;
@@ -131,7 +177,7 @@ public class OrderMasterController extends HttpServlet {
 			om.setDeliverLocation(addressDetail.get("county").toString().replace("\"", "") + addressDetail.get("address").toString().replace("\"", ""));
 			
 			Integer productPrice = 0;
-			for (TransOrderProduct trObj : trObjList) {
+			for (TransOrderProduct trObj : purchaseProducts) {
 				if (trObj.isChecked() == true) {
 					TransOrderProduct checkProduct = ProductServiceConstant.PDSERVICE.getOneProduct(trObj.getProductId());
 					productPrice += checkProduct.getPrice() * trObj.getBuyAmount();
@@ -185,8 +231,10 @@ public class OrderMasterController extends HttpServlet {
 			
 			om.setOrderStatus(1);
 			
-			boolean addNewOM = OrderMasterServiceConstant.OMSERVICE.newOrder(om, trObjList, member);
+			boolean addNewOM = OrderMasterServiceConstant.OMSERVICE.newOrder(om, purchaseProducts, member);
 
+			req.setAttribute("thisOrder", om);
+			
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/ShoppingList");
 			dispatcher.include(req, res);
 			
@@ -204,14 +252,34 @@ public class OrderMasterController extends HttpServlet {
 			resOM.setAddress(addressDetail.get("county").toString().replace("\"", "") + addressDetail.get("address").toString().replace("\"", ""));
 //			System.out.println(resOM);
 			
-			String ecpay = req.getParameter("toEcpay");
+			String ecpay = gson.fromJson(req.getParameter("toEcpay"), String.class);
 			// 一般結帳：結果轉出到前端，由前端儲存在Web sessionStroage後轉導頁面
 			if (ecpay == "false") {
 				pw.println(gson.toJson(resOM));
 			} else {
-				
+//				RequestDispatcher toEcpay = req.getRequestDispatcher("/Ecpay");
+//				toEcpay.forward(req, res);
+//				啟用Jedis相關服務，將最近一期訂單先進行儲存?等轉跳頁面再非同步請求近期訂單資訊?或是不顯示結果?
+				res.sendRedirect("/Ecpay?orderId=30");
 			}
 		}
+		
+		if ("updateOM".equals(demand)) {
+			Reader rd = req.getReader();
+			BufferedReader brd = new BufferedReader(rd);
+			String reqStr = brd.readLine();
+			
+			System.out.println(reqStr);
+			
+			String omStr = reqStr.substring(reqStr.indexOf(":") + 1, reqStr.length() - 1);
+			System.out.println(omStr);
+			
+			OrderMaster fromFn = gson.fromJson(omStr, OrderMaster.class);
+			
+			pw.println(OrderMasterServiceConstant.OMSERVICE.updateOrderMaster(fromFn));
+			return;
+		}
+
 	}
 
 }

@@ -1,10 +1,10 @@
-package com.shoporder.service;
+package com.shop.shoporder.service;
 
 import java.util.List;
 
 import com.core.service.CoreService;
-import com.shoporder.entity.ShoppingList;
-import com.shoporder.util.TransOrderProduct;
+import com.shop.shoporder.entity.ShoppingList;
+import com.shop.shoporder.util.TransOrderProduct;
 
 public interface ShoppingListService extends CoreService{
 	

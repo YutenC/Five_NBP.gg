@@ -1,20 +1,20 @@
-package com.followlist.service.impl;
+package com.shop.followlist.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.followlist.dao.FollowListDao;
-import com.followlist.dao.impl.FollowListDaoImpl;
-import com.followlist.entity.FollowList;
-import com.followlist.entity.PKFollowList;
-import com.followlist.service.FollowListService;
-import com.followlist.util.ResFollowList;
-import com.product.dao.ProductDao;
-import com.product.dao.ProductImageDao;
-import com.product.dao.impl.ProductDaoImpl;
-import com.product.dao.impl.ProductImageDaoImpl;
-import com.product.entity.Product;
-import com.product.entity.ProductImage;
+import com.shop.followlist.dao.FollowListDao;
+import com.shop.followlist.dao.impl.FollowListDaoImpl;
+import com.shop.followlist.entity.FollowList;
+import com.shop.followlist.entity.PKFollowList;
+import com.shop.followlist.service.FollowListService;
+import com.shop.followlist.util.ResFollowList;
+import com.shop.product.dao.ProductDao;
+import com.shop.product.dao.ProductImageDao;
+import com.shop.product.dao.impl.ProductDaoImpl;
+import com.shop.product.dao.impl.ProductImageDaoImpl;
+import com.shop.product.entity.Product;
+import com.shop.product.entity.ProductImage;
 
 public class FollowListServiceImpl implements FollowListService{
 	

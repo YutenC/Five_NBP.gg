@@ -1,9 +1,9 @@
-package com.followlist.service;
+package com.shop.followlist.service;
 
 import java.util.List;
 
 import com.core.service.CoreService;
-import com.followlist.util.ResFollowList;
+import com.shop.followlist.util.ResFollowList;
 
 public interface FollowListService extends CoreService{
 	

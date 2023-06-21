@@ -1,4 +1,4 @@
-package com.shoporder.dao.impl;
+package com.shop.shoporder.dao.impl;
 
 import java.sql.Date;
 import java.util.List;
@@ -8,10 +8,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
-import com.member.entity.Member;
-import com.shoporder.dao.OrderMasterDao;
-import com.shoporder.entity.OrderMaster;
+import com.shop.shoporder.dao.OrderMasterDao;
+import com.shop.shoporder.entity.OrderMaster;
 
 public class OrderMasterDaoImpl implements OrderMasterDao {
 
@@ -146,6 +146,31 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 				.setParameter("payStatus", payStatus)
 				.getResultList();
 	}
-	
 
+	@Override
+	public List<OrderMaster> selectAllWithLimitAndOffset(Integer limit, Integer offset) {
+		String hql = "FROM OrderMaster ORDER BY commitDate";
+		return getSession()
+				.createQuery(hql, OrderMaster.class)
+				.setFirstResult(offset)
+				.setMaxResults(limit)
+				.getResultList();
+	}
+
+	@Override
+	public long countdataNum(String condition, Integer id) {
+		StringBuffer nql = new StringBuffer();
+		nql.append("SELECT COUNT(*) FROM OrderMaster ");
+		if (condition != null) {
+			nql.append("WHERE " + condition + " = :" + condition);
+		}
+		
+		Query<Long> query = getSession().createQuery(nql.toString(), Long.class);
+		if (condition != null) {
+			query.setParameter(condition, id);
+		}
+		
+		return query.uniqueResult();
+	}
+	
 }

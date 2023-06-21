@@ -1,4 +1,4 @@
-package com.followlist.util;
+package com.shop.followlist.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

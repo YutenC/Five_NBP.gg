@@ -1,4 +1,4 @@
-package com.product.dao.impl;
+package com.shop.product.dao.impl;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import com.product.dao.ProductImageDao;
-import com.product.entity.ProductImage;
+import com.shop.product.dao.ProductImageDao;
+import com.shop.product.entity.ProductImage;
 
 public class ProductImageDaoImpl implements ProductImageDao{
 

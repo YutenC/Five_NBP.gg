@@ -1,4 +1,4 @@
-package com.shoporder.controller;
+package com.shop.shoporder.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.member.entity.Member;
-import com.shoporder.entity.PKShoppingList;
-import com.shoporder.entity.ShoppingList;
-import com.shoporder.util.ShoppingListConstants;
-import com.shoporder.util.TransOrderProduct;
+import com.shop.shoporder.entity.PKShoppingList;
+import com.shop.shoporder.entity.ShoppingList;
+import com.shop.shoporder.util.ShoppingListConstants;
+import com.shop.shoporder.util.TransOrderProduct;
 
 @WebServlet("/ShoppingList")
 public class ShoppingListController extends HttpServlet {
@@ -101,12 +101,12 @@ public class ShoppingListController extends HttpServlet {
 		
 		// OrderMaster include ShoppingList(移除已結帳商品)
 		if ("checkOut".equals(demand)) {
-		List<TransOrderProduct> trObjList = (List<TransOrderProduct>)req.getAttribute("trObjList");
-		if (trObjList != null) {
+		List<TransOrderProduct> purchaseProducts = (List<TransOrderProduct>)req.getAttribute("purchaseProducts");
+		if (purchaseProducts != null) {
 			
 			List<ShoppingList> spLists = new ArrayList<>();
 			
-			for (TransOrderProduct trObj : trObjList) {
+			for (TransOrderProduct trObj : purchaseProducts) {
 				PKShoppingList pksplist = new PKShoppingList();
 				pksplist.setMemmberId(memberId);
 				pksplist.setProductId(trObj.getProductId());

@@ -1,4 +1,4 @@
-package com.product.controller;
+package com.shop.product.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import com.core.util.HibernateUtil;
 import com.google.gson.Gson;
 import com.member.entity.Member;
-import com.product.util.CouponServiceConstant;
-import com.shopproduct.entity.Coupon;
+import com.shop.product.util.CouponServiceConstant;
+import com.shop.shopproduct.entity.Coupon;
 
 @WebServlet("/Coupon")
 public class CouponController extends HttpServlet {

@@ -1,9 +1,9 @@
-package com.followlist.dao;
+package com.shop.followlist.dao;
 
 import java.util.List;
 
 import com.core.dao.CoreDao;
-import com.followlist.entity.FollowList;
+import com.shop.followlist.entity.FollowList;
 
 public interface FollowListDao extends CoreDao<FollowList, Integer>{
 	

@@ -1,7 +1,7 @@
-package com.product.util;
+package com.shop.product.util;
 
-import com.shopproduct.service.CouponService;
-import com.shopproduct.service.impl.CouponServiceImpl;
+import com.shop.shopproduct.service.CouponService;
+import com.shop.shopproduct.service.impl.CouponServiceImpl;
 
 public class CouponServiceConstant {
 	

@@ -1,4 +1,4 @@
-package com.product.dao.impl;
+package com.shop.product.dao.impl;
 
 import java.sql.Date;
 import java.util.List;
@@ -7,8 +7,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import com.product.dao.ProductDao;
-import com.product.entity.Product;
+import com.shop.product.dao.ProductDao;
+import com.shop.product.entity.Product;
 
 public class ProductDaoImpl implements ProductDao{
 
@@ -96,6 +96,16 @@ public class ProductDaoImpl implements ProductDao{
 	public List<Product> selectByProductByLaunchTime(Date lower, Date upper) {
 		String hql = "FROM Product WHERE launchTime BETWEEN :lower AND :upper";
 		return getSession().createQuery(hql, Product.class).setParameter("lower", lower).setParameter("upper", upper).getResultList();
+	}
+
+	@Override
+	public List<Product> selectByProductBuyTimes(Integer limit, Integer offset) {
+		String hql = "FROM Product ORDER BY buyTimes";
+		return getSession()
+				.createQuery(hql, Product.class)
+				.setFirstResult(offset)
+				.setMaxResults(limit)
+				.getResultList();
 	}
 	
 }

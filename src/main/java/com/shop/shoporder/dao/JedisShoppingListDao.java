@@ -1,9 +1,9 @@
-package com.shoporder.dao;
+package com.shop.shoporder.dao;
 
 import java.util.List;
 
 import com.core.util.JedisUtil;
-import com.shoporder.entity.ShoppingList;
+import com.shop.shoporder.entity.ShoppingList;
 
 import redis.clients.jedis.Jedis;
 

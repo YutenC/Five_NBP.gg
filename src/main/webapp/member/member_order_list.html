@@ -269,20 +269,16 @@
                                         <td>總價</td>
                                         <td>付款狀態</td>
                                         <td>出貨狀態</td>
-                                        <td>說明</td>
-                                        <td>退貨</td>
+                                        <!-- <td>退貨</td> -->
                                     </tr>
                                     <tr>
-                                        <td>11111111</td>
-                                        <td>2023/5/25</td>
-                                        <td>訂單成立</td>
-                                        <td>$2,000</td>
-                                        <td>已付款
-                                            <span>(信用卡一次付清)</span>
-                                        </td>
-                                        <td>已出貨</td>
-                                        <td>---</td>
-                                        <td></td>
+                                        <td>{{ item.orderId }}</td>
+                                        <td>{{ item.buyDate}}</td>
+                                        <td>{{ showDeliverState[item.deliverState] }}</td>
+                                        <td>${{ item.totalPrice }}</td>
+                                        <td>{{ showOrderStatus[updateOrder.orderStatus] }}</td>
+                                        <td>{{ showDeliverState[updateOrder.deliverState] }}</td>
+                                        <!-- <td></td> -->
                                     </tr>
                                 </tbody>
                             </table>
@@ -292,11 +288,13 @@
                                 <a href="" class="purchaseBtn">查看詳情</a>
                                 <div class="detailContent">
                                     <table>
-                                        <tr>
-                                            <td><a href="">商品名稱~fadsfsfs</a></td>
-                                            <td>1件</td>
-                                            <td>$2,000</td>
-                                        </tr>
+                                        <template v-for="orderDetail">
+                                            <tr>
+                                                <td><a href="">商品名稱~fadsfsfs</a></td>
+                                                <td>1件</td>
+                                                <td>$2,000</td>
+                                            </tr>
+                                        </template>
                                     </table>
                                 </div>
                             </div>

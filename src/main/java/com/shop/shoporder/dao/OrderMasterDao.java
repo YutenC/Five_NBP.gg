@@ -1,10 +1,10 @@
-package com.shoporder.dao;
+package com.shop.shoporder.dao;
 
 import java.util.List;
 
 import com.core.dao.CoreDao;
 import com.member.entity.Member;
-import com.shoporder.entity.OrderMaster;
+import com.shop.shoporder.entity.OrderMaster;
 
 public interface OrderMasterDao extends CoreDao<OrderMaster, Integer> {
 
@@ -27,4 +27,8 @@ public interface OrderMasterDao extends CoreDao<OrderMaster, Integer> {
 	List<OrderMaster> selectByOrderStatus(Integer orderstatus);
 	
 	List<OrderMaster> selectByPaystatus(Integer payStatus);
+	
+	List<OrderMaster> selectAllWithLimitAndOffset(Integer limit, Integer offset);
+	
+	long countdataNum(String condition, Integer id);
 }

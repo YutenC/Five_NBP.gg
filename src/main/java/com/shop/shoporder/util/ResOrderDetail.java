@@ -1,4 +1,4 @@
-package com.shoporder.util;
+package com.shop.shoporder.util;
 
 import java.io.Serializable;
 

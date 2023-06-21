@@ -1,4 +1,4 @@
-package com.shoporder.dao.impl;
+package com.shop.shoporder.dao.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.core.util.JedisUtil;
-import com.shoporder.dao.JedisShoppingListDao;
-import com.shoporder.entity.PKShoppingList;
-import com.shoporder.entity.ShoppingList;
+import com.shop.shoporder.dao.JedisShoppingListDao;
+import com.shop.shoporder.entity.PKShoppingList;
+import com.shop.shoporder.entity.ShoppingList;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Transaction;

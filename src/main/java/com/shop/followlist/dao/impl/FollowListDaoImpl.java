@@ -1,9 +1,9 @@
-package com.followlist.dao.impl;
+package com.shop.followlist.dao.impl;
 
 import java.util.List;
 
-import com.followlist.dao.FollowListDao;
-import com.followlist.entity.FollowList;
+import com.shop.followlist.dao.FollowListDao;
+import com.shop.followlist.entity.FollowList;
 
 public class FollowListDaoImpl implements FollowListDao {
 

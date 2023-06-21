@@ -1,10 +1,10 @@
-package com.shoporder.dao;
+package com.shop.shoporder.dao;
 
 import java.util.List;
 
 import com.core.dao.CoreDao;
-import com.shoporder.entity.PKShoppingList;
-import com.shoporder.entity.ShoppingList;
+import com.shop.shoporder.entity.PKShoppingList;
+import com.shop.shoporder.entity.ShoppingList;
 
 public interface ShoppingListDao extends CoreDao<ShoppingList, Integer>{
 

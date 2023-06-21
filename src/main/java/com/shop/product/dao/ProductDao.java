@@ -1,9 +1,9 @@
-package com.product.dao;
+package com.shop.product.dao;
 
 import java.util.List;
 
 import com.core.dao.CoreDao;
-import com.product.entity.Product;
+import com.shop.product.entity.Product;
 
 public interface ProductDao extends CoreDao<Product, Integer>{
 	
@@ -24,4 +24,6 @@ public interface ProductDao extends CoreDao<Product, Integer>{
 	List<Product> selectByProductByRevieweCount(Integer lower, Integer upper);
 
 	List<Product> selectByProductByLaunchTime(java.sql.Date lower, java.sql.Date upper);
+	
+	List<Product> selectByProductBuyTimes(Integer limit, Integer offset);
 }

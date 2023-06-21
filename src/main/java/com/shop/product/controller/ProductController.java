@@ -1,7 +1,8 @@
-package com.product.controller;
+package com.shop.product.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.member.entity.Member;
-import com.product.util.ProductServiceConstant;
-import com.shoporder.util.TransOrderProduct;
+import com.shop.product.util.ProductServiceConstant;
+import com.shop.shoporder.util.TransOrderProduct;
 
 @WebServlet("/Product")
 public class ProductController extends HttpServlet {
@@ -46,6 +47,14 @@ public class ProductController extends HttpServlet {
 			Integer productId = Integer.valueOf(req.getParameter("getOneProduct"));
 			TransOrderProduct trpd = ProductServiceConstant.PDSERVICE.getOneProduct(productId);
 			pw.println(gson.toJson(trpd));
+			return;
+		}
+		
+		String recomendFromAll = req.getParameter("recomendFromAll");
+		if (recomendFromAll != null) {
+			Integer recomAmount = Integer.valueOf(recomendFromAll);
+			List<TransOrderProduct> trpdList = ProductServiceConstant.PDSERVICE.getRecomendFromAll(recomAmount);
+			pw.println(gson.toJson(trpdList));
 			return;
 		}
 	}

@@ -245,8 +245,9 @@
                             <p class="text-primary m-0 fw-bold">
                                 訂單編號：<span>{{ order.orderId }}</span>
                                 <span
-                                    :style="(updateOrder.orderStatus === 3 || updateOrder.orderStatus === 4)? 'color:red' : '' ">訂單狀態：{{
-                                    showOrderStatus[updateOrder.orderStatus] }}</span>
+                                    :style="(updateOrder.orderStatus === 3 || updateOrder.orderStatus === 4)? 'color:red' : '' ">
+                                    訂單狀態：{{ showOrderStatus[updateOrder.orderStatus] }}
+                                </span>
                             <div v-show=" order.orderStatus===3">
                                 <button v-show="updateOrder.orderStatus === 3"
                                     @click="updateOrderStatus(2)">同意取消</button>

@@ -1,4 +1,4 @@
-package com.coupon.entity;
+package com.shop.coupon.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

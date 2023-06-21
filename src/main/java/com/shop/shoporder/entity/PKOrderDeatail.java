@@ -1,4 +1,4 @@
-package com.shoporder.entity;
+package com.shop.shoporder.entity;
 
 import java.io.Serializable;
 import java.util.Objects;

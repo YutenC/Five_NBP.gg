@@ -1,7 +1,7 @@
-package com.shoporder.util;
+package com.shop.shoporder.util;
 
-import com.shoporder.service.OrderDetailService;
-import com.shoporder.service.impl.OrderDetailServiceImpl;
+import com.shop.shoporder.service.OrderDetailService;
+import com.shop.shoporder.service.impl.OrderDetailServiceImpl;
 
 public class OrderDetailServiceConstant {
 

@@ -1,4 +1,4 @@
-package com.shoporder.entity;
+package com.shop.shoporder.entity;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class OrderMaster implements java.io.Serializable{
 	private Integer memberId;
 	
 	@Column(name = "COMMIT_DATE", updatable = false)
-	private java.sql.Date commitDate;	// 結帳日期
+	private java.sql.Date commitDate;	// 訂單成立日期
 	
 	@Column(name = "TOTAL_PRICE", updatable = false)
 	private Integer totalPrice;
@@ -75,7 +75,7 @@ public class OrderMaster implements java.io.Serializable{
 	@Column(name = "PAY_STATUS")
 	private Integer payStatus;		// 付款狀態：1待付款 2已付款 3貨到付款
 	
-	@OneToMany
-	@JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
-	private List<OrderDetail> odList;
+//	@OneToMany
+//	@JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
+//	private List<OrderDetail> odList;
 }

@@ -1,4 +1,4 @@
-package com.followlist.controller;
+package com.shop.followlist.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.followlist.util.FollowListConstants;
-import com.followlist.util.ResFollowList;
 import com.google.gson.Gson;
 import com.member.entity.Member;
+import com.shop.followlist.util.FollowListConstants;
+import com.shop.followlist.util.ResFollowList;
 
 @WebServlet("/FollowList")
 public class FollowListController extends HttpServlet {

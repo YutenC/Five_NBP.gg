@@ -1,7 +1,7 @@
-package com.shoporder.util;
+package com.shop.shoporder.util;
 
-import com.shoporder.service.ShoppingListService;
-import com.shoporder.service.impl.ShoppingListServiceImpl;
+import com.shop.shoporder.service.ShoppingListService;
+import com.shop.shoporder.service.impl.ShoppingListServiceImpl;
 
 public class ShoppingListConstants {
 

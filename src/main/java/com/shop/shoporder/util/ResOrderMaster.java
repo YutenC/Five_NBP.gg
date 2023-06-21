@@ -1,8 +1,8 @@
-package com.shoporder.util;
+package com.shop.shoporder.util;
 
 import java.util.List;
 
-import com.shopproduct.entity.Coupon;
+import com.shop.shopproduct.entity.Coupon;
 
 import lombok.Data;
 import lombok.Getter;

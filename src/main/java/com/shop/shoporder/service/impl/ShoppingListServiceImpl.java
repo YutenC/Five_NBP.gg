@@ -1,20 +1,20 @@
-package com.shoporder.service.impl;
+package com.shop.shoporder.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.product.dao.ProductDao;
-import com.product.dao.ProductImageDao;
-import com.product.dao.impl.ProductDaoImpl;
-import com.product.dao.impl.ProductImageDaoImpl;
-import com.product.entity.Product;
-import com.product.entity.ProductImage;
-import com.shoporder.dao.JedisShoppingListDao;
-import com.shoporder.dao.impl.JedisShoppingListDaoImpl;
-import com.shoporder.entity.PKShoppingList;
-import com.shoporder.entity.ShoppingList;
-import com.shoporder.service.ShoppingListService;
-import com.shoporder.util.TransOrderProduct;
+import com.shop.product.dao.ProductDao;
+import com.shop.product.dao.ProductImageDao;
+import com.shop.product.dao.impl.ProductDaoImpl;
+import com.shop.product.dao.impl.ProductImageDaoImpl;
+import com.shop.product.entity.Product;
+import com.shop.product.entity.ProductImage;
+import com.shop.shoporder.dao.JedisShoppingListDao;
+import com.shop.shoporder.dao.impl.JedisShoppingListDaoImpl;
+import com.shop.shoporder.entity.PKShoppingList;
+import com.shop.shoporder.entity.ShoppingList;
+import com.shop.shoporder.service.ShoppingListService;
+import com.shop.shoporder.util.TransOrderProduct;
 
 public class ShoppingListServiceImpl implements ShoppingListService{
 

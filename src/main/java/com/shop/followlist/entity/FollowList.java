@@ -1,4 +1,4 @@
-package com.followlist.entity;
+package com.shop.followlist.entity;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;

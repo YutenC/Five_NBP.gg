@@ -1,10 +1,10 @@
-package com.shoporder.dao.impl;
+package com.shop.shoporder.dao.impl;
 
 import java.util.List;
 
-import com.shoporder.dao.ShoppingListDao;
-import com.shoporder.entity.PKShoppingList;
-import com.shoporder.entity.ShoppingList;
+import com.shop.shoporder.dao.ShoppingListDao;
+import com.shop.shoporder.entity.PKShoppingList;
+import com.shop.shoporder.entity.ShoppingList;
 
 public class ShoppingListDaoImpl implements ShoppingListDao {
 

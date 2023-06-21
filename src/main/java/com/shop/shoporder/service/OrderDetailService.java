@@ -1,11 +1,11 @@
-package com.shoporder.service;
+package com.shop.shoporder.service;
 
 import java.util.Collection;
 import java.util.List;
 
 import com.core.service.CoreService;
-import com.shoporder.util.ResOrderDetail;
-import com.shoporder.util.TransOrderProduct;
+import com.shop.shoporder.util.ResOrderDetail;
+import com.shop.shoporder.util.TransOrderProduct;
 
 public interface OrderDetailService extends CoreService{
 	

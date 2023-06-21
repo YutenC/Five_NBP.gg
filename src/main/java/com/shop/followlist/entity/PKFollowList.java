@@ -1,4 +1,4 @@
-package com.followlist.entity;
+package com.shop.followlist.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
