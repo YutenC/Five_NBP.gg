@@ -1,4 +1,4 @@
-package com.shopproduct.core;
+package com.shop.shopproduct.core;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;

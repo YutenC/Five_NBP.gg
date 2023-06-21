@@ -1,16 +1,17 @@
-package com.shopproduct.redisdao.impl;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.shopproduct.entity.Product;
-import com.shopproduct.redisdao.ProductRedisDao;
-import com.shopproduct.util.RedisFactory;
-import com.shopproduct.util.ShopProductConst;
-import redis.clients.jedis.Jedis;
+package com.shop.shopproduct.redisdao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.shop.shopproduct.entity.Product;
+import com.shop.shopproduct.redisdao.ProductRedisDao;
+import com.shop.shopproduct.util.RedisFactory;
+import com.shop.shopproduct.util.ShopProductConst;
+
+import redis.clients.jedis.Jedis;
 
 public class ProductRedisDaoImpl implements ProductRedisDao {
 

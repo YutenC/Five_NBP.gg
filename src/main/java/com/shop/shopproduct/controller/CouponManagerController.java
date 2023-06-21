@@ -1,15 +1,15 @@
-package com.shopproduct.controller;
+package com.shop.shopproduct.controller;
 
-import com.google.gson.Gson;
-import com.shopproduct.entity.CouponActivity;
-import com.shopproduct.entity.ErrorMsg;
-import com.shopproduct.entity.RequestMsg;
-import com.shopproduct.service.CouponManagerService;
-import com.shopproduct.util.ObjectInstance;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+
+import com.google.gson.Gson;
+import com.shop.shopproduct.entity.CouponActivity;
+import com.shop.shopproduct.entity.ErrorMsg;
+import com.shop.shopproduct.entity.RequestMsg;
+import com.shop.shopproduct.service.CouponManagerService;
+import com.shop.shopproduct.util.ObjectInstance;
 
 public class CouponManagerController {
     CouponManagerService couponManagerService;

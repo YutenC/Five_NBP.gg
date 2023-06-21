@@ -1,4 +1,4 @@
-package com.shopproduct.filter;
+package com.shop.shopproduct.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

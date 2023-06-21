@@ -1,8 +1,8 @@
-package com.shopproduct.service;
-
-import com.shopproduct.entity.CouponActivity;
+package com.shop.shopproduct.service;
 
 import java.util.List;
+
+import com.shop.shopproduct.entity.CouponActivity;
 
 public interface CouponManagerService {
     void generateCouponActivity();

@@ -1,14 +1,10 @@
-package com.shopproduct.controller;
+package com.shop.shopproduct.controller;
 
 import com.google.gson.Gson;
-import com.shopproduct.entity.ProductImage;
-import com.shopproduct.entity.RequestMsg;
-import com.shopproduct.pojo.ProductPojo;
-import com.shopproduct.service.CouponManagerService;
-import com.shopproduct.service.ProductManagerService;
-import com.shopproduct.util.ObjectInstance;
-
-import java.util.List;
+import com.shop.shopproduct.entity.RequestMsg;
+import com.shop.shopproduct.pojo.ProductPojo;
+import com.shop.shopproduct.service.ProductManagerService;
+import com.shop.shopproduct.util.ObjectInstance;
 
 public class ProductManagerController {
 

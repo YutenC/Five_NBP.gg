@@ -1,6 +1,6 @@
-package com.shopproduct.service;
+package com.shop.shopproduct.service;
 
-import com.shopproduct.entity.Coupon;
+import com.shop.shopproduct.entity.Coupon;
 
 public interface HelloJsonService {
 

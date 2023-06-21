@@ -1,16 +1,16 @@
-package com.shopproduct.dao.impl;
+package com.shop.shopproduct.dao.impl;
 
 
-import com.shopproduct.core.CoreDaoImpl;
-import com.shopproduct.dao.CouponDao;
-import com.shopproduct.entity.Coupon;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
-import javax.persistence.Column;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import com.shop.shopproduct.core.CoreDaoImpl;
+import com.shop.shopproduct.dao.CouponDao;
+import com.shop.shopproduct.entity.Coupon;
 
 
 //extends BaseDAO<Coupon>

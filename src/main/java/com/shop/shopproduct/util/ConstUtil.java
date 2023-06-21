@@ -1,4 +1,4 @@
-package com.shopproduct.util;
+package com.shop.shopproduct.util;
 
 public class ConstUtil {
     public static final String CSVPATH = "C:\\MyWorkSpace\\five\\update\\Five_NBP.gg\\src\\main\\webapp\\img\\gameSoftware\\test\\origin\\假資料.csv";

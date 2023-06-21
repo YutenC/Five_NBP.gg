@@ -1,4 +1,4 @@
-package com.shopproduct.test;
+package com.shop.shopproduct.test;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.args.ListDirection;

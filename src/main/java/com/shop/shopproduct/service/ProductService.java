@@ -1,10 +1,9 @@
-package com.shopproduct.service;
-
-import com.shopproduct.entity.Product;
-import com.shopproduct.entity.ProductDetail;
-import com.shopproduct.entity.ProductImage;
+package com.shop.shopproduct.service;
 
 import java.util.List;
+
+import com.shop.shopproduct.entity.Product;
+import com.shop.shopproduct.entity.ProductDetail;
 
 public interface ProductService {
 

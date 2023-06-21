@@ -1,4 +1,4 @@
-package com.shopproduct.core;
+package com.shop.shopproduct.core;
 
 import java.sql.Connection;
 import java.sql.SQLException;

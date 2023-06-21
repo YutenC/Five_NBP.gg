@@ -1,4 +1,4 @@
-package com.shopproduct.common.backgroundtask;
+package com.shop.shopproduct.common.backgroundtask;
 
 import java.util.HashMap;
 import java.util.Map;

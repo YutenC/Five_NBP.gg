@@ -1,16 +1,9 @@
-package com.shopproduct.test;
-
-import com.shopproduct.dao.ProductDao;
-import com.shopproduct.dao.impl.ProductDaoImpl;
-import com.shopproduct.entity.Product;
-import com.shopproduct.entity.ProductImage;
-import com.shopproduct.util.CreateProductDB;
+package com.shop.shopproduct.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 public class testCreateProductDB {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, ParseException {

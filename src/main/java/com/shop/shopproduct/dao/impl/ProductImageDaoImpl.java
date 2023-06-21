@@ -1,10 +1,10 @@
-package com.shopproduct.dao.impl;
-
-import com.shopproduct.core.CoreDaoImpl;
-import com.shopproduct.dao.ProductImageDao;
-import com.shopproduct.entity.ProductImage;
+package com.shop.shopproduct.dao.impl;
 
 import java.util.List;
+
+import com.shop.shopproduct.core.CoreDaoImpl;
+import com.shop.shopproduct.dao.ProductImageDao;
+import com.shop.shopproduct.entity.ProductImage;
 
 public class ProductImageDaoImpl extends CoreDaoImpl<ProductImage,Integer> implements ProductImageDao {
     @Override

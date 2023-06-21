@@ -1,4 +1,4 @@
-package com.shopproduct.common.schedulertask;
+package com.shop.shopproduct.common.schedulertask;
 
 public class SchedulerFactory {
 }

@@ -1,4 +1,4 @@
-package com.shopproduct.util;
+package com.shop.shopproduct.util;
 
 public class ShopProductConst {
 

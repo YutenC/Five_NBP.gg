@@ -1,9 +1,9 @@
-package com.shopproduct.controller;
+package com.shop.shopproduct.controller;
 
 import com.google.gson.Gson;
-import com.shopproduct.entity.Coupon;
-import com.shopproduct.service.HelloJsonService;
-import com.shopproduct.util.HelloInstance;
+import com.shop.shopproduct.entity.Coupon;
+import com.shop.shopproduct.service.HelloJsonService;
+import com.shop.shopproduct.util.HelloInstance;
 
 public class HelloJsonController {
     HelloJsonService helloJsonService;

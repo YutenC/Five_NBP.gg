@@ -1,8 +1,8 @@
-package com.shopproduct.redisdao;
-
-import com.shopproduct.entity.Product;
+package com.shop.shopproduct.redisdao;
 
 import java.util.List;
+
+import com.shop.shopproduct.entity.Product;
 
 public interface ProductRedisDao {
     void saveProductBrowseToRedis(Product product);

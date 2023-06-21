@@ -1,9 +1,9 @@
-package com.shopproduct.controller;
+package com.shop.shopproduct.controller;
 
 import com.google.gson.Gson;
-import com.shopproduct.common.backgroundtask.BackgroundFactory;
-import com.shopproduct.common.backgroundtask.BackgroundHandler;
-import com.shopproduct.entity.RequestMsg;
+import com.shop.shopproduct.common.backgroundtask.BackgroundFactory;
+import com.shop.shopproduct.common.backgroundtask.BackgroundHandler;
+import com.shop.shopproduct.entity.RequestMsg;
 
 public class BackgroundMessageController {
 

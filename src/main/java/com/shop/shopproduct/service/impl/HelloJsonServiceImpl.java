@@ -1,14 +1,14 @@
-package com.shopproduct.service.impl;
-
-import com.google.gson.Gson;
-import com.shopproduct.dao.CouponDao;
-import com.shopproduct.entity.Coupon;
-import com.shopproduct.service.HelloJsonService;
-import com.shopproduct.util.HelloInstance;
+package com.shop.shopproduct.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.shop.shopproduct.dao.CouponDao;
+import com.shop.shopproduct.entity.Coupon;
+import com.shop.shopproduct.service.HelloJsonService;
+import com.shop.shopproduct.util.HelloInstance;
 
 public class HelloJsonServiceImpl implements HelloJsonService {
 

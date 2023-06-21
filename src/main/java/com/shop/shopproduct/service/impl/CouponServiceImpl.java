@@ -1,11 +1,11 @@
-package com.shopproduct.service.impl;
-
-import com.shopproduct.dao.CouponDao;
-import com.shopproduct.entity.Coupon;
-import com.shopproduct.service.CouponService;
-import com.shopproduct.util.ObjectInstance;
+package com.shop.shopproduct.service.impl;
 
 import java.util.List;
+
+import com.shop.shopproduct.dao.CouponDao;
+import com.shop.shopproduct.entity.Coupon;
+import com.shop.shopproduct.service.CouponService;
+import com.shop.shopproduct.util.ObjectInstance;
 
 public class CouponServiceImpl implements CouponService {
     CouponDao couponDao;

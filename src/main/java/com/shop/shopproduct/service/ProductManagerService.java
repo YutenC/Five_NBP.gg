@@ -1,6 +1,6 @@
-package com.shopproduct.service;
+package com.shop.shopproduct.service;
 
-import com.shopproduct.pojo.ProductPojo;
+import com.shop.shopproduct.pojo.ProductPojo;
 
 public interface ProductManagerService {
 

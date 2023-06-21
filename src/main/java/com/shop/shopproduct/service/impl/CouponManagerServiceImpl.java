@@ -1,22 +1,18 @@
-package com.shopproduct.service.impl;
-
-import com.google.gson.Gson;
-import com.shopproduct.dao.CouponDao;
-import com.shopproduct.dao.ProductDao;
-import com.shopproduct.dao.impl.ProductDaoImpl;
-import com.shopproduct.entity.Coupon;
-import com.shopproduct.entity.CouponActivity;
-import com.shopproduct.entity.Product;
-import com.shopproduct.entity.ProductImage;
-import com.shopproduct.redisdao.CouponActivityRedisDao;
-import com.shopproduct.service.CouponManagerService;
-import com.shopproduct.service.CouponService;
-import com.shopproduct.util.*;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.exceptions.JedisException;
+package com.shop.shopproduct.service.impl;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import com.shop.shopproduct.dao.CouponDao;
+import com.shop.shopproduct.entity.Coupon;
+import com.shop.shopproduct.entity.CouponActivity;
+import com.shop.shopproduct.redisdao.CouponActivityRedisDao;
+import com.shop.shopproduct.service.CouponManagerService;
+import com.shop.shopproduct.service.CouponService;
+import com.shop.shopproduct.util.ObjectInstance;
+import com.shop.shopproduct.util.RedisContent;
+import com.shop.shopproduct.util.RedisFactory;
 
 public class CouponManagerServiceImpl implements CouponManagerService {
 

@@ -1,20 +1,4 @@
-package com.shopproduct.service.impl;
-
-import com.shopproduct.common.backgroundtask.BackgroundFactory;
-import com.shopproduct.common.backgroundtask.BackgroundHandler;
-import com.shopproduct.core.util.HibernateUtil;
-import com.shopproduct.dao.CouponDao;
-import com.shopproduct.dao.ProductDao;
-import com.shopproduct.dao.ProductImageDao;
-import com.shopproduct.dao.impl.ProductDaoImpl;
-import com.shopproduct.entity.Product;
-import com.shopproduct.entity.ProductImage;
-import com.shopproduct.pojo.ProductPojo;
-import com.shopproduct.service.ProductManagerService;
-import com.shopproduct.util.ConstUtil;
-import com.shopproduct.util.CreateProductDB;
-import com.shopproduct.util.ObjectInstance;
-import org.hibernate.Session;
+package com.shop.shopproduct.service.impl;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -22,6 +6,21 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.Callable;
+
+import org.hibernate.Session;
+
+import com.shop.shopproduct.common.backgroundtask.BackgroundFactory;
+import com.shop.shopproduct.common.backgroundtask.BackgroundHandler;
+import com.shop.shopproduct.core.util.HibernateUtil;
+import com.shop.shopproduct.dao.ProductDao;
+import com.shop.shopproduct.dao.ProductImageDao;
+import com.shop.shopproduct.entity.Product;
+import com.shop.shopproduct.entity.ProductImage;
+import com.shop.shopproduct.pojo.ProductPojo;
+import com.shop.shopproduct.service.ProductManagerService;
+import com.shop.shopproduct.util.ConstUtil;
+import com.shop.shopproduct.util.CreateProductDB;
+import com.shop.shopproduct.util.ObjectInstance;
 
 public class ProductManagerServiceImpl implements ProductManagerService {
 

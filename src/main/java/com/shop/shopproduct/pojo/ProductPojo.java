@@ -1,14 +1,9 @@
-package com.shopproduct.pojo;
+package com.shop.shopproduct.pojo;
 
-import com.google.gson.annotations.Expose;
-import com.shopproduct.entity.Product;
-import com.shopproduct.entity.ProductImage;
+import com.shop.shopproduct.entity.Product;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.Lob;
-import javax.persistence.Transient;
 
 @Setter
 @Getter

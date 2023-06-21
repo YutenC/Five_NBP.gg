@@ -1,16 +1,15 @@
-package com.shopproduct.service.impl;
+package com.shop.shopproduct.service.impl;
 
-import com.shopproduct.dao.ProductDao;
-import com.shopproduct.dao.ProductImageDao;
-import com.shopproduct.entity.Product;
-import com.shopproduct.entity.ProductDetail;
-import com.shopproduct.entity.ProductImage;
-import com.shopproduct.redisdao.ProductRedisDao;
-import com.shopproduct.service.ProductService;
-import com.shopproduct.util.ObjectInstance;
-
-import java.util.ArrayList;
 import java.util.List;
+
+import com.shop.shopproduct.dao.ProductDao;
+import com.shop.shopproduct.dao.ProductImageDao;
+import com.shop.shopproduct.entity.Product;
+import com.shop.shopproduct.entity.ProductDetail;
+import com.shop.shopproduct.entity.ProductImage;
+import com.shop.shopproduct.redisdao.ProductRedisDao;
+import com.shop.shopproduct.service.ProductService;
+import com.shop.shopproduct.util.ObjectInstance;
 
 public class ProductServiceImpl implements ProductService {
 

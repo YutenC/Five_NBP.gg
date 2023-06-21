@@ -1,20 +1,17 @@
-package com.shopproduct.util;
-
-import com.shopproduct.dao.ProductImageDao;
-import com.shopproduct.dao.impl.CouponDaoImpl;
-import com.shopproduct.dao.impl.ProductDaoImpl;
-import com.shopproduct.dao.impl.ProductImageDaoImpl;
-import com.shopproduct.redisdao.ProductRedisDao;
-import com.shopproduct.redisdao.impl.CouponActivityRedisDaoImpl;
-import com.shopproduct.redisdao.impl.ProductRedisDaoImpl;
-import com.shopproduct.service.ProductManagerService;
-import com.shopproduct.service.impl.CouponManagerServiceImpl;
-import com.shopproduct.service.impl.CouponServiceImpl;
-import com.shopproduct.service.impl.ProductManagerServiceImpl;
-import com.shopproduct.service.impl.ProductServiceImpl;
+package com.shop.shopproduct.util;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.shop.shopproduct.dao.impl.CouponDaoImpl;
+import com.shop.shopproduct.dao.impl.ProductDaoImpl;
+import com.shop.shopproduct.dao.impl.ProductImageDaoImpl;
+import com.shop.shopproduct.redisdao.impl.CouponActivityRedisDaoImpl;
+import com.shop.shopproduct.redisdao.impl.ProductRedisDaoImpl;
+import com.shop.shopproduct.service.impl.CouponManagerServiceImpl;
+import com.shop.shopproduct.service.impl.CouponServiceImpl;
+import com.shop.shopproduct.service.impl.ProductManagerServiceImpl;
+import com.shop.shopproduct.service.impl.ProductServiceImpl;
 
 public class ObjectInstance {
     private static ObjectInstance objectInstance=null;

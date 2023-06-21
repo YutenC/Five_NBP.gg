@@ -1,4 +1,4 @@
-package com.shopproduct.util;
+package com.shop.shopproduct.util;
 
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;

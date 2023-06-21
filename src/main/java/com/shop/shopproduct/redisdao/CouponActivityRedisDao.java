@@ -1,9 +1,8 @@
-package com.shopproduct.redisdao;
-
-import com.shopproduct.entity.CouponActivity;
-import redis.clients.jedis.exceptions.JedisException;
+package com.shop.shopproduct.redisdao;
 
 import java.util.List;
+
+import com.shop.shopproduct.entity.CouponActivity;
 
 public interface CouponActivityRedisDao {
 

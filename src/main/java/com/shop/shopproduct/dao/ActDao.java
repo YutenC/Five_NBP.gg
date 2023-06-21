@@ -1,4 +1,4 @@
-package com.shopproduct.dao;
+package com.shop.shopproduct.dao;
 
 public interface ActDao {
 }

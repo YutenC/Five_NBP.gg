@@ -1,20 +1,26 @@
-package com.shopproduct.servlet;
+package com.shop.shopproduct.servlet;
 
-import com.google.gson.Gson;
-import com.shopproduct.controller.*;
-import com.shopproduct.entity.ProductImage;
-import com.shopproduct.pojo.ProductPojo;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Enumeration;
-import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import com.google.gson.Gson;
+import com.shop.shopproduct.controller.BackgroundMessageController;
+import com.shop.shopproduct.controller.CouponManagerController;
+import com.shop.shopproduct.controller.HelloJsonController;
+import com.shop.shopproduct.controller.ProductController;
+import com.shop.shopproduct.controller.ProductManagerController;
+import com.shop.shopproduct.pojo.ProductPojo;
 
 @WebServlet("/shopDispatcher/*")
 @MultipartConfig

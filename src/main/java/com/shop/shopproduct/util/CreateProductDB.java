@@ -1,16 +1,26 @@
-package com.shopproduct.util;
+package com.shop.shopproduct.util;
 
-import com.shopproduct.dao.ProductDao;
-import com.shopproduct.dao.ProductImageDao;
-import com.shopproduct.dao.impl.ProductDaoImpl;
-import com.shopproduct.dao.impl.ProductImageDaoImpl;
-import com.shopproduct.entity.Product;
-import com.shopproduct.entity.ProductImage;
-
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import com.shop.shopproduct.dao.ProductDao;
+import com.shop.shopproduct.dao.ProductImageDao;
+import com.shop.shopproduct.dao.impl.ProductDaoImpl;
+import com.shop.shopproduct.dao.impl.ProductImageDaoImpl;
+import com.shop.shopproduct.entity.Product;
+import com.shop.shopproduct.entity.ProductImage;
 
 public class CreateProductDB<T, P> {
 

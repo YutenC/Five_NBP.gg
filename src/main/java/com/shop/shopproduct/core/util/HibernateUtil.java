@@ -1,4 +1,4 @@
-package com.shopproduct.core.util;
+package com.shop.shopproduct.core.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;

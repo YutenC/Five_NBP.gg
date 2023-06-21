@@ -1,7 +1,7 @@
-package com.shopproduct.dao;
+package com.shop.shopproduct.dao;
 
-import com.shopproduct.core.CoreDao;
-import com.shopproduct.entity.Product;
+import com.shop.shopproduct.core.CoreDao;
+import com.shop.shopproduct.entity.Product;
 
 public interface ProductDao extends CoreDao<Product,Integer> {
 }

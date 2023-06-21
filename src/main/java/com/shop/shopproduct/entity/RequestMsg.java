@@ -1,4 +1,4 @@
-package com.shopproduct.entity;
+package com.shop.shopproduct.entity;
 
 public class RequestMsg {
 
