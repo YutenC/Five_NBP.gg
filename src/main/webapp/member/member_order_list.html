@@ -5,18 +5,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>memberOrderList</title>
-    <link rel="stylesheet" href="/Five_NBP.gg/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
-    <link rel="stylesheet" href="/Five_NBP.gg/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Carousel-Hero.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Footer-with-social-media-icons.css">
+    <link rel="stylesheet" href="../fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/Carousel-Hero.css">
+    <link rel="stylesheet" href="../css/Footer-with-social-media-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Main-Content.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Navbar-Centered-Brand.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Profile-Edit-Form-1.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Profile-Edit-Form.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/Profile-with-data-and-skills.css">
-    <link rel="stylesheet" href="/Five_NBP.gg/css/styles.css">
+    <link rel="stylesheet" href="../css/Main-Content.css">
+    <link rel="stylesheet" href="../css/Navbar-Centered-Brand.css">
+    <link rel="stylesheet" href="../css/Profile-Edit-Form-1.css">
+    <link rel="stylesheet" href="../css/Profile-Edit-Form.css">
+    <link rel="stylesheet" href="../css/Profile-with-data-and-skills.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
         div.row {
             width: 100%;
@@ -189,9 +191,8 @@
     <div class="main-content">
         <div class="row" style="height: 800px;">
             <div class="col-lg-4 col-xl-2 offset-xl-1" style="height: 600px;">
-                <div class="list-group" >
-                    <a data-bss-hover-animate="pulse" id="info"
-                    class="list-group-item list-group-item-action"
+                <div class="list-group">
+                    <a data-bss-hover-animate="pulse" id="info" class="list-group-item list-group-item-action"
                         href="./member_info.html" data-bs-toggle="list"
                         style="background: var(--bs-light);border-top-color: var(--bs-gray-400);border-bottom-color: var(--bs-gray-400);">基本資料管理
                     </a>
@@ -244,11 +245,11 @@
             </div>
 
             <div class="col colRight">
-                <div class="container profile profile-view" id="profile">
+                <div class="container profile profile-view" id="profile" id="memberOrder">
                     <h1>一般交易紀錄查詢</h1>
                     <div class="functionSelect">
                         <form action="" class="functionSelect">
-                            <select name="functionSelect" id="functionSelect">
+                            <select name="functionSelect" id="functionSelect" @change="" v-model="">
                                 <option value="all">全部</option>
                                 <option value="unpaid">未付款</option>
                                 <option value="paid">已付款</option>
@@ -257,7 +258,7 @@
                             </select>
                         </form>
                     </div>
-                    <div class="detailArea">
+                    <div class="detailArea" v-for="item in orders">
                         <div class="detailUnit">
                             <table>
                                 <tbody>
@@ -343,10 +344,10 @@
             </div>
         </div>
     </footer>
-    <script src="/Five_NBP.gg/jquery/jquery-3.4.1.min.js"></script>
+    <script src="../jquery/jquery-3.4.1.min.js"></script>
     <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
-    <script src="/Five_NBP.gg/js/bs-init.js"></script>
-    <script src="/Five_NBP.gg/js/Profile-Edit-Form.js"></script>
+    <script src="../js/bs-init.js"></script>
+    <script src="../js/Profile-Edit-Form.js"></script>
     <script>
         $('div.detailArea').on('click', 'button.purchaseBtn, a.purchaseBtn', function (e) {
             e.preventDefault();
