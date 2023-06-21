@@ -17,12 +17,8 @@
 
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        
 
 
-        <mapping class="com.shopproduct.entity.Coupon"/>
-        <mapping class="com.shopproduct.entity.Product"/>
-        <mapping class="com.shopproduct.entity.ProductImage"/>
         <mapping class="com.manager.entity.Manager"/>
         <mapping class="com.member.entity.Member"/>
         <mapping class="com.member.entity.Login_record"/>
@@ -34,8 +30,8 @@
         <mapping class="com.member.entity.Other_app_login"/>
         <mapping class="com.member.entity.Gaming_tag"/>
         <mapping class="com.member.entity.Tag"/>
-        <mapping class="com.shopproduct.entity.Coupon"/>
-        <mapping class="com.shopproduct.entity.Product"/>
-        <mapping class="com.shopproduct.entity.ProductImage"/>
+        <mapping class="com.shop.shopproduct.entity.Coupon"/>
+        <mapping class="com.shop.shopproduct.entity.Product"/>
+        <mapping class="com.shop.shopproduct.entity.ProductImage"/>
     </session-factory>
 </hibernate-configuration>

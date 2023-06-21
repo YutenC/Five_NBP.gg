@@ -6,8 +6,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.coupon.dao.CouponDao;
-import com.coupon.entity.Coupon;
+import com.shop.coupon.dao.CouponDao;
+import com.shop.coupon.entity.Coupon;
 
 public class CouponDaoImpl implements CouponDao{
 
