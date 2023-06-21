@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../fonts/material-icons.min.css">
     <link rel="stylesheet" href="../css/x-dropdown.css">
     <link rel="stylesheet" href="../css/custom.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
         table#dataTable td:nth-child(4) a {
             text-decoration: underline;
@@ -181,17 +183,17 @@
                     card-header 標題框
                     card-body 視窗主體 -->
 
-                    <div class="card shadow">
+                    <div class="card shadow" id="omManage">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
                                     <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
                                         <label class="form-label">Show&nbsp;
-                                            <select class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
+                                            <select class="d-inline-block form-select form-select-sm"
+                                                @change="renewList(nowPage)" v-model="nowPage">
+                                                <option v-for="pg in Math.ceil(totalListItem/10)" :value="pg">
+                                                    {{ pg * 10 }}
+                                                </option>
                                             </select>&nbsp;
                                         </label>
                                     </div>
@@ -212,115 +214,31 @@
                                         <tr>
                                             <th></th>
                                             <th>訂單編號</th>
+                                            <th>購買者會員編號</th>
                                             <th>購買者</th>
                                             <th>購買內容</th>
                                             <th>訂單成立日期</th>
                                             <th>總金額</th>
+                                            <th>訂單狀態</th>
                                             <th>付款狀態</th>
                                             <th>出貨狀態</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>111111</td>
-                                            <td>Chief</td>
-                                            <td><a href="">檢視詳情</a></td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td>已付款</td>
-                                            <td>已出貨</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>111111</td>
-                                            <td>Chief</td>
-                                            <td><a href="">檢視詳情</a></td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td>已付款</td>
-                                            <td>已出貨</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>111111</td>
-                                            <td>Chief</td>
-                                            <td><a href="">檢視詳情</a></td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td>已付款</td>
-                                            <td>已出貨</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>111111</td>
-                                            <td>Chief</td>
-                                            <td><a href="">檢視詳情</a></td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td>已付款</td>
-                                            <td>已出貨</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>111111</td>
-                                            <td>Chief</td>
-                                            <td><a href="">檢視詳情</a></td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td>已付款</td>
-                                            <td>已出貨</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>111111</td>
-                                            <td>Chief</td>
-                                            <td><a href="">檢視詳情</a></td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td>已付款</td>
-                                            <td>已出貨</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>111111</td>
-                                            <td>Chief</td>
-                                            <td><a href="">檢視詳情</a></td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td>已付款</td>
-                                            <td>已出貨</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>111111</td>
-                                            <td>Chief</td>
-                                            <td><a href="">檢視詳情</a></td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td>已付款</td>
-                                            <td>已出貨</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>111111</td>
-                                            <td>Chief</td>
-                                            <td><a href="">檢視詳情</a></td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td>已付款</td>
-                                            <td>已出貨</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>111111</td>
-                                            <td>Chief</td>
-                                            <td><a href="">檢視詳情</a></td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td>已付款</td>
-                                            <td>已出貨</td>
-                                        </tr>
+                                    <tbody id="omList">
+                                        <template v-for="item in omList">
+                                            <tr>
+                                                <td><input type="checkbox"></td>
+                                                <td>{{ item.orderId }}</td>
+                                                <td>{{ item.memberId }}</td>
+                                                <td>{{ item.buyer }}</td>
+                                                <td><a href="" @click.prevent="watchDetail(item.orderId)">檢視詳情</a></td>
+                                                <td>{{ item.purchaseDate }}</td>
+                                                <td>{{ item.total }}</td>
+                                                <td>{{ item.orderStatus }}</td>
+                                                <td>{{ item.payStatus }}</td>
+                                                <td>{{ item.deliStatus }}</td>
+                                            </tr>
+                                        </template>
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -330,6 +248,7 @@
                                             <td><strong>購買內容</strong></td>
                                             <td><strong>訂單成立日期</strong></td>
                                             <td><strong>總金額</strong></td>
+                                            <td><strong>訂單狀態</strong></td>
                                             <td><strong>付款狀態</strong></td>
                                             <td><strong>出貨狀態</strong></td>
                                         </tr>
@@ -339,28 +258,29 @@
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
                                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
-                                        Showing 1 to 10 of 27</p>
+                                        Showing {{ (nowPage - 1) *10 + 1}} to {{ nowPage * 10}} of {{ totalListItem }}
+                                    </p>
                                 </div>
                                 <div class="col-md-6">
                                     <nav
                                         class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                         <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" aria-label="Previous" href="#">
+                                            <li class="page-item" :class="nowPage === 1? 'disabled' : ''">
+                                                <a class="page-link" aria-label="Previous" href="#"
+                                                    @click.prevent="renewList(nowPage - 1 > 0? nowPage - 1 : 1 )">
                                                     <span aria-hidden="true">«</span>
                                                 </a>
                                             </li>
-                                            <li class="page-item active">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">2</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" aria-label="Next" href="#">
+                                            <template v-for="pg in Math.ceil(totalListItem/10)">
+                                                <li class="page-item" :class="nowPage === pg? 'active': ''">
+                                                    <a class="page-link" href="#" @click.prevent="renewList(pg)">{{ pg
+                                                        }}</a>
+                                                </li>
+                                            </template>
+                                            <li class="page-item"
+                                                :class="nowPage === Math.ceil(totalListItem/10)? 'disabled' : ''">
+                                                <a class="page-link" aria-label="Next" href="#"
+                                                    @click.prevent="renewList(nowPage + 1 > Math.ceil(totalListItem/10)? Math.ceil(totalListItem/10) : nowPage + 1 )">
                                                     <span aria-hidden="true">»</span>
                                                 </a>
                                             </li>
@@ -390,6 +310,7 @@
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <!-- <script src="/Five_NBP.gg/js/theme.js"></script> -->
     <script src="../js/theme.js"></script>
+    <script src="../js/orderManageIndex(Vue).js"></script>
 </body>
 
 </html>
