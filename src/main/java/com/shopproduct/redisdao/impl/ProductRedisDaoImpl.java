@@ -18,13 +18,32 @@ public class ProductRedisDaoImpl implements ProductRedisDao {
     @Override
     public void saveProductBrowseToRedis(Product product) {
         List<Product> products = getHistoryProductBrowse();
-        for (Product p : products) {
-            if (Objects.equals(p.getId(), product.getId())) {
-                return;
+        Jedis jedis = RedisFactory.getRedisServiceInstance().getJedis(ShopProductConst.REDIS_SELECT_INDEX);
+        for (int i=0;i<products.size();i++) {
+            if (Objects.equals(products.get(i).getId(), product.getId())) {
+                if(i==0){
+                    return;
+                }
+                else if((i==(products.size()-1)) && (products.size()>=5) ){
+
+                }
+                else {
+                    List<String> values= jedis.lrange("HistoryProductBrowse",i+1,-1 );
+                    jedis.ltrim("HistoryProductBrowse",0,i-1);
+
+                    String [] ss=  (String []) values.toArray(new String[0]);
+                    String[] strarray = new String[values.size()];
+                    values.toArray(strarray );
+
+                    if(strarray.length!=0){
+                        jedis.rpush("HistoryProductBrowse", strarray);
+                    }
+
+                }
             }
         }
 
-        Jedis jedis = RedisFactory.getRedisServiceInstance().getJedis(ShopProductConst.REDIS_SELECT_INDEX);
+
 
         String json_str = toJson(product);
         jedis.lpush("HistoryProductBrowse", json_str);

@@ -227,6 +227,7 @@
             <div style="display: flex; flex-direction: row; justify-content: center; padding: 10px; ">
                 <ul class="item_list">
                     <li v-for="item in couponActivity">
+                        <!-- <div>zzz{{item.activityName}}</div> -->
                         <div style="display: flex; border:2px brown; ">
                             <div
                                 style="display: flex;flex-wrap: wrap; width: 100px; height: 100px; background-color: orange; justify-content: center; align-items: center;">
@@ -239,10 +240,12 @@
                             </div>
                             <div
                                 style="display: flex;flex-wrap: wrap; width: 100px; height: 100px;  align-content: center; justify-content: center; align-items: center;">
-                                <a style="text-decoration: none; width: 90px; height: 30px; border-style: none; background-color: darkgoldenrod; color: #ffffff; text-align: center;  "
+                                <!-- <a style="text-decoration: none; width: 90px; height: 30px; border-style: none; background-color: darkgoldenrod; color: #ffffff; text-align: center;  "
                                     role="button" href="#">
-                                    {{item.couponId}}
-                                </a>
+                                    {{item.coupon.discountCode}}
+                                    {{item.activityName}}
+                                </a> -->
+                                <span style="text-align: center;">{{item.coupon.discountCode}}</span>
                             </div>
                         </div>
                     </li>

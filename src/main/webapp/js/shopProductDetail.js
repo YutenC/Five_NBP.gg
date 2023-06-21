@@ -15,24 +15,26 @@ const vm = Vue.createApp({
         };
     },
     created() {
+        console.log('created');
     },
     mounted() {
-        const ProductDetail_id = getDataFromSessionStorage("currentShopProductDetail_id");
-        axios({
-            method: "GET",
-            url: host_context + "shopDispatcher/getProductDetail",
-            params: { id: ProductDetail_id }
-        })
-            .then(function (value) {
-                vm.productDetail = value.data;
-                vm.product = vm.productDetail.product;
-                console.log("getProductById then");
+        // const ProductDetail_id = getDataFromSessionStorage("currentShopProductDetail_id");
+        // axios({
+        //     method: "GET",
+        //     url: host_context + "shopDispatcher/getProductDetail",
+        //     params: { id: ProductDetail_id }
+        // })
+        //     .then(function (value) {
+        //         vm.productDetail = value.data;
+        //         vm.product = vm.productDetail.product;
+        //         console.log("getProductById then");
 
-            })
-            .catch(function (e) {
-                console.log("getProductById error " + e);
-            });
+        //     })
+        //     .catch(function (e) {
+        //         console.log("getProductById error " + e);
+        //     });
 
+        getProductDetail();
         getProductHistory();
     },
     methods: {
@@ -85,6 +87,27 @@ const vm = Vue.createApp({
     },
 }).mount(".shopmain");
 
+getProductDetail();
+
+
+function getProductDetail() {
+    const ProductDetail_id = getDataFromSessionStorage("currentShopProductDetail_id");
+    axios({
+        method: "GET",
+        url: host_context + "shopDispatcher/getProductDetail",
+        params: { id: ProductDetail_id }
+    })
+        .then(function (value) {
+            vm.productDetail = value.data;
+            vm.product = vm.productDetail.product;
+            getProductHistory();
+            console.log("getProductById then");
+
+        })
+        .catch(function (e) {
+            console.log("getProductById error " + e);
+        });
+}
 
 function getProductHistory() {
     axios({

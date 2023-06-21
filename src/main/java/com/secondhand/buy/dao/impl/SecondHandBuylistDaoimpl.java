@@ -30,25 +30,13 @@ public class SecondHandBuylistDaoimpl implements SecondHandBuylistDao {
 		session.remove(buylist);
 		return 1;
 	}
-<<<<<<< HEAD
+
 
 	@Override
 	public int update(SecondHandBuylist buylist) {
 		session.update("SecondHandBuylist", buylist);
-=======
-	
-	
-	
-
-	@Override
-	public int update(SecondHandBuylist buylist) {
-		session.beginTransaction();
-		session.update("SecondHandBuylist",buylist);
-		session.getTransaction().commit();
->>>>>>> origin/wangJZ
 		return 1;
 	}
-
 	@Override
 	public SecondHandBuylist selectById(Integer id) {
 		final String sql = "SELECT * FROM secondhand_buylist where buylist_id = :id  ";

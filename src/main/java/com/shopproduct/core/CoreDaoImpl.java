@@ -27,9 +27,11 @@ public abstract class CoreDaoImpl<P, I> implements CoreDao <P, I>{
     public int insert(P pojo) {
         Session session = getSession();
 //        Transaction transaction= session.beginTransaction();
-        session.persist(pojo);
+//        session.persist(pojo);
+
+
 //        transaction.commit();
-        return 0;
+        return (int)session.save(pojo);
     }
 
     @Override

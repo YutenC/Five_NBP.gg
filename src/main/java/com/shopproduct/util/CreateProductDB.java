@@ -21,9 +21,7 @@ public class CreateProductDB<T, P> {
 //    final String srcImgPath = "src\\main\\webapp\\img\\gameSoftware\\test\\origin\\";
 //    final String desImgPath = "src\\main\\webapp\\img\\gameSoftware\\test\\";
 
-    final String csvPath = "C:\\MyWorkSpace\\five\\update\\Five_NBP.gg\\src\\main\\webapp\\img\\gameSoftware\\test\\origin\\假資料.csv";
-    final String srcImgPath = "C:\\MyWorkSpace\\five\\update\\Five_NBP.gg\\src\\main\\webapp\\img\\gameSoftware\\test\\origin\\";
-    final String desImgPath = "C:\\MyWorkSpace\\five\\update\\Five_NBP.gg\\src\\main\\webapp\\img\\gameSoftware\\test\\";
+
 
     ProductDao productDao;
     ProductImageDao productImageDao;
@@ -39,7 +37,7 @@ public class CreateProductDB<T, P> {
     }
 
     public List<T> readCSV() throws NoSuchFieldException, IllegalAccessException {
-        String csvFile = csvPath;
+        String csvFile = ConstUtil.CSVPATH;
         String line;
         String csvDelimiter = ",";
 
@@ -95,7 +93,7 @@ public class CreateProductDB<T, P> {
     }
 
     public List<P> createImgEntity() throws NoSuchFieldException, IllegalAccessException {
-        List<String> fileNames = getListFile(srcImgPath);
+        List<String> fileNames = getListFile(ConstUtil.SRCIMGPATH);
 
 
         String newFileName = null;
@@ -117,10 +115,10 @@ public class CreateProductDB<T, P> {
 
             for (int j = 0; j < 3; j++) {
                 if (j != 0) {
-                    pathName = srcImgPath + fileName + "_" + j + ".PNG";
+                    pathName = ConstUtil.SRCIMGPATH + fileName + "_" + j + ".PNG";
                     newFileName = p_id + "_" + j + ".PNG";
                 } else {
-                    pathName = srcImgPath + fileName + ".PNG";
+                    pathName = ConstUtil.SRCIMGPATH + fileName + ".PNG";
                     newFileName = p_id + "_index" + ".PNG";
                 }
 
@@ -132,7 +130,7 @@ public class CreateProductDB<T, P> {
                 // Check if the file exists
                 if (file.exists()) {
 
-                    File file2 = new File(desImgPath + newFileName);
+                    File file2 = new File(ConstUtil.DESIMGPATH + newFileName);
                     copyFile(file, file2);
 //                    if(!file2.exists()){
 //                        copyFile(file, file2);

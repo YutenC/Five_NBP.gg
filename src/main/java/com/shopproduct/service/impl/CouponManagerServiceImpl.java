@@ -34,7 +34,7 @@ public class CouponManagerServiceImpl implements CouponManagerService {
     public void generateCouponActivity() {
         for (int i = 0; i < 10; i++) {
             CouponActivity couponActivity = new CouponActivity("Activity " + i, "MF");
-            couponActivity.setCoupon(genCouponData());
+            couponActivity.setCoupon(genFixCouponData(i));//genCouponData()
             addCouponActivity(couponActivity);
         }
     }
@@ -59,18 +59,6 @@ public class CouponManagerServiceImpl implements CouponManagerService {
 
     @Override
     public List<CouponActivity> getAllCouponActivity() throws RuntimeException {
-//        List<String> couponActivityMap_json = new ArrayList<String>();
-//        Jedis jedis = ConnRedis.getInstance().getJedis();
-//
-//        Gson gson = new Gson();
-//        Set<String> items = jedis.smembers("CouponActivity:outline");
-//        for (String str : items) {
-//            Map<String, String> couponActivityMap = jedis.hgetAll("CouponActivity:" + str);
-//            couponActivityMap_json.add(gson.toJson(couponActivityMap));
-//        }
-
-
-
         return  couponActivityRedisDao.getAllCouponActivity();
     }
 
@@ -120,6 +108,51 @@ public class CouponManagerServiceImpl implements CouponManagerService {
         return true;
     }
 
+
+    private Coupon genFixCouponData(Integer index){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTimeInMillis(cal.getTimeInMillis() + 10 * 24 * 60 * 60 * 1000);
+        String date = simpleDateFormat.format(cal.getTime());
+        java.sql.Date deadline = java.sql.Date.valueOf(date);
+
+        Coupon coupon;
+        switch (index){
+            case 0:
+                coupon = new Coupon(100, 1000, deadline, "Qb12BJZO22");
+                break;
+            case 1:
+                coupon = new Coupon(100, 2000, deadline, "Qb34FFFO11");
+                break;
+            case 2:
+                coupon = new Coupon(50, 500, deadline, "Qb55ASZ678");
+                break;
+            case 3:
+                coupon = new Coupon(150, 2000, deadline, "Qb56BGFO90");
+                break;
+            case 4:
+                coupon = new Coupon(100, 500, deadline, "Qb77XCVO22");
+                break;
+            case 5:
+                coupon = new Coupon(100, 1000, deadline, "Qb345XZO67");
+                break;
+            case 6:
+                coupon = new Coupon(200, 1500, deadline, "Qb875IRO93");
+                break;
+            case 7:
+                coupon = new Coupon(300, 3000, deadline, "Qb345VBO67");
+                break;
+            case 8:
+                coupon = new Coupon(100, 600, deadline, "Qb245DYO88");
+                break;
+            default:
+                coupon = new Coupon(100, 1000, deadline, "Qb345XZO67");
+                break;
+
+        }
+        return coupon;
+
+    }
 
     private Coupon genCouponData() {
         Integer discount = ((int) (Math.random() * 50 + 51));

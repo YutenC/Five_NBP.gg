@@ -2,13 +2,19 @@ package com.shopproduct.servlet;
 
 import com.google.gson.Gson;
 import com.shopproduct.controller.*;
+import com.shopproduct.entity.ProductImage;
+import com.shopproduct.pojo.ProductPojo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.List;
 
 @WebServlet("/shopDispatcher/*")
 @MultipartConfig
@@ -51,7 +57,31 @@ public class ShopDispatcherServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String strOut = "";
         switch (path) {
+            case "/addProduct":
+                StringBuilder requestData = new StringBuilder();
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(req.getInputStream()))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        requestData.append(line);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                String payloadData = requestData.toString();
+                System.out.println(payloadData);
 
+                Gson gson_ = new Gson();
+                ProductPojo productPojo = gson_.fromJson(payloadData, ProductPojo.class);
+
+                productManagerController.addProduct(productPojo);
+//                List<ProductImage> productImages= productPojo.getNewProduct().getProductImages();
+//                for (int i=0;i<productImages.size();i++) {
+//                    ProductImage productImage= productImages.get(i);
+//                    productImage.setImage(productImage.getImage().split(",")[1]);
+//                }
+
+
+                break;
             case "/uploadProduct":
                 /* Receive file uploaded to the Servlet from the HTML5 form */
                 Part filePart = null;
@@ -62,12 +92,15 @@ public class ShopDispatcherServlet extends HttpServlet {
                         part.write("C:\\upload\\" + fileName);
                     }
 
-                    strOut="The file uploaded sucessfully.";
+                    strOut = "The file uploaded sucessfully.";
 
                 } catch (ServletException e) {
                     throw new RuntimeException(e);
                 }
 
+
+                break;
+            case "/getSomeProduct":
 
                 break;
 

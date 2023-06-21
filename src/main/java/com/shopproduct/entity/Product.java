@@ -36,7 +36,7 @@ public class Product {
     private Integer amount;
 
     @Expose
-    @Column(name = "Buy_Times", nullable = false)
+    @Column(name = "Buy_Times")
     private Integer buyTimes;
 
     @Expose
@@ -44,11 +44,11 @@ public class Product {
     private String brand;
 
     @Expose
-    @Column(name = "Rate", nullable = false)
+    @Column(name = "Rate")
     private Integer rate;
 
     @Expose
-    @Column(name = "Reviewe_count", nullable = false)
+    @Column(name = "Reviewe_count")
     private Integer revieweCount;
 
     @Expose
@@ -64,6 +64,7 @@ public class Product {
     @Transient
     ProductImage productIndexImage;
 
-
+    @Transient
+    List<ProductImage> productImages;
 
 }
