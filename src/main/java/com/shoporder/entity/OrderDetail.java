@@ -18,12 +18,14 @@ import lombok.Setter;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDetail {
+public class OrderDetail implements java.io.Serializable{
 	
+	private static final long serialVersionUID = 1404904578291894640L;
+
 	@EmbeddedId
 	private PKOrderDeatail pkOrderDeatail;
 	
-	private Integer qantity;
+	private Integer quantity;
 	
 	private Integer comment;
 	

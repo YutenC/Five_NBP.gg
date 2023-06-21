@@ -11,13 +11,15 @@ public interface SecondhandProductService {
 
 
 
-SecondhandProduct launch(SecondhandProduct secondhandproduct);
+SecondhandProduct addshp(SecondhandProduct secondhandproduct);
 
 
 
-SecondhandProduct edit(SecondhandProduct secondhandproduct);
+SecondhandProduct editshp(SecondhandProduct secondhandproduct);
 
 boolean delete(Integer productID);
+
+SecondhandProduct selectOne(Integer productID);
 
 List<SecondhandProduct> searchAll();
 

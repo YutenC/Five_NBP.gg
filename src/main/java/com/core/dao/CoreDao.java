@@ -15,7 +15,7 @@ public interface CoreDao<M, I> {
 
     M selectById(I id);
 
-    List<M> selectAll();
+    List<M> selectAll();        // 查詢全部資料
 
     default Session getSession() {
 

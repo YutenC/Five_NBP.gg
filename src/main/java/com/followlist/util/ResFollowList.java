@@ -11,8 +11,10 @@ import lombok.Setter;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResFollowList {
+public class ResFollowList implements java.io.Serializable{
 	
+	private static final long serialVersionUID = -7900068203749093670L;
+
 	private Integer productId;
 	
 	private String productName;

@@ -1,22 +1,9 @@
 package com.followlist.dao.impl;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
-import org.hibernate.query.NativeQuery;
 
 import com.followlist.dao.FollowListDao;
 import com.followlist.entity.FollowList;
-import com.followlist.entity.PKFollowList;
 
 public class FollowListDaoImpl implements FollowListDao {
 

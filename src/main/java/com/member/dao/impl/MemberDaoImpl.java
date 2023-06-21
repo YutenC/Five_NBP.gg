@@ -62,7 +62,11 @@ public class MemberDaoImpl implements MemberDao {
         }
         hql.append("email = :email, ")
                 .append("phone = :phone, ")
-                .append("address = :address ")
+                .append("address = :address, ")
+                .append("bonus = :bonus, ")
+                .append("member_ver_state = :member_ver_state, ")
+                .append("headshot = :headshot, ")
+                .append("violation = :violation ")
                 .append("where account = :account");
 
         Query<?> query = getSession().createQuery(hql.toString());
@@ -74,6 +78,10 @@ public class MemberDaoImpl implements MemberDao {
                 .setParameter("email", member.getEmail())
                 .setParameter("phone", member.getPhone())
                 .setParameter("address", member.getAddress())
+                .setParameter("bonus", member.getBonus())
+                .setParameter("member_ver_state", member.getMember_ver_state())
+                .setParameter("headshot", member.getHeadshot())
+                .setParameter("violation", member.getViolation())
                 .setParameter("account", member.getAccount())
                 .executeUpdate();
     }
@@ -123,6 +131,16 @@ public class MemberDaoImpl implements MemberDao {
         final String sql = "SELECT * FROM member WHERE email = :email";
         return getSession()
                 .createNativeQuery(sql, Member.class)
+                .setParameter("email", email)
+                .uniqueResult();
+    }
+
+    @Override
+    public Member selectByAccountNEmail(String account, String email){
+        final String sql = "SELECT * FROM member WHERE account = :account and email = :email";
+        return getSession()
+                .createNativeQuery(sql, Member.class)
+                .setParameter("account", account)
                 .setParameter("email", email)
                 .uniqueResult();
     }

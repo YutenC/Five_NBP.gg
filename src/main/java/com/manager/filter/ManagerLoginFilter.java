@@ -47,7 +47,6 @@ public class ManagerLoginFilter implements Filter{
 			resp.sendRedirect(req.getContextPath()+ "/html/manager_login.html");
 			return;
 		}else {
-			
 			chain.doFilter(request, response);
 		}
 		

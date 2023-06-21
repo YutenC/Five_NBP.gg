@@ -1,28 +1,27 @@
 package com.secondhand.sale.entity;
 
-
-import com.core.entity.Core;
-import lombok.AllArgsConstructor;
+import com.member.entity.Member;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
 @Table(name = "secondhand_follow_list", schema = "five")
-public class SecondhandFollowList extends Core {
+public class SecondhandFollowList {
+    @EmbeddedId
+    private SecondhandFollowListId id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    private Integer productId;
+    @MapsId("productId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "Product_id", nullable = false)
+    private SecondhandProduct product;
 
-    @Column(name = "member_id")
-    private Integer memberId;
+    @MapsId("memberId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "Member_id", nullable = false)
+    private Member member;
 
 }

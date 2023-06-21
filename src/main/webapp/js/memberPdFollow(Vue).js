@@ -17,7 +17,7 @@ const detailUnit = Vue.createApp({
             }).then(function (result) {
                 if (result.isConfirmed) {
                     detailUnit.mypick.splice(index, 1);
-                    axios.get('/Five_NBP.gg/deleteFollowList?productId=' + id)
+                    axios.get('/Five_NBP.gg/FollowList?delPdId=' + id)
                         .then(res => console.log(res.data))
                         .catch(err => console.log(err))
                 }
@@ -25,7 +25,7 @@ const detailUnit = Vue.createApp({
         }
     },
     created() {
-        axios.get('/Five_NBP.gg/getFollowPd')
+        axios.get('/Five_NBP.gg/FollowList?getAll=true')
             .then(res => this.mypick = res.data)
             .catch(err => console.log(err));
     }

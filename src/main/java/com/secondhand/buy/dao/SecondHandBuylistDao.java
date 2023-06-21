@@ -8,6 +8,7 @@ import com.core.dao.CoreDao;
 import com.secondhand.buy.vo.SecondHandBuylist;
 
 
+
 public interface SecondHandBuylistDao extends CoreDao<SecondHandBuylist, Integer> {
 
 	List<SecondHandBuylist> selectByTime(Date starttime , Date endtime);

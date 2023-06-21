@@ -17,8 +17,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class FollowList {
+public class FollowList implements java.io.Serializable{
 	
+	private static final long serialVersionUID = -2062002220867267220L;
+
 	@EmbeddedId
 	private PKFollowList pkFollowList;
 	

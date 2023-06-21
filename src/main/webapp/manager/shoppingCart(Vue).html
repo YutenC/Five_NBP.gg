@@ -78,11 +78,11 @@
                     <tbody>
                         <template v-for="item in byPurchaseLog">
                             <tr>
-                                <td>{{ item.id }}</td>
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.boughtDate}}</td>
-                                <td>${{ item.price }}</td>
-                                <td><button @click="addToCart(item.id)">加入購物車</button></td>
+                                <td>{{ item.productId }}</td>
+                                <td>{{ item.productName }}</td>
+                                <td>{{ item.purchaseDate }}</td>
+                                <td>${{ item.productPrice }}</td>
+                                <td><button @click="addToCart(item.productId)">加入購物車</button></td>
                             </tr>
                         </template>
                     </tbody>
@@ -110,7 +110,7 @@
                 <tbody>
                     <template v-for="(item, index) in shoppingList">
                         <tr>
-                            <td><input type="checkbox" :checked="item.checked"></td>
+                            <td><input type="checkbox" :checked="item.checked" v-model="item.checked"></td>
                             <td class="productImg">
                                 <img :src="item.productImgUrl" :alt="item.productName">
                             </td>
@@ -123,14 +123,15 @@
                                 {{ item.brand }}
                             </td>
                             <td>
-                                <select name="amount1" v-model="item.buyAmount"
-                                    @changed="subtotal(item.buyAmount, item.price)">
+                                <select name="amount1" v-model="item.buyAmount" @changed="couponCondition()">
                                     <!--依實際庫存增減可選數量-->
-                                    <option v-for="pic in item.stockAmount" :value="pic">{{ pic }}</option>
+                                    <option v-for="pic in item.stockAmount" :value="pic">
+                                        {{ item.stockAmounut > 20 ? 20 : pic }}
+                                    </option>
                                 </select>
                             </td>
                             <td>NTD$<span class="unitPrice">{{ item.price }}</span></td>
-                            <td>NTD$<span class="itemPrice">{{ subtotal(item.buyAmount, item.price) }}</span>
+                            <td>NTD$<span class="itemPrice">{{ item.buyAmount * item.price }}</span>
                                 <!--選擇數量*單價-->
                             <td>{{ item.stockAmount > 10? '足夠' : item.stockAmount }}</td>
                             <td><button class="delete" @click="removeItem(index)"><img
@@ -144,13 +145,20 @@
                 <form action="" id="discount">
                     <ul><span>使用優惠代碼或是紅利點數折抵消費：</span>
                         <li>
-                            <label for="couponId">折購代碼：</label>
-                            <input type="text" id="couponId" placeholder="請輸入欲使用的折扣代碼" maxlength="8"
-                                v-model.trim="couponId" @change="useCoupon()">
+                            <input type="radio" id="coupon" name="discount" value="coupon" v-model.lazy="discountRadio">
+                            <label for="coupon">折購代碼：</label>
+                            <input type="text" placeholder="請輸入欲使用的折扣代碼" maxlength="8" v-model.trim="couponCode"
+                                :disabled="discountRadio === 'bonus'" v-show="discountRadio === 'coupon'"
+                                @changed="checkCoupon">
+                            <button @click.prevent="checkCoupon" v-show="discountRadio === 'coupon'">
+                                {{ resCoupon === ''? '確認優惠碼' : '可使用'}}
+                            </button>
                         </li>
                         <li>
+                            <input type="radio" id="bonus" name="discount" value="bonus" v-model="discountRadio">
                             <label for="bonus">使用紅利點數折抵：</label>
-                            <input type="text" id="bonus" v-model.number="bonus" @input="useBonus()">
+                            <input type="text" id="bonusInput" v-model="bonus" @keyup="bonusValid"
+                                :disabled="discountRadio === 'coupon'" v-show="discountRadio === 'bonus'">
                         </li>
                 </form>
             </div>
@@ -163,47 +171,72 @@
         <div class="deliver">
             <form>
                 <span>配送方式：</span>
-                <input type="radio" id="takuhai" value="takuhai" name="deliver" v-model="deliver" @change="">
+                <input type="radio" id="takuhai" value="takuhai" name="deliver" v-model="deliver">
                 <label for="takuhai">宅配</label>
                 <input type="radio" id="toCvs" value="toCvs" name="deliver" v-model="deliver">
                 <label for="toCvs">超商店取</label>
             </form>
+            <div>
+                <div><span>配送地址：</span></div>
+                <select name="" id="" v-model="address.county">
+                    <option :value="county" v-for="county in countySelet">{{ county }}</option>
+                </select>
+                <input type="text" v-model="address.address" placeholder="請輸入詳細地址">
+            </div>
             <div class="deliFee">
                 <span>運費：$</span><span class="deliFee">{{ deliverCal }}</span>
             </div>
         </div>
+        <div class="brLine"></div>
         <div class="billTotal">
             結帳總金額<span>NTD$</span><span>{{ productSubtotal + deliverCal}}</span><a href="shopIndex3.html">回賣場選購</a>
         </div>
         <div class="brLine"></div>
         <h3>付款方式</h3>
-        <div class="tagPage">
-            <div class="contentTabBlock">
-                <ul class="contentTab">
-                    <li><a href="#" data-target="tab1" class="tab -on">信用卡</a></li>
-                    <li><a href="#" data-target="tab2" class="tab">轉帳</a></li>
-                    <li><a href="#" data-target="tab3" class="tab">貨到付款</a></li>
-                </ul>
+        <div class="payment">
+            <div class="paymentRadio">
+                <form action="">
+                    <div>
+                        <input type="radio" name="paymentRadio" id="credit" value="credit" v-model="payment">
+                        <label for="credit">信用卡付款</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="paymentRadio" id="transfer" value="transfer" v-model="payment">
+                        <label for="transfer">轉帳</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="paymentRadio" id="onDeliver" value="onDeliver" v-model="payment">
+                        <label for="onDeliver">貨到付款</label>
+                    </div>
+                </form>
             </div>
-            <div class="contentPage">
-                <div class="tab tab1 -on">
+            <div class="paymentContent">
+                <div class="credit" v-show="payment === 'credit'">
                     <form action="" class="creditCard">
+                        <span>輸入信用卡資訊</span>
                         <div>
                             <label for="cardNum">信用卡號</label>
-                            <input type="text" id="cardNum">
+                            <input type="text" id="cardNum" v-model="card.cardNum" maxlength="16" @keyup="fixToNum">
                         </div>
                         <div class="cardValidDate">
-                            <span>卡片效期</span>
-                            <input type="text" id="validMonth" placeholder="有效月份" maxlength="2">
-                            <input type="text" id="validYear" placeholder="有效年分" maxlength="4">
+                            <label>卡片效期</label>
+                            <input type="text" id="validMonth" placeholder="有效月" maxlength="2"
+                                v-model="card.cardValidMon" @keyup="fixToNum">
+                            <input type="text" id="validYear" placeholder="有效年" maxlength="4" v-model="card.cardValidYr"
+                                @keyup="fixToNum">
                         </div>
                         <div>
                             <label for="validNum">驗證碼</label>
-                            <input type="text" id="validNum">
+                            <input type="text" id="validNum" v-model="card.cardValidNum" maxlength="3"
+                                @keyup="fixToNum">
                         </div>
                     </form>
+                    <div>
+                        <span>或第三方支付</span>
+                        <button type="submit" @click.prevent="checkOut(true)">綠界金流支付</button>
+                    </div>
                 </div>
-                <div class="tab tab2">
+                <div class="transfer" v-show="payment === 'transfer'">
                     <span>商城轉帳資訊</span>
                     <dl>
                         <dt>商城帳戶名：</dt>
@@ -214,11 +247,13 @@
                         <dd>123 4567 8910 1112</dd>
                     </dl>
                 </div>
-                <div class="tab tab3">貨到付款資訊</div>
+                <div class="onDeliver" v-show="payment === 'onDeliver'">
+                    <h4>請於取貨時付款</h4>
+                </div>
             </div>
         </div>
         <div id="submit">
-            <button id="submit">確定付款</button>
+            <button id="submit" @click.prevent="checkOut(false)">確定送出</button>
         </div>
     </div>
     <div id="promoProduct">
@@ -241,7 +276,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../jquery/jquery-1.9.1.min.js"></script>
     <script src="../js/shoppingCart(Vue).js"></script>
-    <script src="../js/shopSwitchTag.js"></script> <!--此設定需比Vue引入晚加入，否則會干擾對event物件的操作-->
 
 </body>
 
