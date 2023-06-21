@@ -2,7 +2,6 @@ package com.shop.shopproduct.test;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.args.ListDirection;
-import redis.clients.jedis.util.KeyValue;
 
 import java.util.List;
 

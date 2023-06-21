@@ -1,9 +1,7 @@
 package com.shop.shopproduct.common.backgroundtask;
 
-import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.nio.channels.Selector;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.concurrent.Callable;

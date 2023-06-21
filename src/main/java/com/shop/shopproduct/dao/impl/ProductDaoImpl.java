@@ -1,10 +1,9 @@
 package com.shop.shopproduct.dao.impl;
 
-import org.hibernate.query.Query;
-
 import com.shop.shopproduct.core.CoreDaoImpl;
 import com.shop.shopproduct.dao.ProductDao;
 import com.shop.shopproduct.entity.Product;
+import org.hibernate.query.Query;
 
 
 public class ProductDaoImpl extends CoreDaoImpl<Product,Integer> implements ProductDao {

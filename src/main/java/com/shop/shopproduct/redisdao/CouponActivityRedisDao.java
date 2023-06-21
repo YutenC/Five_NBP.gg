@@ -1,8 +1,8 @@
 package com.shop.shopproduct.redisdao;
 
-import java.util.List;
-
 import com.shop.shopproduct.entity.CouponActivity;
+
+import java.util.List;
 
 public interface CouponActivityRedisDao {
 

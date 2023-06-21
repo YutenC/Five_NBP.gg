@@ -1,10 +1,9 @@
 package com.shop.shopproduct.core;
 
-import java.util.List;
-
+import com.shop.shopproduct.core.util.HibernateUtil;
 import org.hibernate.Session;
 
-import com.shop.shopproduct.core.util.HibernateUtil;
+import java.util.List;
 
 public interface CoreDao<P, I> {
 

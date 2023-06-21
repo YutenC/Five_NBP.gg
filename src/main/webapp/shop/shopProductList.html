@@ -364,20 +364,21 @@
         <main>
             <div class="productShowcase">
                 <ul>
-                    <li v-for="item in products">
-                        <a href="./shopProductDetail.html" @click="clickShopDetail(item.id)">
-                            <img :src=item.productIndexImage.image alt="商品圖片">
-                        </a>
-                        <a href="./shopProductDetail.html" @click="clickShopDetail(item.id)" class="productname">
-                            {{item.productName}}
-                        </a>
-                        <div>
-                            <button @click="addCart(item.id)">直接購買</button>
-                            <button><img src="../img/icon/cart-shopping-solid.svg" alt=""></button>
-                            <button><img src="../img/icon/heart-regular.svg" alt=""></button>
-                        </div>
-                    </li>
-
+                    <template v-for="item in products">
+                        <li>
+                            <a href="./shopProductDetail.html" @click="clickShopDetail(item.id)">
+                                <img :src="item.productIndexImage.image" alt="商品圖片">
+                            </a>
+                            <a href="./shopProductDetail.html" @click="clickShopDetail(item.id)" class="productname">
+                                {{item.productName}}
+                            </a>
+                            <div>
+                                <button @click="addCart(item.id)">直接購買</button>
+                                <button><img src="../img/icon/cart-shopping-solid.svg" alt=""></button>
+                                <button><img src="../img/icon/heart-regular.svg" alt=""></button>
+                            </div>
+                        </li>
+                    </template>
                     <!-- <li v-for="item in products">
                         <a href="">
                             <img src="../img/gameSoftware/Nitendo/Zelda/81e40b6f7d7f88d24e680c7ddc1kz8f5.jpg"

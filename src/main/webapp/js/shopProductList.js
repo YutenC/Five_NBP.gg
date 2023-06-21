@@ -48,7 +48,7 @@ const vm = Vue.createApp({
 
         addCart: function (id) {
             axios({
-                method: "POST",
+                method: "Get",
                 url: host_context + "shopDispatcher/addCart",
                 params: {
                     id: id
@@ -67,6 +67,7 @@ const vm = Vue.createApp({
         clickShopDetail: function (id) {
             saveDataToSessionStorage("currentShopProductDetail_id", id);
         },
+
     },
 }).mount(".shopmain");
 

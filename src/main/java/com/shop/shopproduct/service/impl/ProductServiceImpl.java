@@ -1,7 +1,5 @@
 package com.shop.shopproduct.service.impl;
 
-import java.util.List;
-
 import com.shop.shopproduct.dao.ProductDao;
 import com.shop.shopproduct.dao.ProductImageDao;
 import com.shop.shopproduct.entity.Product;
@@ -10,6 +8,8 @@ import com.shop.shopproduct.entity.ProductImage;
 import com.shop.shopproduct.redisdao.ProductRedisDao;
 import com.shop.shopproduct.service.ProductService;
 import com.shop.shopproduct.util.ObjectInstance;
+
+import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
 

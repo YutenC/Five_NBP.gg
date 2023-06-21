@@ -1,15 +1,14 @@
 package com.shop.shopproduct.filter;
 
+import com.shop.shopproduct.core.util.HibernateUtil;
+import com.shop.shopproduct.util.RedisFactory;
+import org.hibernate.Session;
+
 import javax.servlet.FilterChain;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.hibernate.Session;
-
-import com.shop.shopproduct.core.util.HibernateUtil;
-import com.shop.shopproduct.util.RedisFactory;
 
 @WebFilter("/shopDispatcher/*")
 public class HibernateFilterShopProduct extends HttpFilter {

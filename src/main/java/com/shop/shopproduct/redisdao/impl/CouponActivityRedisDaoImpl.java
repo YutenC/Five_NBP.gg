@@ -1,20 +1,15 @@
 package com.shop.shopproduct.redisdao.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.google.gson.Gson;
 import com.shop.shopproduct.entity.CouponActivity;
 import com.shop.shopproduct.redisdao.CouponActivityRedisDao;
 import com.shop.shopproduct.util.RedisFactory;
 import com.shop.shopproduct.util.ShopProductConst;
 import com.shop.shopproduct.util.StringToObjectUtil;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisException;
+
+import java.util.*;
 
 public class CouponActivityRedisDaoImpl implements CouponActivityRedisDao {
 

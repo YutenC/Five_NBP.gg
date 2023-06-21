@@ -1,9 +1,9 @@
 package com.shop.shopproduct.controller;
 
-import javax.servlet.http.HttpSession;
-
 import com.google.gson.Gson;
 import com.shop.shopproduct.service.CouponService;
+
+import javax.servlet.http.HttpSession;
 
 public class CouponController {
 

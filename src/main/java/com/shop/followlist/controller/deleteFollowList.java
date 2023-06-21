@@ -1,5 +1,4 @@
-package com.shop.followlist.controller;
-//package com.followlist.controller;
+//package com.shop.followlist.controller;
 //
 //import java.io.IOException;
 //import java.io.PrintWriter;
@@ -11,8 +10,8 @@ package com.shop.followlist.controller;
 //import javax.servlet.http.HttpServletResponse;
 //import javax.servlet.http.HttpSession;
 //
-//import com.followlist.service.FollowListService;
-//import com.followlist.util.FollowListConstants;
+//import com.shop.followlist.service.FollowListService;
+//import com.shop.followlist.util.FollowListConstants;
 //import com.google.gson.Gson;
 //import com.member.entity.Member;
 //

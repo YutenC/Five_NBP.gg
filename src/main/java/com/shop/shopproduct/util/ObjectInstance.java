@@ -1,8 +1,5 @@
 package com.shop.shopproduct.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.shop.shopproduct.dao.impl.CouponDaoImpl;
 import com.shop.shopproduct.dao.impl.ProductDaoImpl;
 import com.shop.shopproduct.dao.impl.ProductImageDaoImpl;
@@ -12,6 +9,9 @@ import com.shop.shopproduct.service.impl.CouponManagerServiceImpl;
 import com.shop.shopproduct.service.impl.CouponServiceImpl;
 import com.shop.shopproduct.service.impl.ProductManagerServiceImpl;
 import com.shop.shopproduct.service.impl.ProductServiceImpl;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ObjectInstance {
     private static ObjectInstance objectInstance=null;

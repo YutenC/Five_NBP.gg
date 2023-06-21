@@ -1,18 +1,15 @@
 package com.shop.shopproduct.service.impl;
 
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
-import java.util.List;
-
 import com.shop.shopproduct.dao.CouponDao;
 import com.shop.shopproduct.entity.Coupon;
 import com.shop.shopproduct.entity.CouponActivity;
 import com.shop.shopproduct.redisdao.CouponActivityRedisDao;
 import com.shop.shopproduct.service.CouponManagerService;
 import com.shop.shopproduct.service.CouponService;
-import com.shop.shopproduct.util.ObjectInstance;
-import com.shop.shopproduct.util.RedisContent;
-import com.shop.shopproduct.util.RedisFactory;
+import com.shop.shopproduct.util.*;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class CouponManagerServiceImpl implements CouponManagerService {
 

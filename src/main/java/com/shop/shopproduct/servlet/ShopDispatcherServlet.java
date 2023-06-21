@@ -1,26 +1,17 @@
 package com.shop.shopproduct.servlet;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import com.google.gson.Gson;
+import com.shop.shopproduct.controller.*;
+import com.shop.shopproduct.pojo.ProductPojo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-
-import com.google.gson.Gson;
-import com.shop.shopproduct.controller.BackgroundMessageController;
-import com.shop.shopproduct.controller.CouponManagerController;
-import com.shop.shopproduct.controller.HelloJsonController;
-import com.shop.shopproduct.controller.ProductController;
-import com.shop.shopproduct.controller.ProductManagerController;
-import com.shop.shopproduct.pojo.ProductPojo;
+import javax.servlet.http.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 @WebServlet("/shopDispatcher/*")
 @MultipartConfig
@@ -107,6 +98,14 @@ public class ShopDispatcherServlet extends HttpServlet {
 
                 break;
             case "/getSomeProduct":
+
+                break;
+
+
+            case "/addCart":
+
+                break;
+            case "/getCartNum":
 
                 break;
 

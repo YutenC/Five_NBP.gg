@@ -1,15 +1,14 @@
 package com.shop.shopproduct.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
 import com.google.gson.Gson;
 import com.shop.shopproduct.entity.CouponActivity;
 import com.shop.shopproduct.entity.ErrorMsg;
 import com.shop.shopproduct.entity.RequestMsg;
 import com.shop.shopproduct.service.CouponManagerService;
 import com.shop.shopproduct.util.ObjectInstance;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public class CouponManagerController {
     CouponManagerService couponManagerService;

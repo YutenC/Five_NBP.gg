@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.core.util.HibernateUtil;
 import com.google.gson.Gson;
 import com.member.entity.Member;
 import com.shop.product.util.CouponServiceConstant;

@@ -1,7 +1,6 @@
 package com.shop.shopproduct.core;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

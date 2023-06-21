@@ -1,8 +1,8 @@
 package com.shop.shopproduct.service;
 
-import java.util.List;
-
 import com.shop.shopproduct.entity.Coupon;
+
+import java.util.List;
 
 public interface CouponService {
     List<Coupon> getAllCoupon();

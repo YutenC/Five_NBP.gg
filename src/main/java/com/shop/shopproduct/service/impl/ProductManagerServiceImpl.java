@@ -1,14 +1,5 @@
 package com.shop.shopproduct.service.impl;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Base64;
-import java.util.List;
-import java.util.concurrent.Callable;
-
-import org.hibernate.Session;
-
 import com.shop.shopproduct.common.backgroundtask.BackgroundFactory;
 import com.shop.shopproduct.common.backgroundtask.BackgroundHandler;
 import com.shop.shopproduct.core.util.HibernateUtil;
@@ -21,6 +12,14 @@ import com.shop.shopproduct.service.ProductManagerService;
 import com.shop.shopproduct.util.ConstUtil;
 import com.shop.shopproduct.util.CreateProductDB;
 import com.shop.shopproduct.util.ObjectInstance;
+import org.hibernate.Session;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Base64;
+import java.util.List;
+import java.util.concurrent.Callable;
 
 public class ProductManagerServiceImpl implements ProductManagerService {
 

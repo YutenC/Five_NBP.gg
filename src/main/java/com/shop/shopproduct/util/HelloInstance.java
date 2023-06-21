@@ -1,10 +1,11 @@
 package com.shop.shopproduct.util;
 
+import com.shop.shopproduct.dao.impl.CouponDaoImpl;
+
+import com.shop.shopproduct.service.impl.HelloJsonServiceImpl;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.shop.shopproduct.dao.impl.CouponDaoImpl;
-import com.shop.shopproduct.service.impl.HelloJsonServiceImpl;
 
 public class HelloInstance {
     private static HelloInstance helloInstance=null;
