@@ -13,12 +13,62 @@
     <link rel="stylesheet" href="../fonts/material-icons.min.css">
     <link rel="stylesheet" href="../css/x-dropdown.css">
     <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
+        table#dataTable th {
+            font-size: 14px;
+        }
+
         table#dataTable td:nth-child(4) a {
             text-decoration: underline;
             color: #2828FF;
+        }
+
+        #dataTable_filter {
+            position: relative;
+        }
+
+        #dataTable_filter button {
+            border: 0;
+            border-radius: 5px;
+            margin: 5px;
+            width: 20px;
+        }
+
+        #dataTable_filter img {
+            width: 10px;
+            height: 10px;
+        }
+
+        #dataTable_filter button:hover::before {
+            position: absolute;
+            top: -30px;
+            color: #fff;
+            font-size: .8em;
+            background: #346e7a;
+            padding: 5px;
+            border-radius: 5px;
+            content: '更新資料';
+        }
+
+        table#dataTable button {
+            vertical-align: middle;
+            font-size: 0;
+            border: 0;
+            border-radius: 5px;
+            height: 20px;
+        }
+
+        table#dataTable button img {
+            width: 8px;
+            height: 8px;
+            margin: auto;
+        }
+
+        table#dataTable tfoot td {
+            font-size: 14px;
         }
     </style>
 </head>
@@ -200,39 +250,130 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-md-end dataTables_filter" id="dataTable_filter">
+                                        <label for="functionSelect">快速篩選：</label>
+                                        <select name="functionSelect" id="functionSelect"
+                                            @change="renewListWithSelect()" v-model="criteria">
+                                            <option value="1">全部</option>
+                                            <optgroup label="付款狀態">
+                                                <option value="2">待付款</option>
+                                                <option value="3">已付款</option>
+                                                <option value="4">貨到付款</option>
+                                            </optgroup>
+                                            <optgroup label="出貨狀態">
+                                                <option value="5">已出貨</option>
+                                                <option value="6">未出貨</option>
+                                            </optgroup>
+                                            <optgroup label="訂單狀態">
+                                                <option value="7">已成立</option>
+                                                <option value="8">已取消</option>
+                                                <option value="9">申請取消</option>
+                                                <!-- <option value="6">未出貨</option> -->
+                                            </optgroup>
+                                        </select>
+                                        <button @click="getLastest()">
+                                            <img src="../img/icon/arrows-rotate-solid.svg" alt="更新資料">
+                                        </button>
                                         <label class="form-label">
                                             <input type="search" class="form-control form-control-sm"
-                                                aria-controls="dataTable" placeholder="Search">
+                                                aria-controls="dataTable" placeholder="搜尋會員名稱"
+                                                @keydown.enter="searchUser()">
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable" role="grid"
                                 aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
+                                <div v-show="omList === {}">
+                                    <h1>無符合資料</h1>
+                                </div>
+                                <table class="table my-0" id="dataTable" v-show="omList !== {}">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>訂單編號</th>
-                                            <th>購買者會員編號</th>
-                                            <th>購買者</th>
-                                            <th>購買內容</th>
-                                            <th>訂單成立日期</th>
-                                            <th>總金額</th>
-                                            <th>訂單狀態</th>
-                                            <th>付款狀態</th>
-                                            <th>出貨狀態</th>
+                                            <th>
+                                                <span>訂單編號</span>
+                                                <button @click="changeSort(1, 1)"
+                                                    v-show="!(sortBy === 1 && sortWay === 1) && searchKeyword === ''"><img
+                                                        src="../img/icon/chevron-down-solid.svg" alt="近期"></button>
+                                                <button @click="changeSort(1, 0)"
+                                                    v-show="sortBy === 1 && sortWay === 1 && searchKeyword === ''"><img
+                                                        src="../img/icon/sort-up-solid.svg" alt="最舊"></button>
+                                            </th>
+                                            <th>
+                                                <span>購買者會員編號</span>
+                                                <button @click="changeSort(2, 1)"
+                                                    v-show="!(sortBy === 2 && sortWay === 1)"><img
+                                                        src="../img/icon/chevron-down-solid.svg" alt="最大"></button>
+                                                <button @click="changeSort(2, 0)"
+                                                    v-show="sortBy === 2 && sortWay === 1"><img
+                                                        src="../img/icon/sort-up-solid.svg" alt="最小"></button>
+                                            </th>
+                                            <th>
+                                                <span>購買者</span>
+                                                <button @click="changeSort(2, 1)"
+                                                    v-show="!(sortBy === 2 && sortWay === 1)"><img
+                                                        src="../img/icon/chevron-down-solid.svg" alt="依名稱順序"></button>
+                                                <button @click="changeSort(2, 0)"
+                                                    v-show="sortBy === 2 && sortWay === 1"><img
+                                                        src="../img/icon/sort-up-solid.svg" alt="反向排序"></button>
+                                            </th>
+                                            <th>
+                                                <span>購買內容</span>
+                                            </th>
+                                            <th>
+                                                <span>訂單成立日期</span>
+                                                <button @click="changeSort(3, 1)"
+                                                    v-show="!(sortBy === 3 && sortWay === 1) && searchKeyword === ''"><img
+                                                        src="../img/icon/chevron-down-solid.svg" alt="最新"></button>
+                                                <button @click="changeSort(3, 0)"
+                                                    v-show="sortBy === 3 && sortWay === 1 && searchKeyword === ''"><img
+                                                        src="../img/icon/sort-up-solid.svg" alt="最舊"></button>
+                                            </th>
+                                            <th>
+                                                <span>總金額</span>
+                                                <button @click="changeSort(4, 1)"
+                                                    v-show="!(sortBy === 4 && sortWay === 1) && searchKeyword === ''"><img
+                                                        src="../img/icon/chevron-down-solid.svg" alt="最大"></button>
+                                                <button @click="changeSort(4, 0)"
+                                                    v-show="sortBy === 4 && sortWay === 1 && searchKeyword === ''"><img
+                                                        src="../img/icon/sort-up-solid.svg" alt="最小"></button>
+                                            </th>
+                                            <th>
+                                                <span>訂單狀態</span>
+                                                <button @click="changeSort(5, 1)"
+                                                    v-show="!(sortBy === 5 && sortWay === 1) && searchKeyword === ''"><img
+                                                        src="../img/icon/chevron-down-solid.svg" alt=""></button>
+                                                <button @click="changeSort(5, 0)"
+                                                    v-show="sortBy === 5 && sortWay === 1 && searchKeyword === ''"><img
+                                                        src="../img/icon/sort-up-solid.svg" alt=""></button>
+                                            </th>
+                                            <th>
+                                                <span>付款狀態</span>
+                                                <button @click="changeSort(6, 1)"
+                                                    v-show="!(sortBy === 6 && sortWay === 1) && searchKeyword === ''"><img
+                                                        src="../img/icon/chevron-down-solid.svg" alt=""></button>
+                                                <button @click="changeSort(6, 0)"
+                                                    v-show="sortBy === 6 && sortWay === 1 && searchKeyword === ''"><img
+                                                        src="../img/icon/sort-up-solid.svg" alt=""></button>
+                                            </th>
+                                            <th>
+                                                <span>出貨狀態</span>
+                                                <button @click="changeSort(7, 1)"
+                                                    v-show="!(sortBy === 7 && sortWay === 1) && searchKeyword === ''"><img
+                                                        src="../img/icon/chevron-down-solid.svg" alt=""></button>
+                                                <button @click="changeSort(7, 0)"
+                                                    v-show="sortBy === 7 && sortWay === 1 && searchKeyword === ''"><img
+                                                        src="../img/icon/sort-up-solid.svg" alt=""></button>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody id="omList">
                                         <template v-for="item in omList">
                                             <tr>
-                                                <td><input type="checkbox"></td>
                                                 <td>{{ item.orderId }}</td>
                                                 <td>{{ item.memberId }}</td>
                                                 <td>{{ item.buyer }}</td>
                                                 <td><a href="" @click.prevent="watchDetail(item.orderId)">檢視詳情</a></td>
-                                                <td>{{ item.purchaseDate }}</td>
+                                                <td>{{ item.buyDate }}</td>
                                                 <td>{{ item.total }}</td>
                                                 <td>{{ item.orderStatus }}</td>
                                                 <td>{{ item.payStatus }}</td>
@@ -242,8 +383,8 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td><input type="checkbox"></td>
                                             <td><strong>訂單編號</strong></td>
+                                            <td><strong>購買者會員編號</strong></td>
                                             <td><strong>購買者</strong></td>
                                             <td><strong>購買內容</strong></td>
                                             <td><strong>訂單成立日期</strong></td>
@@ -258,7 +399,8 @@
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
                                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
-                                        Showing {{ (nowPage - 1) *10 + 1}} to {{ nowPage * 10}} of {{ totalListItem }}
+                                        Showing {{ omList === {}? 0 : (nowPage - 1) *10 + 1}} to
+                                        {{ omList === {}? 0 : nowPage * 10}} of {{ totalListItem }}
                                     </p>
                                 </div>
                                 <div class="col-md-6">

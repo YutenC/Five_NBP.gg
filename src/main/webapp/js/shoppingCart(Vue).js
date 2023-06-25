@@ -205,7 +205,9 @@ const shoppingContent = Vue.createApp({
                 cardValidMon: '',
                 cardValidYr: '',
                 cardValidNum: '',
-            }
+            },
+            // 準備接收後端回傳的ID
+            orderId: '',
         }
     },
     methods: {
@@ -289,7 +291,7 @@ const shoppingContent = Vue.createApp({
             }
         },
         // 結帳：將前端的結帳相關資料送到後端
-        checkOut: function (ecpay) {
+        checkOut: function (ecpay, event) {
             let checkedItemAmount = 0
             for (let item of this.shoppingList) {
                 if (item.checked === true) {
@@ -338,9 +340,10 @@ const shoppingContent = Vue.createApp({
                 let checkCoupon = resJson.checkCoupon;
                 let usedBonus = resJson.usedBonus;
                 let nowBonus = resJson.nowBonus;
+                this.orderId = resJson.orderId;
 
                 sessionStorage.setItem("odProducts", JSON.stringify(odProducts));
-                if (checkCoupon !== undefined) {
+                if (res.checkCoupon !== undefined) {
                     sessionStorage.setItem("checkCoupon", JSON.stringify(checkCoupon));
                 }
                 sessionStorage.setItem("usedBonus", usedBonus);
@@ -348,13 +351,16 @@ const shoppingContent = Vue.createApp({
                 sessionStorage.setItem("payment", this.payment);
                 sessionStorage.setItem("deliver", this.deliver);
                 sessionStorage.setItem("address", JSON.stringify(this.address));
-
                 if (ecpay === true) {
-                    window.location.replace(projectHref);
+                    // $('input#orderId').val(this.orderId); // 透過jQuery即刻更新DOM
+                    shoppingContent.$nextTick(() => {   // 透過Vue自身的nextTick方法，等Vue更新完DOM後再執行方法內的程序
+                        event.target.submit();
+                    });
                 } else {
                     window.location.replace(projectHref + '/manager/orderResult(Vue).html')
                 }
             }).catch(err => console.log(err))
+
         },
         // 與會員功能詢問由哪個功能提供現有紅利點數資訊
         getBonusStock: function () {
@@ -387,7 +393,7 @@ const shoppingContent = Vue.createApp({
                 productSub - couponDiscount : productSub - couponDiscount - bonus;
 
             if (finalPrice < 0) {
-                if (this.discountRadio === 'bonus' && productSub < bonus && productSub < bonusStock) {
+                if (this.discountRadio === 'bonus' && productSub < bonus && productSub < this.bonusStock) {
                     this.bonus = productSub;
                 }
                 finalPrice = 0;

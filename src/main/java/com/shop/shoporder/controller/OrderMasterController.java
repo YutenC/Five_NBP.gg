@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,15 +23,17 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.member.entity.Member;
+import com.member.util.MemberConstants;
 import com.shop.product.util.CouponServiceConstant;
 import com.shop.product.util.ProductServiceConstant;
 import com.shop.shoporder.entity.OrderMaster;
-import com.shop.shoporder.util.MemberServiceConstant;
+import com.shop.shoporder.util.ManageOrder;
+import com.shop.shoporder.util.MemberViewOrder;
 import com.shop.shoporder.util.OrderDetailServiceConstant;
 import com.shop.shoporder.util.OrderMasterServiceConstant;
+import com.shop.shoporder.util.OrderSelection;
 import com.shop.shoporder.util.ResOrderMaster;
 import com.shop.shoporder.util.TransOrderProduct;
-import com.shop.shoporder.util.ViewOrderMaster;
 import com.shop.shopproduct.entity.Coupon;
 
 @WebServlet("/OrderMaster")
@@ -44,6 +49,23 @@ public class OrderMasterController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    	Member login = new Member();
+		login.setAccount("ReimuHakurei");
+		login.setPassword("HakureiShrine");
+		
+		Member mber = MemberConstants.SERVICE.login(login);
+		
+		HttpSession httpSession = req.getSession();
+		httpSession.setAttribute("member", mber);
+		
+		if (httpSession.getAttribute("member") == null) {
+			res.sendRedirect("/Five_NBP.gg");
+			return;
+		}
+		
+		Member member = (Member)httpSession.getAttribute("member");
+		Integer memberId = member.getMember_id();
+		
     	req.setCharacterEncoding("UTF-8");
 		
     	Gson gson = new Gson();
@@ -54,19 +76,128 @@ public class OrderMasterController extends HttpServlet {
     	if (req.getParameter("manageAll") != null) {
     		int limit = 10;
     		Integer offset = Integer.valueOf(req.getParameter("manageAll")) * limit ;
-    		List<ViewOrderMaster> mgOrderList = OrderMasterServiceConstant.OMSERVICE.showMgOrderList(limit, offset);
+    		
+    		Integer sortBy = Integer.valueOf(req.getParameter("sortBy"));
+    		
+    		Map<String, String> orderBy = new HashMap<>();
+    		String sortKey = null;
+    		switch (sortBy) {
+			case 1:
+				orderBy.put("orderBy", "orderId");
+				break;
+			case 2:
+				orderBy.put("orderBy", "memberId");
+				break;
+			case 3:
+				orderBy.put("orderBy", "commitDate");
+				break;
+			case 4:
+				orderBy.put("orderBy", "totalPrice");
+				break;
+			case 5:
+				orderBy.put("orderBy", "orderStatus");
+				break;
+			case 6:
+				orderBy.put("orderBy", "payStatus");
+				break;
+			case 7:
+				orderBy.put("orderBy", "deliverState");
+				break;
+			}
+
+    		Integer sortWay = Integer.valueOf(req.getParameter("sortWay"));
+    		switch (sortWay) {
+			case 0:
+				orderBy.put("orderWay", "ASC");
+				break;
+			case 1:
+				orderBy.put("orderWay", "DESC");
+				break;
+			}
+    		
+    		List<ManageOrder> mgOrderList = null;
+    		switch (sortBy) {
+			case 0:
+				mgOrderList = OrderMasterServiceConstant.OMSERVICE.showAllMgOrderList(limit, offset);
+				break;
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+				Map<String, Integer> limitAndOffset = new HashMap<>();
+				limitAndOffset.put("limit", 10);
+				limitAndOffset.put("offset", offset);
+				mgOrderList = OrderMasterServiceConstant.OMSERVICE.showMgOrderListSortedWithLimitOffset(orderBy, limitAndOffset);
+				break;
+			}
     		pw.println(gson.toJson(mgOrderList));
+    		return;
+    	}
+    	
+    	String manageCondition = req.getParameter("manageCondition");
+    	if (manageCondition != null) {
+    		Integer offset = Integer.valueOf(req.getParameter("offset"));
+    		Integer selection = Integer.valueOf(req.getParameter("selection"));
+    		Integer sortWay = Integer.valueOf(req.getParameter("sortWay"));
+    		OrderSelection os = OrderSelection.values()[selection - 1];
+    		List<ManageOrder> results = OrderMasterServiceConstant.OMSERVICE.getJedisOrderMasterResults(os, sortWay, offset);
+    		pw.println(gson.toJson(results));
+    		return;
+    	}
+    	
+    	String fresh = req.getParameter("fresh");
+    	if (fresh != null) {
+    		pw.println(OrderMasterServiceConstant.OMSERVICE.renewOrderMasterResults());
     		return;
     	}
     	
     	String character = req.getParameter("countListLength");
     	if (character != null) {
-    		String match = req.getParameter("matchId");
-    		Integer matchId = 0;
-    		if (match != null && match.trim().length() != 0) {
-    			matchId = Integer.valueOf(req.getParameter("matchId"));
+    		Map<String, Integer> condition = new HashMap<>();
+    		if ("manager".equals(character)) {
+    			String criteria = req.getParameter("criteria");
+    			if (criteria != null) {
+    				Integer criteriaValue = Integer.valueOf(criteria);
+    				OrderSelection os = OrderSelection.values()[criteriaValue - 1];
+    				switch (os) {
+					case ALL:
+						break;
+					case PAID:
+						condition.put("payStatus", 2);
+						break;
+					case UNPAID:
+						condition.put("payStatus", 1);
+						break;
+					case PAIDONEDELI:
+						condition.put("payStatus", 3);
+						break;
+					case DELIVERD:
+						condition.put("deliverState", 1);
+						break;
+					case UNDELI:
+						condition.put("deliverState", 0);
+						break;
+					case DONE:
+						condition.put("orderStatus", 1);
+						break;
+					case CANCELED:
+						condition.put("orderStatus", 2);
+						break;
+					case APPLYCAN:
+						condition.put("orderStatus", 3);
+						break;
+					case APPLYRETURN:
+						condition.put("orderStatus", 4);
+						break;
+    				}
+    			}
+    		} else if ("member".equals(character)) {
+    			condition.put("memberId", member.getMember_id());
     		}
-    		pw.println(gson.toJson(OrderMasterServiceConstant.OMSERVICE.countDataNum(character, matchId)));
+    		pw.println(gson.toJson(OrderMasterServiceConstant.OMSERVICE.countDataNum(condition)));
     	}
     	
     	String getOne = req.getParameter("getOne");
@@ -74,6 +205,68 @@ public class OrderMasterController extends HttpServlet {
     		Integer orderId = Integer.valueOf(getOne);
     		OrderMaster om = OrderMasterServiceConstant.OMSERVICE.getOne(orderId);
     		pw.println(gson.toJson(om));
+    		return;
+    	}
+    	
+    	String searchUser = req.getParameter("searchUser");
+    	if (searchUser != null) {
+    		Integer sortWay = Integer.valueOf(req.getParameter("sortWay"));
+    		Integer offset = Integer.valueOf(req.getParameter("offset"));
+    		Map<String, Integer> limitOffset = new HashMap<>();
+    		limitOffset.put("limit", 10);
+    		limitOffset.put("offset", offset);
+    		
+    		pw.println(OrderMasterServiceConstant.OMSERVICE.ambiguMemberNameSearch(searchUser, sortWay, limitOffset));
+    		return;
+    		
+    	}
+    	
+    	String searchLength = req.getParameter("searchLength");
+    	if (searchLength != null) {
+    		String keyword = req.getParameter("searchUser");
+    		pw.println(OrderMasterServiceConstant.OMSERVICE.ambiguMemberNameSearchLength(keyword));
+    		return;
+    	}
+    	
+    	String memberAll = req.getParameter("memberAll");
+    	if (memberAll != null) {
+    		String criteria = req.getParameter("criteria");
+    		
+    		Integer setNum = 0;
+    		setNum = Integer.valueOf(memberAll);
+    		
+    		Integer criteriaNum = 1;
+    		if (criteria != null) {
+    			criteriaNum = Integer.valueOf(criteria);
+    		}
+    		
+    		Map<String, Integer> limitOffset = new TreeMap<>();
+    		limitOffset.put("LIMIT", 10);
+    		limitOffset.put("OFFSET", setNum);
+    		
+    		Map<String, Integer> whereCondition = new HashMap<>();
+    		
+    		whereCondition.put("memberId", memberId);
+    		
+    		switch (criteriaNum) {
+			case 1:
+				break;
+			case 2:
+				whereCondition.put("payStatus", 1);
+				break;
+			case 3:
+				whereCondition.put("payStatus", 2);
+				break;
+			case 4:
+				whereCondition.put("deliverState", 1);
+				break;
+			case 5:
+				whereCondition.put("deliverState", 0);
+				break;
+			}
+
+    		List<MemberViewOrder> mvList = OrderMasterServiceConstant.OMSERVICE.memberOrderList(whereCondition, limitOffset);
+    		pw.println(gson.toJson(mvList));
     		return;
     	}
     }
@@ -90,7 +283,7 @@ public class OrderMasterController extends HttpServlet {
 		Member login = new Member();
 		login.setAccount("ReimuHakurei");
 		login.setPassword("HakureiShrine");
-		Member mber = MemberServiceConstant.MBSERVICE.login(login);
+		Member mber = MemberConstants.SERVICE.login(login);
 		httpSession.setAttribute("member", mber);
 		
 		if (httpSession.getAttribute("member") == null) {
@@ -126,7 +319,7 @@ public class OrderMasterController extends HttpServlet {
 				}
 			}
 			req.setAttribute("purchaseProducts", purchaseProducts);
-			System.out.println(trObjList);
+//			System.out.println(trObjList);
 						
 			// 取得結帳信用卡資訊Json物件
 			String cardStr = reqStr.substring(cardIndex  , addressIndex - 2);
@@ -146,7 +339,7 @@ public class OrderMasterController extends HttpServlet {
 			om.setMemberId(memberId);
 			
 			java.util.Date date = new java.util.Date();
-			om.setCommitDate(new java.sql.Date(date.getTime()));
+			om.setCommitDate(new java.sql.Timestamp(date.getTime()));
 			
 			Integer commitType = 0;
 			String payment = req.getParameter("payment");
@@ -239,6 +432,9 @@ public class OrderMasterController extends HttpServlet {
 			dispatcher.include(req, res);
 			
 			ResOrderMaster resOM = new ResOrderMaster();
+			
+			resOM.setOrderId(om.getOrderId());
+			
 			List<TransOrderProduct> odProducts = OrderDetailServiceConstant.ODSERVICE.getOrderDetailByOrderId(om.getOrderId());
 			resOM.setOdProducts(odProducts);
 			
@@ -254,14 +450,15 @@ public class OrderMasterController extends HttpServlet {
 			
 			String ecpay = gson.fromJson(req.getParameter("toEcpay"), String.class);
 			// 一般結帳：結果轉出到前端，由前端儲存在Web sessionStroage後轉導頁面
-			if (ecpay == "false") {
-				pw.println(gson.toJson(resOM));
-			} else {
+//			if (ecpay == "false") {
+				pw.println(gson.toJson(resOM)); // 一律送出資料後由前端submit到ecpay
+//			} else {
+//				res.sendRedirect("/Ecpay?orderId=" + om.getOrderId());
 //				RequestDispatcher toEcpay = req.getRequestDispatcher("/Ecpay");
 //				toEcpay.forward(req, res);
 //				啟用Jedis相關服務，將最近一期訂單先進行儲存?等轉跳頁面再非同步請求近期訂單資訊?或是不顯示結果?
-				res.sendRedirect("/Ecpay?orderId=30");
-			}
+//				res.sendRedirect("/Ecpay?orderId=30");
+//			}
 		}
 		
 		if ("updateOM".equals(demand)) {
@@ -269,14 +466,24 @@ public class OrderMasterController extends HttpServlet {
 			BufferedReader brd = new BufferedReader(rd);
 			String reqStr = brd.readLine();
 			
-			System.out.println(reqStr);
+			String omStr = reqStr.substring(reqStr.indexOf(":") + 1, reqStr.length() - 1);
+			
+			OrderMaster fromManager = gson.fromJson(omStr, OrderMaster.class);
+			
+			pw.println(OrderMasterServiceConstant.OMSERVICE.updateFromManager(fromManager));
+			return;
+		}
+		
+		if ("updateOMFromMember".equals(demand)) {
+			Reader rd = req.getReader();
+			BufferedReader brd = new BufferedReader(rd);
+			String reqStr = brd.readLine();
 			
 			String omStr = reqStr.substring(reqStr.indexOf(":") + 1, reqStr.length() - 1);
-			System.out.println(omStr);
 			
-			OrderMaster fromFn = gson.fromJson(omStr, OrderMaster.class);
+			OrderMaster fromMember = gson.fromJson(omStr, OrderMaster.class);
 			
-			pw.println(OrderMasterServiceConstant.OMSERVICE.updateOrderMaster(fromFn));
+			pw.println(OrderMasterServiceConstant.OMSERVICE.updateFromMember(fromMember));
 			return;
 		}
 

@@ -1,14 +1,10 @@
 package com.shop.shoporder.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +33,7 @@ public class OrderMaster implements java.io.Serializable{
 	private Integer memberId;
 	
 	@Column(name = "COMMIT_DATE", updatable = false)
-	private java.sql.Date commitDate;	// 訂單成立日期
+	private java.sql.Timestamp commitDate;	// 訂單成立日期
 	
 	@Column(name = "TOTAL_PRICE", updatable = false)
 	private Integer totalPrice;
@@ -64,7 +60,7 @@ public class OrderMaster implements java.io.Serializable{
 	private Integer pickType;		// 取貨方式
 	
 	@Column(name = "FINISH_TIME")
-	private java.sql.Date finishTime;	// 訂單結案時間
+	private java.sql.Timestamp finishTime;	// 訂單結案時間
 
 	@Column(name = "COUPON_ID", updatable = false)
 	private Integer couponId;

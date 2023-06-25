@@ -18,6 +18,7 @@ public class JedisShoppingListDaoImpl implements JedisShoppingListDao{
 	@Override
 	public boolean insert(ShoppingList shoppingList) {
 		Jedis jedis = getJedis();
+		jedis.select(3);
 		try {
 		Transaction jediTx = jedis.multi();
 		String key = "member:" + shoppingList.getPkShoppingList().getMemmberId() + ":shoppingList";
@@ -38,6 +39,7 @@ public class JedisShoppingListDaoImpl implements JedisShoppingListDao{
 	@Override
 	public boolean delete(ShoppingList shoppingList) {
 		Jedis jedis = getJedis();
+		jedis.select(3);
 		try {
 			Transaction jediTx = jedis.multi();
 			String key = "member:" + shoppingList.getPkShoppingList().getMemmberId();
@@ -56,6 +58,7 @@ public class JedisShoppingListDaoImpl implements JedisShoppingListDao{
 	@Override
 	public boolean update(ShoppingList shoppingList) {
 		Jedis jedis = getJedis();
+		jedis.select(3);
 		try {
 		Transaction jediTx = jedis.multi();
 		String key = "member:" + shoppingList.getPkShoppingList().getMemmberId();
@@ -74,6 +77,7 @@ public class JedisShoppingListDaoImpl implements JedisShoppingListDao{
 	@Override
 	public List<ShoppingList> selectByMemberId(Integer memberId) {
 		Jedis jedis = getJedis();
+		jedis.select(3);
 		try {
 		List<ShoppingList> result = new ArrayList<>();
 		String key = "member:" + memberId;
@@ -95,5 +99,4 @@ public class JedisShoppingListDaoImpl implements JedisShoppingListDao{
 		}
 	}
 
-	
 }
