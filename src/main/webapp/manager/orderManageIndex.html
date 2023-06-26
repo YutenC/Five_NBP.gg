@@ -251,8 +251,8 @@
                                 <div class="col-md-6">
                                     <div class="text-md-end dataTables_filter" id="dataTable_filter">
                                         <label for="functionSelect">快速篩選：</label>
-                                        <select name="functionSelect" id="functionSelect"
-                                            @change="renewListWithSelect()" v-model="criteria">
+                                        <select name="functionSelect" id="functionSelect" @change="selectionChange"
+                                            v-model="criteria">
                                             <option value="1">全部</option>
                                             <optgroup label="付款狀態">
                                                 <option value="2">待付款</option>
@@ -274,9 +274,9 @@
                                             <img src="../img/icon/arrows-rotate-solid.svg" alt="更新資料">
                                         </button>
                                         <label class="form-label">
-                                            <input type="search" class="form-control form-control-sm"
+                                            <input type="text" class="form-control form-control-sm"
                                                 aria-controls="dataTable" placeholder="搜尋會員名稱"
-                                                @keydown.enter="searchUser()">
+                                                @keydown.enter="searchUser">
                                         </label>
                                     </div>
                                 </div>
@@ -400,8 +400,8 @@
                                 <div class="col-md-6 align-self-center">
                                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
                                         Showing {{ omList === {}? 0 : (nowPage - 1) *10 + 1}} to
-                                        {{ omList === {}? 0 : nowPage * 10}} of {{ totalListItem }}
-                                    </p>
+                                        {{ totalListItem < 10? totalListItem : nowPage * 10}} of {{ totalListItem }}
+                                            </p>
                                 </div>
                                 <div class="col-md-6">
                                     <nav

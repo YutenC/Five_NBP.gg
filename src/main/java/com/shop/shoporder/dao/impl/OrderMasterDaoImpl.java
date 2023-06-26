@@ -226,10 +226,11 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 
 	@Override
 	public List<Member> selectLikeMemberName(String keyword) {
-		String hql = "FROM Member WHERE nick LIKE " + keyword;
+		String hql = "FROM Member WHERE nick LIKE '%'||:keyword||'%'";
 		
 		return getSession()
 				.createQuery(hql, Member.class)
+				.setParameter("keyword", keyword)
 				.getResultList();
 	}
 

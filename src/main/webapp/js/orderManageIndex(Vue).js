@@ -23,7 +23,7 @@ const omManage = Vue.createApp({
             this.nowPage = 1;
             if (this.searchKeyword !== '') {
                 this.searchUser();
-            } else if (this.criteria === 1) {
+            } else if (this.criteria === '1') {
                 this.renewList(this.nowPage);
             } else {
                 this.renewListWithSelect();
@@ -42,7 +42,7 @@ const omManage = Vue.createApp({
             sessionStorage.setItem('offset', offset);
             if (this.searchKeyword !== '') {
                 this.searchUser();
-            } else if (this.criteria === 1) {
+            } else if (this.criteria === '1') {
                 axios({
                     method: 'get',
                     url: projectFolder + '/OrderMaster',
@@ -70,10 +70,13 @@ const omManage = Vue.createApp({
             }).then(res => this.totalListItem = res.data)
                 .catch(err => console.log(err));
         },
+        selectionChange() {
+            this.nowPage = 1;
+            this.renewListWithSelect();
+        },
         renewListWithSelect: function () {
             this.searchKeyword = '';
-            this.nowPage = 1;
-            if (this.criteria === 1) {
+            if (this.criteria === '1') {
                 this.renewList(this.nowPage);
             } else {
                 axios({
@@ -123,7 +126,7 @@ const omManage = Vue.createApp({
                 url: projectFolder + '/OrderMaster',
                 params: {
                     searchLength: 'y',
-                    searchUser: this.searchKeyword,
+                    keyword: this.searchKeyword,
                 }
             }).then(res => this.totalListItem = res.data)
                 .catch(err => console.log(err))

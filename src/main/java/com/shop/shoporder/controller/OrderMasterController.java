@@ -139,7 +139,7 @@ public class OrderMasterController extends HttpServlet {
     	
     	String manageCondition = req.getParameter("manageCondition");
     	if (manageCondition != null) {
-    		Integer offset = Integer.valueOf(req.getParameter("offset"));
+    		Integer offset = Integer.valueOf(req.getParameter("offset")) * 10;
     		Integer selection = Integer.valueOf(req.getParameter("selection"));
     		Integer sortWay = Integer.valueOf(req.getParameter("sortWay"));
     		OrderSelection os = OrderSelection.values()[selection - 1];
@@ -150,7 +150,7 @@ public class OrderMasterController extends HttpServlet {
     	
     	String fresh = req.getParameter("fresh");
     	if (fresh != null) {
-    		pw.println(OrderMasterServiceConstant.OMSERVICE.renewOrderMasterResults());
+    		pw.println(gson.toJson(OrderMasterServiceConstant.OMSERVICE.renewOrderMasterResults()));
     		return;
     	}
     	
@@ -210,21 +210,24 @@ public class OrderMasterController extends HttpServlet {
     	
     	String searchUser = req.getParameter("searchUser");
     	if (searchUser != null) {
+//    		System.out.println(searchUser);
+//    		System.out.println(req.getParameter("offset"));
+//    		System.out.println(req.getParameter("sortWay"));
+    		Integer offset = Integer.valueOf(req.getParameter("offset")) * 10;
     		Integer sortWay = Integer.valueOf(req.getParameter("sortWay"));
-    		Integer offset = Integer.valueOf(req.getParameter("offset"));
     		Map<String, Integer> limitOffset = new HashMap<>();
     		limitOffset.put("limit", 10);
     		limitOffset.put("offset", offset);
     		
-    		pw.println(OrderMasterServiceConstant.OMSERVICE.ambiguMemberNameSearch(searchUser, sortWay, limitOffset));
+    		pw.println(gson.toJson(OrderMasterServiceConstant.OMSERVICE.ambiguMemberNameSearch(searchUser, sortWay, limitOffset)));
     		return;
     		
     	}
     	
     	String searchLength = req.getParameter("searchLength");
     	if (searchLength != null) {
-    		String keyword = req.getParameter("searchUser");
-    		pw.println(OrderMasterServiceConstant.OMSERVICE.ambiguMemberNameSearchLength(keyword));
+    		String keyword = req.getParameter("keyword");
+    		pw.println(gson.toJson(OrderMasterServiceConstant.OMSERVICE.ambiguMemberNameSearchLength(keyword)));
     		return;
     	}
     	
