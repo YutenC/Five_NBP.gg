@@ -2,7 +2,6 @@ package com.shop.shoporder.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,11 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.member.entity.Member;
-import com.shop.followlist.util.FollowListConstants;
-import com.shop.followlist.util.ResFollowList;
-import com.shop.shoporder.entity.OrderDetail;
-import com.shop.shoporder.entity.PKOrderDeatail;
-import com.shop.shoporder.util.MemberServiceConstant;
+import com.member.util.MemberConstants;
 import com.shop.shoporder.util.OrderDetailServiceConstant;
 import com.shop.shoporder.util.ResOrderDetail;
 import com.shop.shoporder.util.TransOrderProduct;
@@ -44,7 +39,7 @@ public class OrderDetailController extends HttpServlet {
     	Member login = new Member();
     	login.setAccount("ReimuHakurei");
     	login.setPassword("HakureiShrine");
-    	Member member = MemberServiceConstant.MBSERVICE.login(login);
+    	Member member = MemberConstants.SERVICE.login(login);
     	httpSession.setAttribute("member", member);
     	
     	Member getMember = (Member)httpSession.getAttribute("member");

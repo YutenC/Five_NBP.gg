@@ -19,6 +19,8 @@ $(window).resize(function () {
 const href = window.location.href;
 const host = href.substring(0, href.indexOf('/', 8));
 const projectHref = href.substring(0, href.lastIndexOf('Five_NBP.gg') + 11);
+const projectFolder = '/Five_NBP.gg';
+
 // 購物明細
 const shoppingContent = Vue.createApp({
     data() {
@@ -76,21 +78,13 @@ const shoppingContent = Vue.createApp({
 const promoProduct = Vue.createApp({
     data() {
         return {
-            promoProduct: [
-                {
-                    id: 1111, productName: 'abcdefg', link: 'dddddd', productImg: '../img/peripherals/Nintendo/Zelda/2a14aa702d831e8f7f2803e1601l4t05.jpg',
-                    price: 2000
-                },
-                {
-                    id: 1111, productName: 'abcdefg', link: 'dddddd', productImg: '../img/peripherals/Nintendo/Zelda/2a14aa702d831e8f7f2803e1601l4t05.jpg',
-                    price: 2000
-                },
-                {
-                    id: 1111, productName: 'abcdefg', link: 'dddddd', productImg: '../img/peripherals/Nintendo/Zelda/2a14aa702d831e8f7f2803e1601l4t05.jpg',
-                    price: 2000
-                }
-            ]
+            promoProduct: []
         }
+    },
+    created() {
+        axios.get(projectFolder + '/Product?recomendFromAll=5')
+            .then(res => this.promoProduct = res.data)
+            .catch(err => console.log(err))
     }
 }).mount('#promoProduct');
 

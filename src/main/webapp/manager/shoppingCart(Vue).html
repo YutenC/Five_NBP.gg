@@ -233,7 +233,10 @@
                     </form>
                     <div>
                         <span>或第三方支付</span>
-                        <button type="submit" @click.prevent="checkOut(true)">綠界金流支付</button>
+                        <form action="/Five_NBP.gg/Ecpay" method="post" @submit.prevent="checkOut(true, $event)">
+                            <input type="hidden" :value="orderId" name="orderId" id="orderId">
+                            <button type="submit">綠界金流支付</button>
+                        </form>
                     </div>
                 </div>
                 <div class="transfer" v-show="payment === 'transfer'">

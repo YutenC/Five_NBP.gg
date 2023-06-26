@@ -13,6 +13,12 @@ import lombok.Setter;
 @Setter
 @Data
 public class ResOrderMaster {
+	
+	private Integer orderId;
+	
+	private Integer totalPrice;
+	
+	private Integer memberId;
 
 	private List<TransOrderProduct> odProducts;
 	

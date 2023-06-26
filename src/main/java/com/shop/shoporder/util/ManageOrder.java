@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class ViewOrderMaster implements Serializable{
+public class ManageOrder implements Serializable{
 
 	private static final long serialVersionUID = 8398270951912283393L;
 	

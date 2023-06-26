@@ -22,5 +22,5 @@ public class ResOrderDetail implements Serializable{
 	
 	private Integer productAmount;
 	
-	private java.sql.Date purchaseDate;
+	private java.sql.Timestamp purchaseDate;
 }

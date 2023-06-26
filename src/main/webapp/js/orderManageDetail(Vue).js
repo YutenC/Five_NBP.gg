@@ -9,11 +9,12 @@ const orderContent = Vue.createApp({
         return {
             order: {},
             orderDetails: [],
-            updateOrder: { orderStatus: '1', deliverNumber: '', deliverState: '0' },
+            updateOrder: { orderStatus: '1', deliverNumber: '', deliverState: '0', payStatus: '1' },
             showPickType: ['', '宅配', '超商店取'],
             showCommitType: ['', '信用卡', '轉帳', '貨到付款'],
             showOrderStatus: ['', '已成立', '已取消', '申請取消', '申請退貨'],
             showDeliverState: ['未出貨', '已出貨', '已到貨'],
+            showPayStatus: ['', '待付款', '已付款', '貨到付款'],
         }
     },
     methods: {
@@ -63,7 +64,8 @@ const orderContent = Vue.createApp({
         }
     },
     created() {
-        let orderId = sessionStorage.getItem('orderId');
+        // let orderId = sessionStorage.getItem('orderId');
+        let orderId = location.hash.substring(1, location.hash.length);
         axios.get('/Five_NBP.gg/OrderMaster?getOne=' + orderId)
             .then(res => {
                 this.order = res.data;
